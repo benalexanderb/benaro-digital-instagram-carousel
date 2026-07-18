@@ -1,0 +1,20 @@
+{
+  "categories": [
+    "Psychologie",
+    "Design & UX",
+    "SEO",
+    "Performance & Ladezeit",
+    "Conversion & CRO",
+    "Trust & Social Proof",
+    "Content & Storytelling",
+    "Mobile & Accessibility"
+  ],
+  "used_topics": [
+    {
+      "category": "Psychologie",
+      "topic": "5 psychologische Trigger, die aus Besuchern Kunden machen",
+      "date_used": "2026-07-18",
+      "summary": "Aesthetic-Usability-Effect, 50ms-First-Impression-Studie (Lindgaard et al. 2006), 5 Conversion-Trigger: Social Proof, Autoritaet, Verknappung, Reziprozitaet, Ankereffekt."
+    }
+  ]
+}
