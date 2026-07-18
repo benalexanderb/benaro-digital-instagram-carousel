@@ -1,0 +1,19 @@
+{
+  "name": "benaro-digital-instagram-carousel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/manrope": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.28.0"
+  }
+}
