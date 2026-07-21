@@ -15,6 +15,12 @@
       "topic": "5 psychologische Trigger, die aus Besuchern Kunden machen",
       "date_used": "2026-07-18",
       "summary": "Aesthetic-Usability-Effect, 50ms-First-Impression-Studie (Lindgaard et al. 2006), 5 Conversion-Trigger: Social Proof, Autoritaet, Verknappung, Reziprozitaet, Ankereffekt."
+    },
+    {
+      "category": "Design & UX",
+      "topic": "F-Pattern: So liest dein Besucher wirklich deine Website",
+      "date_used": "2026-07-21",
+      "summary": "Eyetracking-Forschung der Nielsen Norman Group (Jakob Nielsen, 'F-Shaped Pattern For Reading Web Content', 2006): Besucher scannen Webseiten in einem F-foermigen Muster statt linear zu lesen. Praktische Konsequenz: Kernbotschaft oben links, klare Zwischenueberschriften am linken Rand, kurze Absaetze."
     }
   ]
 }
