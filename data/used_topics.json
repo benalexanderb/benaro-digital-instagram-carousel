@@ -21,6 +21,12 @@
       "topic": "F-Pattern: So liest dein Besucher wirklich deine Website",
       "date_used": "2026-07-21",
       "summary": "Eyetracking-Forschung der Nielsen Norman Group (Jakob Nielsen, 'F-Shaped Pattern For Reading Web Content', 2006): Besucher scannen Webseiten in einem F-foermigen Muster statt linear zu lesen. Praktische Konsequenz: Kernbotschaft oben links, klare Zwischenueberschriften am linken Rand, kurze Absaetze."
+    },
+    {
+      "category": "SEO",
+      "topic": "Core Web Vitals: Die 3 Zahlen, die ueber deine Google-Sichtbarkeit entscheiden",
+      "date_used": "2026-07-24",
+      "summary": "Offizielle Google-Metriken (web.dev/vitals), seit 2021 Ranking-Faktor im Page Experience Update: LCP (Largest Contentful Paint, gut <= 2,5s), INP (Interaction to Next Paint, gut <= 200ms), CLS (Cumulative Layout Shift, gut <= 0,1). Praktische Hebel: Bildoptimierung (WebP/AVIF), weniger blockierendes JavaScript, reservierter Platz fuer Bilder/Anzeigen."
     }
   ]
 }
