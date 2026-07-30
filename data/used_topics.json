@@ -27,6 +27,12 @@
       "topic": "Core Web Vitals: Die 3 Zahlen, die ueber deine Google-Sichtbarkeit entscheiden",
       "date_used": "2026-07-24",
       "summary": "Offizielle Google-Metriken (web.dev/vitals), seit 2021 Ranking-Faktor im Page Experience Update: LCP (Largest Contentful Paint, gut <= 2,5s), INP (Interaction to Next Paint, gut <= 200ms), CLS (Cumulative Layout Shift, gut <= 0,1). Praktische Hebel: Bildoptimierung (WebP/AVIF), weniger blockierendes JavaScript, reservierter Platz fuer Bilder/Anzeigen."
+    },
+    {
+      "category": "Performance & Ladezeit",
+      "topic": "Lazy Loading: Warum deine Bilder nicht alle gleichzeitig laden sollten",
+      "date_used": "2026-07-30",
+      "summary": "Natives HTML-Attribut loading=\"lazy\" (WHATWG HTML Living Standard, dokumentiert bei MDN Web Docs), von allen modernen Browsern unterstuetzt. Google/web.dev-Empfehlung: Bilder unterhalb des ersten Bildschirms lazy laden, das erste sichtbare (Hero-)Bild jedoch nicht, da dies den Core Web Vital LCP (Largest Contentful Paint) verzoegern wuerde."
     }
   ]
 }
