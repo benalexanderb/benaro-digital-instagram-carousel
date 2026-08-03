@@ -33,6 +33,12 @@
       "topic": "Lazy Loading: Warum deine Bilder nicht alle gleichzeitig laden sollten",
       "date_used": "2026-07-30",
       "summary": "Natives HTML-Attribut loading=\"lazy\" (WHATWG HTML Living Standard, dokumentiert bei MDN Web Docs), von allen modernen Browsern unterstuetzt. Google/web.dev-Empfehlung: Bilder unterhalb des ersten Bildschirms lazy laden, das erste sichtbare (Hero-)Bild jedoch nicht, da dies den Core Web Vital LCP (Largest Contentful Paint) verzoegern wuerde."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "Trust-Signale direkt am CTA: Warum Naehe zum Klick-Button entscheidet",
+      "date_used": "2026-08-03",
+      "summary": "Prospect Theory / Verlustaversion (Daniel Kahneman & Amos Tversky, 1979): Ein gefuehlter Verlust wiegt psychologisch schwerer als ein gleich grosser Gewinn. Jeder Klick auf einen CTA fuehlt sich fuer Besucher wie ein potenzielles Risiko an (Zeit, Daten, Geld, Enttaeuschung). Trust-Signale direkt neben dem Button (klares Versprechen, echte Referenz, Sicherheits-Hinweis, klare Erwartungssteuerung) senken dieses wahrgenommene Risiko genau am Entscheidungspunkt."
     }
   ]
 }

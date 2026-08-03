@@ -1,5 +1,5 @@
-// Carousel: 5 psychologische Trigger, die aus Besuchern Kunden machen
-// Beispiel-Post für die neue Benaro Digital Instagram-Automation
+// Carousel: Trust-Signale direkt am CTA (Verlustaversion / Prospect Theory)
+// Kategorie: Conversion & CRO — Benaro Digital Instagram-Automation
 const fs = require('fs');
 const path = require('path');
 
@@ -22,15 +22,15 @@ async function main() {
 
   // === Benaro Digital brand colors (from benarodigital.com globals.css) ===
   const C = {
-    bg: '#14161A',          // anthracite (site's dark section bg)
+    bg: '#14161A',
     text: '#FFFFFF',
     textSoft: 'rgba(255,255,255,0.72)',
-    textMuted: '#9AA0AB',   // --color-on-dark-muted
+    textMuted: '#9AA0AB',
     cardBg: 'rgba(255,255,255,0.06)',
     cardBorder: 'rgba(255,255,255,0.12)',
-    accent: '#2952FF',      // --color-accent (electric blue)
-    accent2: '#00C2B8',     // --color-accent-2 (teal)
-    gold: '#CBA35C',        // --color-gold
+    accent: '#2952FF',
+    accent2: '#00C2B8',
+    gold: '#CBA35C',
     green: '#10B981',
     red: '#EF4444',
   };
@@ -41,7 +41,7 @@ async function main() {
     type, props: { ...props, children: ch.length === 1 ? ch[0] : ch.length === 0 ? undefined : ch }
   });
 
-  // === BD monogram (exact paths from src/components/ui/logo.tsx LogoMark), white fill ===
+  // === BD monogram ===
   function bdMonogramSvg(fill) {
     return `<svg viewBox="14 10 86 46" xmlns="http://www.w3.org/2000/svg">
       <rect x="14" y="10" width="10" height="46" rx="5" fill="${fill}"/>
@@ -70,11 +70,11 @@ async function main() {
     );
   }
 
-  function headline(text, size) {
+  function headline(text, size, color) {
     return h('span', {
       style: {
-        display: 'flex', fontFamily: 'Manrope', fontSize: (size || 62) + 'px', fontWeight: 800, color: C.text,
-        lineHeight: '1.08', letterSpacing: '-1.5px', marginBottom: '6px'
+        display: 'flex', fontFamily: 'Manrope', fontSize: (size || 58) + 'px', fontWeight: 800, color: color || C.text,
+        lineHeight: '1.1', letterSpacing: '-1.5px', marginBottom: '6px'
       }
     }, text);
   }
@@ -114,139 +114,139 @@ async function main() {
     }, ...children);
   }
 
-  // === SLIDE 1: Hook ===
-  const slide1 = slideRoot(
-    badge('PSYCHOLOGIE'),
-    headline('5 TRIGGER,'),
-    headline('DIE AUS BESUCHERN'),
-    h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '62px', fontWeight: 800, color: C.accent2, lineHeight: '1.08', letterSpacing: '-1.5px' } }, 'KUNDEN MACHEN'),
-    subline('Die meisten Websites verkaufen nicht am Design — sondern an fehlender Psychologie.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '14px', justifyContent: 'center' } },
-        ...['01', '02', '03', '04', '05'].map((n, i) =>
-          h('div', {
-            style: {
-              display: 'flex', width: '160px', height: '160px', borderRadius: '20px',
-              backgroundColor: i === 2 ? 'rgba(41,82,255,0.16)' : C.cardBg,
-              border: `1px solid ${i === 2 ? C.accent : C.cardBorder}`,
-              alignItems: 'center', justifyContent: 'center',
-            }
-          }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '48px', fontWeight: 800, color: i === 2 ? C.accent : 'rgba(255,255,255,0.4)' } }, n))
-        )
-      )
-    ),
-    footer(),
-  );
-
-  // === SLIDE 2: Fact (50ms) ===
-  const slide2 = slideRoot(
-    badge('DER ERSTE EINDRUCK'),
-    headline('Dein Besucher urteilt', 52),
-    headline('schneller als du denkst', 52),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '24px' } },
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '160px', fontWeight: 800, color: C.accent, letterSpacing: '-4px' } }, '50ms'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'So lange braucht das Gehirn, um sich\neinen ersten Eindruck von deiner\nWebsite zu bilden (Lindgaard et al., 2006)'),
-    ),
-    keyLearning('Bevor jemand liest, hat er bereits entschieden, ob er dir vertraut.', C.accent),
-    footer(),
-  );
-
-  // === SLIDE 3: Principle (Aesthetic-Usability-Effect) ===
-  const slide3 = slideRoot(
-    badge('DAS PRINZIP DAHINTER'),
-    headline('Der Aesthetic-', 56),
-    headline('Usability-Effect', 56),
-    subline('Menschen verzeihen kleine Usability-Schwächen, wenn eine Website gut aussieht und vertrauenswürdig wirkt.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '12px', border: `1px solid ${C.cardBorder}` } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'OHNE PSYCHOLOGIE'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Design allein reicht nicht'),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.12)', borderRadius: '20px', padding: '28px', gap: '12px', border: `1px solid ${C.accent2}` } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'MIT PSYCHOLOGIE'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.accent2, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Vertrauen entsteht gezielt'),
-        ),
-      ),
-    ),
-    keyLearning('Gutes Design schafft Sympathie — Trigger schaffen Vertrauen.', C.accent2),
-    footer(),
-  );
-
-  // === SLIDE 4: Erwartung vs Realität ===
-  const slide4 = slideRoot(
-    badge('MYTHOS VS. REALITÄT'),
-    headline('Was die meisten', 56),
-    headline('Website-Betreiber denken', 44),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.cardBorder}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, '„Schönes Design reicht, der Rest ergibt sich."'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.14)', borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.accent}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Ohne psychologische Trigger bleibt Vertrauen aus — und Besucher springen ab.'),
-      ),
-    ),
-    keyLearning('Design bringt Besucher zum Bleiben. Trigger bringen sie zum Handeln.', C.accent),
-    footer(),
-  );
-
-  // === Trigger row component ===
   function triggerRow(num, title, desc, color) {
-    return h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-start', backgroundColor: C.cardBg, borderRadius: '18px', padding: '22px 26px', border: `1px solid ${C.cardBorder}` } },
+    return h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-start', backgroundColor: C.cardBg, borderRadius: '18px', padding: '20px 24px', border: `1px solid ${C.cardBorder}` } },
       h('div', {
         style: {
-          display: 'flex', minWidth: '54px', height: '54px', borderRadius: '14px',
+          display: 'flex', minWidth: '50px', height: '50px', borderRadius: '14px',
           backgroundColor: color, alignItems: 'center', justifyContent: 'center',
         }
-      }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: '#0B0C0E' } }, num)),
+      }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 800, color: '#0B0C0E' } }, num)),
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 700, color: C.text } }, title),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, title),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc),
       ),
     );
   }
 
-  // === SLIDE 5: Trigger 1-3 ===
+  // === SLIDE 1: Hook — der Button steht, geklickt wird trotzdem nicht ===
+  const cursorCluster = h('div', { style: { display: 'flex', position: 'absolute', width: '140px', height: '140px', top: '188px', right: '54px' } },
+    h('div', { style: { display: 'flex', position: 'absolute', width: '120px', height: '120px', top: '10px', left: '10px', borderRadius: '60px', border: '3px solid rgba(255,255,255,0.15)' } }),
+    h('div', { style: { display: 'flex', position: 'absolute', width: '80px', height: '80px', top: '30px', left: '30px', borderRadius: '40px', border: '3px solid rgba(255,255,255,0.3)' } }),
+    h('div', { style: { display: 'flex', position: 'absolute', width: '26px', height: '26px', top: '57px', left: '57px', borderRadius: '13px', backgroundColor: '#FFFFFF' } }),
+  );
+
+  const slide1 = slideRoot(
+    badge('ACHTUNG'),
+    headline('DER BUTTON STEHT.'),
+    headline('GEKLICKT WIRD ER NICHT.', 58, C.accent2),
+    subline('Das Problem liegt nicht im Design – sondern im Kopf deines Besuchers.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      h('div', { style: { display: 'flex', position: 'relative', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '24px', border: `1px solid ${C.cardBorder}` } },
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', height: '44px', padding: '0 20px', borderBottom: `1px solid ${C.cardBorder}` } },
+          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(239,68,68,0.5)' } }),
+          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(203,163,92,0.5)' } }),
+          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(16,185,129,0.5)' } }),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 30px 70px' } },
+          h('div', { style: { display: 'flex', backgroundColor: 'rgba(41,82,255,0.18)', border: `2px solid ${C.accent}`, borderRadius: '14px', padding: '20px 46px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: '#FFFFFF' } }, 'Jetzt anfragen'),
+          ),
+        ),
+        cursorCluster,
+      ),
+    ),
+    footer(),
+  );
+
+  // === SLIDE 2: Prinzip — Verlustaversion (Prospect Theory) ===
+  function bar(height, bg, border) {
+    return h('div', { style: { display: 'flex', width: '100%', height: `${height}px`, backgroundColor: bg, border: `1px solid ${border}`, borderRadius: '14px 14px 0 0' } });
+  }
+  const slide2 = slideRoot(
+    badge('DAS PRINZIP DAHINTER'),
+    headline('VERLUSTE WIEGEN', 54),
+    headline('SCHWERER ALS GEWINNE', 46, C.accent2),
+    subline('Prospect Theory von Daniel Kahneman & Amos Tversky (1979): Ein gefühlter Verlust schmerzt stärker, als ein gleich großer Gewinn erfreut.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } },
+      h('div', { style: { display: 'flex', gap: '50px', alignItems: 'flex-end' } },
+        h('div', { style: { display: 'flex', flexDirection: 'column', width: '190px', height: '280px', justifyContent: 'flex-end', alignItems: 'center', gap: '16px' } },
+          bar(110, C.cardBg, C.cardBorder),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'GEWINN'),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', width: '190px', height: '280px', justifyContent: 'flex-end', alignItems: 'center', gap: '16px' } },
+          bar(230, 'rgba(239,68,68,0.16)', C.red),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'VERLUST'),
+        ),
+      ),
+    ),
+    keyLearning('Jeder Klick auf „Jetzt anfragen" fühlt sich für deinen Besucher wie ein möglicher Verlust an.', C.accent),
+    footer(),
+  );
+
+  // === SLIDE 3: Konsequenz — jeder Klick ist ein Risiko ===
+  const slide3 = slideRoot(
+    badge('DIE FOLGE FÜR DEINE WEBSITE'),
+    headline('JEDER KLICK IST', 54),
+    headline('EIN RISIKO', 54),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.cardBorder}` } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'WAS ER GEWINNT'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Eine Lösung, ein Angebot, eine Antwort.'),
+      ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.12)', borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.red}` } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'WAS ER RISKIERT'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Zeit, Daten, Geld – und Enttäuschung.'),
+      ),
+    ),
+    keyLearning('Ohne Gegengewicht wiegt das wahrgenommene Risiko schwerer als der Nutzen – und er springt ab.', C.red),
+    footer(),
+  );
+
+  // === SLIDE 4: Erwartung vs. Realität ===
+  const slide4 = slideRoot(
+    badge('MYTHOS VS. REALITÄT'),
+    headline('DER BUTTON ALLEIN', 50),
+    headline('REICHT NICHT', 50),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.cardBorder}` } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '29px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, '„Ein Button reicht, wenn Design und Text stimmen."'),
+      ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.14)', borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.accent}` } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '29px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Ein Trust-Signal direkt daneben senkt das gefühlte Risiko – und den Klick-Widerstand.'),
+      ),
+    ),
+    keyLearning('Der Unterschied zwischen Zögern und Klicken liegt oft nur wenige Zentimeter neben dem Button.', C.accent),
+    footer(),
+  );
+
+  // === SLIDE 5: Trust-Signale, die wirken ===
   const slide5 = slideRoot(
-    badge('DIE 5 TRIGGER — TEIL 1'),
-    headline('Diese 3 wirken', 52),
-    headline('sofort beim Betreten', 44),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      triggerRow('1', 'Social Proof', 'Kundenstimmen, Logos, Bewertungen zeigen: andere vertrauen bereits.', C.accent2),
-      triggerRow('2', 'Autorität', 'Zertifikate, Presselogos, Expertenwissen signalisieren Kompetenz.', C.gold),
-      triggerRow('3', 'Verknappung', 'Begrenzte Plätze oder Zeiträume erhöhen die Entscheidungsdringlichkeit.', C.accent),
+    badge('TRUST-SIGNALE, DIE WIRKEN'),
+    headline('4 SIGNALE FÜR', 52),
+    headline('MEHR VERTRAUEN', 52),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      triggerRow('1', 'Klares Versprechen', 'Feste Reaktionszeit oder unverbindliches Angebot direkt benennen.', C.accent2),
+      triggerRow('2', 'Echte Referenz', 'Eine konkrete Kundenstimme direkt neben dem Button.', C.gold),
+      triggerRow('3', 'Sicherheits-Hinweis', 'Ein kurzer Datenschutz-Hinweis nimmt die Sorge vor der Weitergabe.', C.accent),
+      triggerRow('4', 'Klare Erwartung', 'Sagen, was nach dem Klick passiert – kein Verkaufsdruck.', C.green),
     ),
     footer(),
   );
 
-  // === SLIDE 6: Trigger 4-5 ===
-  const slide6 = slideRoot(
-    badge('DIE 5 TRIGGER — TEIL 2'),
-    headline('Diese 2 entscheiden', 52),
-    headline('über die Handlung', 52),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      triggerRow('4', 'Reziprozität', 'Kostenloser Mehrwert zuerst (Guide, Check) erzeugt den Wunsch zurückzugeben.', C.green),
-      triggerRow('5', 'Ankereffekt', 'Der zuerst gezeigte Preis oder Wert prägt, wie fair alles Weitere wirkt.', C.accent),
-    ),
-    keyLearning('Alle 5 Trigger zusammen verwandeln Aufmerksamkeit in Vertrauen — und Vertrauen in Anfragen.', C.accent2),
-    footer(),
-  );
-
-  // === SLIDE 7: Takeaways ===
+  // === SLIDE 6: Takeaways ===
   const learnings = [
-    { num: '01', text: 'Vertrauen entsteht in den ersten 50 Millisekunden', pct: 25 },
-    { num: '02', text: 'Design allein verkauft nicht — Psychologie schon', pct: 50 },
-    { num: '03', text: 'Social Proof & Autorität gehören auf jede Startseite', pct: 75 },
-    { num: '04', text: 'Ein klarer CTA nutzt Reziprozität und Ankereffekt', pct: 100 },
+    { num: '01', text: 'Verluste wiegen psychologisch schwerer als Gewinne', pct: 25 },
+    { num: '02', text: 'Jeder Klick fühlt sich wie ein kleines Risiko an', pct: 50 },
+    { num: '03', text: 'Trust-Signale direkt am Button senken dieses Risiko', pct: 75 },
+    { num: '04', text: 'Konkret statt vage: Zeit, Sicherheit, Ablauf klar benennen', pct: 100 },
   ];
-  const slide7 = slideRoot(
+  const slide6 = slideRoot(
     badge('DIE TAKEAWAYS'),
-    headline('4 Learnings zum', 54),
-    headline('Mitnehmen', 54),
+    headline('4 LEARNINGS ZUM', 54),
+    headline('MITNEHMEN', 54),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       ...learnings.map(l =>
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, borderRadius: '18px', border: `1px solid ${C.cardBorder}` } },
@@ -263,8 +263,8 @@ async function main() {
     footer(),
   );
 
-  // === SLIDE 8: CTA ===
-  const slide8 = slideRoot(
+  // === SLIDE 7: CTA ===
+  const slide7 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
       h('span', {
@@ -272,16 +272,16 @@ async function main() {
           display: 'flex', fontFamily: 'Manrope', fontSize: '44px', fontWeight: 800, color: C.text,
           textAlign: 'center', lineHeight: '1.3', letterSpacing: '-1px',
         }
-      }, 'Welcher Trigger fehlt\nauf deiner Website?'),
+      }, 'Steht ein Trust-Signal\nneben deinem CTA?'),
       h('span', {
         style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.5' }
-      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Psychologie, Design & SEO.'),
+      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Conversion, Design & Psychologie.'),
     ),
     footer(),
   );
 
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'example_5-psychologische-trigger', 'slides');
+  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-03', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
