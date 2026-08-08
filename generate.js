@@ -1,5 +1,5 @@
-// Carousel: Trust-Signale direkt am CTA (Verlustaversion / Prospect Theory)
-// Kategorie: Conversion & CRO — Benaro Digital Instagram-Automation
+// Carousel: Social Proof statt Selbstlob (Cialdini, "Influence", 1984)
+// Kategorie: Trust & Social Proof — Benaro Digital Instagram-Automation
 const fs = require('fs');
 const path = require('path');
 
@@ -114,6 +114,25 @@ async function main() {
     }, ...children);
   }
 
+  function statementCard(label, text, opts) {
+    opts = opts || {};
+    return h('div', {
+      style: {
+        display: 'flex', flexDirection: 'column', backgroundColor: opts.bg || C.cardBg, borderRadius: '20px',
+        padding: '28px', gap: '10px', border: `1px solid ${opts.border || C.cardBorder}`,
+      }
+    },
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: opts.labelColor || C.textMuted } }, label),
+      h('span', {
+        style: {
+          display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600,
+          color: opts.textColor || C.textSoft, lineHeight: '1.4',
+          textDecoration: opts.strike ? 'line-through' : 'none',
+        }
+      }, text),
+    );
+  }
+
   function triggerRow(num, title, desc, color) {
     return h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-start', backgroundColor: C.cardBg, borderRadius: '18px', padding: '20px 24px', border: `1px solid ${C.cardBorder}` } },
       h('div', {
@@ -129,119 +148,92 @@ async function main() {
     );
   }
 
-  // === SLIDE 1: Hook — der Button steht, geklickt wird trotzdem nicht ===
-  const cursorCluster = h('div', { style: { display: 'flex', position: 'absolute', width: '140px', height: '140px', top: '188px', right: '54px' } },
-    h('div', { style: { display: 'flex', position: 'absolute', width: '120px', height: '120px', top: '10px', left: '10px', borderRadius: '60px', border: '3px solid rgba(255,255,255,0.15)' } }),
-    h('div', { style: { display: 'flex', position: 'absolute', width: '80px', height: '80px', top: '30px', left: '30px', borderRadius: '40px', border: '3px solid rgba(255,255,255,0.3)' } }),
-    h('div', { style: { display: 'flex', position: 'absolute', width: '26px', height: '26px', top: '57px', left: '57px', borderRadius: '13px', backgroundColor: '#FFFFFF' } }),
-  );
+  function personIcon(color) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' } },
+      h('div', { style: { display: 'flex', width: '30px', height: '30px', borderRadius: '15px', backgroundColor: color } }),
+      h('div', { style: { display: 'flex', width: '46px', height: '26px', borderRadius: '14px 14px 0 0', backgroundColor: color } }),
+    );
+  }
 
+  // === SLIDE 1: Hook — Eigenlob vs. Kundenstimme ===
   const slide1 = slideRoot(
     badge('ACHTUNG'),
-    headline('DER BUTTON STEHT.'),
-    headline('GEKLICKT WIRD ER NICHT.', 58, C.accent2),
-    subline('Das Problem liegt nicht im Design – sondern im Kopf deines Besuchers.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', position: 'relative', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '24px', border: `1px solid ${C.cardBorder}` } },
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', height: '44px', padding: '0 20px', borderBottom: `1px solid ${C.cardBorder}` } },
-          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(239,68,68,0.5)' } }),
-          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(203,163,92,0.5)' } }),
-          h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: 'rgba(16,185,129,0.5)' } }),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 30px 70px' } },
-          h('div', { style: { display: 'flex', backgroundColor: 'rgba(41,82,255,0.18)', border: `2px solid ${C.accent}`, borderRadius: '14px', padding: '20px 46px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: '#FFFFFF' } }, 'Jetzt anfragen'),
-          ),
-        ),
-        cursorCluster,
-      ),
+    headline('DU SAGST, DU BIST'),
+    headline('DIE BESTE WAHL.', 58, C.accent2),
+    subline('Dein Besucher glaubt es trotzdem nicht – das Problem liegt nicht in deiner Botschaft.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      statementCard('DU SAGST', '„Wir sind die beste Wahl für dich.“', { strike: true }),
+      statementCard('KUNDE SAGT', '„Die haben mein Problem wirklich gelöst.“', { bg: 'rgba(0,194,184,0.12)', border: C.accent2, labelColor: C.accent2, textColor: C.text }),
     ),
     footer(),
   );
 
-  // === SLIDE 2: Prinzip — Verlustaversion (Prospect Theory) ===
-  function bar(height, bg, border) {
-    return h('div', { style: { display: 'flex', width: '100%', height: `${height}px`, backgroundColor: bg, border: `1px solid ${border}`, borderRadius: '14px 14px 0 0' } });
-  }
+  // === SLIDE 2: Prinzip — Social Proof (Cialdini, 1984) ===
   const slide2 = slideRoot(
     badge('DAS PRINZIP DAHINTER'),
-    headline('VERLUSTE WIEGEN', 54),
-    headline('SCHWERER ALS GEWINNE', 46, C.accent2),
-    subline('Prospect Theory von Daniel Kahneman & Amos Tversky (1979): Ein gefühlter Verlust schmerzt stärker, als ein gleich großer Gewinn erfreut.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } },
-      h('div', { style: { display: 'flex', gap: '50px', alignItems: 'flex-end' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', width: '190px', height: '280px', justifyContent: 'flex-end', alignItems: 'center', gap: '16px' } },
-          bar(110, C.cardBg, C.cardBorder),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'GEWINN'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', width: '190px', height: '280px', justifyContent: 'flex-end', alignItems: 'center', gap: '16px' } },
-          bar(230, 'rgba(239,68,68,0.16)', C.red),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'VERLUST'),
-        ),
+    headline('MENSCHEN VERTRAUEN', 52),
+    headline('ANDEREN MENSCHEN', 46, C.accent2),
+    subline('Social Proof – ein Prinzip von Psychologe Robert Cialdini ("Influence", 1984): In unsicheren Situationen orientieren wir uns am Verhalten anderer, um die richtige Entscheidung zu treffen.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '22px' } },
+      h('div', { style: { display: 'flex', gap: '24px', alignItems: 'flex-end' } },
+        personIcon(C.cardBorder),
+        personIcon(C.cardBorder),
+        personIcon(C.cardBorder),
+        personIcon(C.cardBorder),
+        personIcon(C.accent2),
       ),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'FOLGEN DEM VERHALTEN ANDERER'),
     ),
-    keyLearning('Jeder Klick auf „Jetzt anfragen" fühlt sich für deinen Besucher wie ein möglicher Verlust an.', C.accent),
+    keyLearning('Ein Testimonial ist kein nettes Extra – es ist der Beweis, den Interessenten unbewusst suchen.', C.accent),
     footer(),
   );
 
-  // === SLIDE 3: Konsequenz — jeder Klick ist ein Risiko ===
+  // === SLIDE 3: Konsequenz — ohne Beweis bleibt alles Behauptung ===
   const slide3 = slideRoot(
     badge('DIE FOLGE FÜR DEINE WEBSITE'),
-    headline('JEDER KLICK IST', 54),
-    headline('EIN RISIKO', 54),
+    headline('OHNE BEWEIS BLEIBT', 50),
+    headline('ALLES BEHAUPTUNG', 50),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.cardBorder}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'WAS ER GEWINNT'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Eine Lösung, ein Angebot, eine Antwort.'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.12)', borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.red}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'WAS ER RISKIERT'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Zeit, Daten, Geld – und Enttäuschung.'),
-      ),
+      statementCard('WAS DU SCHREIBST', '„Professionell, zuverlässig, erfahren“ – das behauptet jede Website.'),
+      statementCard('WAS FEHLT', 'Ein unabhängiger Beweis, dass es auch stimmt.', { bg: 'rgba(239,68,68,0.12)', border: C.red, labelColor: C.red, textColor: C.text }),
     ),
-    keyLearning('Ohne Gegengewicht wiegt das wahrgenommene Risiko schwerer als der Nutzen – und er springt ab.', C.red),
+    keyLearning('Ohne Bestätigung von außen wirkt jedes Qualitätsversprechen austauschbar.', C.red),
     footer(),
   );
 
   // === SLIDE 4: Erwartung vs. Realität ===
   const slide4 = slideRoot(
     badge('MYTHOS VS. REALITÄT'),
-    headline('DER BUTTON ALLEIN', 50),
-    headline('REICHT NICHT', 50),
+    headline('JEDES TESTIMONIAL', 50),
+    headline('WIRKT GLEICH GUT', 50),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.cardBorder}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '29px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, '„Ein Button reicht, wenn Design und Text stimmen."'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.14)', borderRadius: '20px', padding: '28px', gap: '10px', border: `1px solid ${C.accent}` } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '29px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Ein Trust-Signal direkt daneben senkt das gefühlte Risiko – und den Klick-Widerstand.'),
-      ),
+      statementCard('ERWARTUNG', '„Irgendein positives Zitat auf der Seite reicht schon.“'),
+      statementCard('REALITÄT', 'Konkret, spezifisch und einer echten Person zuordenbar – erst das macht ein Testimonial glaubwürdig.', { bg: 'rgba(41,82,255,0.14)', border: C.accent, labelColor: C.accent, textColor: C.text }),
     ),
-    keyLearning('Der Unterschied zwischen Zögern und Klicken liegt oft nur wenige Zentimeter neben dem Button.', C.accent),
+    keyLearning('Vage Lob-Sätze wirken wie Werbung. Konkrete, zuordenbare Aussagen wirken wie ein Beweis.', C.accent),
     footer(),
   );
 
-  // === SLIDE 5: Trust-Signale, die wirken ===
+  // === SLIDE 5: Vier Formen von Beweis ===
   const slide5 = slideRoot(
-    badge('TRUST-SIGNALE, DIE WIRKEN'),
-    headline('4 SIGNALE FÜR', 52),
-    headline('MEHR VERTRAUEN', 52),
+    badge('VIER FORMEN VON BEWEIS'),
+    headline('SO ZEIGST DU', 52),
+    headline('ECHTEN BEWEIS', 52),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      triggerRow('1', 'Klares Versprechen', 'Feste Reaktionszeit oder unverbindliches Angebot direkt benennen.', C.accent2),
-      triggerRow('2', 'Echte Referenz', 'Eine konkrete Kundenstimme direkt neben dem Button.', C.gold),
-      triggerRow('3', 'Sicherheits-Hinweis', 'Ein kurzer Datenschutz-Hinweis nimmt die Sorge vor der Weitergabe.', C.accent),
-      triggerRow('4', 'Klare Erwartung', 'Sagen, was nach dem Klick passiert – kein Verkaufsdruck.', C.green),
+      triggerRow('1', 'Konkrete Kundenstimme', 'Name und ein spezifisches Ergebnis statt allgemeinem Lob.', C.accent2),
+      triggerRow('2', 'Nachvollziehbare Case Study', 'Ausgangslage, Vorgehen, Ergebnis – verständlich für neue Besucher.', C.gold),
+      triggerRow('3', 'Sichtbare Kennzahlen', 'Anzahl betreuter Kunden oder Projekte, sofern real belegbar.', C.accent),
+      triggerRow('4', 'Unabhängige Siegel', 'Verifizierte Bewertungsplattformen als externe Bestätigung.', C.green),
     ),
     footer(),
   );
 
   // === SLIDE 6: Takeaways ===
   const learnings = [
-    { num: '01', text: 'Verluste wiegen psychologisch schwerer als Gewinne', pct: 25 },
-    { num: '02', text: 'Jeder Klick fühlt sich wie ein kleines Risiko an', pct: 50 },
-    { num: '03', text: 'Trust-Signale direkt am Button senken dieses Risiko', pct: 75 },
-    { num: '04', text: 'Konkret statt vage: Zeit, Sicherheit, Ablauf klar benennen', pct: 100 },
+    { num: '01', text: 'Menschen vertrauen anderen Menschen mehr als Werbeversprechen', pct: 25 },
+    { num: '02', text: 'Ohne externen Beweis bleibt jede Aussage nur eine Behauptung', pct: 50 },
+    { num: '03', text: 'Konkrete, zuordenbare Testimonials wirken stärker als vages Lob', pct: 75 },
+    { num: '04', text: 'Zeig echten Beweis statt allgemeiner Qualitätsversprechen', pct: 100 },
   ];
   const slide6 = slideRoot(
     badge('DIE TAKEAWAYS'),
@@ -272,16 +264,16 @@ async function main() {
           display: 'flex', fontFamily: 'Manrope', fontSize: '44px', fontWeight: 800, color: C.text,
           textAlign: 'center', lineHeight: '1.3', letterSpacing: '-1px',
         }
-      }, 'Steht ein Trust-Signal\nneben deinem CTA?'),
+      }, 'Zeigt deine Website\nechten Beweis?'),
       h('span', {
         style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.5' }
-      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Conversion, Design & Psychologie.'),
+      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Vertrauen, Design & Psychologie.'),
     ),
     footer(),
   );
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-03', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-08', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
