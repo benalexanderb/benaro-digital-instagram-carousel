@@ -1,5 +1,5 @@
-// Carousel: Social Proof statt Selbstlob (Cialdini, "Influence", 1984)
-// Kategorie: Trust & Social Proof — Benaro Digital Instagram-Automation
+// Carousel: Der 5-Sekunden-Test (Five Second Test / Steve Krug, "Don't Make Me Think", 2000)
+// Kategorie: Content & Storytelling — Benaro Digital Instagram-Automation
 const fs = require('fs');
 const path = require('path');
 
@@ -148,92 +148,108 @@ async function main() {
     );
   }
 
-  function personIcon(color) {
-    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' } },
-      h('div', { style: { display: 'flex', width: '30px', height: '30px', borderRadius: '15px', backgroundColor: color } }),
-      h('div', { style: { display: 'flex', width: '46px', height: '26px', borderRadius: '14px 14px 0 0', backgroundColor: color } }),
+  // Countdown row: 5 blocks counting down from 5 to 1, last one highlighted
+  function countdownRow() {
+    const nums = ['5', '4', '3', '2', '1'];
+    return h('div', { style: { display: 'flex', gap: '16px', alignItems: 'center', justifyContent: 'center' } },
+      ...nums.map((n, i) => {
+        const isLast = i === nums.length - 1;
+        return h('div', {
+          style: {
+            display: 'flex', width: '96px', height: '96px', borderRadius: '20px',
+            backgroundColor: isLast ? C.accent2 : C.cardBg,
+            border: `1px solid ${isLast ? C.accent2 : C.cardBorder}`,
+            alignItems: 'center', justifyContent: 'center',
+          }
+        }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '40px', fontWeight: 800, color: isLast ? '#0B0C0E' : C.textSoft } }, n));
+      }),
     );
   }
 
-  // === SLIDE 1: Hook — Eigenlob vs. Kundenstimme ===
+  // Two-step process card: shown screen -> question
+  function processCard(step, title, desc, color) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: C.cardBg, borderRadius: '20px', padding: '26px', gap: '14px', border: `1px solid ${C.cardBorder}` } },
+      h('div', { style: { display: 'flex', width: '54px', height: '54px', borderRadius: '15px', backgroundColor: color, alignItems: 'center', justifyContent: 'center' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: '#0B0C0E' } }, step)),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '25px', fontWeight: 700, color: C.text, lineHeight: '1.3' } }, title),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc),
+    );
+  }
+
+  // === SLIDE 1: Hook — 5 Sekunden ===
   const slide1 = slideRoot(
-    badge('ACHTUNG'),
-    headline('DU SAGST, DU BIST'),
-    headline('DIE BESTE WAHL.', 58, C.accent2),
-    subline('Dein Besucher glaubt es trotzdem nicht – das Problem liegt nicht in deiner Botschaft.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      statementCard('DU SAGST', '„Wir sind die beste Wahl für dich.“', { strike: true }),
-      statementCard('KUNDE SAGT', '„Die haben mein Problem wirklich gelöst.“', { bg: 'rgba(0,194,184,0.12)', border: C.accent2, labelColor: C.accent2, textColor: C.text }),
+    badge('TEST DICH SELBST'),
+    headline('5 SEKUNDEN.'),
+    headline('MEHR ZEIT HAT DEIN', 46),
+    headline('BESUCHER NICHT.', 46, C.accent2),
+    subline('In dieser Zeit entscheidet sich, ob er bleibt – oder wieder geht.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '24px' } },
+      countdownRow(),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted, justifyContent: 'center' } }, 'DIE UHR LÄUFT AB DEM ERSTEN BLICK'),
     ),
     footer(),
   );
 
-  // === SLIDE 2: Prinzip — Social Proof (Cialdini, 1984) ===
+  // === SLIDE 2: Die Methode — Five Second Test ===
   const slide2 = slideRoot(
-    badge('DAS PRINZIP DAHINTER'),
-    headline('MENSCHEN VERTRAUEN', 52),
-    headline('ANDEREN MENSCHEN', 46, C.accent2),
-    subline('Social Proof – ein Prinzip von Psychologe Robert Cialdini ("Influence", 1984): In unsicheren Situationen orientieren wir uns am Verhalten anderer, um die richtige Entscheidung zu treffen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', gap: '24px', alignItems: 'flex-end' } },
-        personIcon(C.cardBorder),
-        personIcon(C.cardBorder),
-        personIcon(C.cardBorder),
-        personIcon(C.cardBorder),
-        personIcon(C.accent2),
-      ),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'FOLGEN DEM VERHALTEN ANDERER'),
+    badge('DIE METHODE'),
+    headline('DER FIVE', 54),
+    headline('SECOND TEST', 54, C.accent2),
+    subline('Eine etablierte Usability-Testing-Methode: Eine Seite wird 5 Sekunden lang gezeigt, dann ausgeblendet – und gefragt, was hängen geblieben ist.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      processCard('1', 'Seite wird gezeigt', '5 Sekunden lang, ohne Vorwarnung.', C.accent2),
+      processCard('2', 'Seite wird ausgeblendet', 'Der Bildschirm wird geschwärzt.', C.gold),
+      processCard('3', 'Die entscheidende Frage', 'Was bietet diese Seite an – und für wen?', C.accent),
     ),
-    keyLearning('Ein Testimonial ist kein nettes Extra – es ist der Beweis, den Interessenten unbewusst suchen.', C.accent),
     footer(),
   );
 
-  // === SLIDE 3: Konsequenz — ohne Beweis bleibt alles Behauptung ===
+  // === SLIDE 3: Konsequenz ===
   const slide3 = slideRoot(
     badge('DIE FOLGE FÜR DEINE WEBSITE'),
-    headline('OHNE BEWEIS BLEIBT', 50),
-    headline('ALLES BEHAUPTUNG', 50),
+    headline('VERSTEHT ER ES NICHT—', 46),
+    headline('IST ER SCHON WEG', 50),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      statementCard('WAS DU SCHREIBST', '„Professionell, zuverlässig, erfahren“ – das behauptet jede Website.'),
-      statementCard('WAS FEHLT', 'Ein unabhängiger Beweis, dass es auch stimmt.', { bg: 'rgba(239,68,68,0.12)', border: C.red, labelColor: C.red, textColor: C.text }),
+      statementCard('WAS DU DENKST', '„Er scrollt schon weiter, wenn ihn etwas interessiert.“', { strike: true }),
+      statementCard('WAS PASSIERT', 'Er sucht nicht nach der Antwort. Er geht einfach – ohne zu klicken, ohne zu scrollen.', { bg: 'rgba(239,68,68,0.12)', border: C.red, labelColor: C.red, textColor: C.text }),
     ),
-    keyLearning('Ohne Bestätigung von außen wirkt jedes Qualitätsversprechen austauschbar.', C.red),
+    keyLearning('Ein Besucher, der nicht sofort versteht, gibt dir selten eine zweite Chance.', C.red),
     footer(),
   );
 
-  // === SLIDE 4: Erwartung vs. Realität ===
+  // === SLIDE 4: Erwartung vs. Realität — Don't Make Me Think ===
   const slide4 = slideRoot(
     badge('MYTHOS VS. REALITÄT'),
-    headline('JEDES TESTIMONIAL', 50),
-    headline('WIRKT GLEICH GUT', 50),
+    headline('KLARHEIT SCHLÄGT', 48),
+    headline('KREATIVITÄT', 52, C.accent2),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      statementCard('ERWARTUNG', '„Irgendein positives Zitat auf der Seite reicht schon.“'),
-      statementCard('REALITÄT', 'Konkret, spezifisch und einer echten Person zuordenbar – erst das macht ein Testimonial glaubwürdig.', { bg: 'rgba(41,82,255,0.14)', border: C.accent, labelColor: C.accent, textColor: C.text }),
+      statementCard('ERWARTUNG', '„Ein cleverer, origineller Claim macht den besten Eindruck.“'),
+      statementCard('REALITÄT', 'Steve Krug, „Don\'t Make Me Think" (2000): Nutzer lesen Seiten nicht, sie scannen sie. Der erste Eindruck muss ohne Nachdenken verständlich sein.', { bg: 'rgba(41,82,255,0.14)', border: C.accent, labelColor: C.accent, textColor: C.text }),
     ),
-    keyLearning('Vage Lob-Sätze wirken wie Werbung. Konkrete, zuordenbare Aussagen wirken wie ein Beweis.', C.accent),
+    keyLearning('Verständlichkeit gewinnt gegen jede noch so kreative Formulierung.', C.accent),
     footer(),
   );
 
-  // === SLIDE 5: Vier Formen von Beweis ===
+  // === SLIDE 5: 3 Fragen, die zählen ===
   const slide5 = slideRoot(
-    badge('VIER FORMEN VON BEWEIS'),
-    headline('SO ZEIGST DU', 52),
-    headline('ECHTEN BEWEIS', 52),
+    badge('3 FRAGEN, DIE ZÄHLEN'),
+    headline('DAS MUSS DEIN', 50),
+    headline('BESUCHER SOFORT', 50),
+    headline('VERSTEHEN', 50, C.accent2),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      triggerRow('1', 'Konkrete Kundenstimme', 'Name und ein spezifisches Ergebnis statt allgemeinem Lob.', C.accent2),
-      triggerRow('2', 'Nachvollziehbare Case Study', 'Ausgangslage, Vorgehen, Ergebnis – verständlich für neue Besucher.', C.gold),
-      triggerRow('3', 'Sichtbare Kennzahlen', 'Anzahl betreuter Kunden oder Projekte, sofern real belegbar.', C.accent),
-      triggerRow('4', 'Unabhängige Siegel', 'Verifizierte Bewertungsplattformen als externe Bestätigung.', C.green),
+      triggerRow('1', 'Was bietest du an?', 'In einem Satz, ohne Fachjargon.', C.accent2),
+      triggerRow('2', 'Für wen ist es?', 'Damit sich der richtige Besucher angesprochen fühlt.', C.gold),
+      triggerRow('3', 'Was soll ich jetzt tun?', 'Der nächste Schritt muss eindeutig sein.', C.accent),
     ),
     footer(),
   );
 
   // === SLIDE 6: Takeaways ===
   const learnings = [
-    { num: '01', text: 'Menschen vertrauen anderen Menschen mehr als Werbeversprechen', pct: 25 },
-    { num: '02', text: 'Ohne externen Beweis bleibt jede Aussage nur eine Behauptung', pct: 50 },
-    { num: '03', text: 'Konkrete, zuordenbare Testimonials wirken stärker als vages Lob', pct: 75 },
-    { num: '04', text: 'Zeig echten Beweis statt allgemeiner Qualitätsversprechen', pct: 100 },
+    { num: '01', text: 'Besucher entscheiden innerhalb von Sekunden, ob sie bleiben', pct: 25 },
+    { num: '02', text: 'Der Five-Second-Test macht sichtbar, was wirklich ankommt', pct: 50 },
+    { num: '03', text: 'Klarheit schlägt Kreativität – so Steve Krugs Kernprinzip', pct: 75 },
+    { num: '04', text: 'Kläre sofort: Was, für wen, und was als Nächstes', pct: 100 },
   ];
   const slide6 = slideRoot(
     badge('DIE TAKEAWAYS'),
@@ -244,7 +260,7 @@ async function main() {
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, borderRadius: '18px', border: `1px solid ${C.cardBorder}` } },
           h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
             h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: l.pct === 100 ? C.accent2 : C.text, minWidth: '58px' } }, l.num),
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text),
           ),
           h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px', overflow: 'hidden' } },
             h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.accent2 : C.accent, borderRadius: '3px' } }),
@@ -261,19 +277,19 @@ async function main() {
       bdLogoImg(C.text, 96),
       h('span', {
         style: {
-          display: 'flex', fontFamily: 'Manrope', fontSize: '44px', fontWeight: 800, color: C.text,
+          display: 'flex', fontFamily: 'Manrope', fontSize: '42px', fontWeight: 800, color: C.text,
           textAlign: 'center', lineHeight: '1.3', letterSpacing: '-1px',
         }
-      }, 'Zeigt deine Website\nechten Beweis?'),
+      }, 'Würde ein Fremder in 5\nSekunden verstehen,\nwas du anbietest?'),
       h('span', {
         style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.5' }
-      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Vertrauen, Design & Psychologie.'),
+      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Klarheit, UX & Conversion.'),
     ),
     footer(),
   );
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-08', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-11', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
