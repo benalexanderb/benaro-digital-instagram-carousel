@@ -51,6 +51,12 @@
       "topic": "Der 5-Sekunden-Test: Versteht ein Fremder sofort, was du anbietest?",
       "date_used": "2026-08-11",
       "summary": "Five Second Test, eine etablierte Usability-Testing-Methode (u.a. dokumentiert von Nielsen Norman Group / UsabilityHub): Eine Seite wird 5 Sekunden gezeigt, dann ausgeblendet, um zu pruefen, was inhaltlich haengen bleibt. Kombiniert mit Steve Krugs Kernprinzip aus 'Don't Make Me Think' (2000): Nutzer lesen Webseiten nicht, sie scannen sie - Klarheit schlaegt Kreativitaet. Praktische Konsequenz: Die Startseite muss innerhalb von Sekunden drei Fragen beantworten - Was wird angeboten? Fuer wen? Was ist der naechste Schritt?"
+    },
+    {
+      "category": "Mobile & Accessibility",
+      "topic": "Touch-Targets: Warum zu kleine Buttons mobile Klicks kosten",
+      "date_used": "2026-08-14",
+      "summary": "Fitts's Law (Paul Fitts, 1954): Zeit und Fehlerquote beim Treffen eines Ziels haengen von dessen Groesse und Distanz ab. Etablierte Zielgroessen-Richtlinien: Apple Human Interface Guidelines (min. 44x44pt), Google Material Design (min. 48x48dp), W3C WCAG 2.5.8 Target Size Minimum/AA (min. 24x24 CSS-Pixel) und WCAG 2.5.5 Target Size Enhanced/AAA (min. 44x44 CSS-Pixel). Praktische Konsequenz: ausreichend grosse, gut voneinander getrennte Tap-Targets im Daumenbereich platzieren und auf echten Geraeten testen."
     }
   ]
 }
