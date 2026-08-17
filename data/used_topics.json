@@ -57,6 +57,12 @@
       "topic": "Touch-Targets: Warum zu kleine Buttons mobile Klicks kosten",
       "date_used": "2026-08-14",
       "summary": "Fitts's Law (Paul Fitts, 1954): Zeit und Fehlerquote beim Treffen eines Ziels haengen von dessen Groesse und Distanz ab. Etablierte Zielgroessen-Richtlinien: Apple Human Interface Guidelines (min. 44x44pt), Google Material Design (min. 48x48dp), W3C WCAG 2.5.8 Target Size Minimum/AA (min. 24x24 CSS-Pixel) und WCAG 2.5.5 Target Size Enhanced/AAA (min. 44x44 CSS-Pixel). Praktische Konsequenz: ausreichend grosse, gut voneinander getrennte Tap-Targets im Daumenbereich platzieren und auf echten Geraeten testen."
+    },
+    {
+      "category": "Psychologie",
+      "topic": "Hick's Law: Warum weniger Optionen mehr Klicks bringen",
+      "date_used": "2026-08-17",
+      "summary": "Hick-Hyman-Gesetz (William Edmund Hick, 1952; Ray Hyman, 1953), ein etabliertes Gesetz der Kognitionspsychologie (u.a. dokumentiert in Jon Yablonskis 'Laws of UX' und Nielsen Norman Group Artikeln): Die Zeit, die ein Mensch fuer eine Entscheidung braucht, steigt mit der Anzahl und Komplexitaet der verfuegbaren Optionen. Praktische Konsequenz fuer Websites: schlanke Navigation mit wenigen Kernpunkten, ein klarer primaerer CTA pro Screen statt mehrerer gleichwertiger Buttons, komplexe Auswahl in Schritten (progressive disclosure) statt auf einmal anbieten."
     }
   ]
 }
