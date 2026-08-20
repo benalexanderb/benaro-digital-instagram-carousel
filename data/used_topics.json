@@ -63,6 +63,12 @@
       "topic": "Hick's Law: Warum weniger Optionen mehr Klicks bringen",
       "date_used": "2026-08-17",
       "summary": "Hick-Hyman-Gesetz (William Edmund Hick, 1952; Ray Hyman, 1953), ein etabliertes Gesetz der Kognitionspsychologie (u.a. dokumentiert in Jon Yablonskis 'Laws of UX' und Nielsen Norman Group Artikeln): Die Zeit, die ein Mensch fuer eine Entscheidung braucht, steigt mit der Anzahl und Komplexitaet der verfuegbaren Optionen. Praktische Konsequenz fuer Websites: schlanke Navigation mit wenigen Kernpunkten, ein klarer primaerer CTA pro Screen statt mehrerer gleichwertiger Buttons, komplexe Auswahl in Schritten (progressive disclosure) statt auf einmal anbieten."
+    },
+    {
+      "category": "Design & UX",
+      "topic": "Weissraum: Warum leere Flaechen deine Website wertvoller wirken lassen",
+      "date_used": "2026-08-20",
+      "summary": "Gestaltpsychologie / Gesetz der Naehe (Max Wertheimer, 1923): Menschen gruppieren visuell automatisch, was raeumlich nah beieinander steht. Nielsen Norman Group unterscheidet zusaetzlich Micro-Whitespace (Abstand zwischen Zeilen, Icons, Buttons) und Macro-Whitespace (Abstand zwischen Sektionen/Bloecken). Praktische Konsequenz fuer Websites: bewusster Abstand um CTAs und zwischen Inhaltsbloecken lenkt die Aufmerksamkeit gezielt und reduziert kognitive Last, statt jede Flaeche mit Inhalt zu fuellen."
     }
   ]
 }
