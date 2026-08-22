@@ -178,7 +178,7 @@ def create_post(token: str, caption: str, assets: list[dict]) -> dict:
     return post
 
 
-def pick_dir(repo_root: Path, explicit: str | None) -> Path:
+def pick_dir(repo_root: Path, explicit: str | None) -> Path | None:
     if explicit:
         target = (repo_root / explicit).resolve()
         if not target.is_dir():
@@ -189,9 +189,10 @@ def pick_dir(repo_root: Path, explicit: str | None) -> Path:
         for p in (repo_root / "output").glob("carousel_*/post.json")
         if not (p.parent / "posted.json").exists()
     )
-    if not candidates:
-        raise Fail("Kein Carousel-Ordner mit offener post.json gefunden.")
-    return candidates[-1]
+    # Kein offener Ordner ist kein Fehler: das passiert, wenn eine post.json
+    # nachgereicht wird, deren Post schon eingereiht ist. Der Aufrufer macht
+    # daraus ein sauberes Ende statt eines Fehlalarms.
+    return candidates[-1] if candidates else None
 
 
 def load_post_json(folder: Path) -> dict:
@@ -245,6 +246,9 @@ def main() -> int:
         )
 
     folder = pick_dir(repo_root, args.folder)
+    if folder is None:
+        print("Kein Carousel mit offener post.json, nichts zu tun.")
+        return 0
     rel = folder.relative_to(repo_root)
     print(f"Carousel-Ordner: {rel}")
 
