@@ -69,6 +69,12 @@
       "topic": "Weissraum: Warum leere Flaechen deine Website wertvoller wirken lassen",
       "date_used": "2026-08-20",
       "summary": "Gestaltpsychologie / Gesetz der Naehe (Max Wertheimer, 1923): Menschen gruppieren visuell automatisch, was raeumlich nah beieinander steht. Nielsen Norman Group unterscheidet zusaetzlich Micro-Whitespace (Abstand zwischen Zeilen, Icons, Buttons) und Macro-Whitespace (Abstand zwischen Sektionen/Bloecken). Praktische Konsequenz fuer Websites: bewusster Abstand um CTAs und zwischen Inhaltsbloecken lenkt die Aufmerksamkeit gezielt und reduziert kognitive Last, statt jede Flaeche mit Inhalt zu fuellen."
+    },
+    {
+      "category": "SEO",
+      "topic": "Structured Data & Schema.org: Warum Google deine Inhalte sonst nur als Text sieht",
+      "date_used": "2026-08-23",
+      "summary": "Schema.org, ein offenes, gemeinsam von Google, Microsoft, Yahoo und Yandex entwickeltes Vokabular (seit 2011), sowie Google Search Central Dokumentation zu structured data / JSON-LD / Rich Results: Ohne Markup lesen Suchmaschinen eine Seite nur als unstrukturierten Text, ohne Preis, Bewertung oder Produkttyp zu erkennen. JSON-LD-Markup macht diese Bedeutung explizit und ermoeglicht Rich Results wie Sternebewertungen, Preise oder FAQ-Dropdowns direkt in der Google-Suche."
     }
   ]
 }

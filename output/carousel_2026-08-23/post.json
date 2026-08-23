@@ -1,0 +1,39 @@
+{
+  "date": "2026-08-23",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Deine Website spricht eine Sprache, die Google nicht automatisch versteht. Schema.org macht Preise, Bewertungen und Inhalte explizit lesbar – und öffnet die Tür zu Rich Results wie Sternen oder FAQ-Dropdowns. Speichern nicht vergessen 📌\n\n#SEO #Webdesign #Webagentur #WebsiteTipps #GoogleSuche",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-01.png",
+      "altText": "Dunkle Slide mit Badge „Wusstest du?“ und der Headline „Google liest den Text. Nicht den Sinn.“; darunter eine Karte mit grauen Textzeilen-Balken und einem türkisen Fragezeichen-Kreis oben rechts, darunter drei gestrichelte Pillen mit den Fragen „Typ?“, „Preis?“, „Bewertung?“."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-02.png",
+      "altText": "Slide „Mensch vs. Google-Bot“ mit zwei nebeneinander stehenden Karten: links eine Mini-Produktkarte mit Titel „Premium Laufschuh“, fünf goldenen Bewertungspunkten, „4,8“ und Preis „49,00 €“; rechts eine blau umrandete Karte „Google ohne Markup“ mit undifferenzierten grauen Textbalken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-03.png",
+      "altText": "Slide „Die Folge“ mit Headline „Ohne Markup: Ein Link unter vielen“ und drei optisch identischen Suchergebnis-Platzhalterkarten (URL-, Titel- und Beschreibungszeilen als graue Balken) untereinander."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-04.png",
+      "altText": "Slide „Schema.org“ mit Headline „Eine gemeinsame Sprache für Suchmaschinen“ und einer Hub-Grafik: blaue Pille „Schema.org“ oben, verbunden über eine Linie mit vier Kreisen darunter, beschriftet Google, Microsoft, Yahoo, Yandex."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-05.png",
+      "altText": "Slide „So geht's: JSON-LD“ mit Headline „Du beschreibst Inhalte in klarer Struktur“ und einer Code-Karte „JSON-LD im Quellcode“ mit den Zeilen @type: Product, name: Premium Laufschuh, offers.price: 49,00 €, aggregateRating: 4,8."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-06.png",
+      "altText": "Slide „Das Ergebnis“ mit Headline „Sterne. Preise. FAQ zum Ausklappen.“ und einem Rich-Result-Mockup: Domain „shop-beispiel.de“, Titel „Premium Laufschuh kaufen“, fünf goldene Sterne mit „4,8 Bewertung“ und Preis „ab 49,00 €“, darunter zwei aufklappbare FAQ-Zeilen mit kleinen Dreieck-Pfeilen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-07.png",
+      "altText": "Slide „Die Takeaways“ mit Headline „4 Learnings zu Structured Data“ und vier nummerierten Karten (01–04) mit Fortschrittsbalken, die bei 100% türkis eingefärbt sind."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-23/slides/slide-08.png",
+      "altText": "Dunkle CTA-Slide mit zentriertem großen BD-Monogramm-Logo, der Frage „Nutzt deine Website schon Schema.org?“ und dem Text „Folge @benarodigital für mehr Website-Wissen rund um SEO & Struktur.“"
+    }
+  ]
+}
