@@ -1,5 +1,5 @@
-// Carousel: Touch-Targets — warum zu kleine Buttons mobile Klicks kosten
-// Kategorie: Mobile & Accessibility — Benaro Digital Instagram-Automation
+// Carousel: Structured Data / Schema.org — wie Google Seiteninhalte wirklich versteht
+// Kategorie: SEO — Benaro Digital Instagram-Automation
 const fs = require('fs');
 const path = require('path');
 
@@ -114,156 +114,228 @@ async function main() {
     }, ...children);
   }
 
-  function statementCard(label, text, opts) {
-    opts = opts || {};
+  // === SLIDE 1 visual: Google sees text bars, not meaning ===
+  function textBarsCard() {
+    const widths = [88, 62, 94, 74, 50];
     return h('div', {
       style: {
-        display: 'flex', flexDirection: 'column', backgroundColor: opts.bg || C.cardBg, borderRadius: '20px',
-        padding: '28px', gap: '10px', border: `1px solid ${opts.border || C.cardBorder}`,
+        display: 'flex', flexDirection: 'column', gap: '16px', backgroundColor: C.cardBg,
+        borderRadius: '20px', padding: '34px', border: `1px solid ${C.cardBorder}`, position: 'relative',
       }
     },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: opts.labelColor || C.textMuted } }, label),
-      h('span', {
-        style: {
-          display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600,
-          color: opts.textColor || C.textSoft, lineHeight: '1.4',
-          textDecoration: opts.strike ? 'line-through' : 'none',
-        }
-      }, text),
-    );
-  }
-
-  function processCard(step, title, desc, color) {
-    return h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-start', backgroundColor: C.cardBg, borderRadius: '18px', padding: '22px 26px', border: `1px solid ${C.cardBorder}` } },
+      ...widths.map(w => h('div', { style: { display: 'flex', width: `${w}%`, height: '20px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '6px' } })),
       h('div', {
         style: {
-          display: 'flex', minWidth: '52px', height: '52px', borderRadius: '14px',
-          backgroundColor: color, alignItems: 'center', justifyContent: 'center',
+          display: 'flex', position: 'absolute', top: '-26px', right: '-16px', width: '60px', height: '60px',
+          borderRadius: '30px', backgroundColor: C.accent2, alignItems: 'center', justifyContent: 'center',
         }
-      }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 800, color: '#0B0C0E' } }, step)),
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '27px', fontWeight: 700, color: C.text } }, title),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc),
+      }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: '#0B0C0E' } }, '?')),
+    );
+  }
+  function unknownPillsRow() {
+    const labels = ['TYP?', 'PREIS?', 'BEWERTUNG?'];
+    return h('div', { style: { display: 'flex', gap: '12px', marginTop: '30px' } },
+      ...labels.map(l => h('div', {
+        style: {
+          display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center', padding: '18px 10px',
+          borderRadius: '14px', border: `2px dashed ${C.textMuted}`,
+        }
+      }, h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.textMuted } }, l)))
+    );
+  }
+
+  // === SLIDE 2 visual: human view vs. bot view, side by side ===
+  function miniProductCard() {
+    return h('div', {
+      style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.cardBorder}` }
+    },
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'DU SIEHST'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.text, lineHeight: '1.3' } }, 'Premium Laufschuh'),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
+        ...Array.from({ length: 5 }).map(() => h('div', { style: { display: 'flex', width: '16px', height: '16px', borderRadius: '8px', backgroundColor: C.gold } })),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 600, color: C.textSoft, marginLeft: '6px' } }, '4,8'),
+      ),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 800, color: C.accent2 } }, '49,00 €'),
+    );
+  }
+  function miniPlainCard() {
+    const widths = [70, 92, 55, 80];
+    return h('div', {
+      style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'rgba(41,82,255,0.10)', borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.accent}` }
+    },
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'GOOGLE OHNE MARKUP'),
+      ...widths.map(w => h('div', { style: { display: 'flex', width: `${w}%`, height: '16px', backgroundColor: 'rgba(255,255,255,0.18)', borderRadius: '6px' } })),
+    );
+  }
+
+  // === SLIDE 3 visual: three identical, undifferentiated search result rows ===
+  function fakeResultRow() {
+    return h('div', {
+      style: { display: 'flex', flexDirection: 'column', gap: '8px', backgroundColor: C.cardBg, borderRadius: '14px', padding: '22px 26px', border: `1px solid ${C.cardBorder}` }
+    },
+      h('div', { style: { display: 'flex', width: '42%', height: '13px', backgroundColor: 'rgba(255,255,255,0.24)', borderRadius: '4px' } }),
+      h('div', { style: { display: 'flex', width: '72%', height: '20px', backgroundColor: 'rgba(255,255,255,0.38)', borderRadius: '5px', marginTop: '4px' } }),
+      h('div', { style: { display: 'flex', width: '86%', height: '12px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '4px' } }),
+      h('div', { style: { display: 'flex', width: '58%', height: '12px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '4px' } }),
+    );
+  }
+
+  // === SLIDE 4 visual: hub-and-spoke — Schema.org built jointly since 2011 ===
+  function schemaHubVisual() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+      h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '22px 44px', borderRadius: '20px', backgroundColor: C.accent } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.5px' } }, 'SCHEMA.ORG'),
+      ),
+      h('div', { style: { display: 'flex', width: '4px', height: '44px', backgroundColor: C.cardBorder } }),
+      h('div', { style: { display: 'flex', width: '100%', justifyContent: 'space-between' } },
+        ...['GOOGLE', 'MICROSOFT', 'YAHOO', 'YANDEX'].map(name =>
+          h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' } },
+            h('div', {
+              style: {
+                display: 'flex', width: '84px', height: '84px', borderRadius: '42px', backgroundColor: C.cardBg,
+                border: `2px solid ${C.cardBorder}`, alignItems: 'center', justifyContent: 'center',
+              }
+            }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.accent2 } }, name[0])),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '18px', fontWeight: 600, color: C.textMuted } }, name),
+          )
+        ),
       ),
     );
   }
 
-  // Two circles showing target size vs. finger contact area (offset = miss)
-  function targetMissVisual() {
-    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' } },
-      h('div', { style: { display: 'flex', position: 'relative', width: 420, height: 380, alignItems: 'center', justifyContent: 'center' } },
-        h('div', { style: { display: 'flex', position: 'absolute', width: 340, height: 340, borderRadius: '170px', backgroundColor: 'rgba(0,194,184,0.10)', border: `4px dashed ${C.accent2}`, top: 14, left: 40 } }),
-        h('div', {
-          style: {
-            display: 'flex', position: 'absolute', width: 96, height: 96, borderRadius: '24px',
-            backgroundColor: C.accent, top: 200, left: 250, alignItems: 'center', justifyContent: 'center',
-          }
-        }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '38px', fontWeight: 800, color: '#FFFFFF' } }, 'X')),
+  // === SLIDE 5 visual: JSON-LD property list ===
+  function propertyRow(key, value, highlight) {
+    return h('div', {
+      style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '18px', paddingBottom: '18px', borderBottom: `1px solid ${C.cardBorder}` }
+    },
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.textMuted } }, key),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '25px', fontWeight: 700, color: highlight ? C.accent2 : C.text } }, value),
+    );
+  }
+  function jsonLdCard() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '22px', padding: '32px', border: `1px solid ${C.cardBorder}` } },
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' } },
+        h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: C.accent2 } }),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '19px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'JSON-LD IM QUELLCODE'),
       ),
-      h('div', { style: { display: 'flex', gap: '32px' } },
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '20px', height: '20px', borderRadius: '6px', backgroundColor: C.accent } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.textSoft } }, 'Button'),
-        ),
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '20px', height: '20px', borderRadius: '10px', border: `2px dashed ${C.accent2}` } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.textSoft } }, 'Fingerkuppe'),
-        ),
-      ),
+      propertyRow('@type', 'Product'),
+      propertyRow('name', 'Premium Laufschuh'),
+      propertyRow('offers.price', '49,00 €'),
+      propertyRow('aggregateRating', '4,8', true),
     );
   }
 
-  // Two circles side by side illustrating Fitts's Law (small/far = hard, large/close = easy)
-  function fittsVisual() {
-    function circleCard(sizePx, label, sub, color) {
-      return h('div', { style: { display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', gap: '18px', backgroundColor: C.cardBg, borderRadius: '20px', padding: '30px 20px', border: `1px solid ${C.cardBorder}` } },
-        h('div', { style: { display: 'flex', width: sizePx, height: sizePx, borderRadius: (sizePx / 2) + 'px', backgroundColor: color, alignItems: 'center', justifyContent: 'center' } }),
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text, textAlign: 'center' } }, label),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.4' } }, sub),
-      );
+  // === SLIDE 6 visual: rich result mock — stars, price, FAQ dropdowns ===
+  function richResultCard() {
+    function chevron() {
+      return h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: `9px solid ${C.textMuted}` } });
     }
-    return h('div', { style: { display: 'flex', gap: '16px' } },
-      circleCard(64, 'KLEIN & WEIT WEG', 'Schwer zu treffen, mehr Fehltipps', C.red),
-      circleCard(120, 'GROSS & NAH', 'Schnell und zuverlässig getroffen', C.green),
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px', backgroundColor: C.cardBg, borderRadius: '22px', padding: '32px', border: `1px solid ${C.cardBorder}` } },
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '19px', fontWeight: 600, color: C.green } }, 'shop-beispiel.de'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '27px', fontWeight: 700, color: C.accent2 } }, 'Premium Laufschuh kaufen'),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px' } },
+        ...Array.from({ length: 5 }).map(() => h('div', { style: { display: 'flex', width: '18px', height: '18px', borderRadius: '9px', backgroundColor: C.gold } })),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 600, color: C.textSoft, marginLeft: '4px' } }, '4,8 Bewertung'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '21px', fontWeight: 800, color: C.text, marginLeft: 'auto' } }, 'ab 49,00 €'),
+      ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '6px' } },
+        ...['Welche Größen gibt es?', 'Wie lange dauert der Versand?'].map(q =>
+          h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: C.textSoft } }, q),
+            chevron(),
+          )
+        ),
+      ),
     );
   }
 
   // === SLIDE 1: Hook ===
   const slide1 = slideRoot(
-    badge('FAT-FINGER-PROBLEM'),
-    headline('DANEBEN GETIPPT.', 50),
-    headline('SCHON WIEDER.', 50, C.accent2),
-    subline('Am Handy reicht ein Millimeter Unterschied zwischen Klick und Fehltipp.'),
+    badge('WUSSTEST DU?'),
+    headline('GOOGLE LIEST DEN TEXT.', 46),
+    headline('NICHT DEN SINN.', 50, C.accent2),
+    subline('Für Suchmaschinen ist deine Seite erstmal nur ein Haufen Buchstaben – ohne erkennbare Bedeutung.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      targetMissVisual(),
+      textBarsCard(),
+      unknownPillsRow(),
     ),
     footer(),
   );
 
-  // === SLIDE 2: Maus vs. Finger ===
+  // === SLIDE 2: Mensch vs. Google-Bot ===
   const slide2 = slideRoot(
-    badge('MAUS VS. FINGER'),
-    headline('EIN ZEIGER TRIFFT', 46),
-    headline('PIXELGENAU.', 48, C.accent2),
-    headline('EIN FINGER NICHT.', 46),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      statementCard('MAUS-KLICK', 'Ein Cursor zeigt exakt auf einen Pixel – präzise und mit sofortigem Hover-Feedback.'),
-      statementCard('FINGER-TIPP', 'Eine Fingerkuppe deckt eine ganze Fläche ab, ohne Vorschau, wo genau sie landet.', { bg: 'rgba(41,82,255,0.14)', border: C.accent, labelColor: C.accent, textColor: C.text }),
-    ),
-    footer(),
-  );
-
-  // === SLIDE 3: Fitts's Law ===
-  const slide3 = slideRoot(
-    badge('DAS PRINZIP DAHINTER'),
-    headline('FITTS\'S LAW', 56, C.accent2),
-    subline('Paul Fitts, 1954: Je kleiner und weiter entfernt ein Ziel ist, desto länger dauert der Tipp – und desto öfter geht er daneben.'),
+    badge('MENSCH VS. GOOGLE-BOT'),
+    headline('DU SIEHST EIN PRODUKT.', 42),
+    headline('GOOGLE SIEHT NUR TEXT.', 42, C.accent2),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      fittsVisual(),
+      h('div', { style: { display: 'flex', gap: '14px' } }, miniProductCard(), miniPlainCard()),
     ),
-    keyLearning('Größere, näher platzierte Ziele werden schneller und zuverlässiger getroffen.', C.accent2),
+    keyLearning('Menschen erkennen Kontext sofort. Google-Bots brauchen dafür ausdrückliche Hinweise im Code.', C.accent2),
     footer(),
   );
 
-  // === SLIDE 4: Die Standards ===
+  // === SLIDE 3: Die Folge ===
+  const slide3 = slideRoot(
+    badge('DIE FOLGE'),
+    headline('OHNE MARKUP:', 50),
+    headline('EIN LINK UNTER VIELEN', 42, C.accent2),
+    subline('Ob Restaurant, Rezept oder Blogartikel – ohne Struktur sehen alle Ergebnisse für Google gleich aus.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      fakeResultRow(), fakeResultRow(), fakeResultRow(),
+    ),
+    keyLearning('Ohne Markup verschwindest du zwischen tausenden identisch aussehenden Ergebnissen.', C.red),
+    footer(),
+  );
+
+  // === SLIDE 4: Schema.org ===
   const slide4 = slideRoot(
-    badge('DIE STANDARDS'),
-    headline('WIE GROSS IST', 50),
-    headline('GROSS GENUG?', 50, C.accent2),
-    subline('Drei unabhängige Richtlinien, ein gemeinsamer Nenner: größer schlägt kleiner.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      processCard('44', 'Apple Human Interface Guidelines', 'Mindestens 44 × 44 Punkt für jedes tippbare Element.', C.accent2),
-      processCard('48', 'Google Material Design', 'Mindestens 48 × 48 dp Touch-Target-Größe.', C.gold),
-      processCard('WCAG', 'W3C WCAG 2.5.8 / 2.5.5', 'Minimum 24 × 24 CSS-Pixel (AA), empfohlen 44 × 44 CSS-Pixel (AAA).', C.accent),
+    badge('SCHEMA.ORG'),
+    headline('EINE GEMEINSAME SPRACHE', 42),
+    headline('FÜR SUCHMASCHINEN', 44, C.accent2),
+    subline('Seit 2011 entwickeln Google, Microsoft, Yahoo und Yandex gemeinsam ein offenes Vokabular: Schema.org.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      schemaHubVisual(),
     ),
-    keyLearning('Faustregel: 44 × 44px erfüllt alle drei Standards gleichzeitig.', C.accent2),
     footer(),
   );
 
-  // === SLIDE 5: Erwartung vs. Realität ===
+  // === SLIDE 5: JSON-LD ===
   const slide5 = slideRoot(
-    badge('ERWARTUNG VS. REALITÄT'),
-    headline('SIEHT GROSS GENUG', 44),
-    headline('AUS – IST ES ABER NICHT', 42),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      statementCard('ERWARTUNG', '„Der Button ist doch gut sichtbar, das passt schon so.“'),
-      statementCard('REALITÄT', 'Zwei Buttons ohne ausreichend Abstand zueinander führen zu Fehltipps – unabhängig davon, wie groß oder auffällig sie aussehen.', { bg: 'rgba(239,68,68,0.12)', border: C.red, labelColor: C.red, textColor: C.text }),
+    badge('SO GEHT’S: JSON-LD'),
+    headline('DU BESCHREIBST INHALTE', 40),
+    headline('IN KLARER STRUKTUR', 42, C.accent2),
+    subline('Google empfiehlt dafür JSON-LD: ein Code-Block, der Typ, Preis oder Bewertung exakt benennt.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      jsonLdCard(),
     ),
-    keyLearning('Zu kleine oder zu eng stehende Buttons kosten Klicks – und am Ende Kunden.', C.red),
+    keyLearning('JSON-LD landet unsichtbar im Quellcode – Besucher sehen nichts davon, nur Google.', C.accent),
     footer(),
   );
 
-  // === SLIDE 6: Takeaways ===
-  const learnings = [
-    { num: '01', text: 'Zielgröße von mindestens 44 × 44px für alle wichtigen Buttons', pct: 25 },
-    { num: '02', text: 'Ausreichend Abstand zwischen tippbaren Elementen einplanen', pct: 50 },
-    { num: '03', text: 'Wichtige Aktionen in Daumenreichweite platzieren', pct: 75 },
-    { num: '04', text: 'Immer auf einem echten Smartphone testen, nicht nur am Desktop', pct: 100 },
-  ];
+  // === SLIDE 6: Rich Results ===
   const slide6 = slideRoot(
+    badge('DAS ERGEBNIS'),
+    headline('STERNE. PREISE.', 48),
+    headline('FAQ ZUM AUSKLAPPEN.', 40, C.accent2),
+    subline('Versteht Google dein Markup, kann es deinen Eintrag direkt in der Suche mit Rich Results erweitern.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      richResultCard(),
+    ),
+    keyLearning('Rich Results sind keine Garantie, aber eine Chance, aus der Masse herauszustechen.', C.gold),
+    footer(),
+  );
+
+  // === SLIDE 7: Takeaways ===
+  const learnings = [
+    { num: '01', text: 'Schema.org ist ein offener Standard, gemeinsam entwickelt seit 2011', pct: 25 },
+    { num: '02', text: 'JSON-LD ist das von Google empfohlene Format für strukturierte Daten', pct: 50 },
+    { num: '03', text: 'Rich Results sind eine Möglichkeit, keine Garantie', pct: 75 },
+    { num: '04', text: 'Der Google Rich Results Test zeigt, ob dein Markup korrekt erkannt wird', pct: 100 },
+  ];
+  const slide7 = slideRoot(
     badge('DIE TAKEAWAYS'),
-    headline('4 LEARNINGS ZUM', 52),
-    headline('MITNEHMEN', 52),
+    headline('4 LEARNINGS ZU', 50),
+    headline('STRUCTURED DATA', 46),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       ...learnings.map(l =>
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, borderRadius: '18px', border: `1px solid ${C.cardBorder}` } },
@@ -280,8 +352,8 @@ async function main() {
     footer(),
   );
 
-  // === SLIDE 7: CTA ===
-  const slide7 = slideRoot(
+  // === SLIDE 8: CTA ===
+  const slide8 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
       h('span', {
@@ -289,16 +361,16 @@ async function main() {
           display: 'flex', fontFamily: 'Manrope', fontSize: '42px', fontWeight: 800, color: C.text,
           textAlign: 'center', lineHeight: '1.3', letterSpacing: '-1px',
         }
-      }, 'Ist dein Call-to-Action\nauch am Handy leicht\nzu treffen?'),
+      }, 'Nutzt deine Website\nschon Schema.org?'),
       h('span', {
         style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.5' }
-      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Mobile UX & Accessibility.'),
+      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um SEO & Struktur.'),
     ),
     footer(),
   );
 
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-14', 'slides');
+  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-23', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
