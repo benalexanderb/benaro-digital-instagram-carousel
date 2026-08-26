@@ -1,0 +1,39 @@
+{
+  "date": "2026-08-26",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Deine Bilder sind oft der unsichtbare Ladezeit-Killer deiner Website. WebP und AVIF komprimieren stärker als JPEG – gleiche Qualität, spürbar schneller geladen. Das zahlt direkt auf Google Core Web Vitals ein. Speichern nicht vergessen 📌\n\n#Webdesign #SEO #Webagentur #WebsiteTipps #UserExperience",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-01.png",
+      "altText": "Dunkle Instagram-Slide mit Badge 'LADEZEIT-KILLER' und Headline 'Dein größtes Bremspedal: Deine eigenen Bilder'. Darunter ein Balkenvergleich: ein langer roter Balken für ein typisches JPEG-Foto und ein kurzer türkiser Balken für dasselbe Foto als WebP/AVIF."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-02.png",
+      "altText": "Slide 'Warum das zählt: Ladezeit ist Teil von Core Web Vitals'. Drei Kennzahlen-Zeilen LCP (Largest Contentful Paint, hervorgehoben), INP (Interaction to Next Paint) und CLS (Cumulative Layout Shift)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-03.png",
+      "altText": "Slide 'Die Folge: Übergroße Bilder = langsames LCP'. Ein Smartphone-Mockup mit gestricheltem rotem Rahmen und Text 'Lädt noch...', darunter der Hinweis 'Genau dieser Moment zählt für LCP'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-04.png",
+      "altText": "Slide 'Die Lösung: Moderne Formate WebP & AVIF'. Zwei Kontrast-Karten nebeneinander: links 'Üblich' mit JPEG und PNG, rechts türkis hervorgehoben 'Empfohlen' mit WebP und AVIF."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-05.png",
+      "altText": "Slide 'Warum das funktioniert: Stärkere Kompression, gleiche Qualität'. Zwei Bildplatzhalter mit gleichem grünem Qualitäts-Punkt, aber unterschiedlich langen Dateigrößen-Balken: JPEG lang und rot, WebP/AVIF kurz und türkis."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-06.png",
+      "altText": "Slide 'Das Prinzip dahinter: Kein Nischen-Format, längst Standard'. Vier runde Badges für Chrome, Safari, Firefox und Edge, darunter der Hinweis 'Von allen aktuellen Browsern unterstützt'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-07.png",
+      "altText": "Slide '4 Learnings zur Bildoptimierung' mit vier nummerierten Karten und Fortschrittsbalken: Bilder als größter Anteil der Seitengröße, WebP/AVIF vs. JPEG, Wirkung auf LCP, responsive Bildgrößen ausliefern."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-26/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit zentriertem Benaro-Digital-Monogramm und der Frage 'Sind deine Bilder schon WebP oder AVIF?', darunter Call-to-Action 'Folge @benarodigital für mehr Website-Wissen rund um Performance & SEO.'"
+    }
+  ]
+}
