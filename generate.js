@@ -1,5 +1,5 @@
-// Carousel: Structured Data / Schema.org — wie Google Seiteninhalte wirklich versteht
-// Kategorie: SEO — Benaro Digital Instagram-Automation
+// Carousel: Bildoptimierung — WebP & AVIF statt JPEG/PNG
+// Kategorie: Performance & Ladezeit — Benaro Digital Instagram-Automation
 const fs = require('fs');
 const path = require('path');
 
@@ -114,234 +114,233 @@ async function main() {
     }, ...children);
   }
 
-  // === SLIDE 1 visual: Google sees text bars, not meaning ===
-  function textBarsCard() {
-    const widths = [88, 62, 94, 74, 50];
+  // === SLIDE 1 visual: one huge file-size bar dwarfing a small one ===
+  function fileSizeCompareCard() {
     return h('div', {
       style: {
-        display: 'flex', flexDirection: 'column', gap: '16px', backgroundColor: C.cardBg,
-        borderRadius: '20px', padding: '34px', border: `1px solid ${C.cardBorder}`, position: 'relative',
+        display: 'flex', flexDirection: 'column', gap: '22px', backgroundColor: C.cardBg,
+        borderRadius: '20px', padding: '34px', border: `1px solid ${C.cardBorder}`,
       }
     },
-      ...widths.map(w => h('div', { style: { display: 'flex', width: `${w}%`, height: '20px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '6px' } })),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'TYPISCHES FOTO (JPEG)'),
+        h('div', { style: { display: 'flex', width: '96%', height: '30px', backgroundColor: C.red, borderRadius: '8px' } }),
+      ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'GLEICHES FOTO (WEBP/AVIF)'),
+        h('div', { style: { display: 'flex', width: '30%', height: '30px', backgroundColor: C.accent2, borderRadius: '8px' } }),
+      ),
+    );
+  }
+
+  // === SLIDE 2 visual: Core Web Vitals pill row, LCP highlighted ===
+  function cwvRow() {
+    const metrics = [
+      { key: 'LCP', label: 'Largest Contentful Paint', hl: true },
+      { key: 'INP', label: 'Interaction to Next Paint', hl: false },
+      { key: 'CLS', label: 'Cumulative Layout Shift', hl: false },
+    ];
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+      ...metrics.map(m => h('div', {
+        style: {
+          display: 'flex', alignItems: 'center', gap: '18px', padding: '22px 26px', borderRadius: '18px',
+          backgroundColor: m.hl ? 'rgba(0,194,184,0.12)' : C.cardBg,
+          border: `1px solid ${m.hl ? C.accent2 : C.cardBorder}`,
+        }
+      },
+        h('span', {
+          style: {
+            display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 800,
+            color: m.hl ? C.accent2 : C.text, minWidth: '92px',
+          }
+        }, m.key),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft } }, m.label),
+      ))
+    );
+  }
+
+  // === SLIDE 3 visual: stalled loading bar on a phone mockup ===
+  function stalledLoadVisual() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' } },
       h('div', {
         style: {
-          display: 'flex', position: 'absolute', top: '-26px', right: '-16px', width: '60px', height: '60px',
-          borderRadius: '30px', backgroundColor: C.accent2, alignItems: 'center', justifyContent: 'center',
+          display: 'flex', flexDirection: 'column', width: '360px', backgroundColor: C.cardBg, borderRadius: '28px',
+          border: `1px solid ${C.cardBorder}`, padding: '26px', gap: '16px',
         }
-      }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: '#0B0C0E' } }, '?')),
+      },
+        h('div', { style: { display: 'flex', width: '60%', height: '16px', backgroundColor: 'rgba(255,255,255,0.18)', borderRadius: '5px' } }),
+        h('div', {
+          style: {
+            display: 'flex', width: '100%', height: '160px', borderRadius: '16px',
+            backgroundColor: 'rgba(239,68,68,0.10)', border: `2px dashed ${C.red}`,
+            alignItems: 'center', justifyContent: 'center',
+          }
+        }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 800, color: C.red } }, 'LÄDT NOCH …')),
+      ),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', padding: '14px 24px', backgroundColor: 'rgba(239,68,68,0.08)', borderRadius: '14px' } },
+        h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: C.red } }),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.red } }, 'Genau dieser Moment zählt für LCP'),
+      ),
     );
   }
-  function unknownPillsRow() {
-    const labels = ['TYP?', 'PREIS?', 'BEWERTUNG?'];
-    return h('div', { style: { display: 'flex', gap: '12px', marginTop: '30px' } },
-      ...labels.map(l => h('div', {
+
+  // === SLIDE 4 visual: contrast cards JPEG/PNG vs WebP/AVIF ===
+  function formatContrastCards() {
+    return h('div', { style: { display: 'flex', gap: '14px' } },
+      h('div', {
+        style: { display: 'flex', flex: 1, flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.cardBorder}` }
+      },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ÜBLICH'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.text } }, 'JPEG'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.text } }, 'PNG'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4', marginTop: '4px' } }, 'Ältere Formate, schwächere Kompression'),
+      ),
+      h('div', {
+        style: { display: 'flex', flex: 1, flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.10)', borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.accent2}` }
+      },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'EMPFOHLEN'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.accent2 } }, 'WebP'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.accent2 } }, 'AVIF'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4', marginTop: '4px' } }, 'Von Google (web.dev) empfohlen'),
+      ),
+    );
+  }
+
+  // === SLIDE 5 visual: two image placeholders, same quality dot, different size bar ===
+  function qualityVsSizeCard(label, barPct, barColor) {
+    return h('div', {
+      style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: C.cardBg, borderRadius: '20px', padding: '26px', gap: '16px', border: `1px solid ${C.cardBorder}` }
+    },
+      h('div', {
         style: {
-          display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center', padding: '18px 10px',
-          borderRadius: '14px', border: `2px dashed ${C.textMuted}`,
+          display: 'flex', width: '100%', height: '140px', borderRadius: '14px',
+          backgroundColor: 'rgba(255,255,255,0.10)', alignItems: 'center', justifyContent: 'center',
         }
-      }, h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.textMuted } }, l)))
-    );
-  }
-
-  // === SLIDE 2 visual: human view vs. bot view, side by side ===
-  function miniProductCard() {
-    return h('div', {
-      style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: C.cardBg, borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.cardBorder}` }
-    },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'DU SIEHST'),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.text, lineHeight: '1.3' } }, 'Premium Laufschuh'),
-      h('div', { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
-        ...Array.from({ length: 5 }).map(() => h('div', { style: { display: 'flex', width: '16px', height: '16px', borderRadius: '8px', backgroundColor: C.gold } })),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 600, color: C.textSoft, marginLeft: '6px' } }, '4,8'),
+      }, h('div', { style: { display: 'flex', width: '20px', height: '20px', borderRadius: '10px', backgroundColor: C.green } })),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.text } }, label),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '18px', fontWeight: 600, letterSpacing: '1px', color: C.textMuted } }, 'DATEIGRÖSSE'),
+      h('div', { style: { display: 'flex', width: '100%', height: '14px', backgroundColor: C.cardBorder, borderRadius: '7px', overflow: 'hidden' } },
+        h('div', { style: { display: 'flex', width: `${barPct}%`, height: '14px', backgroundColor: barColor, borderRadius: '7px' } }),
       ),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 800, color: C.accent2 } }, '49,00 €'),
-    );
-  }
-  function miniPlainCard() {
-    const widths = [70, 92, 55, 80];
-    return h('div', {
-      style: { display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: 'rgba(41,82,255,0.10)', borderRadius: '20px', padding: '28px', gap: '14px', border: `1px solid ${C.accent}` }
-    },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'GOOGLE OHNE MARKUP'),
-      ...widths.map(w => h('div', { style: { display: 'flex', width: `${w}%`, height: '16px', backgroundColor: 'rgba(255,255,255,0.18)', borderRadius: '6px' } })),
     );
   }
 
-  // === SLIDE 3 visual: three identical, undifferentiated search result rows ===
-  function fakeResultRow() {
-    return h('div', {
-      style: { display: 'flex', flexDirection: 'column', gap: '8px', backgroundColor: C.cardBg, borderRadius: '14px', padding: '22px 26px', border: `1px solid ${C.cardBorder}` }
-    },
-      h('div', { style: { display: 'flex', width: '42%', height: '13px', backgroundColor: 'rgba(255,255,255,0.24)', borderRadius: '4px' } }),
-      h('div', { style: { display: 'flex', width: '72%', height: '20px', backgroundColor: 'rgba(255,255,255,0.38)', borderRadius: '5px', marginTop: '4px' } }),
-      h('div', { style: { display: 'flex', width: '86%', height: '12px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '4px' } }),
-      h('div', { style: { display: 'flex', width: '58%', height: '12px', backgroundColor: 'rgba(255,255,255,0.16)', borderRadius: '4px' } }),
-    );
-  }
-
-  // === SLIDE 4 visual: hub-and-spoke — Schema.org built jointly since 2011 ===
-  function schemaHubVisual() {
-    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
-      h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '22px 44px', borderRadius: '20px', backgroundColor: C.accent } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.5px' } }, 'SCHEMA.ORG'),
-      ),
-      h('div', { style: { display: 'flex', width: '4px', height: '44px', backgroundColor: C.cardBorder } }),
+  // === SLIDE 6 visual: browser support row ===
+  function browserSupportVisual() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '30px' } },
       h('div', { style: { display: 'flex', width: '100%', justifyContent: 'space-between' } },
-        ...['GOOGLE', 'MICROSOFT', 'YAHOO', 'YANDEX'].map(name =>
+        ...['Chrome', 'Safari', 'Firefox', 'Edge'].map(name =>
           h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' } },
             h('div', {
               style: {
-                display: 'flex', width: '84px', height: '84px', borderRadius: '42px', backgroundColor: C.cardBg,
-                border: `2px solid ${C.cardBorder}`, alignItems: 'center', justifyContent: 'center',
+                display: 'flex', width: '84px', height: '84px', borderRadius: '42px', backgroundColor: 'rgba(0,194,184,0.12)',
+                border: `2px solid ${C.accent2}`, alignItems: 'center', justifyContent: 'center',
               }
             }, h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.accent2 } }, name[0])),
             h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '18px', fontWeight: 600, color: C.textMuted } }, name),
           )
         ),
       ),
-    );
-  }
-
-  // === SLIDE 5 visual: JSON-LD property list ===
-  function propertyRow(key, value, highlight) {
-    return h('div', {
-      style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '18px', paddingBottom: '18px', borderBottom: `1px solid ${C.cardBorder}` }
-    },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.textMuted } }, key),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '25px', fontWeight: 700, color: highlight ? C.accent2 : C.text } }, value),
-    );
-  }
-  function jsonLdCard() {
-    return h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, borderRadius: '22px', padding: '32px', border: `1px solid ${C.cardBorder}` } },
-      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' } },
-        h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: C.accent2 } }),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '19px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'JSON-LD IM QUELLCODE'),
-      ),
-      propertyRow('@type', 'Product'),
-      propertyRow('name', 'Premium Laufschuh'),
-      propertyRow('offers.price', '49,00 €'),
-      propertyRow('aggregateRating', '4,8', true),
-    );
-  }
-
-  // === SLIDE 6 visual: rich result mock — stars, price, FAQ dropdowns ===
-  function richResultCard() {
-    function chevron() {
-      return h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: `9px solid ${C.textMuted}` } });
-    }
-    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px', backgroundColor: C.cardBg, borderRadius: '22px', padding: '32px', border: `1px solid ${C.cardBorder}` } },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '19px', fontWeight: 600, color: C.green } }, 'shop-beispiel.de'),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '27px', fontWeight: 700, color: C.accent2 } }, 'Premium Laufschuh kaufen'),
-      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px' } },
-        ...Array.from({ length: 5 }).map(() => h('div', { style: { display: 'flex', width: '18px', height: '18px', borderRadius: '9px', backgroundColor: C.gold } })),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 600, color: C.textSoft, marginLeft: '4px' } }, '4,8 Bewertung'),
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '21px', fontWeight: 800, color: C.text, marginLeft: 'auto' } }, 'ab 49,00 €'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '6px' } },
-        ...['Welche Größen gibt es?', 'Wie lange dauert der Versand?'].map(q =>
-          h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: C.textSoft } }, q),
-            chevron(),
-          )
-        ),
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px', padding: '14px 24px', backgroundColor: 'rgba(0,194,184,0.10)', borderRadius: '14px' } },
+        h('div', { style: { display: 'flex', width: '12px', height: '12px', borderRadius: '6px', backgroundColor: C.accent2 } }),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.accent2 } }, 'Von allen aktuellen Browsern unterstützt'),
       ),
     );
   }
 
   // === SLIDE 1: Hook ===
   const slide1 = slideRoot(
-    badge('WUSSTEST DU?'),
-    headline('GOOGLE LIEST DEN TEXT.', 46),
-    headline('NICHT DEN SINN.', 50, C.accent2),
-    subline('Für Suchmaschinen ist deine Seite erstmal nur ein Haufen Buchstaben – ohne erkennbare Bedeutung.'),
+    badge('LADEZEIT-KILLER'),
+    headline('DEIN GRÖSSTES BREMSPEDAL:', 42),
+    headline('DEINE EIGENEN BILDER', 48, C.accent2),
+    subline('Auf den meisten Websites sind Bilder der größte Teil der Seitengröße – und bremsen jeden Klick.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      textBarsCard(),
-      unknownPillsRow(),
+      fileSizeCompareCard(),
     ),
     footer(),
   );
 
-  // === SLIDE 2: Mensch vs. Google-Bot ===
+  // === SLIDE 2: Warum das zählt ===
   const slide2 = slideRoot(
-    badge('MENSCH VS. GOOGLE-BOT'),
-    headline('DU SIEHST EIN PRODUKT.', 42),
-    headline('GOOGLE SIEHT NUR TEXT.', 42, C.accent2),
+    badge('WARUM DAS ZÄHLT'),
+    headline('LADEZEIT IST TEIL VON', 44),
+    headline('CORE WEB VITALS', 46, C.accent2),
+    subline('Google misst mit dem Core Web Vital „Largest Contentful Paint“ (LCP), wie schnell der größte sichtbare Inhalt lädt – oft ein Bild.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '14px' } }, miniProductCard(), miniPlainCard()),
+      cwvRow(),
     ),
-    keyLearning('Menschen erkennen Kontext sofort. Google-Bots brauchen dafür ausdrückliche Hinweise im Code.', C.accent2),
     footer(),
   );
 
   // === SLIDE 3: Die Folge ===
   const slide3 = slideRoot(
     badge('DIE FOLGE'),
-    headline('OHNE MARKUP:', 50),
-    headline('EIN LINK UNTER VIELEN', 42, C.accent2),
-    subline('Ob Restaurant, Rezept oder Blogartikel – ohne Struktur sehen alle Ergebnisse für Google gleich aus.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      fakeResultRow(), fakeResultRow(), fakeResultRow(),
+    headline('ÜBERGROSSE BILDER =', 46),
+    headline('LANGSAMES LCP', 50, C.red),
+    subline('Ein zu großes, unkomprimiertes Bild verzögert genau den Moment, den Google als Ladezeit bewertet.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      stalledLoadVisual(),
     ),
-    keyLearning('Ohne Markup verschwindest du zwischen tausenden identisch aussehenden Ergebnissen.', C.red),
     footer(),
   );
 
-  // === SLIDE 4: Schema.org ===
+  // === SLIDE 4: Die Lösung ===
   const slide4 = slideRoot(
-    badge('SCHEMA.ORG'),
-    headline('EINE GEMEINSAME SPRACHE', 42),
-    headline('FÜR SUCHMASCHINEN', 44, C.accent2),
-    subline('Seit 2011 entwickeln Google, Microsoft, Yahoo und Yandex gemeinsam ein offenes Vokabular: Schema.org.'),
+    badge('DIE LÖSUNG'),
+    headline('MODERNE FORMATE:', 42),
+    headline('WEBP & AVIF', 50, C.accent2),
+    subline('In den offiziellen web.dev-Richtlinien empfiehlt Google WebP und AVIF statt klassischem JPEG oder PNG.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      schemaHubVisual(),
+      formatContrastCards(),
     ),
     footer(),
   );
 
-  // === SLIDE 5: JSON-LD ===
+  // === SLIDE 5: Warum das funktioniert ===
   const slide5 = slideRoot(
-    badge('SO GEHT’S: JSON-LD'),
-    headline('DU BESCHREIBST INHALTE', 40),
-    headline('IN KLARER STRUKTUR', 42, C.accent2),
-    subline('Google empfiehlt dafür JSON-LD: ein Code-Block, der Typ, Preis oder Bewertung exakt benennt.'),
+    badge('WARUM DAS FUNKTIONIERT'),
+    headline('STÄRKERE KOMPRESSION,', 40),
+    headline('GLEICHE QUALITÄT', 44, C.accent2),
+    subline('WebP und AVIF nutzen modernere Kompressionsverfahren als JPEG – kleinere Dateien ohne sichtbaren Qualitätsverlust.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      jsonLdCard(),
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        qualityVsSizeCard('JPEG', 92, C.red),
+        qualityVsSizeCard('WebP / AVIF', 34, C.accent2),
+      ),
     ),
-    keyLearning('JSON-LD landet unsichtbar im Quellcode – Besucher sehen nichts davon, nur Google.', C.accent),
+    keyLearning('Beide Bilder wirken für das Auge gleich gut – nur eine Datei ist deutlich kleiner.', C.accent2),
     footer(),
   );
 
-  // === SLIDE 6: Rich Results ===
+  // === SLIDE 6: Das Prinzip ===
   const slide6 = slideRoot(
-    badge('DAS ERGEBNIS'),
-    headline('STERNE. PREISE.', 48),
-    headline('FAQ ZUM AUSKLAPPEN.', 40, C.accent2),
-    subline('Versteht Google dein Markup, kann es deinen Eintrag direkt in der Suche mit Rich Results erweitern.'),
+    badge('DAS PRINZIP DAHINTER'),
+    headline('KEIN NISCHEN-FORMAT,', 40),
+    headline('LÄNGST STANDARD', 46, C.accent2),
+    subline('Alle aktuellen Browser unterstützen WebP und AVIF – ein Umstieg ist technisch längst risikofrei möglich.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      richResultCard(),
+      browserSupportVisual(),
     ),
-    keyLearning('Rich Results sind keine Garantie, aber eine Chance, aus der Masse herauszustechen.', C.gold),
     footer(),
   );
 
   // === SLIDE 7: Takeaways ===
   const learnings = [
-    { num: '01', text: 'Schema.org ist ein offener Standard, gemeinsam entwickelt seit 2011', pct: 25 },
-    { num: '02', text: 'JSON-LD ist das von Google empfohlene Format für strukturierte Daten', pct: 50 },
-    { num: '03', text: 'Rich Results sind eine Möglichkeit, keine Garantie', pct: 75 },
-    { num: '04', text: 'Der Google Rich Results Test zeigt, ob dein Markup korrekt erkannt wird', pct: 100 },
+    { num: '01', text: 'Bilder sind auf den meisten Websites der größte Teil der Seitengröße', pct: 25 },
+    { num: '02', text: 'WebP und AVIF komprimieren stärker als JPEG – bei vergleichbarer Qualität', pct: 50 },
+    { num: '03', text: 'Bildgröße wirkt sich direkt auf den Core Web Vital LCP aus', pct: 75 },
+    { num: '04', text: 'Bilder immer in der tatsächlich benötigten Größe ausliefern (responsive images)', pct: 100 },
   ];
   const slide7 = slideRoot(
     badge('DIE TAKEAWAYS'),
-    headline('4 LEARNINGS ZU', 50),
-    headline('STRUCTURED DATA', 46),
+    headline('4 LEARNINGS ZUR', 48),
+    headline('BILDOPTIMIERUNG', 44),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       ...learnings.map(l =>
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, borderRadius: '18px', border: `1px solid ${C.cardBorder}` } },
           h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
             h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: l.pct === 100 ? C.accent2 : C.text, minWidth: '58px' } }, l.num),
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text),
           ),
           h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px', overflow: 'hidden' } },
             h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.accent2 : C.accent, borderRadius: '3px' } }),
@@ -361,16 +360,16 @@ async function main() {
           display: 'flex', fontFamily: 'Manrope', fontSize: '42px', fontWeight: 800, color: C.text,
           textAlign: 'center', lineHeight: '1.3', letterSpacing: '-1px',
         }
-      }, 'Nutzt deine Website\nschon Schema.org?'),
+      }, 'Sind deine Bilder schon\nWebP oder AVIF?'),
       h('span', {
         style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textMuted, textAlign: 'center', lineHeight: '1.5' }
-      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um SEO & Struktur.'),
+      }, 'Folge @benarodigital für mehr Website-Wissen\nrund um Performance & SEO.'),
     ),
     footer(),
   );
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-23', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-08-26', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
