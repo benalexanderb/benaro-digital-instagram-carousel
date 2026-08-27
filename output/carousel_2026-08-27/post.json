@@ -1,0 +1,39 @@
+{
+  "date": "2026-08-27",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein großes Foto kann deine ganze Website ausbremsen. WebP und AVIF liefern bei gleicher Bildqualität deutlich kleinere Dateien als JPEG oder PNG – das verbessert direkt deine Ladezeit und den Core Web Vital LCP. Speichern nicht vergessen 📌\n\n#Webdesign #Performance #CoreWebVitals #SEO #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-01.png",
+      "altText": "Dunkle Slide mit Badge „Achtung“ und der Headline „Grosse Bilder. Langsame Seite.“; darunter eine Karte mit zwei Dateigrössen-Balken: ein langer roter Balken „JPEG / PNG (Original)“ und ein kurzer türkiser Balken „WebP / AVIF“."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-02.png",
+      "altText": "Slide „Core Web Vitals“ mit Headline „Das grösste Bild bestimmt dein LCP“ und einem Browser-Mockup: ein grosses blau umrandetes Bildfeld mit blauem Badge „LCP“ oben rechts, darunter zwei graue Textzeilen-Balken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-03.png",
+      "altText": "Slide „Die Folge“ mit Headline „Jede Sekunde kostet Nutzer“ und einer Karte „Ladevorgang“ mit rotem Label „Abbruch“, einem zu einem Drittel gefüllten roten Ladebalken und drei ausblassenden Kreisen darunter, die abspringende Nutzer symbolisieren."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-04.png",
+      "altText": "Slide „WebP & AVIF“ mit Headline „Gleiche Qualität. Kleinere Datei.“ und zwei nebeneinander stehenden Karten: links rot umrandet „JPEG / PNG“ mit breiten Balken und Text „Grosse Datei“, rechts türkis umrandet „WebP / AVIF“ mit einem kurzen Balken und Text „Kleine Datei, gleiche Bildqualität“."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-05.png",
+      "altText": "Slide „Woher kommt das?“ mit Headline „Zwei Formate, ein Ziel: kleiner“ und zwei Karten nebeneinander: „WebP – Google, seit 2010“ und „AVIF – Alliance for Open Media“, jeweils mit rundem Icon-Kreis und kurzer Beschreibung."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-06.png",
+      "altText": "Slide „So setzt du es um“ mit Headline „Ein <picture>-Tag, drei Formate“ und einer Code-Karte, die die Zeilen <picture>, <source type=\"image/avif\">, <source type=\"image/webp\"> und <img src=\"bild.jpg\"> zeigt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-07.png",
+      "altText": "Slide „Die Takeaways“ mit Headline „4 Learnings zu Bildformaten“ und vier nummerierten Karten (01–04) mit Fortschrittsbalken, die bei 100% türkis eingefärbt sind."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-27/slides/slide-08.png",
+      "altText": "Dunkle CTA-Slide mit zentriertem großen BD-Monogramm-Logo, der Frage „Lädt deine Website noch mit JPEG & PNG?“ und dem Text „Folge @benarodigital für mehr Website-Wissen rund um Performance & SEO.“"
+    }
+  ]
+}
