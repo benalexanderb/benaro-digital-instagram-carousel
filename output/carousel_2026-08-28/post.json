@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-28",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein Bildformat entscheidet oft, wie schnell deine Website lädt. JPEG und PNG sind Standard, doch WebP und AVIF liefern bei gleicher Qualität kleinere Dateien und bessere Ladezeiten. Speichern nicht vergessen 📌\n\n#Webdesign #SEO #Webagentur #WebsiteTipps #UserExperience",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-01.png",
+      "altText": "Dunkle Slide mit der Aussage 'Dieses eine Bildformat bremst deine Website aus', darunter vier Symbolkarten für JPEG, PNG, WebP und AVIF."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-02.png",
+      "altText": "Drei Infokarten zu JPEG/PNG, WebP und AVIF mit kurzer Einordnung ihrer Dateigröße."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-03.png",
+      "altText": "Erwartung-vs-Realität-Vergleich: links 'Format spielt keine Rolle', rechts 'Format und Kompression bestimmen die Dateigröße und Ladezeit'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-04.png",
+      "altText": "Zwei Karten stellen WebP und AVIF als moderne Bildformate zur Lösung des Ladezeit-Problems vor."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-05.png",
+      "altText": "Drei nummerierte Schritte: Bilder als WebP oder AVIF exportieren, Fallback mit picture-Element einbauen, Hosting oder CDN zur Optimierung nutzen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-06.png",
+      "altText": "Drei Takeaway-Karten mit Fortschrittsbalken: Format bewusst wählen, Qualität und Dateigröße abwägen, Automatisierung durch Hosting/CDN nutzen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-28/slides/slide-07.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo, der Frage 'Nutzt deine Website schon WebP oder AVIF?' und Call-to-Action, dem Account zu folgen."
+    }
+  ]
+}

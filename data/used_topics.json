@@ -75,6 +75,12 @@
       "topic": "Structured Data & Schema.org: Warum Google deine Inhalte sonst nur als Text sieht",
       "date_used": "2026-08-23",
       "summary": "Schema.org, ein offenes, gemeinsam von Google, Microsoft, Yahoo und Yandex entwickeltes Vokabular (seit 2011), sowie Google Search Central Dokumentation zu structured data / JSON-LD / Rich Results: Ohne Markup lesen Suchmaschinen eine Seite nur als unstrukturierten Text, ohne Preis, Bewertung oder Produkttyp zu erkennen. JSON-LD-Markup macht diese Bedeutung explizit und ermoeglicht Rich Results wie Sternebewertungen, Preise oder FAQ-Dropdowns direkt in der Google-Suche."
+    },
+    {
+      "category": "Performance & Ladezeit",
+      "topic": "Bildformate & Kompression: Warum WebP und AVIF über die Ladezeit entscheiden",
+      "date_used": "2026-08-28",
+      "summary": "Google web.dev Dokumentation ('Use WebP images', 'Use AVIF images'): WebP (von Google entwickelt) und AVIF (neuerer Standard) erzeugen bei vergleichbarer visueller Qualitaet kleinere Dateien als die aelteren Formate JPEG/PNG. Praktische Konsequenz: Bilder in WebP/AVIF exportieren, per <picture>-Element einen Fallback fuer aeltere Browser einbauen und wo moeglich automatische Optimierung durch Hosting/CDN nutzen."
     }
   ]
 }
