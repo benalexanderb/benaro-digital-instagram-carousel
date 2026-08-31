@@ -81,6 +81,12 @@
       "topic": "Bildformate & Kompression: Warum WebP und AVIF über die Ladezeit entscheiden",
       "date_used": "2026-08-28",
       "summary": "Google web.dev Dokumentation ('Use WebP images', 'Use AVIF images'): WebP (von Google entwickelt) und AVIF (neuerer Standard) erzeugen bei vergleichbarer visueller Qualitaet kleinere Dateien als die aelteren Formate JPEG/PNG. Praktische Konsequenz: Bilder in WebP/AVIF exportieren, per <picture>-Element einen Fallback fuer aeltere Browser einbauen und wo moeglich automatische Optimierung durch Hosting/CDN nutzen."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "A/B-Testing-Grundlagen: Warum Bauchgefühl bei CTAs nicht reicht",
+      "date_used": "2026-08-31",
+      "summary": "Grundprinzip des kontrollierten Vergleichs (A/B-Test): Traffic wird zufaellig auf zwei Varianten aufgeteilt, echte Besucher entscheiden statt Team-Meinung. Etabliertes CRO-Isolationsprinzip: pro Test nur eine Variable aendern, sonst ist das Ergebnis keiner Ursache zuordenbar. Grundkonzept der Inferenzstatistik: ein Test braucht ausreichend Stichprobengroesse/Laufzeit, bevor ein Sieger erklaert wird, sonst ist das Ergebnis Zufall."
     }
   ]
 }
