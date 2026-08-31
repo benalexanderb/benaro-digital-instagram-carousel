@@ -84,135 +84,134 @@ async function main() {
   }
 
   // === SLIDES ===
+  // Thema: A/B-Testing-Grundlagen (Conversion & CRO)
 
   // Slide 1 — Hook
   const slide1 = slideRoot(
-    badge('ACHTUNG', C.text, C.cardBg),
-    headline('Dieses eine Bildformat bremst deine Website aus'),
-    subline('Und die meisten Websites nutzen es noch immer.'),
+    badge('DIE WAHRHEIT', C.text, C.cardBg),
+    headline('Rot oder Blau? Dein Bauchgefühl hat oft unrecht'),
+    subline('So findest du heraus, was wirklich mehr Klicks bringt.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-end', justifyContent: 'center' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'JPEG'),
+      h('div', { style: { display: 'flex', gap: '18px', alignItems: 'center', justifyContent: 'center' } },
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', gap: '16px', backgroundColor: 'rgba(41,82,255,0.12)', border: `2px solid ${C.accent}`, borderRadius: '24px', padding: '40px 20px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 700, color: C.accent } }, 'JETZT BUCHEN'),
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'VARIANTE A'),
         ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'PNG'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '140px', backgroundColor: 'rgba(0,194,184,0.14)', border: `2px solid ${C.accent2}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent2 } }, 'WebP'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '110px', backgroundColor: 'rgba(41,82,255,0.16)', border: `2px solid ${C.accent}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent } }, 'AVIF'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '40px', fontWeight: 800, color: C.textMuted } }, '?'),
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', gap: '16px', backgroundColor: 'rgba(0,194,184,0.12)', border: `2px solid ${C.accent2}`, borderRadius: '24px', padding: '40px 20px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 700, color: C.accent2 } }, 'TERMIN SICHERN'),
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'VARIANTE B'),
         ),
       ),
     ),
-    keyLearning('Dateigröße entscheidet, wie schnell deine Seite lädt.'),
+    keyLearning('Ohne Test weißt du nie, welche Version wirklich besser konvertiert.'),
     footer(),
   );
 
-  // Slide 2 — Context: what actually happens
-  const slide2 = slideRoot(
-    badge('BILDFORMATE', C.text, C.cardBg),
-    headline('JPEG und PNG sind die ältesten Formate im Web'),
-    subline('Google empfiehlt seit Jahren moderne Alternativen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'JPEG / PNG'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Älter, weiter verbreitet, aber bei gleicher Qualität größere Dateien.'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.08)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'WEBP'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Von Google entwickelt, erzeugt bei ähnlicher Qualität kleinere Dateien als JPEG/PNG.'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'AVIF'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Neuerer Standard, von Google/web.dev als Next-Gen-Format für Fotos empfohlen.'),
-      ),
-    ),
-    keyLearning('Quelle: Google web.dev, "Use WebP images" / "Use AVIF images".'),
-    footer(),
-  );
-
-  // Slide 3 — Erwartung vs Realität
-  const slide3 = slideRoot(
-    badge('ERWARTUNG VS. REALITÄT', C.text, C.cardBg),
-    headline('"Bild hochladen reicht doch"'),
-    subline('Die Realität sieht anders aus.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Format spielt keine Rolle, Hauptsache das Bild ist da.'),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(41,82,255,0.35)', borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Format und Kompression bestimmen die Dateigröße und damit die Ladezeit.'),
-        ),
-      ),
-    ),
-    keyLearning('Ladezeit beeinflusst, ob Besucher bleiben oder abspringen.'),
-    footer(),
-  );
-
-  // Slide 4 — Die Lösung
-  const slide4 = slideRoot(
-    badge('DIE LÖSUNG', C.text, C.cardBg),
-    headline('Zwei moderne Formate lösen das Problem'),
-    subline('WebP und AVIF sind heute breit unterstützt.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.10)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(0,194,184,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent2 } }, 'W'),
-          ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'WebP'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Guter Standard-Ersatz für JPEG/PNG, von allen modernen Browsern unterstützt.'),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(41,82,255,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent } }, 'A'),
-          ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'AVIF'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Neuerer Standard für Fotos, oft die kleinste Datei bei vergleichbarer Qualität.'),
-        ),
-      ),
-    ),
-    keyLearning('Beide Formate unterstützen verlustfreie und verlustbehaftete Kompression.'),
-    footer(),
-  );
-
-  // Slide 5 — Methode (Schritte)
-  const steps = [
-    { num: '01', text: 'Bilder als WebP oder AVIF exportieren statt JPEG/PNG.' },
-    { num: '02', text: 'Mit dem <picture>-Element einen Fallback für alte Browser einbauen.' },
-    { num: '03', text: 'Hosting oder CDN nutzen, das Bilder automatisch optimiert.' },
+  // Slide 2 — Problem: so laufen CTA-Entscheidungen meistens
+  const flawed = [
+    { l: 'BG', text: 'Bauchgefühl im Team entscheidet.' },
+    { l: 'CP', text: 'Copy einfach vom Wettbewerber übernommen.' },
+    { l: 'HI', text: 'Der lauteste im Meeting gewinnt die Diskussion.' },
   ];
-  const slide5 = slideRoot(
-    badge('SO GEHT ES KONKRET', C.text, C.cardBg),
-    headline('Drei Schritte zur schnelleren Bildladezeit'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px', marginTop: '10px' } },
-      ...steps.map((s) =>
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', padding: '26px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: C.accent2, minWidth: '64px' } }, s.num),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, s.text),
+  const slide2 = slideRoot(
+    badge('SO LÄUFT ES MEISTENS', C.text, C.cardBg),
+    headline('Drei Meinungen, keine Antwort'),
+    subline('Website-Entscheidungen entstehen oft so:'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      ...flawed.map((f) =>
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 28px' } },
+          h('div', { style: { display: 'flex', width: '52px', height: '52px', minWidth: '52px', borderRadius: '14px', backgroundColor: 'rgba(255,255,255,0.08)', alignItems: 'center', justifyContent: 'center' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 800, color: C.textMuted } }, f.l)),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, f.text),
         ),
       ),
     ),
-    keyLearning('Der Fallback stellt sicher, dass auch ältere Browser das Bild sehen.'),
+    keyLearning('Das Ergebnis: Niemand weiß wirklich, ob die Entscheidung stimmt.', true),
+    footer(),
+  );
+
+  // Slide 3 — Turning point: A/B-Testing Prinzip
+  const slide3 = slideRoot(
+    badge('A/B-TESTING', C.text, C.cardBg),
+    headline('Es gibt einen Weg, es objektiv herauszufinden'),
+    subline('Echte Besucher entscheiden, nicht die Meinung im Meeting.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '4px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } },
+        h('div', { style: { display: 'flex', padding: '16px 32px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, letterSpacing: '1px', color: C.text } }, 'BESUCHER DEINER SEITE'))),
+      h('div', { style: { display: 'flex', justifyContent: 'center', padding: '10px 0' } },
+        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+          h('div', { style: { display: 'flex', width: '4px', height: '30px', backgroundColor: C.cardBorder } }),
+          h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '10px solid transparent', borderRight: '10px solid transparent', borderTop: `12px solid ${C.cardBorder}` } }))),
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', gap: '10px', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '30px 20px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent } }, 'HÄLFTE'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.textSoft, textAlign: 'center' } }, 'sieht Variante A')),
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', gap: '10px', backgroundColor: 'rgba(0,194,184,0.12)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '30px 20px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent2 } }, 'HÄLFTE'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.textSoft, textAlign: 'center' } }, 'sieht Variante B')),
+      ),
+    ),
+    keyLearning('Welche Version gewinnt, zeigt der Vergleich, nicht die Diskussion.'),
+    footer(),
+  );
+
+  // Slide 4 — Regel 1: Isolationsprinzip
+  const slide4 = slideRoot(
+    badge('REGEL 1', C.text, C.cardBg),
+    headline('Immer nur eine Variable gleichzeitig testen'),
+    subline('Sonst weißt du am Ende nicht, was den Unterschied gemacht hat.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.08)', border: `1px solid ${C.red}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'MEHRERE ÄNDERUNGEN'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Farbe, Text und Bild gleichzeitig anders.'),
+          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(239,68,68,0.35)', borderRadius: '2px' } }),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 700, color: C.red } }, 'Ergebnis nicht zuordenbar')),
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.10)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'EINE ÄNDERUNG'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Nur die Button-Farbe ist anders.'),
+          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(0,194,184,0.35)', borderRadius: '2px' } }),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 700, color: C.accent2 } }, 'Ergebnis klar zuordenbar')),
+      ),
+    ),
+    keyLearning('So weißt du am Ende genau, welche Änderung den Unterschied gemacht hat.'),
+    footer(),
+  );
+
+  // Slide 5 — Regel 2: genug Zeit / statistische Signifikanz
+  const svgTrend = `<svg width="860" height="280" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 140 L120 60 L220 200 L320 90 L420 170 L520 70 L620 150" fill="none" stroke="${C.textMuted}" stroke-width="4" stroke-dasharray="10 10" opacity="0.6"/>
+    <path d="M20 150 L860 100" fill="none" stroke="${C.accent2}" stroke-width="6"/>
+    <circle cx="20" cy="150" r="8" fill="${C.accent2}"/>
+    <circle cx="860" cy="100" r="8" fill="${C.accent2}"/>
+  </svg>`;
+  const svgTrendSrc = `data:image/svg+xml;base64,${Buffer.from(svgTrend).toString('base64')}`;
+  const slide5 = slideRoot(
+    badge('REGEL 2', C.text, C.cardBg),
+    headline('Zu früh abbrechen macht das Ergebnis wertlos'),
+    subline('Kleine Stichproben sehen wie ein Trend aus, sind aber Zufall.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      h('img', { src: svgTrendSrc, width: 860, height: 280, style: { display: 'flex', objectFit: 'contain' } }),
+      h('div', { style: { display: 'flex', gap: '14px', justifyContent: 'center' } },
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px' } },
+          h('div', { style: { display: 'flex', width: '20px', height: '4px', backgroundColor: C.textMuted, opacity: 0.6 } }),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.textMuted } }, 'wenige Besucher, viel Zufall')),
+        h('div', { style: { display: 'flex', alignItems: 'center', gap: '10px' } },
+          h('div', { style: { display: 'flex', width: '20px', height: '4px', backgroundColor: C.accent2 } }),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.text } }, 'genug Besucher, klares Bild')),
+      ),
+    ),
+    keyLearning('Ein belastbares Ergebnis braucht ausreichend Besucher und Zeit, bevor du entscheidest.'),
     footer(),
   );
 
   // Slide 6 — Learnings
   const learnings = [
-    { num: '01', text: 'Format vor dem Upload bewusst wählen.', pct: 33 },
-    { num: '02', text: 'Qualität und Dateigröße gegeneinander abwägen.', pct: 66 },
-    { num: '03', text: 'Automatisierung durch Hosting/CDN nutzen.', pct: 100 },
+    { num: '01', text: 'Nur eine Variable pro Test ändern.', pct: 33 },
+    { num: '02', text: 'Genug Zeit und Besucher sammeln, bevor du entscheidest.', pct: 66 },
+    { num: '03', text: 'Entscheidung nach Daten treffen, nicht nach Meinung.', pct: 100 },
   ];
   const slide6 = slideRoot(
     badge('DIE TAKEAWAYS', C.text, C.cardBg),
@@ -237,8 +236,8 @@ async function main() {
   const slide7 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Nutzt deine Website schon WebP oder AVIF?'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du deine Bilder prüfst.'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Testest du schon, oder rätst du noch?'),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du deinen nächsten Test startest.'),
       h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 700, color: C.text, textAlign: 'center', lineHeight: '1.4', marginTop: '10px' } }, 'Folge @benarodigital für mehr Website-Wissen'),
     ),
     footer(),

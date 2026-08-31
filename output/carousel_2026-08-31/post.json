@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-31",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Rot oder Blau, dein Bauchgefühl hat bei CTAs keine Antwort. Ein A/B-Test zeigt mit echten Besuchern, welche Version wirklich mehr Klicks bringt, statt nach Meinung zu entscheiden. Wichtig: nur eine Variable testen und dem Test genug Zeit geben.\n\n#Webdesign #Conversion #CRO #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-01.png",
+      "altText": "Zwei CTA-Button-Mockups nebeneinander, 'Jetzt buchen' als Variante A in Blau und 'Termin sichern' als Variante B in Teal, dazwischen ein Fragezeichen. Text: Rot oder Blau? Dein Bauchgefühl hat oft unrecht."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-02.png",
+      "altText": "Drei Karten zeigen typische CTA-Entscheidungen ohne Test: Bauchgefühl im Team, Copy vom Wettbewerber kopiert, der lauteste im Meeting gewinnt. Darunter der Hinweis, dass niemand weiß, ob die Entscheidung stimmt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-03.png",
+      "altText": "Diagramm eines A/B-Tests: Besucher der Website werden aufgeteilt, eine Hälfte sieht Variante A in Blau, die andere Hälfte Variante B in Teal."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-04.png",
+      "altText": "Kontrastkarten zu Regel 1: Mehrere gleichzeitige Änderungen führen zu einem nicht zuordenbaren Ergebnis (rot), eine einzelne isolierte Änderung führt zu einem klar zuordenbaren Ergebnis (teal)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-05.png",
+      "altText": "Liniendiagramm zu Regel 2: eine gestrichelte, stark schwankende graue Linie steht für wenige Besucher und viel Zufall, eine stabile teal-farbene Linie für genug Besucher und ein klares Bild."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-06.png",
+      "altText": "Drei nummerierte Takeaway-Karten mit Fortschrittsbalken: Nur eine Variable pro Test ändern, genug Zeit und Besucher sammeln, Entscheidung nach Daten statt Meinung treffen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-08-31/slides/slide-07.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo und der Frage 'Testest du schon, oder rätst du noch?', darunter Hinweis zum Speichern und Aufruf, @benarodigital zu folgen."
+    }
+  ]
+}
