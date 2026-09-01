@@ -59,7 +59,7 @@ async function main() {
       h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '3px', color, backgroundColor: bg, padding: '10px 22px', borderRadius: '12px' } }, text));
   }
 
-  function headline(text, size = 62) {
+  function headline(text, size = 60) {
     return h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: `${size}px`, fontWeight: 800, color: C.text, lineHeight: '1.12', letterSpacing: '-1px', marginBottom: '4px' } }, text);
   }
 
@@ -84,118 +84,139 @@ async function main() {
   }
 
   // === SLIDES ===
+  // Thema: Formularlänge & Cognitive Load (Conversion & CRO)
 
   // Slide 1 — Hook
+  const formRows = [
+    { label: 'Name', risk: false },
+    { label: 'E-Mail', risk: false },
+    { label: 'Nachricht', risk: false },
+    { label: 'Telefon', risk: true },
+    { label: 'Firma', risk: true },
+    { label: 'Wie hast du uns gefunden?', risk: true },
+  ];
   const slide1 = slideRoot(
     badge('ACHTUNG', C.text, C.cardBg),
-    headline('Dieses eine Bildformat bremst deine Website aus'),
-    subline('Und die meisten Websites nutzen es noch immer.'),
+    headline('Ein einziges Formularfeld kann deine Anfrage kosten'),
+    subline('Und die meisten Kontaktformulare haben zu viele.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-end', justifyContent: 'center' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'JPEG'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'PNG'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '140px', backgroundColor: 'rgba(0,194,184,0.14)', border: `2px solid ${C.accent2}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent2 } }, 'WebP'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '110px', backgroundColor: 'rgba(41,82,255,0.16)', border: `2px solid ${C.accent}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent } }, 'AVIF'),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px', gap: '14px' } },
+        ...formRows.map((f) =>
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px', padding: '16px 18px', backgroundColor: f.risk ? 'rgba(239,68,68,0.08)' : 'rgba(255,255,255,0.04)', border: `1px solid ${f.risk ? 'rgba(239,68,68,0.35)' : C.cardBorder}`, borderRadius: '14px' } },
+            h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: f.risk ? C.red : C.accent2 } }),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: f.risk ? 'rgba(255,255,255,0.75)' : C.text } }, f.label),
+          ),
         ),
       ),
     ),
-    keyLearning('Dateigröße entscheidet, wie schnell deine Seite lädt.'),
+    keyLearning('Jedes zusätzliche Feld erhöht den gefühlten Aufwand für den Besucher.'),
     footer(),
   );
 
-  // Slide 2 — Context: what actually happens
+  // Slide 2 — Warum (Cognitive Load)
+  const effortSteps = [1, 2, 3, 4, 5, 6];
   const slide2 = slideRoot(
-    badge('BILDFORMATE', C.text, C.cardBg),
-    headline('JPEG und PNG sind die ältesten Formate im Web'),
-    subline('Google empfiehlt seit Jahren moderne Alternativen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'JPEG / PNG'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Älter, weiter verbreitet, aber bei gleicher Qualität größere Dateien.'),
+    badge('COGNITIVE LOAD', C.text, C.cardBg),
+    headline('Warum jedes Feld Aufwand bedeutet'),
+    subline('Das Gehirn bewertet jede Entscheidung einzeln.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '20px' } },
+      h('div', { style: { display: 'flex', alignItems: 'flex-end', gap: '14px', justifyContent: 'center' } },
+        ...effortSteps.map((n) =>
+          h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' } },
+            h('div', { style: { display: 'flex', width: '90px', height: `${60 + n * 28}px`, backgroundColor: n >= 5 ? 'rgba(239,68,68,0.16)' : 'rgba(0,194,184,0.14)', border: `2px solid ${n >= 5 ? C.red : C.accent2}`, borderRadius: '14px' } }),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, color: C.textMuted } }, `${n}`),
+          ),
+        ),
       ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.08)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'WEBP'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Von Google entwickelt, erzeugt bei ähnlicher Qualität kleinere Dateien als JPEG/PNG.'),
-      ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'AVIF'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Neuerer Standard, von Google/web.dev als Next-Gen-Format für Fotos empfohlen.'),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px 28px', gap: '8px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Jedes Feld muss gelesen, verstanden, bewertet und ausgefüllt werden – bevor der nächste Schritt möglich ist.'),
       ),
     ),
-    keyLearning('Quelle: Google web.dev, "Use WebP images" / "Use AVIF images".'),
+    keyLearning('Cognitive Load Theory (John Sweller, 1988): jede zusätzliche Information beansprucht das Arbeitsgedächtnis.'),
     footer(),
   );
 
-  // Slide 3 — Erwartung vs Realität
+  // Slide 3 — Die Folge
+  const reasons = [
+    { title: 'UNKLARER ZWECK', text: 'Warum wird genau das gefragt? Ist nicht sofort ersichtlich.' },
+    { title: 'GEFÜHLTER AUFWAND', text: 'Ein langes Formular wirkt aufwändiger, bevor überhaupt ein Wort getippt wurde.' },
+    { title: 'DATENSCHUTZ-BEDENKEN', text: 'Sensible Felder wie Telefonnummer wecken Zurückhaltung ohne Erklärung.' },
+  ];
   const slide3 = slideRoot(
+    badge('DIE FOLGE', C.text, C.cardBg),
+    headline('Nicht das Formular ist das Problem'),
+    subline('Sondern die Unsicherheit, die dabei entsteht.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      ...reasons.map((r) =>
+        h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px 28px', gap: '10px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, r.title),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, r.text),
+        ),
+      ),
+    ),
+    keyLearning('Jeder dieser Gründe lässt sich mit dem richtigen Formular-Design vermeiden.'),
+    footer(),
+  );
+
+  // Slide 4 — Erwartung vs Realität
+  const slide4 = slideRoot(
     badge('ERWARTUNG VS. REALITÄT', C.text, C.cardBg),
-    headline('"Bild hochladen reicht doch"'),
+    headline('"Mehr Felder heißt mehr Informationen"'),
     subline('Die Realität sieht anders aus.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Format spielt keine Rolle, Hauptsache das Bild ist da.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Je mehr ich frage, desto besser kann ich die Anfrage einordnen.'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(41,82,255,0.35)', borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Format und Kompression bestimmen die Dateigröße und damit die Ladezeit.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Je mehr ich frage, desto weniger Besucher schicken das Formular überhaupt ab.'),
         ),
       ),
     ),
-    keyLearning('Ladezeit beeinflusst, ob Besucher bleiben oder abspringen.'),
+    keyLearning('Baymard Institute: unnötige Formularfelder zählen zu den häufigsten Abbruchgründen.'),
     footer(),
   );
 
-  // Slide 4 — Die Lösung
-  const slide4 = slideRoot(
+  // Slide 5 — Die Lösung
+  const slide5 = slideRoot(
     badge('DIE LÖSUNG', C.text, C.cardBg),
-    headline('Zwei moderne Formate lösen das Problem'),
-    subline('WebP und AVIF sind heute breit unterstützt.'),
+    headline('Nur fragen, was du wirklich brauchst'),
+    subline('Zwei Prinzipien für schlankere Formulare.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.10)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
           h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(0,194,184,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent2 } }, 'W'),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent2 } }, '01'),
           ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'WebP'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Guter Standard-Ersatz für JPEG/PNG, von allen modernen Browsern unterstützt.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '27px', fontWeight: 700, color: C.text } }, 'Minimum-Prinzip'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Nur Felder abfragen, die für den nächsten Schritt zwingend nötig sind.'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
           h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(41,82,255,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent } }, 'A'),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent } }, '02'),
           ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'AVIF'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Neuerer Standard für Fotos, oft die kleinste Datei bei vergleichbarer Qualität.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '27px', fontWeight: 700, color: C.text } }, 'Progressive Disclosure'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Lange Formulare in mehrere kurze Schritte statt einer langen Liste aufteilen.'),
         ),
       ),
     ),
-    keyLearning('Beide Formate unterstützen verlustfreie und verlustbehaftete Kompression.'),
+    keyLearning('Weniger Felder auf einen Blick wirken machbarer – unabhängig von der Gesamtzahl.'),
     footer(),
   );
 
-  // Slide 5 — Methode (Schritte)
+  // Slide 6 — Konkrete Schritte
   const steps = [
-    { num: '01', text: 'Bilder als WebP oder AVIF exportieren statt JPEG/PNG.' },
-    { num: '02', text: 'Mit dem <picture>-Element einen Fallback für alte Browser einbauen.' },
-    { num: '03', text: 'Hosting oder CDN nutzen, das Bilder automatisch optimiert.' },
+    { num: '01', text: 'Jedes Feld auf Notwendigkeit prüfen – raus, was nicht zwingend gebraucht wird.' },
+    { num: '02', text: 'Optionale Felder klar kennzeichnen oder ganz weglassen.' },
+    { num: '03', text: 'Lange Formulare in mehrere kurze Schritte aufteilen.' },
   ];
-  const slide5 = slideRoot(
+  const slide6 = slideRoot(
     badge('SO GEHT ES KONKRET', C.text, C.cardBg),
-    headline('Drei Schritte zur schnelleren Bildladezeit'),
+    headline('Drei Schritte zu einem leichteren Formular'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px', marginTop: '10px' } },
       ...steps.map((s) =>
         h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', padding: '26px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
@@ -204,17 +225,17 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Der Fallback stellt sicher, dass auch ältere Browser das Bild sehen.'),
+    keyLearning('Der Zweck jedes verbleibenden Feldes sollte für Besucher sofort klar sein.'),
     footer(),
   );
 
-  // Slide 6 — Learnings
+  // Slide 7 — Takeaways
   const learnings = [
-    { num: '01', text: 'Format vor dem Upload bewusst wählen.', pct: 33 },
-    { num: '02', text: 'Qualität und Dateigröße gegeneinander abwägen.', pct: 66 },
-    { num: '03', text: 'Automatisierung durch Hosting/CDN nutzen.', pct: 100 },
+    { num: '01', text: 'Jedes Feld erhöht den gefühlten Aufwand.', pct: 33 },
+    { num: '02', text: 'Unnötige Felder kosten dich Anfragen.', pct: 66 },
+    { num: '03', text: 'Weniger und klarer schlägt lang und vollständig.', pct: 100 },
   ];
-  const slide6 = slideRoot(
+  const slide7 = slideRoot(
     badge('DIE TAKEAWAYS', C.text, C.cardBg),
     headline('Was du dir merken solltest'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px', marginTop: '10px' } },
@@ -233,18 +254,18 @@ async function main() {
     footer(),
   );
 
-  // Slide 7 — CTA
-  const slide7 = slideRoot(
+  // Slide 8 — CTA
+  const slide8 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Nutzt deine Website schon WebP oder AVIF?'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du deine Bilder prüfst.'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '50px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Wie viele Felder hat dein Kontaktformular wirklich?'),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du dein Formular prüfst.'),
       h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 700, color: C.text, textAlign: 'center', lineHeight: '1.4', marginTop: '10px' } }, 'Folge @benarodigital für mehr Website-Wissen'),
     ),
     footer(),
   );
 
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 
   const outDir = path.join(__dirname, 'output', `carousel_${new Date().toISOString().slice(0, 10)}`, 'slides');
   fs.mkdirSync(outDir, { recursive: true });

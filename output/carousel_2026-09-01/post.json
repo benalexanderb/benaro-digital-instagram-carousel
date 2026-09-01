@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-01",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein Formularfeld zu viel kann dir Anfragen kosten. Jedes zusätzliche Feld erhöht den gefühlten Aufwand – und ist ein häufiger Abbruchgrund. Frag nur, was wirklich nötig ist, und teile lange Formulare in kurze Schritte. Speichern nicht vergessen 📌\n\n#Webdesign #CRO #Conversion #UXDesign #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-01.png",
+      "altText": "Dunkle Slide mit der Aussage 'Ein einziges Formularfeld kann deine Anfrage kosten', darunter ein Kontaktformular-Mockup mit sechs Feldern, die letzten drei rot markiert als Risiko-Felder."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-02.png",
+      "altText": "Balkendiagramm aus sechs wachsenden Säulen zeigt den steigenden gefühlten Aufwand pro zusätzlichem Formularfeld, mit Verweis auf die Cognitive Load Theory."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-03.png",
+      "altText": "Drei Karten nennen Gründe für Formularabbrüche: unklarer Zweck eines Feldes, gefühlter Aufwand und Datenschutz-Bedenken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-04.png",
+      "altText": "Erwartung-vs-Realität-Vergleich: links 'mehr Felder heißt mehr Informationen', rechts 'mehr Felder heißt weniger abgeschickte Formulare'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-05.png",
+      "altText": "Zwei Karten stellen die Lösungsprinzipien Minimum-Prinzip und Progressive Disclosure für schlankere Formulare vor."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-06.png",
+      "altText": "Drei nummerierte Schritte: Felder auf Notwendigkeit prüfen, optionale Felder kennzeichnen oder weglassen, lange Formulare in kurze Schritte aufteilen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-07.png",
+      "altText": "Drei Takeaway-Karten mit Fortschrittsbalken: mehr Aufwand pro Feld, unnötige Felder kosten Anfragen, weniger und klarer schlägt lang und vollständig."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-01/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo, der Frage 'Wie viele Felder hat dein Kontaktformular wirklich?' und Call-to-Action, dem Account zu folgen."
+    }
+  ]
+}
