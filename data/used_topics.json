@@ -81,6 +81,12 @@
       "topic": "Bildformate & Kompression: Warum WebP und AVIF über die Ladezeit entscheiden",
       "date_used": "2026-08-28",
       "summary": "Google web.dev Dokumentation ('Use WebP images', 'Use AVIF images'): WebP (von Google entwickelt) und AVIF (neuerer Standard) erzeugen bei vergleichbarer visueller Qualitaet kleinere Dateien als die aelteren Formate JPEG/PNG. Praktische Konsequenz: Bilder in WebP/AVIF exportieren, per <picture>-Element einen Fallback fuer aeltere Browser einbauen und wo moeglich automatische Optimierung durch Hosting/CDN nutzen."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "Formularlaenge reduzieren: Warum jedes unnoetige Feld Conversions kostet",
+      "date_used": "2026-09-02",
+      "summary": "Baymard Institute (fortlaufende Checkout-Usability-Forschung seit 2011) und Luke Wroblewskis Standardwerk 'Web Form Design' (2008): Jedes zusaetzliche Pflichtfeld erhoeht den wahrgenommenen Aufwand und das Abbruchrisiko. Praktische Konsequenz: nur wirklich notwendige Felder abfragen, Formulare einspaltig anordnen, optionale Angaben per progressive disclosure spaeter erfragen und Autocomplete-Attribute (HTML-Standard) nutzen."
     }
   ]
 }
