@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-02",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Jedes zusätzliche Formularfeld ist eine kleine Hürde für deine Besucher. Wer nur die wirklich nötigen Angaben abfragt, senkt die Einstiegshürde und macht es Interessenten leichter, tatsächlich abzuschicken. Speichern nicht vergessen 📌\n\n#Webdesign #CRO #Conversion #UXDesign #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-01.png",
+      "altText": "Dunkle Slide mit der Aussage 'Ein zu langes Formular kostet dir Kunden', darunter zwei Karten im Vergleich: 'Viele Felder' mit vielen roten Balken und 'Wenige Felder' mit wenigen türkisen Balken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-02.png",
+      "altText": "Drei Infokarten: 'Jedes Feld = Aufwand', 'Baymard Institute' (Checkout-Usability-Forschung seit 2011) und 'Web Form Design' von Luke Wroblewski (2008)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-03.png",
+      "altText": "Erwartung-vs-Realität-Vergleich: links 'Mehr Felder heißt, wir lernen mehr über den Interessenten', rechts 'Mehr Felder heißt vor allem, mehr Interessenten brechen vorher ab'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-04.png",
+      "altText": "Zwei Karten stellen die Lösung vor: 'Nur Pflichtfelder' und 'Später nachfragen' (progressive disclosure)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-05.png",
+      "altText": "Drei nummerierte Schritte: jedes Feld hinterfragen, Formular einspaltig anordnen, Autocomplete-Attribute setzen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-06.png",
+      "altText": "Drei Takeaway-Karten mit Fortschrittsbalken: nur notwendige Felder abfragen, Formular auf eine Spalte reduzieren, Autofill aktivieren und Zusatzfragen aufschieben."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-02/slides/slide-07.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo, der Frage 'Wie lang ist dein Kontaktformular wirklich?' und Call-to-Action, dem Account zu folgen."
+    }
+  ]
+}
