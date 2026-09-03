@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-03",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein Formularfeld zu viel kann dich Kunden kosten. Jedes zusätzliche Pflichtfeld erhöht den gefühlten Aufwand für Besucher:innen und das Risiko, dass sie abbrechen. Wir zeigen dir, welche Felder wirklich nötig sind.\n\nSpeichern nicht vergessen 📌\n\n#Webdesign #UXDesign #Conversion #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-01.png",
+      "altText": "Vier Formular-Icons steigender Höhe, beschriftet mit 3, 5, 8 und 12+ Feldern, Farbe wechselt von Türkis zu Rot. Headline: Ein Formularfeld zu viel kann dir Kunden kosten."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-02.png",
+      "altText": "Zwei Infokarten: Cognitive Load Theory nach John Sweller (1988) und deren Übertragung auf Formulare, wonach jedes Feld eine weitere Mini-Entscheidung ist."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-03.png",
+      "altText": "Kontrastkarten Erwartung gegen Realität: Erwartung 'mehr Felder liefern mehr Infos' versus Realität 'Nutzer brechen bei zu langen Formularen ab', mit Quellenhinweis Baymard Institute."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-04.png",
+      "altText": "Drei nummerierte Schritte: notwendige Felder abfragen, Formulare in Schritte aufteilen, Pflichtfelder klar kennzeichnen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-05.png",
+      "altText": "Zwei Karten mit Beispiel-Formularfeldern: meist notwendige Felder wie Name, E-Mail und Nachricht gegenüber oft verzichtbaren Feldern wie Telefonnummer oder mehrfachen Adressfeldern."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-06.png",
+      "altText": "Drei Takeaway-Karten mit Fortschrittsbalken: Felder hinterfragen, Formular in Schritte aufteilen, optionale Felder kennzeichnen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-03/slides/slide-07.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo und der Frage: Wie viele Felder hat dein Kontaktformular wirklich? Aufruf, dem Account zu folgen."
+    }
+  ]
+}
