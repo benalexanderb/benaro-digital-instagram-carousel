@@ -83,136 +83,137 @@ async function main() {
     return h('div', { style: { display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px', backgroundColor: C.bg, fontFamily: 'Inter' } }, ...children);
   }
 
+  function arrowDown(color = C.cardBorder) {
+    return h('div', { style: { display: 'flex', justifyContent: 'center', padding: '2px 0' } },
+      h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+        h('div', { style: { display: 'flex', width: '4px', height: '22px', backgroundColor: color } }),
+        h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '9px solid transparent', borderRight: '9px solid transparent', borderTop: `11px solid ${color}` } }),
+      ));
+  }
+
   // === SLIDES ===
 
-  // Slide 1 — Hook
+  // Slide 1 — Hook: die ueberraschende Geschichte
   const slide1 = slideRoot(
-    badge('ACHTUNG', C.text, C.cardBg),
-    headline('Dieses eine Bildformat bremst deine Website aus'),
-    subline('Und die meisten Websites nutzen es noch immer.'),
+    badge('WAHRE GESCHICHTE', C.text, C.cardBg),
+    headline('Ein einziges Pflichtfeld kostete diesem Shop Millionen'),
+    subline('Und du hast dieses Feld vielleicht auch noch in deinem Formular.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '18px', alignItems: 'flex-end', justifyContent: 'center' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'JPEG'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '260px', backgroundColor: C.cardBg, border: `2px solid ${C.cardBorder}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.textMuted } }, 'PNG'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '140px', backgroundColor: 'rgba(0,194,184,0.14)', border: `2px solid ${C.accent2}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent2 } }, 'WebP'),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' } },
-          h('div', { style: { display: 'flex', width: '160px', height: '110px', backgroundColor: 'rgba(41,82,255,0.16)', border: `2px solid ${C.accent}`, borderRadius: '20px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 700, color: C.accent } }, 'AVIF'),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px', gap: '16px', maxWidth: '760px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'CHECKOUT-FORMULAR'),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '10px' } }),
+          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '10px' } }),
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px', width: '100%', height: '44px', backgroundColor: 'rgba(239,68,68,0.16)', border: `2px solid ${C.red}`, borderRadius: '10px', padding: '0 18px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.red } }, 'Passwort erstellen'),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.red, marginLeft: 'auto' } }, 'X'),
+          ),
         ),
       ),
     ),
-    keyLearning('Dateigröße entscheidet, wie schnell deine Seite lädt.'),
+    keyLearning('Jedes zusätzliche Pflichtfeld ist eine Hürde für deine Besucher.'),
     footer(),
   );
 
-  // Slide 2 — Context: what actually happens
+  // Slide 2 — Der Fall: was tatsaechlich passierte
   const slide2 = slideRoot(
-    badge('BILDFORMATE', C.text, C.cardBg),
-    headline('JPEG und PNG sind die ältesten Formate im Web'),
-    subline('Google empfiehlt seit Jahren moderne Alternativen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'JPEG / PNG'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Älter, weiter verbreitet, aber bei gleicher Qualität größere Dateien.'),
+    badge('DER FALL', C.text, C.cardBg),
+    headline('Käufer mussten sich zuerst registrieren'),
+    subline('Bevor sie überhaupt bestellen konnten.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '4px' } },
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 28px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Warenkorb gefüllt, Kauf fast abgeschlossen'),
       ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.08)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent2 } }, 'WEBP'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Von Google entwickelt, erzeugt bei ähnlicher Qualität kleinere Dateien als JPEG/PNG.'),
+      arrowDown(),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.10)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Checkout verlangte ein neues Kundenkonto'),
       ),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '10px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'AVIF'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Neuerer Standard, von Google/web.dev als Next-Gen-Format für Fotos empfohlen.'),
+      arrowDown(C.red),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.16)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 700, color: C.red, lineHeight: '1.4' } }, 'Viele brachen den Kauf lieber ab'),
       ),
     ),
-    keyLearning('Quelle: Google web.dev, "Use WebP images" / "Use AVIF images".'),
+    keyLearning('Quelle: Jared Spool / User Interface Engineering, "The $300 Million Button" (2009).'),
     footer(),
   );
 
-  // Slide 3 — Erwartung vs Realität
+  // Slide 3 — Die Folge: das Prinzip dahinter
+  const hurdleFields = ['Konto erstellen', 'Telefonnummer', 'Firmenname', 'Newsletter-Häkchen'];
   const slide3 = slideRoot(
+    badge('DIE FOLGE', C.text, C.cardBg),
+    headline('Das Prinzip trifft jedes Formular'),
+    subline('Nicht nur eine erzwungene Registrierung.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        ...hurdleFields.slice(0, 2).map((f) =>
+          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'ZUSÄTZLICHE HÜRDE'),
+          ),
+        ),
+      ),
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        ...hurdleFields.slice(2, 4).map((f) =>
+          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'ZUSÄTZLICHE HÜRDE'),
+          ),
+        ),
+      ),
+    ),
+    keyLearning('Jedes Feld erhöht den wahrgenommenen Aufwand – unabhängig vom Thema.'),
+    footer(),
+  );
+
+  // Slide 4 — Erwartung vs. Realitaet
+  const slide4 = slideRoot(
     badge('ERWARTUNG VS. REALITÄT', C.text, C.cardBg),
-    headline('"Bild hochladen reicht doch"'),
+    headline('"Mehr Felder heißt mehr Kundendaten"'),
     subline('Die Realität sieht anders aus.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Format spielt keine Rolle, Hauptsache das Bild ist da.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Mehr Formularfelder liefern uns mehr Informationen über den Kunden.'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(41,82,255,0.35)', borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Format und Kompression bestimmen die Dateigröße und damit die Ladezeit.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Mehr Formularfelder bedeuten mehr Abbrüche vor dem Absenden.'),
         ),
       ),
     ),
-    keyLearning('Ladezeit beeinflusst, ob Besucher bleiben oder abspringen.'),
+    keyLearning('Baymard Institute: Ein zu langer, komplizierter Checkout zählt zu den Hauptgründen für Kaufabbrüche.'),
     footer(),
   );
 
-  // Slide 4 — Die Lösung
-  const slide4 = slideRoot(
-    badge('DIE LÖSUNG', C.text, C.cardBg),
-    headline('Zwei moderne Formate lösen das Problem'),
-    subline('WebP und AVIF sind heute breit unterstützt.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(0,194,184,0.10)', border: `1px solid ${C.accent2}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(0,194,184,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent2 } }, 'W'),
-          ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'WebP'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Guter Standard-Ersatz für JPEG/PNG, von allen modernen Browsern unterstützt.'),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.10)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '12px' } },
-          h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(41,82,255,0.18)', alignItems: 'center', justifyContent: 'center' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.accent } }, 'A'),
-          ),
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, 'AVIF'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Neuerer Standard für Fotos, oft die kleinste Datei bei vergleichbarer Qualität.'),
-        ),
-      ),
-    ),
-    keyLearning('Beide Formate unterstützen verlustfreie und verlustbehaftete Kompression.'),
-    footer(),
-  );
-
-  // Slide 5 — Methode (Schritte)
+  // Slide 5 — Die Loesung (konkrete Schritte)
   const steps = [
-    { num: '01', text: 'Bilder als WebP oder AVIF exportieren statt JPEG/PNG.' },
-    { num: '02', text: 'Mit dem <picture>-Element einen Fallback für alte Browser einbauen.' },
-    { num: '03', text: 'Hosting oder CDN nutzen, das Bilder automatisch optimiert.' },
+    { num: '01', text: 'Gastbestellung ermöglichen – Kauf ohne Konto-Zwang anbieten.' },
+    { num: '02', text: 'Nur wirklich nötige Felder abfragen, den Rest optional lassen.' },
+    { num: '03', text: 'Standard-Feldnamen nutzen, damit der Browser das Formular per Autofill ausfüllen kann.' },
   ];
   const slide5 = slideRoot(
-    badge('SO GEHT ES KONKRET', C.text, C.cardBg),
-    headline('Drei Schritte zur schnelleren Bildladezeit'),
+    badge('DIE LÖSUNG', C.text, C.cardBg),
+    headline('Formulare so kurz wie möglich halten'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px', marginTop: '10px' } },
       ...steps.map((s) =>
         h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', padding: '26px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: C.accent2, minWidth: '64px' } }, s.num),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, s.text),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, s.text),
         ),
       ),
     ),
-    keyLearning('Der Fallback stellt sicher, dass auch ältere Browser das Bild sehen.'),
+    keyLearning('Jedes Feld, das wegfällt, senkt die Hürde bis zum Kaufabschluss.'),
     footer(),
   );
 
-  // Slide 6 — Learnings
+  // Slide 6 — Learnings mit Fortschrittsbalken
   const learnings = [
-    { num: '01', text: 'Format vor dem Upload bewusst wählen.', pct: 33 },
-    { num: '02', text: 'Qualität und Dateigröße gegeneinander abwägen.', pct: 66 },
-    { num: '03', text: 'Automatisierung durch Hosting/CDN nutzen.', pct: 100 },
+    { num: '01', text: 'Registrierung beim Checkout optional machen.', pct: 33 },
+    { num: '02', text: 'Formularfelder auf das Nötigste reduzieren.', pct: 66 },
+    { num: '03', text: 'Fortschritt bei mehrstufigen Formularen sichtbar machen.', pct: 100 },
   ];
   const slide6 = slideRoot(
     badge('DIE TAKEAWAYS', C.text, C.cardBg),
@@ -237,8 +238,8 @@ async function main() {
   const slide7 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Nutzt deine Website schon WebP oder AVIF?'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du deine Bilder prüfst.'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Ist dein Kontaktformular schlanker als nötig?'),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du dein nächstes Formular baust.'),
       h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 700, color: C.text, textAlign: 'center', lineHeight: '1.4', marginTop: '10px' } }, 'Folge @benarodigital für mehr Website-Wissen'),
     ),
     footer(),

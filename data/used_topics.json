@@ -81,6 +81,12 @@
       "topic": "Bildformate & Kompression: Warum WebP und AVIF über die Ladezeit entscheiden",
       "date_used": "2026-08-28",
       "summary": "Google web.dev Dokumentation ('Use WebP images', 'Use AVIF images'): WebP (von Google entwickelt) und AVIF (neuerer Standard) erzeugen bei vergleichbarer visueller Qualitaet kleinere Dateien als die aelteren Formate JPEG/PNG. Praktische Konsequenz: Bilder in WebP/AVIF exportieren, per <picture>-Element einen Fallback fuer aeltere Browser einbauen und wo moeglich automatische Optimierung durch Hosting/CDN nutzen."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "Formular-Laenge reduzieren: Warum jedes Pflichtfeld eine Huerde ist",
+      "date_used": "2026-09-05",
+      "summary": "Jared Spool / User Interface Engineering, 'The $300 Million Button' (2009): Ein grosser Online-Shop zwang Kaeufer vor dem Kauf zur Kontoregistrierung, viele brachen deshalb ab; nach Einfuehrung einer Gastbestellung stiegen die Verkaeufe deutlich. Ergaenzt durch die fortlaufende Checkout-Usability-Forschung des Baymard Institute, die einen zu langen/komplizierten Checkout als einen der Hauptgruende fuer Warenkorbabbrueche dokumentiert. Praktische Konsequenz: Gastbestellung ermoeglichen, nur zwingend noetige Felder abfragen, Standard-Feldnamen fuer Autofill nutzen."
     }
   ]
 }

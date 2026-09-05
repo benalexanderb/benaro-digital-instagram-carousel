@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-05",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein Pflichtfeld hat einen Online-Shop einst Millionen gekostet. Jedes zusätzliche Formularfeld erhöht die Absprungrate vor dem Abschluss. Gastbestellung, weniger Pflichtfelder und Autofill senken diese Hürde spürbar. Speichern nicht vergessen 📌\n\n#Webdesign #UXDesign #Conversion #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-01.png",
+      "altText": "Dunkle Slide mit der Aussage 'Ein einziges Pflichtfeld kostete diesem Shop Millionen', darunter ein Checkout-Formular-Mockup mit dem Feld 'Passwort erstellen' rot markiert und durchgestrichen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-02.png",
+      "altText": "Drei aufeinanderfolgende Karten mit Pfeilen: 'Warenkorb gefüllt', 'Checkout verlangte ein neues Kundenkonto', 'Viele brachen den Kauf lieber ab'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-03.png",
+      "altText": "Vier Karten mit häufigen unnötigen Formularfeldern (Konto erstellen, Telefonnummer, Firmenname, Newsletter-Häkchen), jede mit dem Hinweis 'Zusätzliche Hürde'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-04.png",
+      "altText": "Erwartung-vs-Realität-Vergleich: links 'Mehr Formularfelder liefern mehr Informationen über den Kunden', rechts 'Mehr Formularfelder bedeuten mehr Abbrüche vor dem Absenden'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-05.png",
+      "altText": "Drei nummerierte Schritte: Gastbestellung ermöglichen, nur nötige Felder abfragen, Standard-Feldnamen für Autofill nutzen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-06.png",
+      "altText": "Drei Takeaway-Karten mit Fortschrittsbalken: Registrierung optional machen, Formularfelder reduzieren, Fortschritt bei mehrstufigen Formularen sichtbar machen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-05/slides/slide-07.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo, der Frage 'Ist dein Kontaktformular schlanker als nötig?' und Call-to-Action, dem Account zu folgen."
+    }
+  ]
+}
