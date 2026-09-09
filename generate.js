@@ -92,111 +92,124 @@ async function main() {
   }
 
   // === SLIDES ===
+  // Thema: Echte Fotos statt Stockfotos (Trust & Social Proof)
 
-  // Slide 1 — Hook: die ueberraschende Geschichte
+  // Slide 1 — Hook
   const slide1 = slideRoot(
-    badge('WAHRE GESCHICHTE', C.text, C.cardBg),
-    headline('Ein einziges Pflichtfeld kostete diesem Shop Millionen'),
-    subline('Und du hast dieses Feld vielleicht auch noch in deinem Formular.'),
+    badge('ACHTUNG', C.text, C.cardBg),
+    headline('Dein perfektes Stockfoto wird von Besuchern einfach ausgeblendet'),
+    subline('Das Phänomen dahinter kennt jeder UX-Forscher.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
       h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px', gap: '16px', maxWidth: '760px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'CHECKOUT-FORMULAR'),
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '10px' } }),
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '10px' } }),
-          h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px', width: '100%', height: '44px', backgroundColor: 'rgba(239,68,68,0.16)', border: `2px solid ${C.red}`, borderRadius: '10px', padding: '0 18px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.red } }, 'Passwort erstellen'),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 800, color: C.red, marginLeft: 'auto' } }, 'X'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'TEAM-SEKTION'),
+        h('div', { style: { display: 'flex', gap: '14px' } },
+          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', gap: '10px' } },
+            h('div', { style: { display: 'flex', width: '100%', height: '120px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '14px' } }),
+            h('div', { style: { display: 'flex', width: '70%', height: '18px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '6px' } }),
+          ),
+          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', gap: '10px' } },
+            h('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '120px', backgroundColor: 'rgba(239,68,68,0.16)', border: `2px solid ${C.red}`, borderRadius: '14px' } },
+              h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: C.red } }, 'X'),
+            ),
+            h('div', { style: { display: 'flex', width: '70%', height: '18px', backgroundColor: 'rgba(239,68,68,0.25)', borderRadius: '6px' } }),
           ),
         ),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.red } }, 'Rechts: erkennbares Stockfoto'),
       ),
     ),
-    keyLearning('Jedes zusätzliche Pflichtfeld ist eine Hürde für deine Besucher.'),
+    keyLearning('Nutzer lernen mit der Zeit, werbe-artige Bilder automatisch zu ignorieren.'),
     footer(),
   );
 
-  // Slide 2 — Der Fall: was tatsaechlich passierte
+  // Slide 2 — Der Fall / das Phänomen
   const slide2 = slideRoot(
-    badge('DER FALL', C.text, C.cardBg),
-    headline('Käufer mussten sich zuerst registrieren'),
-    subline('Bevor sie überhaupt bestellen konnten.'),
+    badge('DAS PHÄNOMEN', C.text, C.cardBg),
+    headline('Es heißt Banner-Blindness'),
+    subline('Und es betrifft längst mehr als nur Werbebanner.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '4px' } },
       h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Warenkorb gefüllt, Kauf fast abgeschlossen'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Besucher sehen viele generische Werbe- und Symbolbilder'),
       ),
       arrowDown(),
       h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.10)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Checkout verlangte ein neues Kundenkonto'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Das Gehirn lernt: Diese Bilder sind Rauschen, keine Information'),
       ),
       arrowDown(C.red),
       h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.16)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 700, color: C.red, lineHeight: '1.4' } }, 'Viele brachen den Kauf lieber ab'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 700, color: C.red, lineHeight: '1.4' } }, 'Neue Stockfotos werden automatisch mit ausgeblendet'),
       ),
     ),
-    keyLearning('Quelle: Jared Spool / User Interface Engineering, "The $300 Million Button" (2009).'),
+    keyLearning('Quelle: Nielsen Norman Group – Eyetracking-Forschung zu Banner-Blindness und Bildwahrnehmung.'),
     footer(),
   );
 
-  // Slide 3 — Die Folge: das Prinzip dahinter
-  const hurdleFields = ['Konto erstellen', 'Telefonnummer', 'Firmenname', 'Newsletter-Häkchen'];
+  // Slide 3 — Die Folge: trifft die ganze Website
+  const spots = [
+    { t: 'Hero-Bild', s: 'Gestellte Symbolfoto-Pose' },
+    { t: 'Über-uns-Seite', s: 'Generisches Business-Stockfoto' },
+    { t: 'Team-Sektion', s: 'Austauschbare Porträts' },
+    { t: 'Testimonials', s: 'Zitat ohne echtes Gesicht' },
+  ];
   const slide3 = slideRoot(
     badge('DIE FOLGE', C.text, C.cardBg),
-    headline('Das Prinzip trifft jedes Formular'),
-    subline('Nicht nur eine erzwungene Registrierung.'),
+    headline('Das trifft jede Seite deiner Website'),
+    subline('Nicht nur klassische Werbeflächen.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
-        ...hurdleFields.slice(0, 2).map((f) =>
+        ...spots.slice(0, 2).map((f) =>
           h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'ZUSÄTZLICHE HÜRDE'),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f.t),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: C.textMuted, lineHeight: '1.3' } }, f.s),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'WIRKT UNGLAUBWÜRDIG'),
           ),
         ),
       ),
       h('div', { style: { display: 'flex', gap: '14px' } },
-        ...hurdleFields.slice(2, 4).map((f) =>
+        ...spots.slice(2, 4).map((f) =>
           h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'ZUSÄTZLICHE HÜRDE'),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text } }, f.t),
+            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: C.textMuted, lineHeight: '1.3' } }, f.s),
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'WIRKT UNGLAUBWÜRDIG'),
           ),
         ),
       ),
     ),
-    keyLearning('Jedes Feld erhöht den wahrgenommenen Aufwand – unabhängig vom Thema.'),
+    keyLearning('Jede erkennbare Stockfoto-Stelle kostet ein Stück Glaubwürdigkeit.'),
     footer(),
   );
 
-  // Slide 4 — Erwartung vs. Realitaet
+  // Slide 4 — Erwartung vs. Realität
   const slide4 = slideRoot(
     badge('ERWARTUNG VS. REALITÄT', C.text, C.cardBg),
-    headline('"Mehr Felder heißt mehr Kundendaten"'),
+    headline('"Ein professionelles Stockfoto wirkt hochwertig"'),
     subline('Die Realität sieht anders aus.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Mehr Formularfelder liefern uns mehr Informationen über den Kunden.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Ein makelloses Symbolfoto wirkt professionell und vertrauenswürdig.'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
           h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(41,82,255,0.35)', borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Mehr Formularfelder bedeuten mehr Abbrüche vor dem Absenden.'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Ein erkennbares Symbolfoto wirkt unpersönlich und senkt das Vertrauen.'),
         ),
       ),
     ),
-    keyLearning('Baymard Institute: Ein zu langer, komplizierter Checkout zählt zu den Hauptgründen für Kaufabbrüche.'),
+    keyLearning('Nielsen Norman Group: Blicke folgen echten Gesichtern – generische Symbolfotos werden übersprungen.'),
     footer(),
   );
 
-  // Slide 5 — Die Loesung (konkrete Schritte)
+  // Slide 5 — Die Lösung
   const steps = [
-    { num: '01', text: 'Gastbestellung ermöglichen – Kauf ohne Konto-Zwang anbieten.' },
-    { num: '02', text: 'Nur wirklich nötige Felder abfragen, den Rest optional lassen.' },
-    { num: '03', text: 'Standard-Feldnamen nutzen, damit der Browser das Formular per Autofill ausfüllen kann.' },
+    { num: '01', text: 'Echte Fotos von Team, Räumen und Arbeit zeigen – statt generischer Symbolbilder.' },
+    { num: '02', text: 'Kein Fotoshooting möglich? Dann unaufgeräumt-echte statt offensichtlich gestellte Bilder wählen.' },
+    { num: '03', text: 'Testimonials immer mit echtem Gesicht und echtem Namen zeigen, nie anonym.' },
   ];
   const slide5 = slideRoot(
     badge('DIE LÖSUNG', C.text, C.cardBg),
-    headline('Formulare so kurz wie möglich halten'),
+    headline('Authentizität schlägt Hochglanz'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px', marginTop: '10px' } },
       ...steps.map((s) =>
         h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', padding: '26px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
@@ -205,15 +218,15 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Jedes Feld, das wegfällt, senkt die Hürde bis zum Kaufabschluss.'),
+    keyLearning('Konkrete, echte Bilder schaffen Wiedererkennbarkeit – Stockfotos nicht.'),
     footer(),
   );
 
   // Slide 6 — Learnings mit Fortschrittsbalken
   const learnings = [
-    { num: '01', text: 'Registrierung beim Checkout optional machen.', pct: 33 },
-    { num: '02', text: 'Formularfelder auf das Nötigste reduzieren.', pct: 66 },
-    { num: '03', text: 'Fortschritt bei mehrstufigen Formularen sichtbar machen.', pct: 100 },
+    { num: '01', text: 'Generische Stockfotos wirken wie Werbe-Rauschen und werden ignoriert.', pct: 33 },
+    { num: '02', text: 'Echte Fotos schaffen Wiedererkennbarkeit und Vertrauen.', pct: 66 },
+    { num: '03', text: 'Authentizität schlägt Hochglanz-Perfektion.', pct: 100 },
   ];
   const slide6 = slideRoot(
     badge('DIE TAKEAWAYS', C.text, C.cardBg),
@@ -238,8 +251,8 @@ async function main() {
   const slide7 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Ist dein Kontaktformular schlanker als nötig?'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du dein nächstes Formular baust.'),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '52px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Zeigt deine Website echte Menschen – oder nur Stockfotos?'),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du dein nächstes Bild aussuchst.'),
       h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 700, color: C.text, textAlign: 'center', lineHeight: '1.4', marginTop: '10px' } }, 'Folge @benarodigital für mehr Website-Wissen'),
     ),
     footer(),
