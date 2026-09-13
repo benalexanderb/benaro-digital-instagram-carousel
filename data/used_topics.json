@@ -93,6 +93,12 @@
       "topic": "Banner Blindness: Warum generische Stockfotos vom Gehirn ausgeblendet werden",
       "date_used": "2026-09-10",
       "summary": "Banner Blindness (Benway & Lane, 1998; seither vielfach repliziert, u.a. von der Nielsen Norman Group dokumentiert): Nutzer lernen, werbeaehnliche Elemente unbewusst zu ignorieren, dazu zaehlen auch generische, gestellte Stockfotos. Ergaenzt durch Robert Cialdinis Authentizitaets-Prinzip ('Influence', 1984): echte Fotos von echten Menschen/Situationen durchbrechen dieses Muster und wirken dadurch vertrauenswuerdiger als Hochglanz-Stockmotive."
+    },
+    {
+      "category": "Content & Storytelling",
+      "topic": "Microcopy: Warum die kleinsten Woerter auf einer Website den groessten Unterschied machen",
+      "date_used": "2026-09-13",
+      "summary": "Microcopy, ein UX-Konzept dokumentiert u.a. von der Nielsen Norman Group ('Microcopy: Definition and Examples') sowie Kinneret Yifrahs Fachbuch 'Microcopy: The Complete Guide' (2017), ergaenzt durch Steve Krugs Klarheitsprinzip aus 'Don't Make Me Think': die kleinen Textbausteine einer Website (Button-Label, Formular-Hinweis, Fehlermeldung, Platzhaltertext, Bestaetigung) wirken genau im Moment der Handlung und entscheiden ueber Klarheit oder Reibung am Entscheidungspunkt."
     }
   ]
 }
