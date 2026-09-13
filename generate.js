@@ -52,6 +52,12 @@ async function main() {
     return h('img', { src, width, height: width * (46 / 86), style: { display: 'flex' } });
   }
 
+  function svgImg(inner, size, viewBox = '0 0 48 48') {
+    const svg = `<svg viewBox="${viewBox}" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+    const src = 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
+    return h('img', { src, width: size, height: size, style: { display: 'flex' } });
+  }
+
   // === REUSABLE COMPONENTS ===
 
   function badge(text, color = C.text, bg = C.cardBg) {
@@ -59,8 +65,8 @@ async function main() {
       h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '3px', color, backgroundColor: bg, padding: '10px 22px', borderRadius: '12px' } }, text));
   }
 
-  function headline(text, size = 62) {
-    return h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: `${size}px`, fontWeight: 800, color: C.text, lineHeight: '1.12', letterSpacing: '-1px', marginBottom: '4px' } }, text);
+  function headline(text, size = 60) {
+    return h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: `${size}px`, fontWeight: 800, color: C.text, lineHeight: '1.14', letterSpacing: '-1px', marginBottom: '4px' } }, text);
   }
 
   function subline(text) {
@@ -70,7 +76,7 @@ async function main() {
   function keyLearning(text, danger = false) {
     return h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px', padding: '24px 28px', marginTop: 'auto' } },
       h('div', { style: { display: 'flex', width: '6px', minHeight: '40px', backgroundColor: danger ? C.red : C.accent2, borderRadius: '3px' } }),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, text));
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, text));
   }
 
   function footer() {
@@ -91,165 +97,180 @@ async function main() {
       ));
   }
 
+  // Vertical "Schlecht" (red) / "Gut" (green) contrast stack
+  function badGoodStack(badText, goodText) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '4px' } },
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.10)', border: `1px solid ${C.red}`, borderRadius: '20px', padding: '30px 32px', gap: '14px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.red } }, 'SCHLECHT'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, badText),
+      ),
+      arrowDown(C.cardBorder),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(16,185,129,0.12)', border: `1px solid ${C.green}`, borderRadius: '20px', padding: '30px 32px', gap: '14px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.green } }, 'GUT'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, goodText),
+      ),
+    );
+  }
+
+  // Icon set (rect/path/circle only, no <text> — Satori-safe)
+  const ICONS = {
+    button: `<rect x="5" y="16" width="38" height="17" rx="8.5" fill="none" stroke="${C.accent2}" stroke-width="3"/><rect x="14" y="23" width="20" height="4" rx="2" fill="${C.accent2}"/>`,
+    form: `<rect x="6" y="9" width="36" height="10" rx="3" fill="none" stroke="${C.accent2}" stroke-width="3"/><line x1="6" y1="29" x2="32" y2="29" stroke="${C.accent2}" stroke-width="3" stroke-linecap="round"/><line x1="6" y1="38" x2="20" y2="38" stroke="${C.accent2}" stroke-width="3" stroke-linecap="round"/>`,
+    error: `<path d="M24 6 L44 40 L4 40 Z" fill="none" stroke="${C.accent2}" stroke-width="3" stroke-linejoin="round"/><line x1="24" y1="18" x2="24" y2="27" stroke="${C.accent2}" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="33" r="1.9" fill="${C.accent2}"/>`,
+    placeholder: `<line x1="6" y1="13" x2="42" y2="13" stroke="${C.accent2}" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/><line x1="6" y1="24" x2="34" y2="24" stroke="${C.accent2}" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/><line x1="6" y1="35" x2="24" y2="35" stroke="${C.accent2}" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>`,
+    confirm: `<circle cx="24" cy="24" r="17" fill="none" stroke="${C.accent2}" stroke-width="3"/><path d="M16 24 L21.5 30 L33 16.5" fill="none" stroke="${C.accent2}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  };
+
+  function iconCard(iconKey, title, example) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', width: '304px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '22px', gap: '14px' } },
+      h('div', { style: { display: 'flex', width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(0,194,184,0.12)', alignItems: 'center', justifyContent: 'center' } },
+        svgImg(ICONS[iconKey], 30)),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '23px', fontWeight: 700, color: C.text, lineHeight: '1.25' } }, title),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted, lineHeight: '1.3' } }, example),
+      ),
+    );
+  }
+
+  function checkRow(text) {
+    return h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px', padding: '18px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px' } },
+      h('div', { style: { display: 'flex', width: '38px', height: '38px', borderRadius: '19px', backgroundColor: 'rgba(16,185,129,0.15)', alignItems: 'center', justifyContent: 'center' } },
+        svgImg(`<circle cx="24" cy="24" r="17" fill="none" stroke="${C.green}" stroke-width="0"/><path d="M15 24 L21 30 L34 15" fill="none" stroke="${C.green}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`, 24)),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text));
+  }
+
   // === SLIDES ===
-  // Thema: Warum generische Stockfotos vom Gehirn unbewusst ausgeblendet werden ("Banner Blindness")
-  // und echte Fotos dadurch mehr Vertrauen schaffen. Kategorie: Trust & Social Proof.
+  // Thema: Microcopy — warum die kleinsten Wörter auf einer Website den größten Unterschied
+  // machen. Kategorie: Content & Storytelling.
 
-  // Slide 1 — Hook
+  // Slide 1 — Hook (Akt 1)
   const slide1 = slideRoot(
-    badge('ACHTUNG', C.text, C.cardBg),
-    headline('Dieses Foto sieht dein Besucher gar nicht wirklich'),
-    subline('Sein Gehirn blendet es automatisch aus – bevor er es bewusst wahrnimmt.'),
+    badge('WUSSTEST DU?'),
+    headline('Die meistgelesenen Wörter deiner Website sind nicht deine Headline.', 52),
+    subline('Es sind die kleinen Texte an Buttons, Formularen und Fehlermeldungen — genau dort, wo Besucher gerade handeln wollen.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px', gap: '16px', maxWidth: '760px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'STARTSEITE'),
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '10px' } }),
-          h('div', { style: { display: 'flex', alignItems: 'center', gap: '14px', width: '100%', height: '160px', backgroundColor: 'rgba(239,68,68,0.14)', border: `2px solid ${C.red}`, borderRadius: '10px', padding: '0 22px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.red, lineHeight: '1.4' } }, 'Lächelnde Stockfoto-Models am Laptop'),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 800, color: C.red, marginLeft: 'auto' } }, 'X'),
-          ),
-          h('div', { style: { display: 'flex', width: '70%', height: '30px', backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: '8px' } }),
+      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px', gap: '18px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'STARTSEITE'),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
+          h('div', { style: { display: 'flex', alignItems: 'center', width: '100%', height: '96px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '0 24px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '30px', fontWeight: 800, color: 'rgba(255,255,255,0.28)' } }, 'Deine große Headline')),
+          h('div', { style: { display: 'flex', justifyContent: 'flex-end', marginTop: '2px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '17px', fontWeight: 700, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.32)' } }, 'WIRD ÜBERFLOGEN')),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '6px' } },
+          h('div', { style: { display: 'flex', alignItems: 'center', width: '58%', height: '64px', backgroundColor: 'rgba(0,194,184,0.14)', border: `2px solid ${C.accent2}`, borderRadius: '32px', padding: '0 28px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Jetzt anfragen')),
+          h('div', { style: { display: 'flex', justifyContent: 'flex-start', marginTop: '2px' } },
+            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '17px', fontWeight: 700, letterSpacing: '1.5px', color: C.accent2 } }, 'WIRD GELESEN')),
         ),
       ),
     ),
-    keyLearning('Generische Stockfotos werden wie Werbung unbewusst ignoriert.'),
+    keyLearning('Genau dort, wo Besucher handeln sollen, entscheiden wenige Wörter über den nächsten Klick.'),
     footer(),
   );
 
-  // Slide 2 — Der Fall: Banner Blindness
+  // Slide 2 — Definition (Akt 1→2, "Und deshalb")
   const slide2 = slideRoot(
-    badge('DAS PHÄNOMEN', C.text, C.cardBg),
-    headline('"Banner Blindness" trifft nicht nur Werbebanner'),
-    subline('Nutzer lernen, Werbeflächen komplett zu überlesen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '4px' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Element sieht aus wie Werbung (Banner, Stockfoto-Stil)'),
-      ),
-      arrowDown(),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.10)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Gehirn erkennt das gelernte Muster wieder'),
-      ),
-      arrowDown(C.red),
-      h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.16)', border: `1px solid ${C.red}`, borderRadius: '18px', padding: '24px 28px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 700, color: C.red, lineHeight: '1.4' } }, 'Blick springt automatisch weiter'),
-      ),
-    ),
-    keyLearning('Quelle: Benway & Lane (1998), seither vielfach repliziert u.a. von der Nielsen Norman Group.'),
-    footer(),
-  );
-
-  // Slide 3 — Die Folge: generische Stockfoto-Klischees
-  const cliches = ['Handshake vor Weltkugel', 'Team lacht über Laptop', 'Frau mit Headset lächelt', 'Zeigefinger auf Icon-Wolke'];
-  const slide3 = slideRoot(
-    badge('DIE FOLGE', C.text, C.cardBg),
-    headline('Diese Klischee-Motive kennt jedes Gehirn'),
-    subline('Und genau deshalb werden sie übersprungen.'),
+    badge('DEFINITION'),
+    headline('Was ist Microcopy?', 62),
+    subline('Die kleinen Textbausteine, die eine Website im Nutzungsmoment begleiten.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        ...cliches.slice(0, 2).map((f) =>
-          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, f),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'WIRD IGNORIERT'),
-          ),
-        ),
+      h('div', { style: { display: 'flex', gap: '14px', justifyContent: 'center' } },
+        iconCard('button', 'Button-Label', 'z.B. "Jetzt starten"'),
+        iconCard('form', 'Formular-Hinweis', 'z.B. "Mind. 8 Zeichen"'),
+        iconCard('error', 'Fehlermeldung', 'z.B. "Bitte prüfen"'),
       ),
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        ...cliches.slice(2, 4).map((f) =>
-          h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px', gap: '12px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, f),
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '18px', fontWeight: 700, letterSpacing: '1px', color: C.red } }, 'WIRD IGNORIERT'),
-          ),
-        ),
+      h('div', { style: { display: 'flex', gap: '14px', justifyContent: 'center' } },
+        iconCard('placeholder', 'Platzhaltertext', 'z.B. "deine@email.de"'),
+        iconCard('confirm', 'Bestätigung', 'z.B. "Erfolgreich gesendet"'),
       ),
     ),
-    keyLearning('Je austauschbarer das Motiv, desto eher wird es als "Werbefläche" abgestempelt.'),
+    keyLearning('Fünf Textbausteine, ein Ziel: den Besucher im Moment der Handlung führen.'),
     footer(),
   );
 
-  // Slide 4 — Erwartung vs. Realitaet
+  // Slide 3 — Warum es zählt ("Und deshalb")
+  const slide3 = slideRoot(
+    badge('UND DESHALB'),
+    headline('Genau hier entscheidet sich der Klick.', 56),
+    subline('In diesen Momenten braucht der Besucher Klarheit oder Sicherheit — schlechte Microcopy erzeugt Reibung genau am Entscheidungspunkt.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '22px' } },
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px' } },
+        h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.08)', border: `1px solid rgba(239,68,68,0.4)`, borderRadius: '16px', padding: '18px 22px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.red } }, 'Zweifel')),
+        h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(0,194,184,0.14)', border: `2px solid ${C.accent2}`, borderRadius: '24px', padding: '30px 46px', gap: '10px' } },
+          svgImg(`<path d="M10 5 L10 33 L17 27 L21.5 37 L26 35 L21.5 25 L31 25 Z" fill="${C.text}"/>`, 30, '0 0 40 44'),
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '26px', fontWeight: 800, color: C.text } }, 'Der Klick')),
+        h('div', { style: { display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(16,185,129,0.10)', border: `1px solid rgba(16,185,129,0.4)`, borderRadius: '16px', padding: '18px 22px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 600, color: C.green } }, 'Vertrauen')),
+      ),
+    ),
+    keyLearning('"Nutzer lesen nicht, sie scannen." — Steve Krug, "Don\'t Make Me Think". Klarheit schlägt Kreativität.'),
+    footer(),
+  );
+
+  // Slide 4 — Beispiel 1: Button-Texte
   const slide4 = slideRoot(
-    badge('ERWARTUNG VS. REALITÄT', C.text, C.cardBg),
-    headline('"Ein professionelles Stockfoto wirkt hochwertiger"'),
-    subline('Die Realität sieht anders aus.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, 'ERWARTUNG'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.textSoft, lineHeight: '1.4' } }, 'Glatte Models und generische Szenen wirken seriös und professionell.'),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.12)', border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.accent } }, 'REALITÄT'),
-          h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: 'rgba(41,82,255,0.35)', borderRadius: '2px' } }),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, 'Generische Szenen wirken wie Werbung und werden übersprungen.'),
-        ),
-      ),
+    badge('BEISPIEL 1'),
+    headline('Button-Texte', 62),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', marginTop: '10px' } },
+      badGoodStack('"Absenden"', '"Jetzt kostenlose Beratung sichern"'),
     ),
-    keyLearning('Authentizität durchbricht das gelernte "Ignorier-Muster".'),
+    keyLearning('Konkrete Handlungsversprechen schlagen generische Verben.'),
     footer(),
   );
 
-  // Slide 5 — Die Loesung
-  const steps = [
-    { num: '01', text: 'Echte Fotos vom Team, vom Produkt oder von der Arbeit zeigen – keine anonymen Models.' },
-    { num: '02', text: 'Situative statt gestellte Aufnahmen: echte Momente statt Kamera-Blick und Kunstlächeln.' },
-    { num: '03', text: 'Kein passendes eigenes Foto? Dann lieber eine klare Illustration als ein generisches Stockfoto.' },
-  ];
+  // Slide 5 — Beispiel 2: Fehlermeldungen
   const slide5 = slideRoot(
-    badge('DIE LÖSUNG', C.text, C.cardBg),
-    headline('Echte Bilder statt Klischee-Motive'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px', marginTop: '10px' } },
-      ...steps.map((s) =>
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '20px', padding: '26px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: C.accent2, minWidth: '64px' } }, s.num),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, s.text),
-        ),
-      ),
+    badge('BEISPIEL 2'),
+    headline('Fehlermeldungen', 58),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', marginTop: '10px' } },
+      badGoodStack('"Fehler: Ungültige Eingabe"', '"Bitte gib deine E-Mail im Format name@beispiel.de ein"'),
     ),
-    keyLearning('Cialdini: Glaubwürdigkeit entsteht durch Echtheit, nicht durch Hochglanz.'),
+    keyLearning('Eine gute Fehlermeldung sagt, was zu tun ist — nicht nur, was falsch ist.'),
     footer(),
   );
 
-  // Slide 6 — Learnings mit Fortschrittsbalken
-  const learnings = [
-    { num: '01', text: 'Generische Stockfotos wirken wie Werbung und werden übersprungen.', pct: 33 },
-    { num: '02', text: 'Echte Fotos von echten Menschen durchbrechen dieses Muster.', pct: 66 },
-    { num: '03', text: 'Authentizität schafft mehr Vertrauen als Hochglanz-Ästhetik.', pct: 100 },
-  ];
+  // Slide 6 — Beispiel 3: Leere Zustände
   const slide6 = slideRoot(
-    badge('DIE TAKEAWAYS', C.text, C.cardBg),
-    headline('Was du dir merken solltest'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px', marginTop: '10px' } },
-      ...learnings.map((l) =>
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
-          h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
-            h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: l.pct === 100 ? C.green : C.text, minWidth: '60px' } }, l.num),
-            h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text),
-          ),
-          h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
-            h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }),
-          ),
-        ),
-      ),
+    badge('BEISPIEL 3'),
+    headline('Leere Zustände', 58),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', marginTop: '10px' } },
+      badGoodStack('"Keine Ergebnisse"', '"Noch nichts hier — leg jetzt deinen ersten Eintrag an"'),
     ),
+    keyLearning('Auch ein leerer Bildschirm kann motivieren statt zu enttäuschen.'),
     footer(),
   );
 
-  // Slide 7 — CTA
+  // Slide 7 — Zusammenfassung (Akt 3, "Und deshalb")
   const slide7 = slideRoot(
+    badge('MERKE DIR'),
+    headline('Details kosten nichts — wirken aber viel.', 52),
+    subline('Microcopy verursacht kaum Entwicklungsaufwand, hat aber direkten Einfluss darauf, ob Besucher Vertrauen fassen und handeln.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      checkRow('Button-Label'),
+      checkRow('Formular-Hinweis'),
+      checkRow('Fehlermeldung'),
+      checkRow('Platzhaltertext'),
+      checkRow('Bestätigungsmeldung'),
+    ),
+    keyLearning('Quelle: Nielsen Norman Group, "Microcopy: Definition and Examples"; Kinneret Yifrah, "Microcopy: The Complete Guide" (2017).'),
+    footer(),
+  );
+
+  // Slide 8 — CTA (Akt 3)
+  const slide8 = slideRoot(
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
-      bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '48px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Hast du noch Stockfotos von lächelnden Fremden auf deiner Website?'),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Speichern nicht vergessen, bevor du deine nächsten Fotos aussuchst.'),
+      bdLogoImg(C.text, 168),
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '46px', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.25', letterSpacing: '-1px' } }, 'Bereit für eine Website, die auch im Detail überzeugt?'),
       h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 700, color: C.text, textAlign: 'center', lineHeight: '1.4', marginTop: '10px' } }, 'Folge @benarodigital für mehr Website-Wissen'),
     ),
     footer(),
   );
 
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 
-  const outDir = path.join(__dirname, 'output', `carousel_${new Date().toISOString().slice(0, 10)}`, 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-09-13', 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
