@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-14",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Vier Wörter unter deinem Button entscheiden oft mehr als das Design. Microcopy – Button-Texte, Fehlermeldungen, Formular-Hinweise – ist oft das Einzige, was Besucher im Entscheidungsmoment wirklich lesen. Speichern nicht vergessen.\n\n#Webdesign #UXDesign #Webagentur #WebsiteTipps #ConversionOptimierung",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-01.png",
+      "altText": "Dunkle Instagram-Slide mit Badge 'Wusstest du?' und der Headline '4 Wörter unter deinem Button entscheiden mehr als das Design'. Darunter ein Mockup eines blauen Buttons 'Jetzt starten' mit der kleinen Zeile 'Kostenlos. Ohne Risiko. Jederzeit kündbar.' darunter, markiert mit dem Hinweis 'Das ist Microcopy'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-02.png",
+      "altText": "Slide mit Badge 'Microcopy' und Headline 'Microcopy versteckt sich an 4 Stellen deiner Website'. Ein 2x2-Raster zeigt die vier Kategorien Button-Texte, Fehlermeldungen, Formular-Hinweise und Platzhaltertexte mit je einer kurzen Erklärung."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-03.png",
+      "altText": "Warnslide mit Badge 'Achtung' und Headline 'Die meisten Websites nutzen überall dieselben leeren Worthülsen'. Vier durchgestrichene Beispieltexte: Absenden, Fehler aufgetreten, Ungültige Eingabe, Hier klicken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-04.png",
+      "altText": "Kontrast-Slide 'Der Wendepunkt' mit zwei Karten: Erwartung ('Besucher lesen Fließtext und Erklärungen in Ruhe durch') versus Realität, hervorgehoben in Weiß ('Besucher scannen nur die paar Wörter, die im Entscheidungsmoment sichtbar sind')."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-05.png",
+      "altText": "Vorher/Nachher-Slide mit Headline 'Kleine Änderung, großer Unterschied'. Fehlermeldung: 'Fehler.' wird zu 'E-Mail-Adresse fehlt. Bitte ergänzen.' Button-Text: 'Absenden' wird zu 'Kostenloses Angebot anfordern'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-06.png",
+      "altText": "Slide 'Das Prinzip' mit zwei nummerierten Fragen: '01 Was genau ist passiert?' und '02 Wie behebe ich es konkret?'. Darunter ein Zitat von Jakob Nielsen (10 Usability Heuristics, 1994): 'Help users recognize, diagnose, and recover from errors.'"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-07.png",
+      "altText": "Takeaway-Slide mit vier nummerierten Lernpunkten und Fortschrittsbalken: Fehlermeldungen mit Ursache und Lösung, konkrete Button-Texte, Platzhaltertexte sind kein Label-Ersatz, Sprache der Nutzer:innen statt Technik-Jargon."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-14/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit dem Benaro-Digital-Logo und der Frage 'Welche Microcopy auf deiner Website würde ein Fremder heute nicht verstehen?' sowie dem Call-to-Action 'Folge @benarodigital für mehr Website-Wissen.'"
+    }
+  ]
+}
