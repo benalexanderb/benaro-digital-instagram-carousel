@@ -99,6 +99,12 @@
       "topic": "Microcopy: Warum die kleinsten Textzeilen deiner Website den groessten Unterschied machen",
       "date_used": "2026-09-14",
       "summary": "UX-Writing-Prinzipien, u.a. dokumentiert von der Nielsen Norman Group sowie im Standardwerk 'Strategic Writing for UX' von Torrey Podmajersky (O'Reilly, 2019), ergaenzt durch Jakob Nielsens Usability-Heuristik #9 ('Help users recognize, diagnose, and recover from errors', 1994): Microcopy (Button-Texte, Fehlermeldungen, Formular-Hinweise, Platzhaltertexte) sind oft die einzigen Texte, die Besucher im Entscheidungsmoment wirklich lesen. Praktische Konsequenz: Fehlermeldungen sollten Ursache und Loesung nennen, Button-Texte konkret statt generisch formulieren und die Sprache der Nutzer:innen statt Technik-Jargon verwenden."
+    },
+    {
+      "category": "Mobile & Accessibility",
+      "topic": "Kontrastverhaeltnisse: Die WCAG-Grenzwerte, die ueber Lesbarkeit entscheiden",
+      "date_used": "2026-09-18",
+      "summary": "W3C Web Content Accessibility Guidelines (WCAG) 2.1, Success Criterion 1.4.3 'Contrast (Minimum)', Level AA: Text muss ein Kontrastverhaeltnis von mindestens 4,5:1 zum Hintergrund haben (grosser/fetter Text mindestens 3:1); Success Criterion 1.4.6 'Contrast (Enhanced)', Level AAA verlangt 7:1. Der Kontrast wird als messbares Helligkeitsverhaeltnis zwischen Text- und Hintergrundfarbe berechnet, unabhaengig vom Farbton. Praktische Konsequenz: Kontraste mit einem Pruef-Tool testen statt nach Augenmass zu gestalten, besonders bei hellgrauer Schrift auf hellem Hintergrund."
     }
   ]
 }

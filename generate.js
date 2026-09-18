@@ -173,30 +173,52 @@ async function main() {
     );
   }
 
-  // Small upward triangle indicator (CSS-border triangle, no SVG <text>)
-  function triangleUp(color) {
-    return h('div', {
-      style: {
-        display: 'flex',
-        width: 0,
-        height: 0,
-        borderLeft: '9px solid transparent',
-        borderRight: '9px solid transparent',
-        borderBottom: `12px solid ${color}`,
-      },
-    });
+  // ============================================================
+  // Thema: Kontrastverhältnisse — die WCAG-Grenzwerte für Lesbarkeit
+  // Kategorie: Mobile & Accessibility
+  // Quelle: W3C WCAG 2.1, Success Criterion 1.4.3 "Contrast (Minimum)" (Level AA)
+  //         und 1.4.6 "Contrast (Enhanced)" (Level AAA)
+  // ============================================================
+
+  // Slide 1 — Hook: Lesbarkeits-Demo
+  function demoLine(bgLight, textColor, label, labelColor) {
+    return h(
+      'div',
+      { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+      h(
+        'div',
+        { style: { display: 'flex', backgroundColor: bgLight, borderRadius: '18px', padding: '30px 34px' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '32px', fontWeight: 600, color: textColor } }, 'Jetzt unverbindlich anfragen')
+      ),
+      h(
+        'div',
+        { style: { display: 'flex' } },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '1px', color: labelColor } }, label)
+      )
+    );
   }
 
-  // ============================================================
-  // Thema: Microcopy — die kleinen Textzeilen mit großer Wirkung
-  // Kategorie: Content & Storytelling
-  // ============================================================
-
-  // Slide 1 — Hook
   const slide1 = slideRoot(
-    badge('WUSSTEST DU?'),
-    headline('4 Wörter unter deinem Button entscheiden mehr als das Design.'),
-    subline('Warum die kleinsten Textzeilen deiner Website den größten Unterschied machen.'),
+    badge('SELBSTTEST'),
+    headline('Kannst du diesen Satz lesen? Viele deiner Besucher können es nicht.', 54),
+    subline('Ein einziger Kontrast-Fehler macht Website-Texte für viele Menschen unlesbar.'),
+    visualBlock(
+      h(
+        'div',
+        { style: { display: 'flex', flexDirection: 'column', gap: '24px' } },
+        demoLine('#EAEAEC', 'rgba(20,22,26,0.30)', '1,7 : 1 — NICHT LESBAR', C.red),
+        demoLine('#EAEAEC', '#14161A', '8,2 : 1 — GUT LESBAR', C.accent2)
+      )
+    ),
+    keyLearning('Schlechter Kontrast kostet Lesbarkeit — nicht nur bei Sehschwäche.', C.red),
+    footer()
+  );
+
+  // Slide 2 — Der WCAG-Grenzwert (Stat Hero)
+  const slide2 = slideRoot(
+    badge('MOBILE & ACCESSIBILITY'),
+    headline('Kontrast ist keine Geschmackssache — er ist ein festgelegter Grenzwert.', 52),
+    subline('Das W3C definiert exakte Mindestwerte zwischen Text und Hintergrund.'),
     visualBlock(
       h(
         'div',
@@ -209,32 +231,23 @@ async function main() {
             border: `1px solid ${C.cardBorder}`,
             borderRadius: '28px',
             padding: '56px 40px',
-            gap: '20px',
+            gap: '18px',
           },
         },
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '140px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '4,5 : 1'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Mindest-Kontrast für normalen Text'),
         h(
           'div',
-          { style: { display: 'flex', backgroundColor: C.accent, borderRadius: '16px', padding: '26px 56px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 700, color: '#FFFFFF' } }, 'Jetzt starten')
-        ),
-        h(
-          'div',
-          { style: { display: 'flex', alignItems: 'center', gap: '12px' } },
-          triangleUp(C.accent2),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft } }, 'Kostenlos. Ohne Risiko. Jederzeit kündbar.')
-        ),
-        h(
-          'div',
-          { style: { display: 'flex', backgroundColor: C.accent2, borderRadius: '10px', padding: '10px 22px', marginTop: '8px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#0A0E12', letterSpacing: '1px' } }, 'DAS IST MICROCOPY')
+          { style: { display: 'flex', backgroundColor: C.accent, borderRadius: '10px', padding: '10px 22px', marginTop: '8px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'WCAG 2.1 · LEVEL AA')
         )
       )
     ),
-    keyLearning('Genau diese kleine Zeile entscheidet oft, ob jemand klickt.', C.accent2),
+    keyLearning('Unterschreitet der Kontrast diesen Wert, gilt die Seite als nicht barrierefrei.', C.accent2),
     footer()
   );
 
-  // Slide 2 — Wo Microcopy überall vorkommt
+  // Slide 3 — Wen betrifft es? (2x2 Grid)
   function gridCard(label, desc, accentColor) {
     return h(
       'div',
@@ -246,74 +259,38 @@ async function main() {
           backgroundColor: C.cardBg,
           border: `1px solid ${C.cardBorder}`,
           borderRadius: '20px',
-          padding: '28px',
-          gap: '14px',
+          padding: '26px',
+          gap: '12px',
         },
       },
       h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: accentColor } }),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '28px', fontWeight: 700, color: C.text } }, label),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc)
-    );
-  }
-
-  const slide2 = slideRoot(
-    badge('MICROCOPY'),
-    headline('Microcopy versteckt sich an 4 Stellen deiner Website.', 56),
-    subline('Überall dort, wo Besucher genau im Moment der Entscheidung lesen.'),
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        h(
-          'div',
-          { style: { display: 'flex', gap: '16px' } },
-          gridCard('Button-Texte', 'Was passiert nach dem Klick?', C.accent),
-          gridCard('Fehlermeldungen', 'Was ist schiefgelaufen?', C.red)
-        ),
-        h(
-          'div',
-          { style: { display: 'flex', gap: '16px' } },
-          gridCard('Formular-Hinweise', 'Welche Angabe wird erwartet?', C.accent2),
-          gridCard('Platzhaltertexte', 'Beispiel statt Beschriftung?', C.gold)
-        )
-      )
-    ),
-    keyLearning('Vier kleine Textarten, ein großer Effekt auf Vertrauen.', C.accent2),
-    footer()
-  );
-
-  // Slide 3 — Problem: generische Worthülsen
-  function strikePill(text) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          backgroundColor: 'rgba(239,68,68,0.08)',
-          border: '1px solid rgba(239,68,68,0.25)',
-          borderRadius: '14px',
-          padding: '20px 26px',
-        },
-      },
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 500, color: 'rgba(255,255,255,0.55)', textDecoration: 'line-through' } }, text)
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '25px', fontWeight: 700, color: C.text, lineHeight: '1.25' } }, label),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc)
     );
   }
 
   const slide3 = slideRoot(
-    badge('ACHTUNG', C.red),
-    headline('Die meisten Websites nutzen überall dieselben leeren Worthülsen.', 52),
-    subline('Generische Texte sagen nichts – und kosten Klicks.'),
+    badge('DAS PROBLEM', C.red),
+    headline('Zu wenig Kontrast trifft mehr Menschen, als du denkst.', 52),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        strikePill('Absenden'),
-        strikePill('Fehler aufgetreten'),
-        strikePill('Ungültige Eingabe'),
-        strikePill('Hier klicken')
+        h(
+          'div',
+          { style: { display: 'flex', gap: '16px' } },
+          gridCard('Sehbehinderung', 'Auch leichte Seh- oder Farbfehlsichtigkeit', C.accent),
+          gridCard('Sonnenlicht', 'Aufs Handy-Display unterwegs', C.gold)
+        ),
+        h(
+          'div',
+          { style: { display: 'flex', gap: '16px' } },
+          gridCard('Alte Displays', 'Schwächere Bildschirme, ungünstige Winkel', C.accent2),
+          gridCard('Alter ab 40', 'Altersbedingter Sehverlust ist normal', C.red)
+        )
       )
     ),
-    keyLearning('Austauschbare Texte wirken wie Formulare, nicht wie ein Gespräch.', C.red),
+    keyLearning('Schlechter Kontrast ist kein Nischenproblem — jeder ist irgendwann betroffen.', C.red),
     footer()
   );
 
@@ -348,94 +325,76 @@ async function main() {
 
   const slide4 = slideRoot(
     badge('DER WENDEPUNKT'),
-    headline('Was die meisten glauben – und was wirklich zählt.', 54),
+    headline('Was gut aussieht, ist nicht automatisch lesbar.', 54),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        contrastCard('ERWARTUNG', 'Besucher lesen Fließtext und Erklärungen in Ruhe durch.', false),
-        contrastCard('REALITÄT', 'Besucher scannen nur die paar Wörter, die im Entscheidungsmoment sichtbar sind.', true)
+        contrastCard('ERWARTUNG', 'Hellgraue Schrift auf Weiß wirkt modern und dezent.', false),
+        contrastCard('REALITÄT', 'Für viele Besucher praktisch unlesbar — besonders unterwegs.', true)
       )
     ),
-    keyLearning('Genau dort, im Scan-Moment, wirkt Microcopy am stärksten.', C.accent2),
+    keyLearning('Der Unterschied liegt nicht im Design-Geschmack, sondern im Messwert.', C.accent2),
     footer()
   );
 
-  // Slide 5 — Vorher / Nachher
-  function beforeAfterRow(label, bad, good) {
+  // Slide 5 — Die 3 Grenzwerte
+  function ratioCard(ratio, text, accentColor) {
     return h(
       'div',
-      { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: C.textMuted } }, label),
-      h(
-        'div',
-        { style: { display: 'flex', gap: '14px' } },
-        h(
-          'div',
-          { style: { display: 'flex', flex: '1', backgroundColor: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.22)', borderRadius: '16px', padding: '20px 22px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, color: 'rgba(255,255,255,0.7)' } }, bad)
-        ),
-        h(
-          'div',
-          { style: { display: 'flex', flex: '1', backgroundColor: 'rgba(0,194,184,0.1)', border: `1px solid rgba(0,194,184,0.3)`, borderRadius: '16px', padding: '20px 22px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: '#FFFFFF' } }, good)
-        )
-      )
+      { style: { display: 'flex', alignItems: 'center', gap: '22px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 26px' } },
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: accentColor, minWidth: '150px' } }, ratio),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text)
     );
   }
 
   const slide5 = slideRoot(
-    badge('VORHER / NACHHER'),
-    headline('Kleine Änderung, großer Unterschied.', 58),
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '28px' } },
-        beforeAfterRow('FEHLERMELDUNG', 'Fehler.', 'E-Mail-Adresse fehlt. Bitte ergänzen.'),
-        beforeAfterRow('BUTTON-TEXT', 'Absenden', 'Kostenloses Angebot anfordern')
-      )
-    ),
-    keyLearning('Rechts steht dieselbe Information – nur endlich verständlich.', C.accent2),
-    footer()
-  );
-
-  // Slide 6 — Das Prinzip (Nielsen Heuristik)
-  function principleCard(num, text) {
-    return h(
-      'div',
-      { style: { display: 'flex', alignItems: 'center', gap: '22px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '26px 28px' } },
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '40px', fontWeight: 800, color: C.accent2, minWidth: '60px' } }, num),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text)
-    );
-  }
-
-  const slide6 = slideRoot(
-    badge('DAS PRINZIP'),
-    headline('Gute Microcopy beantwortet zwei Fragen sofort.', 54),
+    badge('DIE GRENZWERTE'),
+    headline('Drei Zahlen, die jede Website kennen sollte.', 54),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        principleCard('01', 'Was genau ist passiert?'),
-        principleCard('02', 'Wie behebe ich es konkret?'),
+        ratioCard('4,5 : 1', 'Normaler Text — Mindestwert (AA)', C.accent2),
+        ratioCard('3 : 1', 'Große/fette Überschriften — Mindestwert (AA)', C.accent),
+        ratioCard('7 : 1', 'Beliebiger Text — verschärftes Niveau (AAA)', C.gold)
+      )
+    ),
+    keyLearning('Schon kleine Kontrast-Unterschiede kippen von „nicht bestanden" zu „bestanden".', C.accent2),
+    footer()
+  );
+
+  // Slide 6 — Das Prinzip (WCAG-Zitat)
+  const slide6 = slideRoot(
+    badge('DAS PRINZIP'),
+    headline('Kontrast ist ein Messwert — kein Bauchgefühl.', 54),
+    visualBlock(
+      h(
+        'div',
+        { style: { display: 'flex', flexDirection: 'column', gap: '24px' } },
         h(
           'div',
-          { style: { display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `4px solid ${C.gold}`, paddingLeft: '22px', marginTop: '8px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, '„Help users recognize, diagnose, and recover from errors."'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'Jakob Nielsen, 10 Usability Heuristics, 1994')
+          { style: { display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Berechnet wird das Helligkeitsverhältnis zwischen Text- und Hintergrundfarbe — unabhängig vom Farbton oder Design-Trend.')
+        ),
+        h(
+          'div',
+          { style: { display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `4px solid ${C.gold}`, paddingLeft: '22px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, '„Text […] has a contrast ratio of at least 4.5:1 […]"'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'W3C WCAG 2.1, Success Criterion 1.4.3 „Contrast (Minimum)"')
         )
       )
     ),
-    keyLearning('Ursache + Lösung in einem Satz schafft sofort Klarheit.', C.gold),
+    keyLearning('Deshalb lässt sich Kontrast mit einem Tool prüfen — statt nur mit dem Auge.', C.gold),
     footer()
   );
 
   // Slide 7 — Learnings mit Progress-Bars
   const learnings = [
-    { num: '01', text: 'Fehlermeldungen: Ursache und Lösung nennen', pct: 25 },
-    { num: '02', text: 'Button-Texte konkret statt generisch formulieren', pct: 50 },
-    { num: '03', text: 'Platzhaltertexte sind kein Ersatz für Feld-Labels', pct: 75 },
-    { num: '04', text: 'Sprache der Nutzer:innen statt Technik-Jargon', pct: 100 },
+    { num: '01', text: 'Normalen Text mindestens 4,5 : 1 kontrastieren (AA)', pct: 25 },
+    { num: '02', text: 'Große/fette Überschriften: 3 : 1 reicht aus (AA)', pct: 50 },
+    { num: '03', text: 'Für AAA-Niveau 7 : 1 anstreben, wo möglich', pct: 75 },
+    { num: '04', text: 'Kontrast mit einem Prüf-Tool testen, nicht nach Auge', pct: 100 },
   ];
 
   function learningCard(l) {
@@ -446,7 +405,7 @@ async function main() {
         'div',
         { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
         h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: l.pct === 100 ? C.green : C.text, minWidth: '58px' } }, l.num),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text)
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text)
       ),
       h(
         'div',
@@ -458,9 +417,9 @@ async function main() {
 
   const slide7 = slideRoot(
     badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings für deine Website-Texte.', 56),
+    headline('4 Learnings für lesbare Website-Texte.', 56),
     visualBlock(h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } }, ...learnings.map(learningCard))),
-    keyLearning('Kein Redesign nötig – nur ehrlichere, konkretere Worte.', C.accent2),
+    keyLearning('Kein Redesign nötig — nur die richtigen Kontrastwerte.', C.accent2),
     footer()
   );
 
@@ -485,7 +444,7 @@ async function main() {
               letterSpacing: '-1px',
             },
           },
-          'Welche Microcopy auf deiner Website würde ein Fremder heute nicht verstehen?'
+          'Hast du den Kontrast deiner Website schon mal wirklich geprüft?'
         ),
         h(
           'span',

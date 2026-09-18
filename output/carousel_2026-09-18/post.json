@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-18",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "4,5 : 1 – diese Zahl entscheidet, ob dein Website-Text lesbar ist. Das W3C legt in den WCAG feste Mindest-Kontrastwerte zwischen Text und Hintergrund fest – sonst verlierst du Leser, bevor sie deinen Call-to-Action sehen.\n\nSpeichern nicht vergessen 📌\n\n#Webdesign #Barrierefreiheit #UXDesign #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-01.png",
+      "altText": "Vergleich zweier Textbeispiele: einmal mit schwachem Kontrast fast unsichtbar, einmal mit starkem Kontrast klar lesbar."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-02.png",
+      "altText": "Große Zahl 4,5 zu 1 als WCAG-2.1-Mindestkontrastverhältnis für normalen Text, Level AA."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-03.png",
+      "altText": "Vier Karten zeigen, wen schlechter Kontrast betrifft: Sehbehinderung, Sonnenlicht auf dem Display, alte Displays, altersbedingter Sehverlust."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-04.png",
+      "altText": "Gegenüberstellung von Erwartung und Realität beim Website-Kontrast: hellgraue Schrift wirkt modern, ist aber oft unlesbar."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-05.png",
+      "altText": "Drei WCAG-Kontrastgrenzwerte: 4,5 zu 1 für normalen Text, 3 zu 1 für große Überschriften, 7 zu 1 für AAA-Niveau."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-06.png",
+      "altText": "Zitat aus den WCAG-2.1-Richtlinien zur Mindestkontrast-Anforderung mit Quellenangabe W3C Success Criterion 1.4.3."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-07.png",
+      "altText": "Vier nummerierte Learnings zu Kontrastverhältnissen mit Fortschrittsbalken."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-18/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit Benaro-Digital-Logo und der Frage, ob der eigene Website-Kontrast schon geprüft wurde."
+    }
+  ]
+}
