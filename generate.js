@@ -174,51 +174,64 @@ async function main() {
   }
 
   // ============================================================
-  // Thema: Kontrastverhältnisse — die WCAG-Grenzwerte für Lesbarkeit
-  // Kategorie: Mobile & Accessibility
-  // Quelle: W3C WCAG 2.1, Success Criterion 1.4.3 "Contrast (Minimum)" (Level AA)
-  //         und 1.4.6 "Contrast (Enhanced)" (Level AAA)
+  // Thema: Der Zeigarnik-Effekt — warum unfertige Aufgaben im Kopf bleiben
+  // Kategorie: Psychologie
+  // Quelle: Bluma Zeigarnik, "Über das Behalten von erledigten und
+  //         unerledigten Handlungen", Psychologische Forschung, 1927
+  //         (Berliner Schule der Gestaltpsychologie, Forschungsgruppe um Kurt Lewin)
   // ============================================================
 
-  // Slide 1 — Hook: Lesbarkeits-Demo
-  function demoLine(bgLight, textColor, label, labelColor) {
+  // Slide 1 — Hook: Zwei Aufgaben, zwei Gefühle
+  function stateCard(label, desc, accentColor, dark) {
     return h(
       'div',
-      { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+      {
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+          flex: '1',
+          backgroundColor: dark ? C.text : C.cardBg,
+          border: dark ? 'none' : `1px solid ${C.cardBorder}`,
+          borderRadius: '22px',
+          padding: '30px',
+          gap: '14px',
+        },
+      },
+      h('div', { style: { display: 'flex', width: '16px', height: '16px', borderRadius: '8px', backgroundColor: accentColor } }),
       h(
-        'div',
-        { style: { display: 'flex', backgroundColor: bgLight, borderRadius: '18px', padding: '30px 34px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '32px', fontWeight: 600, color: textColor } }, 'Jetzt unverbindlich anfragen')
+        'span',
+        { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: dark ? '#0A0E12' : C.text, lineHeight: '1.25' } },
+        label
       ),
       h(
-        'div',
-        { style: { display: 'flex' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '1px', color: labelColor } }, label)
+        'span',
+        { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: dark ? 'rgba(10,14,18,0.65)' : C.textMuted, lineHeight: '1.4' } },
+        desc
       )
     );
   }
 
   const slide1 = slideRoot(
-    badge('SELBSTTEST'),
-    headline('Kannst du diesen Satz lesen? Viele deiner Besucher können es nicht.', 54),
-    subline('Ein einziger Kontrast-Fehler macht Website-Texte für viele Menschen unlesbar.'),
+    badge('WUSSTEST DU?'),
+    headline('Eine unerledigte Aufgabe lässt dein Gehirn nicht los.', 54),
+    subline('Ein 100 Jahre altes Experiment erklärt, warum das so ist — und was Websites damit zu tun haben.'),
     visualBlock(
       h(
         'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '24px' } },
-        demoLine('#EAEAEC', 'rgba(20,22,26,0.30)', '1,7 : 1 — NICHT LESBAR', C.red),
-        demoLine('#EAEAEC', '#14161A', '8,2 : 1 — GUT LESBAR', C.accent2)
+        { style: { display: 'flex', gap: '16px' } },
+        stateCard('Abgeschlossen', 'Aufgabe erledigt — der Kopf ist frei für Neues.', C.accent2, false),
+        stateCard('Unterbrochen', 'Aufgabe offen — sie bleibt im Hinterkopf aktiv.', C.gold, true)
       )
     ),
-    keyLearning('Schlechter Kontrast kostet Lesbarkeit — nicht nur bei Sehschwäche.', C.red),
+    keyLearning('Dieser Unterschied ist keine Einbildung, sondern ein belegter psychologischer Effekt.', C.gold),
     footer()
   );
 
-  // Slide 2 — Der WCAG-Grenzwert (Stat Hero)
+  // Slide 2 — Ursprung: 1927, Bluma Zeigarnik
   const slide2 = slideRoot(
-    badge('MOBILE & ACCESSIBILITY'),
-    headline('Kontrast ist keine Geschmackssache — er ist ein festgelegter Grenzwert.', 52),
-    subline('Das W3C definiert exakte Mindestwerte zwischen Text und Hintergrund.'),
+    badge('PSYCHOLOGIE'),
+    headline('1927 bekam dieser Effekt einen Namen.', 56),
+    subline('Die Psychologin Bluma Zeigarnik untersuchte, wie sich unser Gedächtnis an offene Aufgaben klammert.'),
     visualBlock(
       h(
         'div',
@@ -234,63 +247,42 @@ async function main() {
             gap: '18px',
           },
         },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '140px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '4,5 : 1'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Mindest-Kontrast für normalen Text'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '120px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '1927'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Bluma Zeigarnik veröffentlicht ihre Studie'),
         h(
           'div',
           { style: { display: 'flex', backgroundColor: C.accent, borderRadius: '10px', padding: '10px 22px', marginTop: '8px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'WCAG 2.1 · LEVEL AA')
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'BERLINER SCHULE DER GESTALTPSYCHOLOGIE')
         )
       )
     ),
-    keyLearning('Unterschreitet der Kontrast diesen Wert, gilt die Seite als nicht barrierefrei.', C.accent2),
+    keyLearning('Seither als „Zeigarnik-Effekt" ein fester Begriff der Kognitionspsychologie.', C.accent2),
     footer()
   );
 
-  // Slide 3 — Wen betrifft es? (2x2 Grid)
-  function gridCard(label, desc, accentColor) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          flex: '1',
-          flexDirection: 'column',
-          backgroundColor: C.cardBg,
-          border: `1px solid ${C.cardBorder}`,
-          borderRadius: '20px',
-          padding: '26px',
-          gap: '12px',
-        },
-      },
-      h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: accentColor } }),
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '25px', fontWeight: 700, color: C.text, lineHeight: '1.25' } }, label),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, desc)
-    );
-  }
-
+  // Slide 3 — Die Beobachtung (Kellner-Beispiel)
   const slide3 = slideRoot(
-    badge('DAS PROBLEM', C.red),
-    headline('Zu wenig Kontrast trifft mehr Menschen, als du denkst.', 52),
+    badge('DIE BEOBACHTUNG'),
+    headline('Der Anstoß kam aus einem Berliner Café.', 52),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h(
           'div',
-          { style: { display: 'flex', gap: '16px' } },
-          gridCard('Sehbehinderung', 'Auch leichte Seh- oder Farbfehlsichtigkeit', C.accent),
-          gridCard('Sonnenlicht', 'Aufs Handy-Display unterwegs', C.gold)
+          { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Kellner merkten sich offene Bestellungen'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'Details zu Tischen mit unbezahlten Rechnungen — oft bis ins Kleinste.')
         ),
         h(
           'div',
-          { style: { display: 'flex', gap: '16px' } },
-          gridCard('Alte Displays', 'Schwächere Bildschirme, ungünstige Winkel', C.accent2),
-          gridCard('Alter ab 40', 'Altersbedingter Sehverlust ist normal', C.red)
+          { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Nach der Bezahlung: vergessen'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'War der Vorgang abgeschlossen, verblasste die Erinnerung daran auffällig schnell.')
         )
       )
     ),
-    keyLearning('Schlechter Kontrast ist kein Nischenproblem — jeder ist irgendwann betroffen.', C.red),
+    keyLearning('Diese Alltagsbeobachtung wurde zum Ausgangspunkt von Zeigarniks Experimenten.', C.gold),
     footer()
   );
 
@@ -325,49 +317,49 @@ async function main() {
 
   const slide4 = slideRoot(
     badge('DER WENDEPUNKT'),
-    headline('Was gut aussieht, ist nicht automatisch lesbar.', 54),
+    headline('Eigentlich merkt man sich Erledigtes besser. Oder?', 52),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        contrastCard('ERWARTUNG', 'Hellgraue Schrift auf Weiß wirkt modern und dezent.', false),
-        contrastCard('REALITÄT', 'Für viele Besucher praktisch unlesbar — besonders unterwegs.', true)
+        contrastCard('ERWARTUNG', 'Abgeschlossene Aufgaben bleiben am besten im Gedächtnis.', false),
+        contrastCard('REALITÄT', 'Offene, unterbrochene Aufgaben bleiben deutlich präsenter im Kopf.', true)
       )
     ),
-    keyLearning('Der Unterschied liegt nicht im Design-Geschmack, sondern im Messwert.', C.accent2),
+    keyLearning('Unser Gehirn hält mentale Spannung aufrecht, bis eine Aufgabe wirklich abgeschlossen ist.', C.accent2),
     footer()
   );
 
-  // Slide 5 — Die 3 Grenzwerte
-  function ratioCard(ratio, text, accentColor) {
+  // Slide 5 — Anwendung auf Websites
+  function ratioCard(num, text, accentColor) {
     return h(
       'div',
       { style: { display: 'flex', alignItems: 'center', gap: '22px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 26px' } },
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: accentColor, minWidth: '150px' } }, ratio),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text)
+      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: accentColor, minWidth: '70px' } }, num),
+      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text)
     );
   }
 
   const slide5 = slideRoot(
-    badge('DIE GRENZWERTE'),
-    headline('Drei Zahlen, die jede Website kennen sollte.', 54),
+    badge('AUF DER WEBSITE'),
+    headline('So nutzt du diesen Zug bewusst — statt zufällig.', 48),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        ratioCard('4,5 : 1', 'Normaler Text — Mindestwert (AA)', C.accent2),
-        ratioCard('3 : 1', 'Große/fette Überschriften — Mindestwert (AA)', C.accent),
-        ratioCard('7 : 1', 'Beliebiger Text — verschärftes Niveau (AAA)', C.gold)
+        ratioCard('01', 'Fortschrittsanzeige bei mehrstufigen Formularen: „Schritt 2 von 4"', C.accent2),
+        ratioCard('02', 'Sichtbare Profil- oder Onboarding-Vollständigkeit in Prozent', C.accent),
+        ratioCard('03', 'Checklisten, die offene Punkte bewusst sichtbar lassen', C.gold)
       )
     ),
-    keyLearning('Schon kleine Kontrast-Unterschiede kippen von „nicht bestanden" zu „bestanden".', C.accent2),
+    keyLearning('Sichtbare Unvollständigkeit motiviert zum Weitermachen — Unsichtbares tut das nicht.', C.accent2),
     footer()
   );
 
-  // Slide 6 — Das Prinzip (WCAG-Zitat)
+  // Slide 6 — Das Prinzip
   const slide6 = slideRoot(
     badge('DAS PRINZIP'),
-    headline('Kontrast ist ein Messwert — kein Bauchgefühl.', 54),
+    headline('Nicht das Ziel motiviert am stärksten — die Lücke davor.', 50),
     visualBlock(
       h(
         'div',
@@ -375,26 +367,26 @@ async function main() {
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Berechnet wird das Helligkeitsverhältnis zwischen Text- und Hintergrundfarbe — unabhängig vom Farbton oder Design-Trend.')
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Solange eine Handlung nicht abgeschlossen ist, hält das Gedächtnis eine Art Spannungszustand aufrecht — das ist der Kern des Zeigarnik-Effekts.')
         ),
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `4px solid ${C.gold}`, paddingLeft: '22px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, '„Text […] has a contrast ratio of at least 4.5:1 […]"'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'W3C WCAG 2.1, Success Criterion 1.4.3 „Contrast (Minimum)"')
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, 'Bluma Zeigarnik, 1927 — Psychologische Forschung'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'Forschungsgruppe um Kurt Lewin, Berliner Schule der Gestaltpsychologie')
         )
       )
     ),
-    keyLearning('Deshalb lässt sich Kontrast mit einem Tool prüfen — statt nur mit dem Auge.', C.gold),
+    keyLearning('Deshalb wirkt ein sichtbarer „Rest" oft stärker als ein abstraktes Ziel.', C.gold),
     footer()
   );
 
   // Slide 7 — Learnings mit Progress-Bars
   const learnings = [
-    { num: '01', text: 'Normalen Text mindestens 4,5 : 1 kontrastieren (AA)', pct: 25 },
-    { num: '02', text: 'Große/fette Überschriften: 3 : 1 reicht aus (AA)', pct: 50 },
-    { num: '03', text: 'Für AAA-Niveau 7 : 1 anstreben, wo möglich', pct: 75 },
-    { num: '04', text: 'Kontrast mit einem Prüf-Tool testen, nicht nach Auge', pct: 100 },
+    { num: '01', text: 'Mehrstufige Formulare mit „Schritt X von Y" versehen', pct: 25 },
+    { num: '02', text: 'Fortschritt bei Profilen/Onboarding sichtbar machen', pct: 50 },
+    { num: '03', text: 'Offene Checklisten-Punkte bewusst stehen lassen', pct: 75 },
+    { num: '04', text: 'Nie mit Erledigtem werben — mit dem letzten Schritt', pct: 100 },
   ];
 
   function learningCard(l) {
@@ -405,7 +397,7 @@ async function main() {
         'div',
         { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
         h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: l.pct === 100 ? C.green : C.text, minWidth: '58px' } }, l.num),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text)
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text)
       ),
       h(
         'div',
@@ -417,9 +409,9 @@ async function main() {
 
   const slide7 = slideRoot(
     badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings für lesbare Website-Texte.', 56),
+    headline('4 Learnings zum Zeigarnik-Effekt.', 56),
     visualBlock(h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } }, ...learnings.map(learningCard))),
-    keyLearning('Kein Redesign nötig — nur die richtigen Kontrastwerte.', C.accent2),
+    keyLearning('Kein neues Feature nötig — nur sichtbarer Fortschritt statt versteckter Prozesse.', C.accent2),
     footer()
   );
 
@@ -444,7 +436,7 @@ async function main() {
               letterSpacing: '-1px',
             },
           },
-          'Hast du den Kontrast deiner Website schon mal wirklich geprüft?'
+          'Wo auf deiner Website bleibt Fortschritt heute unsichtbar?'
         ),
         h(
           'span',

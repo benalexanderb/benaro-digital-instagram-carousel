@@ -105,6 +105,12 @@
       "topic": "Kontrastverhaeltnisse: Die WCAG-Grenzwerte, die ueber Lesbarkeit entscheiden",
       "date_used": "2026-09-18",
       "summary": "W3C Web Content Accessibility Guidelines (WCAG) 2.1, Success Criterion 1.4.3 'Contrast (Minimum)', Level AA: Text muss ein Kontrastverhaeltnis von mindestens 4,5:1 zum Hintergrund haben (grosser/fetter Text mindestens 3:1); Success Criterion 1.4.6 'Contrast (Enhanced)', Level AAA verlangt 7:1. Der Kontrast wird als messbares Helligkeitsverhaeltnis zwischen Text- und Hintergrundfarbe berechnet, unabhaengig vom Farbton. Praktische Konsequenz: Kontraste mit einem Pruef-Tool testen statt nach Augenmass zu gestalten, besonders bei hellgrauer Schrift auf hellem Hintergrund."
+    },
+    {
+      "category": "Psychologie",
+      "topic": "Der Zeigarnik-Effekt: Warum unerledigte Aufgaben im Kopf bleiben",
+      "date_used": "2026-09-21",
+      "summary": "Bluma Zeigarnik, 'Ueber das Behalten von erledigten und unerledigten Handlungen', Psychologische Forschung, 1927 (Forschungsgruppe um Kurt Lewin, Berliner Schule der Gestaltpsychologie): Unerledigte, unterbrochene Aufgaben bleiben praesenter im Gedaechtnis als abgeschlossene, da eine Art mentale Spannung bis zum Abschluss aufrechterhalten wird. Praktische Konsequenz fuer Websites: Fortschrittsanzeigen bei mehrstufigen Formularen ('Schritt 2 von 4'), sichtbare Profil-/Onboarding-Vollstaendigkeit und offen gelassene Checklisten-Punkte motivieren zum Abschluss, statt Fortschritt zu verstecken."
     }
   ]
 }
