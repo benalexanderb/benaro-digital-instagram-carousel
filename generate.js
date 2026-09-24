@@ -174,14 +174,15 @@ async function main() {
   }
 
   // ============================================================
-  // Thema: Der Zeigarnik-Effekt — warum unfertige Aufgaben im Kopf bleiben
-  // Kategorie: Psychologie
-  // Quelle: Bluma Zeigarnik, "Über das Behalten von erledigten und
-  //         unerledigten Handlungen", Psychologische Forschung, 1927
-  //         (Berliner Schule der Gestaltpsychologie, Forschungsgruppe um Kurt Lewin)
+  // Thema: Fitts's Law — warum Buttongröße und Distanz über Klicks entscheiden
+  // Kategorie: Design & UX
+  // Quelle: Paul M. Fitts, "The information capacity of the human motor
+  //         system in controlling the amplitude of movement", Journal of
+  //         Experimental Psychology, 1954. Bis heute HCI-Standardwerk
+  //         (u.a. zitiert von der Nielsen Norman Group).
   // ============================================================
 
-  // Slide 1 — Hook: Zwei Aufgaben, zwei Gefühle
+  // Slide 1 — Hook: Zwei Buttons, zwei Ergebnisse
   function stateCard(label, desc, accentColor, dark) {
     return h(
       'div',
@@ -212,26 +213,26 @@ async function main() {
   }
 
   const slide1 = slideRoot(
-    badge('WUSSTEST DU?'),
-    headline('Eine unerledigte Aufgabe lässt dein Gehirn nicht los.', 54),
-    subline('Ein 100 Jahre altes Experiment erklärt, warum das so ist — und was Websites damit zu tun haben.'),
+    badge('UX-GESETZ'),
+    headline('Ein Gesetz aus 1954 erklärt, warum manche Buttons einfach nicht performen.', 48),
+    subline('Es geht nicht um Farbe oder Text — sondern um zwei simple, messbare Faktoren.'),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', gap: '16px' } },
-        stateCard('Abgeschlossen', 'Aufgabe erledigt — der Kopf ist frei für Neues.', C.accent2, false),
-        stateCard('Unterbrochen', 'Aufgabe offen — sie bleibt im Hinterkopf aktiv.', C.gold, true)
+        stateCard('Klein & weit weg', 'Kleine Klickfläche, große Distanz — langsamer und fehleranfälliger.', C.accent2, false),
+        stateCard('Groß & nah dran', 'Große Klickfläche, kurzer Weg — schneller und zuverlässiger.', C.gold, true)
       )
     ),
-    keyLearning('Dieser Unterschied ist keine Einbildung, sondern ein belegter psychologischer Effekt.', C.gold),
+    keyLearning('Dieser Unterschied lässt sich vorhersagen — mit einem Modell aus der Bewegungsforschung.', C.gold),
     footer()
   );
 
-  // Slide 2 — Ursprung: 1927, Bluma Zeigarnik
+  // Slide 2 — Ursprung: 1954, Paul Fitts
   const slide2 = slideRoot(
-    badge('PSYCHOLOGIE'),
-    headline('1927 bekam dieser Effekt einen Namen.', 56),
-    subline('Die Psychologin Bluma Zeigarnik untersuchte, wie sich unser Gedächtnis an offene Aufgaben klammert.'),
+    badge('DIE GESCHICHTE'),
+    headline('1954 vermaß ein Psychologe, wie Menschen Ziele treffen.', 54),
+    subline('Paul Fitts untersuchte, wie lange Menschen brauchen, um ein Ziel mit der Hand zu erreichen.'),
     visualBlock(
       h(
         'div',
@@ -247,23 +248,23 @@ async function main() {
             gap: '18px',
           },
         },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '120px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '1927'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Bluma Zeigarnik veröffentlicht ihre Studie'),
+        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '120px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '1954'),
+        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Paul Fitts veröffentlicht sein Bewegungsmodell'),
         h(
           'div',
           { style: { display: 'flex', backgroundColor: C.accent, borderRadius: '10px', padding: '10px 22px', marginTop: '8px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'BERLINER SCHULE DER GESTALTPSYCHOLOGIE')
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'JOURNAL OF EXPERIMENTAL PSYCHOLOGY')
         )
       )
     ),
-    keyLearning('Seither als „Zeigarnik-Effekt" ein fester Begriff der Kognitionspsychologie.', C.accent2),
+    keyLearning('Seither als „Fitts\'s Law" eine Grundlage der Interface- und Ergonomie-Forschung.', C.accent2),
     footer()
   );
 
-  // Slide 3 — Die Beobachtung (Kellner-Beispiel)
+  // Slide 3 — Das Gesetz erklärt (zwei Faktoren)
   const slide3 = slideRoot(
-    badge('DIE BEOBACHTUNG'),
-    headline('Der Anstoß kam aus einem Berliner Café.', 52),
+    badge('DAS GESETZ'),
+    headline('Die Zeit zum Treffen hängt von zwei Dingen ab.', 52),
     visualBlock(
       h(
         'div',
@@ -271,18 +272,18 @@ async function main() {
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Kellner merkten sich offene Bestellungen'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'Details zu Tischen mit unbezahlten Rechnungen — oft bis ins Kleinste.')
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Zielgröße'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'Je größer die Klickfläche, desto schneller und sicherer wird sie getroffen.')
         ),
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Nach der Bezahlung: vergessen'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'War der Vorgang abgeschlossen, verblasste die Erinnerung daran auffällig schnell.')
+          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Distanz'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'Je weiter der Weg von Cursor oder Finger zum Ziel, desto länger dauert der Klick.')
         )
       )
     ),
-    keyLearning('Diese Alltagsbeobachtung wurde zum Ausgangspunkt von Zeigarniks Experimenten.', C.gold),
+    keyLearning('Zusammen bestimmen Größe und Distanz, wie mühelos sich eine Bedienung anfühlt.', C.gold),
     footer()
   );
 
@@ -316,17 +317,17 @@ async function main() {
   }
 
   const slide4 = slideRoot(
-    badge('DER WENDEPUNKT'),
-    headline('Eigentlich merkt man sich Erledigtes besser. Oder?', 52),
+    badge('DER IRRTUM'),
+    headline('Eigentlich zählt nur, wie der Button aussieht. Oder?', 52),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        contrastCard('ERWARTUNG', 'Abgeschlossene Aufgaben bleiben am besten im Gedächtnis.', false),
-        contrastCard('REALITÄT', 'Offene, unterbrochene Aufgaben bleiben deutlich präsenter im Kopf.', true)
+        contrastCard('ERWARTUNG', 'Ein auffälliges Design macht den Unterschied beim Klicken.', false),
+        contrastCard('REALITÄT', 'Größe und Nähe zum Cursor oder Finger entscheiden über Tempo und Fehlerquote.', true)
       )
     ),
-    keyLearning('Unser Gehirn hält mentale Spannung aufrecht, bis eine Aufgabe wirklich abgeschlossen ist.', C.accent2),
+    keyLearning('Das schönste Design hilft wenig, wenn Ziel und Weg zum Klick falsch dimensioniert sind.', C.accent2),
     footer()
   );
 
@@ -342,24 +343,24 @@ async function main() {
 
   const slide5 = slideRoot(
     badge('AUF DER WEBSITE'),
-    headline('So nutzt du diesen Zug bewusst — statt zufällig.', 48),
+    headline('So setzt du Fitts\'s Law bewusst ein.', 50),
     visualBlock(
       h(
         'div',
         { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        ratioCard('01', 'Fortschrittsanzeige bei mehrstufigen Formularen: „Schritt 2 von 4"', C.accent2),
-        ratioCard('02', 'Sichtbare Profil- oder Onboarding-Vollständigkeit in Prozent', C.accent),
-        ratioCard('03', 'Checklisten, die offene Punkte bewusst sichtbar lassen', C.gold)
+        ratioCard('01', 'Primäre CTAs großzügig dimensionieren, keine winzigen Klickflächen', C.accent2),
+        ratioCard('02', 'Wichtigste Aktion in Daumennähe platzieren, besonders mobil', C.accent),
+        ratioCard('03', 'Genug Abstand zwischen Buttons für Fehltoleranz lassen', C.gold)
       )
     ),
-    keyLearning('Sichtbare Unvollständigkeit motiviert zum Weitermachen — Unsichtbares tut das nicht.', C.accent2),
+    keyLearning('Jeder Pixel Fläche und jeder Millimeter Distanz verändert echtes Klickverhalten.', C.accent2),
     footer()
   );
 
   // Slide 6 — Das Prinzip
   const slide6 = slideRoot(
     badge('DAS PRINZIP'),
-    headline('Nicht das Ziel motiviert am stärksten — die Lücke davor.', 50),
+    headline('Nicht das Auge entscheidet zuerst — die Hand.', 52),
     visualBlock(
       h(
         'div',
@@ -367,26 +368,26 @@ async function main() {
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Solange eine Handlung nicht abgeschlossen ist, hält das Gedächtnis eine Art Spannungszustand aufrecht — das ist der Kern des Zeigarnik-Effekts.')
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Fitts\'s Law beschreibt Bedienung als Bewegungsproblem: Bevor eine Entscheidung zählt, muss Hand oder Finger das Ziel erst erreichen können.')
         ),
         h(
           'div',
           { style: { display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `4px solid ${C.gold}`, paddingLeft: '22px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, 'Bluma Zeigarnik, 1927 — Psychologische Forschung'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'Forschungsgruppe um Kurt Lewin, Berliner Schule der Gestaltpsychologie')
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, 'Paul M. Fitts, 1954 — Journal of Experimental Psychology'),
+          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'Bis heute Grundlage der HCI- und Ergonomie-Forschung (u.a. zitiert von der Nielsen Norman Group)')
         )
       )
     ),
-    keyLearning('Deshalb wirkt ein sichtbarer „Rest" oft stärker als ein abstraktes Ziel.', C.gold),
+    keyLearning('Deshalb schlägt ein gut erreichbarer Button oft ein hübsches, aber unbequemes Design.', C.gold),
     footer()
   );
 
   // Slide 7 — Learnings mit Progress-Bars
   const learnings = [
-    { num: '01', text: 'Mehrstufige Formulare mit „Schritt X von Y" versehen', pct: 25 },
-    { num: '02', text: 'Fortschritt bei Profilen/Onboarding sichtbar machen', pct: 50 },
-    { num: '03', text: 'Offene Checklisten-Punkte bewusst stehen lassen', pct: 75 },
-    { num: '04', text: 'Nie mit Erledigtem werben — mit dem letzten Schritt', pct: 100 },
+    { num: '01', text: 'Primäre CTAs deutlich größer als sekundäre Buttons gestalten', pct: 25 },
+    { num: '02', text: 'Wichtige Aktionen nah am Daumen bzw. Cursor platzieren', pct: 50 },
+    { num: '03', text: 'Genug Abstand zwischen klickbaren Elementen lassen', pct: 75 },
+    { num: '04', text: 'Kleine Ziele wie Icons durch größere Klickflächen ergänzen', pct: 100 },
   ];
 
   function learningCard(l) {
@@ -409,9 +410,9 @@ async function main() {
 
   const slide7 = slideRoot(
     badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings zum Zeigarnik-Effekt.', 56),
+    headline('4 Learnings zu Fitts\'s Law.', 56),
     visualBlock(h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } }, ...learnings.map(learningCard))),
-    keyLearning('Kein neues Feature nötig — nur sichtbarer Fortschritt statt versteckter Prozesse.', C.accent2),
+    keyLearning('Kein Redesign nötig — nur bewusste Größen und Abstände bei bestehenden Buttons.', C.accent2),
     footer()
   );
 
@@ -436,7 +437,7 @@ async function main() {
               letterSpacing: '-1px',
             },
           },
-          'Wo auf deiner Website bleibt Fortschritt heute unsichtbar?'
+          'Welcher Button auf deiner Website ist heute zu klein oder zu weit weg?'
         ),
         h(
           'span',

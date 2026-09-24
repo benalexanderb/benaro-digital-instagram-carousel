@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-24",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein einziges Gesetz aus der Bewegungsforschung erklärt, warum manche Buttons einfach nicht performen. Fitts's Law zeigt: Größe und Nähe zum Klick entscheiden über Tempo und Fehlerquote – nicht das Design allein. Speichern nicht vergessen 📌\n\n#Webdesign #UXDesign #Buttondesign #Conversion #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-01.png",
+      "altText": "Dunkle Slide mit Badge 'UX-Gesetz' und Headline 'Ein Gesetz aus 1954 erklärt, warum manche Buttons einfach nicht performen.' Darunter zwei Vergleichskarten: 'Klein & weit weg' (kleine Klickfläche, große Distanz, langsamer und fehleranfälliger) und hervorgehoben in Weiß 'Groß & nah dran' (große Klickfläche, kurzer Weg, schneller und zuverlässiger)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-02.png",
+      "altText": "Slide mit Badge 'Die Geschichte' und Headline '1954 vermaß ein Psychologe, wie Menschen Ziele treffen.' Große Zahl 1954 in Türkis, darunter der Text 'Paul Fitts veröffentlicht sein Bewegungsmodell' und ein blaues Badge 'Journal of Experimental Psychology'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-03.png",
+      "altText": "Slide mit Badge 'Das Gesetz' und Headline 'Die Zeit zum Treffen hängt von zwei Dingen ab.' Zwei Karten: 'Zielgröße' (je größer die Klickfläche, desto schneller und sicherer wird sie getroffen) und 'Distanz' (je weiter der Weg zum Ziel, desto länger dauert der Klick)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-04.png",
+      "altText": "Kontrast-Slide 'Eigentlich zählt nur, wie der Button aussieht. Oder?' mit zwei Karten: 'Erwartung' (ein auffälliges Design macht den Unterschied beim Klicken) und hervorgehoben in Weiß 'Realität' (Größe und Nähe zum Cursor oder Finger entscheiden über Tempo und Fehlerquote)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-05.png",
+      "altText": "Slide 'So setzt du Fitts's Law bewusst ein' mit drei nummerierten Karten: primäre CTAs großzügig dimensionieren, wichtigste Aktion in Daumennähe platzieren, genug Abstand zwischen Buttons lassen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-06.png",
+      "altText": "Slide 'Nicht das Auge entscheidet zuerst – die Hand' mit Erklärtext, dass Fitts's Law Bedienung als Bewegungsproblem beschreibt, und einem Zitat: 'Paul M. Fitts, 1954 – Journal of Experimental Psychology, bis heute Grundlage der HCI- und Ergonomie-Forschung'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-07.png",
+      "altText": "Takeaway-Slide '4 Learnings zu Fitts's Law' mit vier nummerierten Karten und Fortschrittsbalken: primäre CTAs größer gestalten, Aktionen nah am Daumen/Cursor platzieren, Abstand zwischen Elementen lassen, kleine Ziele durch größere Klickflächen ergänzen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-09-24/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit dem Benaro-Digital-Logo und der Frage 'Welcher Button auf deiner Website ist heute zu klein oder zu weit weg?' sowie dem Call-to-Action 'Folge @benarodigital für mehr Website-Wissen.'"
+    }
+  ]
+}
