@@ -111,6 +111,12 @@
       "topic": "Der Zeigarnik-Effekt: Warum unerledigte Aufgaben im Kopf bleiben",
       "date_used": "2026-09-21",
       "summary": "Bluma Zeigarnik, 'Ueber das Behalten von erledigten und unerledigten Handlungen', Psychologische Forschung, 1927 (Forschungsgruppe um Kurt Lewin, Berliner Schule der Gestaltpsychologie): Unerledigte, unterbrochene Aufgaben bleiben praesenter im Gedaechtnis als abgeschlossene, da eine Art mentale Spannung bis zum Abschluss aufrechterhalten wird. Praktische Konsequenz fuer Websites: Fortschrittsanzeigen bei mehrstufigen Formularen ('Schritt 2 von 4'), sichtbare Profil-/Onboarding-Vollstaendigkeit und offen gelassene Checklisten-Punkte motivieren zum Abschluss, statt Fortschritt zu verstecken."
+    },
+    {
+      "category": "Design & UX",
+      "topic": "Visuelle Hierarchie: Wie du das Auge deiner Besucher gezielt lenkst",
+      "date_used": "2026-09-25",
+      "summary": "Gestaltpsychologie (u.a. Max Wertheimer, Gesetze der Gruppierung, 1923), dokumentiert in UX-Standardwerken zur visuellen Hierarchie (u.a. Nielsen Norman Group): Menschen gewichten visuelle Elemente automatisch nach Groesse, Kontrast, Farbe und Position, ohne bewusst nachzudenken. Praktische Konsequenz fuer Websites: Das wichtigste Element (Headline, CTA) bewusst groesser, kontrastreicher und weiter oben platzieren als sekundaere Inhalte, statt alle Elemente gleich zu gewichten."
     }
   ]
 }
