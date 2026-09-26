@@ -8,11 +8,11 @@ async function main() {
   const manropeDir = path.join(__dirname, 'node_modules/@fontsource/manrope/files');
   const interDir = path.join(__dirname, 'node_modules/@fontsource/inter/files');
   const fonts = [
-    ...[600, 700, 800].flatMap((w) => [
+    ...[600, 700, 800].flatMap(w => [
       { name: 'Manrope', weight: w, style: 'normal', data: fs.readFileSync(`${manropeDir}/manrope-latin-${w}-normal.woff`) },
       { name: 'Manrope', weight: w, style: 'normal', data: fs.readFileSync(`${manropeDir}/manrope-latin-ext-${w}-normal.woff`) },
     ]),
-    ...[400, 500, 600, 700].flatMap((w) => [
+    ...[400, 500, 600, 700].flatMap(w => [
       { name: 'Inter', weight: w, style: 'normal', data: fs.readFileSync(`${interDir}/inter-latin-${w}-normal.woff`) },
       { name: 'Inter', weight: w, style: 'normal', data: fs.readFileSync(`${interDir}/inter-latin-ext-${w}-normal.woff`) },
     ]),
@@ -32,15 +32,13 @@ async function main() {
     red: '#EF4444',
   };
 
-  const W = 1080;
-  const H = 1350;
+  const W = 1080, H = 1350;
 
   const h = (type, props, ...ch) => ({
-    type,
-    props: { ...props, children: ch.length === 1 ? ch[0] : ch.length === 0 ? undefined : ch },
+    type, props: { ...props, children: ch.length === 1 ? ch[0] : ch.length === 0 ? undefined : ch }
   });
 
-  // === BD LOGO ===
+  // === BD MONOGRAM LOGO ===
   function bdMonogramSvg(fill) {
     return `<svg viewBox="14 10 86 46" xmlns="http://www.w3.org/2000/svg">
       <rect x="14" y="10" width="10" height="46" rx="5" fill="${fill}"/>
@@ -56,401 +54,273 @@ async function main() {
   }
 
   // === REUSABLE COMPONENTS ===
-  function badge(text, color = C.accent2) {
-    return h(
-      'div',
-      { style: { display: 'flex', marginBottom: '24px' } },
-      h(
-        'span',
-        {
-          style: {
-            display: 'flex',
-            fontFamily: 'Manrope',
-            fontSize: '22px',
-            fontWeight: 700,
-            letterSpacing: '3px',
-            color,
-            backgroundColor: C.cardBg,
-            border: `1px solid ${C.cardBorder}`,
-            padding: '10px 22px',
-            borderRadius: '12px',
-          },
-        },
-        text
-      )
+  function badge(text) {
+    return h('div', { style: { display: 'flex', marginBottom: '20px' } },
+      h('span', {
+        style: {
+          display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '3px',
+          fontFamily: 'Manrope', color: C.text, backgroundColor: C.cardBg,
+          border: `1px solid ${C.cardBorder}`, padding: '10px 22px', borderRadius: '12px',
+        }
+      }, text),
     );
   }
 
   function headline(text, size = 62) {
-    return h(
-      'span',
-      {
-        style: {
-          display: 'flex',
-          fontFamily: 'Manrope',
-          fontSize: `${size}px`,
-          fontWeight: 800,
-          color: C.text,
-          lineHeight: '1.12',
-          letterSpacing: '-1.5px',
-          marginBottom: '6px',
-        },
-      },
-      text
-    );
+    return h('span', {
+      style: {
+        display: 'flex', fontSize: `${size}px`, fontWeight: 800, fontFamily: 'Manrope',
+        color: C.text, lineHeight: '1.1', letterSpacing: '-1.5px', marginBottom: '6px',
+      }
+    }, text);
   }
 
   function subline(text) {
-    return h(
-      'span',
-      {
-        style: {
-          display: 'flex',
-          fontFamily: 'Inter',
-          fontSize: '30px',
-          fontWeight: 500,
-          color: C.textSoft,
-          lineHeight: '1.5',
-          marginTop: '16px',
-        },
-      },
-      text
-    );
+    return h('span', {
+      style: {
+        display: 'flex', fontSize: '28px', fontWeight: 500, fontFamily: 'Inter',
+        color: C.textSoft, lineHeight: '1.5', marginTop: '10px',
+      }
+    }, text);
   }
 
-  function keyLearning(text, accentColor = C.accent2) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: '18px',
-          backgroundColor: C.cardBg,
-          border: `1px solid ${C.cardBorder}`,
-          borderRadius: '18px',
-          padding: '26px 30px',
-          marginTop: '40px',
-        },
-      },
-      h('div', { style: { display: 'flex', width: '6px', minHeight: '44px', backgroundColor: accentColor, borderRadius: '3px' } }),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '28px', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, text)
+  function keyLearning(text, warn = false) {
+    return h('div', {
+      style: {
+        display: 'flex', alignItems: 'center', gap: '16px', backgroundColor: C.cardBg,
+        border: `1px solid ${C.cardBorder}`, borderRadius: '16px', padding: '24px 28px', marginTop: 'auto',
+      }
+    },
+      h('div', { style: { display: 'flex', width: '6px', minHeight: '44px', backgroundColor: warn ? C.red : C.accent2, borderRadius: '3px' } }),
+      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.4' } }, text),
     );
   }
 
   function footer() {
-    return h(
-      'div',
-      { style: { display: 'flex', alignItems: 'center', gap: '12px', marginTop: '32px' } },
+    return h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px', marginTop: '24px' } },
       bdLogoImg('rgba(255,255,255,0.55)', 34),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, color: C.textMuted } }, '@benarodigital')
+      h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted } }, '@benarodigital'),
     );
   }
 
   function slideRoot(...children) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          flexDirection: 'column',
-          width: W,
-          height: H,
-          padding: '70px',
-          backgroundColor: C.bg,
-          fontFamily: 'Inter',
-        },
-      },
-      ...children
-    );
+    return h('div', {
+      style: {
+        display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
+        backgroundColor: C.bg, fontFamily: 'Inter',
+      }
+    }, ...children);
   }
 
   function visualBlock(...children) {
-    return h(
-      'div',
-      { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      ...children
-    );
+    return h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } }, ...children);
   }
 
-  // ============================================================
-  // Thema: Der Zeigarnik-Effekt — warum unfertige Aufgaben im Kopf bleiben
-  // Kategorie: Psychologie
-  // Quelle: Bluma Zeigarnik, "Über das Behalten von erledigten und
-  //         unerledigten Handlungen", Psychologische Forschung, 1927
-  //         (Berliner Schule der Gestaltpsychologie, Forschungsgruppe um Kurt Lewin)
-  // ============================================================
-
-  // Slide 1 — Hook: Zwei Aufgaben, zwei Gefühle
-  function stateCard(label, desc, accentColor, dark) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          flexDirection: 'column',
-          flex: '1',
-          backgroundColor: dark ? C.text : C.cardBg,
-          border: dark ? 'none' : `1px solid ${C.cardBorder}`,
-          borderRadius: '22px',
-          padding: '30px',
-          gap: '14px',
-        },
-      },
-      h('div', { style: { display: 'flex', width: '16px', height: '16px', borderRadius: '8px', backgroundColor: accentColor } }),
-      h(
-        'span',
-        { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: dark ? '#0A0E12' : C.text, lineHeight: '1.25' } },
-        label
-      ),
-      h(
-        'span',
-        { style: { display: 'flex', fontFamily: 'Inter', fontSize: '21px', fontWeight: 500, color: dark ? 'rgba(10,14,18,0.65)' : C.textMuted, lineHeight: '1.4' } },
-        desc
-      )
-    );
+  function svgImg(svg, width, height) {
+    const src = 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
+    return h('img', { src, width, height, style: { display: 'flex' } });
   }
+
+  // === SLIDE 1: HOOK ===
+  const s1_bars = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
+    <rect x="0" y="96" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
+    <rect x="0" y="192" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
+    <rect x="0" y="288" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
+  </svg>`, 900, 360);
 
   const slide1 = slideRoot(
-    badge('WUSSTEST DU?'),
-    headline('Eine unerledigte Aufgabe lässt dein Gehirn nicht los.', 54),
-    subline('Ein 100 Jahre altes Experiment erklärt, warum das so ist — und was Websites damit zu tun haben.'),
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', gap: '16px' } },
-        stateCard('Abgeschlossen', 'Aufgabe erledigt — der Kopf ist frei für Neues.', C.accent2, false),
-        stateCard('Unterbrochen', 'Aufgabe offen — sie bleibt im Hinterkopf aktiv.', C.gold, true)
-      )
-    ),
-    keyLearning('Dieser Unterschied ist keine Einbildung, sondern ein belegter psychologischer Effekt.', C.gold),
-    footer()
+    badge('ACHTUNG'),
+    headline('Wohin schaut dein Besucher zuerst?'),
+    subline('Bei den meisten Websites entscheidet das der Zufall – nicht das Design.'),
+    visualBlock(s1_bars),
+    keyLearning('Ohne bewusste Führung landet der Blick, wo er zufällig hängen bleibt.', true),
+    footer(),
   );
 
-  // Slide 2 — Ursprung: 1927, Bluma Zeigarnik
-  const slide2 = slideRoot(
-    badge('PSYCHOLOGIE'),
-    headline('1927 bekam dieser Effekt einen Namen.', 56),
-    subline('Die Psychologin Bluma Zeigarnik untersuchte, wie sich unser Gedächtnis an offene Aufgaben klammert.'),
-    visualBlock(
-      h(
-        'div',
-        {
-          style: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: C.cardBg,
-            border: `1px solid ${C.cardBorder}`,
-            borderRadius: '28px',
-            padding: '56px 40px',
-            gap: '18px',
-          },
-        },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '120px', fontWeight: 800, color: C.accent2, letterSpacing: '-2px' } }, '1927'),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '26px', fontWeight: 600, color: C.text, textAlign: 'center' } }, 'Bluma Zeigarnik veröffentlicht ihre Studie'),
-        h(
-          'div',
-          { style: { display: 'flex', backgroundColor: C.accent, borderRadius: '10px', padding: '10px 22px', marginTop: '8px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '20px', fontWeight: 700, color: '#FFFFFF', letterSpacing: '1px' } }, 'BERLINER SCHULE DER GESTALTPSYCHOLOGIE')
-        )
-      )
-    ),
-    keyLearning('Seither als „Zeigarnik-Effekt" ein fester Begriff der Kognitionspsychologie.', C.accent2),
-    footer()
-  );
-
-  // Slide 3 — Die Beobachtung (Kellner-Beispiel)
-  const slide3 = slideRoot(
-    badge('DIE BEOBACHTUNG'),
-    headline('Der Anstoß kam aus einem Berliner Café.', 52),
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        h(
-          'div',
-          { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Kellner merkten sich offene Bestellungen'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'Details zu Tischen mit unbezahlten Rechnungen — oft bis ins Kleinste.')
-        ),
-        h(
-          'div',
-          { style: { display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '24px', fontWeight: 700, color: C.text } }, 'Nach der Bezahlung: vergessen'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '22px', fontWeight: 500, color: C.textMuted, lineHeight: '1.4' } }, 'War der Vorgang abgeschlossen, verblasste die Erinnerung daran auffällig schnell.')
-        )
-      )
-    ),
-    keyLearning('Diese Alltagsbeobachtung wurde zum Ausgangspunkt von Zeigarniks Experimenten.', C.gold),
-    footer()
-  );
-
-  // Slide 4 — Erwartung vs. Realität
-  function contrastCard(labelText, bodyText, dark) {
-    return h(
-      'div',
-      {
-        style: {
-          display: 'flex',
-          flexDirection: 'column',
-          backgroundColor: dark ? C.text : C.cardBg,
-          border: dark ? 'none' : `1px solid ${C.cardBorder}`,
-          borderRadius: '22px',
-          padding: '30px',
-          gap: '14px',
-        },
-      },
-      h(
-        'span',
-        { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', color: dark ? 'rgba(10,14,18,0.55)' : C.textMuted } },
-        labelText
-      ),
-      h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: dark ? 'rgba(10,14,18,0.15)' : C.cardBorder, borderRadius: '2px' } }),
-      h(
-        'span',
-        { style: { display: 'flex', fontFamily: 'Inter', fontSize: '27px', fontWeight: 600, color: dark ? '#0A0E12' : C.textSoft, lineHeight: '1.4' } },
-        bodyText
-      )
+  // === SLIDE 2: DAS PRINZIP ===
+  function signalCard(label, sublabel, accent) {
+    return h('div', {
+      style: {
+        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
+        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px',
+      }
+    },
+      h('div', { style: { display: 'flex', width: '48px', height: '48px', borderRadius: '12px', backgroundColor: accent } }),
+      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, label),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, sublabel),
     );
   }
 
-  const slide4 = slideRoot(
-    badge('DER WENDEPUNKT'),
-    headline('Eigentlich merkt man sich Erledigtes besser. Oder?', 52),
+  const slide2 = slideRoot(
+    badge('VISUELLE HIERARCHIE'),
+    headline('Der Blick folgt Signalen, nicht dem Zufall.'),
+    subline('Vier Stellschrauben bestimmen, was zuerst gesehen wird.'),
     visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        contrastCard('ERWARTUNG', 'Abgeschlossene Aufgaben bleiben am besten im Gedächtnis.', false),
-        contrastCard('REALITÄT', 'Offene, unterbrochene Aufgaben bleiben deutlich präsenter im Kopf.', true)
-      )
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          signalCard('Größe', 'Größer wirkt wichtiger', C.accent),
+          signalCard('Kontrast', 'Was auffällt, wird gesehen', C.accent2),
+        ),
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          signalCard('Farbe', 'Ein Akzent lenkt den Blick', C.gold),
+          signalCard('Position', 'Oben links zuerst', C.green),
+        ),
+      ),
     ),
-    keyLearning('Unser Gehirn hält mentale Spannung aufrecht, bis eine Aufgabe wirklich abgeschlossen ist.', C.accent2),
-    footer()
+    keyLearning('Wer diese vier Signale gezielt einsetzt, steuert die Aufmerksamkeit.'),
+    footer(),
   );
 
-  // Slide 5 — Anwendung auf Websites
-  function ratioCard(num, text, accentColor) {
-    return h(
-      'div',
-      { style: { display: 'flex', alignItems: 'center', gap: '22px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px', padding: '24px 26px' } },
-      h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '34px', fontWeight: 800, color: accentColor, minWidth: '70px' } }, num),
-      h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text)
+  // === SLIDE 3: PROBLEM (ohne Führung) ===
+  const grid3 = (() => {
+    const cells = [];
+    for (let i = 0; i < 12; i++) {
+      const x = (i % 4) * 225;
+      const y = Math.floor(i / 4) * 125;
+      cells.push(`<rect x="${x}" y="${y}" width="205" height="105" rx="14" fill="rgba(255,255,255,0.09)"/>`);
+    }
+    return svgImg(`<svg width="900" height="375" viewBox="0 0 900 375" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 375);
+  })();
+
+  const slide3 = slideRoot(
+    badge('OHNE FÜHRUNG'),
+    headline('Gleich groß, gleich laut, gleich wichtig.'),
+    subline('Wenn alles um Aufmerksamkeit konkurriert, gewinnt am Ende: nichts.'),
+    visualBlock(grid3),
+    keyLearning('Kein Fokuspunkt heißt: Der Besucher findet nicht, was für dich zählt.', true),
+    footer(),
+  );
+
+  // === SLIDE 4: WENDEPUNKT (Kontrast-Karten) ===
+  const slide4 = slideRoot(
+    badge('OHNE VS. MIT HIERARCHIE'),
+    headline('Ein Unterschied in Größe und Kontrast reicht oft.', 56),
+    visualBlock(
+      h('div', { style: { display: 'flex', gap: '16px' } },
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'OHNE'),
+          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+          h('div', { style: { display: 'flex', width: '70%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+        ),
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '28px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'MIT'),
+          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: '#FFFFFF', borderRadius: '6px' } }),
+          h('div', { style: { display: 'flex', width: '55%', height: '16px', backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: '4px' } }),
+        ),
+      ),
+    ),
+    keyLearning('Der Blick geht zuerst zum größten, kontrastreichsten Element.'),
+    footer(),
+  );
+
+  // === SLIDE 5: DIE VIER SIGNALE KONKRET ===
+  function exampleCard(title, desc) {
+    return h('div', {
+      style: {
+        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
+        backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '26px',
+        border: '1px solid rgba(255,255,255,0.08)',
+      }
+    },
+      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
+      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
     );
   }
 
   const slide5 = slideRoot(
-    badge('AUF DER WEBSITE'),
-    headline('So nutzt du diesen Zug bewusst — statt zufällig.', 48),
+    badge('DIE VIER SIGNALE'),
+    headline('So setzt du visuelle Hierarchie konkret um.', 52),
     visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        ratioCard('01', 'Fortschrittsanzeige bei mehrstufigen Formularen: „Schritt 2 von 4"', C.accent2),
-        ratioCard('02', 'Sichtbare Profil- oder Onboarding-Vollständigkeit in Prozent', C.accent),
-        ratioCard('03', 'Checklisten, die offene Punkte bewusst sichtbar lassen', C.gold)
-      )
-    ),
-    keyLearning('Sichtbare Unvollständigkeit motiviert zum Weitermachen — Unsichtbares tut das nicht.', C.accent2),
-    footer()
-  );
-
-  // Slide 6 — Das Prinzip
-  const slide6 = slideRoot(
-    badge('DAS PRINZIP'),
-    headline('Nicht das Ziel motiviert am stärksten — die Lücke davor.', 50),
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', gap: '24px' } },
-        h(
-          'div',
-          { style: { display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '25px', fontWeight: 500, color: C.textSoft, lineHeight: '1.4' } }, 'Solange eine Handlung nicht abgeschlossen ist, hält das Gedächtnis eine Art Spannungszustand aufrecht — das ist der Kern des Zeigarnik-Effekts.')
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          exampleCard('Größe', 'Headline deutlich größer als Fließtext'),
+          exampleCard('Kontrast', 'Dunkler Button auf hellem Grund'),
         ),
-        h(
-          'div',
-          { style: { display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `4px solid ${C.gold}`, paddingLeft: '22px' } },
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '24px', fontWeight: 500, fontStyle: 'italic', color: C.textSoft, lineHeight: '1.4' } }, 'Bluma Zeigarnik, 1927 — Psychologische Forschung'),
-          h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '20px', fontWeight: 500, color: C.textMuted } }, 'Forschungsgruppe um Kurt Lewin, Berliner Schule der Gestaltpsychologie')
-        )
-      )
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          exampleCard('Farbe', 'Ein Akzentton nur für den CTA'),
+          exampleCard('Position', 'Kernbotschaft above the fold'),
+        ),
+      ),
     ),
-    keyLearning('Deshalb wirkt ein sichtbarer „Rest" oft stärker als ein abstraktes Ziel.', C.gold),
-    footer()
+    keyLearning('Jedes Signal für sich wirkt leise. Zusammen wirken sie stark.'),
+    footer(),
   );
 
-  // Slide 7 — Learnings mit Progress-Bars
+  // === SLIDE 6: DAS PRINZIP DAHINTER ===
+  const s6_visual = svgImg(`<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+    <line x1="350" y1="30" x2="350" y2="350" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
+    <circle cx="350" cy="60" r="46" fill="#2952FF"/>
+    <circle cx="350" cy="180" r="34" fill="rgba(255,255,255,0.28)"/>
+    <circle cx="350" cy="280" r="24" fill="rgba(255,255,255,0.16)"/>
+    <circle cx="350" cy="350" r="16" fill="rgba(255,255,255,0.10)"/>
+  </svg>`, 700, 380);
+
+  const slide6 = slideRoot(
+    badge('DAS PRINZIP DAHINTER'),
+    headline('Das Auge sucht sich automatisch einen Ankerpunkt.', 52),
+    subline('Gestaltpsychologie: Wir gewichten visuelle Elemente automatisch nach Größe, Kontrast und Nähe – ohne bewusst nachzudenken.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_visual),
+    ),
+    keyLearning('Ordnest du bewusst, denkt der Besucher nicht nach – er folgt einfach.'),
+    footer(),
+  );
+
+  // === SLIDE 7: LEARNINGS ===
   const learnings = [
-    { num: '01', text: 'Mehrstufige Formulare mit „Schritt X von Y" versehen', pct: 25 },
-    { num: '02', text: 'Fortschritt bei Profilen/Onboarding sichtbar machen', pct: 50 },
-    { num: '03', text: 'Offene Checklisten-Punkte bewusst stehen lassen', pct: 75 },
-    { num: '04', text: 'Nie mit Erledigtem werben — mit dem letzten Schritt', pct: 100 },
+    { num: '01', text: 'Größe: Das Wichtigste am größten darstellen', pct: 25 },
+    { num: '02', text: 'Kontrast: Klarer Unterschied zum Hintergrund', pct: 50 },
+    { num: '03', text: 'Position: Kernbotschaft above the fold', pct: 75 },
+    { num: '04', text: 'Zurückhaltung: Nicht alles gleichzeitig betonen', pct: 100 },
   ];
 
-  function learningCard(l) {
-    return h(
-      'div',
-      { style: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
-      h(
-        'div',
-        { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
-        h('span', { style: { display: 'flex', fontFamily: 'Manrope', fontSize: '36px', fontWeight: 800, color: l.pct === 100 ? C.green : C.text, minWidth: '58px' } }, l.num),
-        h('span', { style: { display: 'flex', fontFamily: 'Inter', fontSize: '23px', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, l.text)
-      ),
-      h(
-        'div',
-        { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
-        h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } })
-      )
-    );
-  }
-
   const slide7 = slideRoot(
-    badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings zum Zeigarnik-Effekt.', 56),
-    visualBlock(h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } }, ...learnings.map(learningCard))),
-    keyLearning('Kein neues Feature nötig — nur sichtbarer Fortschritt statt versteckter Prozesse.', C.accent2),
-    footer()
+    badge('DEINE CHECKLISTE'),
+    headline('4 Learnings für deine nächste Seite.', 54),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+        ...learnings.map(l =>
+          h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
+            h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
+              h('span', { style: { display: 'flex', fontSize: '36px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '60px' } }, l.num),
+              h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text),
+            ),
+            h('div', { style: { display: 'flex', height: '6px', backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: '3px' } },
+              h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }),
+            ),
+          )
+        ),
+      ),
+    ),
+    keyLearning('Weniger Betonung an mehr Stellen bringt mehr Wirkung an der richtigen.'),
+    footer(),
   );
 
-  // Slide 8 — CTA
+  // === SLIDE 8: CTA ===
   const slide8 = slideRoot(
-    visualBlock(
-      h(
-        'div',
-        { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '36px' } },
-        bdLogoImg(C.text, 96),
-        h(
-          'span',
-          {
-            style: {
-              display: 'flex',
-              fontFamily: 'Manrope',
-              fontSize: '44px',
-              fontWeight: 800,
-              color: '#FFFFFF',
-              textAlign: 'center',
-              lineHeight: '1.3',
-              letterSpacing: '-1px',
-            },
-          },
-          'Wo auf deiner Website bleibt Fortschritt heute unsichtbar?'
-        ),
-        h(
-          'span',
-          { style: { display: 'flex', fontFamily: 'Inter', fontSize: '30px', fontWeight: 600, color: C.accent2, textAlign: 'center', marginTop: '8px' } },
-          'Folge @benarodigital für mehr Website-Wissen.'
-        )
-      )
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
+      bdLogoImg(C.text, 140),
+      h('span', {
+        style: {
+          display: 'flex', fontSize: '52px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
+        }
+      }, 'Sieht deine Website nach Zufall aus – oder nach Führung?'),
+      h('span', {
+        style: {
+          display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
+          textAlign: 'center', lineHeight: '1.4', marginTop: '8px',
+        }
+      }, 'Folge @benarodigital für mehr Website-Wissen.'),
     ),
-    footer()
+    footer(),
   );
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 
-  const outDir = path.join(__dirname, 'output', `carousel_${process.env.CAROUSEL_DATE || new Date().toISOString().slice(0, 10)}`, 'slides');
+  const outDir = path.join(__dirname, `output/carousel_${process.env.TODAY}/slides`);
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
@@ -464,7 +334,4 @@ async function main() {
   console.log('All slides generated!');
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main().catch(e => { console.error(e); process.exit(1); });
