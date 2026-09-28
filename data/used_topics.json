@@ -117,6 +117,12 @@
       "topic": "Visuelle Hierarchie: Wie du das Auge deiner Besucher gezielt lenkst",
       "date_used": "2026-09-25",
       "summary": "Gestaltpsychologie (u.a. Max Wertheimer, Gesetze der Gruppierung, 1923), dokumentiert in UX-Standardwerken zur visuellen Hierarchie (u.a. Nielsen Norman Group): Menschen gewichten visuelle Elemente automatisch nach Groesse, Kontrast, Farbe und Position, ohne bewusst nachzudenken. Praktische Konsequenz fuer Websites: Das wichtigste Element (Headline, CTA) bewusst groesser, kontrastreicher und weiter oben platzieren als sekundaere Inhalte, statt alle Elemente gleich zu gewichten."
+    },
+    {
+      "category": "SEO",
+      "topic": "E-E-A-T: Warum Google Vertrauen zum Rankingfaktor macht",
+      "date_used": "2026-09-28",
+      "summary": "Googles Search Quality Rater Guidelines definieren E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) als Qualitaetskriterien, ergaenzt um das YMYL-Konzept (Your Money or Your Life) fuer Themen mit finanziellen oder gesundheitlichen Konsequenzen. Praktische Konsequenz fuer Websites: Echte Autor:innen-Profile, nachvollziehbare Quellen/Referenzen sowie transparente Vertrauenssignale (Impressum, Datenschutz, echte Kontaktdaten) wirken sich sowohl auf das Google-Ranking als auch auf die Conversion aus."
     }
   ]
 }

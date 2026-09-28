@@ -8,11 +8,11 @@ async function main() {
   const manropeDir = path.join(__dirname, 'node_modules/@fontsource/manrope/files');
   const interDir = path.join(__dirname, 'node_modules/@fontsource/inter/files');
   const fonts = [
-    ...[600, 700, 800].flatMap(w => [
+    ...[600, 700, 800].flatMap((w) => [
       { name: 'Manrope', weight: w, style: 'normal', data: fs.readFileSync(`${manropeDir}/manrope-latin-${w}-normal.woff`) },
       { name: 'Manrope', weight: w, style: 'normal', data: fs.readFileSync(`${manropeDir}/manrope-latin-ext-${w}-normal.woff`) },
     ]),
-    ...[400, 500, 600, 700].flatMap(w => [
+    ...[400, 500, 600, 700].flatMap((w) => [
       { name: 'Inter', weight: w, style: 'normal', data: fs.readFileSync(`${interDir}/inter-latin-${w}-normal.woff`) },
       { name: 'Inter', weight: w, style: 'normal', data: fs.readFileSync(`${interDir}/inter-latin-ext-${w}-normal.woff`) },
     ]),
@@ -35,7 +35,7 @@ async function main() {
   const W = 1080, H = 1350;
 
   const h = (type, props, ...ch) => ({
-    type, props: { ...props, children: ch.length === 1 ? ch[0] : ch.length === 0 ? undefined : ch }
+    type, props: { ...props, children: ch.length === 1 ? ch[0] : ch.length === 0 ? undefined : ch },
   });
 
   // === BD MONOGRAM LOGO ===
@@ -54,14 +54,14 @@ async function main() {
   }
 
   // === REUSABLE COMPONENTS ===
-  function badge(text) {
-    return h('div', { style: { display: 'flex', marginBottom: '20px' } },
+  function badge(text, color) {
+    return h('div', { style: { display: 'flex', marginBottom: '24px' } },
       h('span', {
         style: {
-          display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '3px',
-          fontFamily: 'Manrope', color: C.text, backgroundColor: C.cardBg,
-          border: `1px solid ${C.cardBorder}`, padding: '10px 22px', borderRadius: '12px',
-        }
+          display: 'flex', fontSize: '22px', fontFamily: 'Manrope', fontWeight: 700, letterSpacing: '3px',
+          color: color || C.text, backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`,
+          padding: '10px 22px', borderRadius: '12px',
+        },
       }, text),
     );
   }
@@ -69,37 +69,37 @@ async function main() {
   function headline(text, size = 62) {
     return h('span', {
       style: {
-        display: 'flex', fontSize: `${size}px`, fontWeight: 800, fontFamily: 'Manrope',
-        color: C.text, lineHeight: '1.1', letterSpacing: '-1.5px', marginBottom: '6px',
-      }
+        display: 'flex', fontSize: `${size}px`, fontFamily: 'Manrope', fontWeight: 800,
+        color: C.text, lineHeight: '1.12', letterSpacing: '-1.5px', marginBottom: '6px',
+      },
     }, text);
   }
 
   function subline(text) {
     return h('span', {
       style: {
-        display: 'flex', fontSize: '28px', fontWeight: 500, fontFamily: 'Inter',
-        color: C.textSoft, lineHeight: '1.5', marginTop: '10px',
-      }
+        display: 'flex', fontSize: '28px', fontFamily: 'Inter', fontWeight: 500,
+        color: C.textSoft, lineHeight: '1.5', marginTop: '14px',
+      },
     }, text);
   }
 
-  function keyLearning(text, warn = false) {
+  function keyLearning(text, accentColor) {
     return h('div', {
       style: {
-        display: 'flex', alignItems: 'center', gap: '16px', backgroundColor: C.cardBg,
-        border: `1px solid ${C.cardBorder}`, borderRadius: '16px', padding: '24px 28px', marginTop: 'auto',
-      }
+        display: 'flex', alignItems: 'center', gap: '18px', backgroundColor: C.cardBg,
+        border: `1px solid ${C.cardBorder}`, borderRadius: '16px', padding: '24px 28px', marginTop: '32px',
+      },
     },
-      h('div', { style: { display: 'flex', width: '6px', minHeight: '44px', backgroundColor: warn ? C.red : C.accent2, borderRadius: '3px' } }),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.4' } }, text),
+      h('div', { style: { display: 'flex', width: '6px', minHeight: '44px', backgroundColor: accentColor || C.accent, borderRadius: '3px' } }),
+      h('span', { style: { display: 'flex', fontSize: '28px', fontFamily: 'Inter', fontWeight: 600, color: C.text, lineHeight: '1.4' } }, text),
     );
   }
 
   function footer() {
-    return h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px', marginTop: '24px' } },
+    return h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px', marginTop: '28px' } },
       bdLogoImg('rgba(255,255,255,0.55)', 34),
-      h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted } }, '@benarodigital'),
+      h('span', { style: { display: 'flex', fontSize: '24px', fontFamily: 'Inter', fontWeight: 500, color: C.textMuted } }, '@benarodigital'),
     );
   }
 
@@ -108,7 +108,7 @@ async function main() {
       style: {
         display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
         backgroundColor: C.bg, fontFamily: 'Inter',
-      }
+      },
     }, ...children);
   }
 
@@ -122,205 +122,223 @@ async function main() {
   }
 
   // === SLIDE 1: HOOK ===
-  const s1_bars = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="96" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="192" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="288" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-  </svg>`, 900, 360);
+  const browserBarSvg = `<svg width="860" height="140" viewBox="0 0 860 140" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="30" width="860" height="80" rx="40" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+    <rect x="44" y="55" width="26" height="22" rx="4" fill="#00C2B8"/>
+    <path d="M50 55V44A7 7 0 0 1 64 44V55" stroke="#00C2B8" stroke-width="6" fill="none"/>
+    <rect x="96" y="60" width="560" height="20" rx="10" fill="rgba(255,255,255,0.28)"/>
+    <circle cx="770" cy="70" r="5" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="792" cy="70" r="5" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="814" cy="70" r="5" fill="rgba(255,255,255,0.3)"/>
+  </svg>`;
 
   const slide1 = slideRoot(
-    badge('ACHTUNG'),
-    headline('Wohin schaut dein Besucher zuerst?'),
-    subline('Bei den meisten Websites entscheidet das der Zufall – nicht das Design.'),
-    visualBlock(s1_bars),
-    keyLearning('Ohne bewusste Führung landet der Blick, wo er zufällig hängen bleibt.', true),
+    badge('WUSSTEST DU?', C.accent2),
+    headline('Schön reicht nicht mehr.'),
+    subline('Google bewertet längst, wie vertrauenswürdig deine Website wirklich ist.'),
+    visualBlock(svgImg(browserBarSvg, 860, 140)),
     footer(),
   );
 
-  // === SLIDE 2: DAS PRINZIP ===
-  function signalCard(label, sublabel, accent) {
+  // === SLIDE 2: E-E-A-T DEFINITIONS ===
+  function eeatCard(letter, label, desc) {
     return h('div', {
       style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
-        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px',
-      }
+        display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg,
+        border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '10px',
+      },
     },
-      h('div', { style: { display: 'flex', width: '48px', height: '48px', borderRadius: '12px', backgroundColor: accent } }),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, label),
-      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, sublabel),
+      h('span', { style: { display: 'flex', fontSize: '40px', fontFamily: 'Manrope', fontWeight: 800, color: C.accent2 } }, letter),
+      h('span', { style: { display: 'flex', fontSize: '26px', fontFamily: 'Manrope', fontWeight: 700, color: C.text } }, label),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontFamily: 'Inter', fontWeight: 500, color: C.textMuted, lineHeight: '1.35' } }, desc),
     );
   }
 
   const slide2 = slideRoot(
-    badge('VISUELLE HIERARCHIE'),
-    headline('Der Blick folgt Signalen, nicht dem Zufall.'),
-    subline('Vier Stellschrauben bestimmen, was zuerst gesehen wird.'),
+    badge('E-E-A-T'),
+    headline('Vier Signale, auf die Google achtet'),
+    subline('Das steckt hinter der Abkürzung:'),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Größe', 'Größer wirkt wichtiger', C.accent),
-          signalCard('Kontrast', 'Was auffällt, wird gesehen', C.accent2),
+          eeatCard('E', 'Erfahrung', 'Hat die Quelle das selbst erlebt?'),
+          eeatCard('E', 'Fachwissen', 'Stimmt das Wissen fachlich?'),
         ),
         h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Farbe', 'Ein Akzent lenkt den Blick', C.gold),
-          signalCard('Position', 'Oben links zuerst', C.green),
+          eeatCard('A', 'Autorität', 'Wird die Seite anerkannt zitiert?'),
+          eeatCard('T', 'Vertrauen', 'Ist die Seite sicher & transparent?'),
         ),
       ),
     ),
-    keyLearning('Wer diese vier Signale gezielt einsetzt, steuert die Aufmerksamkeit.'),
+    keyLearning('So heißen die Kriterien in Googles Search Quality Rater Guidelines.'),
     footer(),
   );
 
-  // === SLIDE 3: PROBLEM (ohne Führung) ===
-  const grid3 = (() => {
-    const cells = [];
-    for (let i = 0; i < 12; i++) {
-      const x = (i % 4) * 225;
-      const y = Math.floor(i / 4) * 125;
-      cells.push(`<rect x="${x}" y="${y}" width="205" height="105" rx="14" fill="rgba(255,255,255,0.09)"/>`);
-    }
-    return svgImg(`<svg width="900" height="375" viewBox="0 0 900 375" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 375);
-  })();
+  // === SLIDE 3: CONSEQUENCE (FUNNEL) ===
+  function funnelBar(pct, label, sub) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+      h('div', { style: { display: 'flex', width: `${pct}%`, height: '64px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px', alignItems: 'center', padding: '0 26px' } },
+        h('span', { style: { display: 'flex', fontSize: '26px', fontFamily: 'Manrope', fontWeight: 700, color: C.text } }, label),
+      ),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontFamily: 'Inter', fontWeight: 500, color: C.textMuted } }, sub),
+    );
+  }
 
   const slide3 = slideRoot(
-    badge('OHNE FÜHRUNG'),
-    headline('Gleich groß, gleich laut, gleich wichtig.'),
-    subline('Wenn alles um Aufmerksamkeit konkurriert, gewinnt am Ende: nichts.'),
-    visualBlock(grid3),
-    keyLearning('Kein Fokuspunkt heißt: Der Besucher findet nicht, was für dich zählt.', true),
-    footer(),
-  );
-
-  // === SLIDE 4: WENDEPUNKT (Kontrast-Karten) ===
-  const slide4 = slideRoot(
-    badge('OHNE VS. MIT HIERARCHIE'),
-    headline('Ein Unterschied in Größe und Kontrast reicht oft.', 56),
+    badge('DIE FOLGE'),
+    headline('Fehlt Vertrauen, verlierst du zweimal'),
+    subline('Bei Google im Ranking – und bei Besuchern in der Conversion.'),
     visualBlock(
-      h('div', { style: { display: 'flex', gap: '16px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'OHNE'),
-          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '70%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '28px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'MIT'),
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: '#FFFFFF', borderRadius: '6px' } }),
-          h('div', { style: { display: 'flex', width: '55%', height: '16px', backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: '4px' } }),
-        ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '26px' } },
+        funnelBar(100, 'Sichtbarkeit', 'Nutzer findet deine Seite bei Google'),
+        funnelBar(72, 'Vertrauen', 'Nutzer bleibt & liest weiter'),
+        funnelBar(40, 'Anfrage', 'Nutzer meldet sich wirklich'),
       ),
     ),
-    keyLearning('Der Blick geht zuerst zum größten, kontrastreichsten Element.'),
+    keyLearning('Ohne Vertrauenssignale brechen Besucher vor der Anfrage ab.', C.red),
     footer(),
   );
 
-  // === SLIDE 5: DIE VIER SIGNALE KONKRET ===
-  function exampleCard(title, desc) {
+  // === SLIDE 4: EXPECTATION VS REALITY ===
+  function contrastCard(label, text, dark) {
     return h('div', {
       style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
-        backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '26px',
-        border: '1px solid rgba(255,255,255,0.08)',
-      }
+        display: 'flex', flex: '1', flexDirection: 'column', gap: '14px', borderRadius: '20px', padding: '30px',
+        backgroundColor: dark ? C.text : C.cardBg,
+        border: dark ? 'none' : `1px solid ${C.cardBorder}`,
+      },
     },
-      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontFamily: 'Manrope', fontWeight: 700, letterSpacing: '2px', color: dark ? 'rgba(20,22,26,0.55)' : C.textMuted } }, label),
+      h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: dark ? 'rgba(20,22,26,0.15)' : C.cardBorder, borderRadius: '2px' } }),
+      h('span', { style: { display: 'flex', fontSize: '27px', fontFamily: 'Inter', fontWeight: 600, color: dark ? '#14161A' : C.textSoft, lineHeight: '1.4' } }, text),
+    );
+  }
+
+  const slide4 = slideRoot(
+    badge('MISSVERSTÄNDNIS'),
+    headline('Die meisten denken: SEO = Keywords', 56),
+    subline('Googles eigene Richtlinien sagen etwas anderes.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', gap: '16px' } },
+        contrastCard('ERWARTUNG', 'Keywords und Backlinks reichen aus.', false),
+        contrastCard('REALITÄT', 'Erfahrung, Fachwissen & Transparenz zählen genauso.', true),
+      ),
+    ),
+    keyLearning('Quelle: Google Search Quality Rater Guidelines.'),
+    footer(),
+  );
+
+  // === SLIDE 5: CONCRETE EXAMPLES ===
+  function numberRow(num, label, desc) {
+    return h('div', {
+      style: {
+        display: 'flex', alignItems: 'flex-start', gap: '20px', padding: '22px 26px',
+        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px',
+      },
+    },
+      h('span', { style: { display: 'flex', fontSize: '32px', fontFamily: 'Manrope', fontWeight: 800, color: C.accent2, minWidth: '56px' } }, num),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '4px' } },
+        h('span', { style: { display: 'flex', fontSize: '26px', fontFamily: 'Manrope', fontWeight: 700, color: C.text } }, label),
+        h('span', { style: { display: 'flex', fontSize: '22px', fontFamily: 'Inter', fontWeight: 500, color: C.textMuted, lineHeight: '1.35' } }, desc),
+      ),
     );
   }
 
   const slide5 = slideRoot(
-    badge('DIE VIER SIGNALE'),
-    headline('So setzt du visuelle Hierarchie konkret um.', 52),
-    visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Größe', 'Headline deutlich größer als Fließtext'),
-          exampleCard('Kontrast', 'Dunkler Button auf hellem Grund'),
-        ),
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Farbe', 'Ein Akzentton nur für den CTA'),
-          exampleCard('Position', 'Kernbotschaft above the fold'),
-        ),
-      ),
-    ),
-    keyLearning('Jedes Signal für sich wirkt leise. Zusammen wirken sie stark.'),
-    footer(),
-  );
-
-  // === SLIDE 6: DAS PRINZIP DAHINTER ===
-  const s6_visual = svgImg(`<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
-    <line x1="350" y1="30" x2="350" y2="350" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
-    <circle cx="350" cy="60" r="46" fill="#2952FF"/>
-    <circle cx="350" cy="180" r="34" fill="rgba(255,255,255,0.28)"/>
-    <circle cx="350" cy="280" r="24" fill="rgba(255,255,255,0.16)"/>
-    <circle cx="350" cy="350" r="16" fill="rgba(255,255,255,0.10)"/>
-  </svg>`, 700, 380);
-
-  const slide6 = slideRoot(
-    badge('DAS PRINZIP DAHINTER'),
-    headline('Das Auge sucht sich automatisch einen Ankerpunkt.', 52),
-    subline('Gestaltpsychologie: Wir gewichten visuelle Elemente automatisch nach Größe, Kontrast und Nähe – ohne bewusst nachzudenken.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_visual),
-    ),
-    keyLearning('Ordnest du bewusst, denkt der Besucher nicht nach – er folgt einfach.'),
-    footer(),
-  );
-
-  // === SLIDE 7: LEARNINGS ===
-  const learnings = [
-    { num: '01', text: 'Größe: Das Wichtigste am größten darstellen', pct: 25 },
-    { num: '02', text: 'Kontrast: Klarer Unterschied zum Hintergrund', pct: 50 },
-    { num: '03', text: 'Position: Kernbotschaft above the fold', pct: 75 },
-    { num: '04', text: 'Zurückhaltung: Nicht alles gleichzeitig betonen', pct: 100 },
-  ];
-
-  const slide7 = slideRoot(
-    badge('DEINE CHECKLISTE'),
-    headline('4 Learnings für deine nächste Seite.', 54),
+    badge('KONKRET'),
+    headline('So zeigst du E-E-A-T auf deiner Seite', 52),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
-        ...learnings.map(l =>
-          h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
-            h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
-              h('span', { style: { display: 'flex', fontSize: '36px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '60px' } }, l.num),
-              h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text),
-            ),
-            h('div', { style: { display: 'flex', height: '6px', backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: '3px' } },
-              h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }),
-            ),
-          )
-        ),
+        numberRow('01', 'Erfahrung', 'Echte Fallbeispiele statt Stockfotos'),
+        numberRow('02', 'Fachwissen', 'Autor:innen-Profile mit echten Qualifikationen'),
+        numberRow('03', 'Autorität', 'Presse, Referenzen & Verlinkungen von außen'),
+        numberRow('04', 'Vertrauen', 'Impressum, Datenschutz & echte Kontaktdaten'),
       ),
     ),
-    keyLearning('Weniger Betonung an mehr Stellen bringt mehr Wirkung an der richtigen.'),
+    keyLearning('Jedes Signal lässt sich einzeln optimieren.'),
+    footer(),
+  );
+
+  // === SLIDE 6: PRINCIPLE (YMYL) ===
+  function ymylCard(iconSvg, label) {
+    return h('div', {
+      style: {
+        display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', gap: '16px',
+        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '30px 16px',
+      },
+    },
+      svgImg(iconSvg, 64, 64),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontFamily: 'Manrope', fontWeight: 700, color: C.text, textAlign: 'center' } }, label),
+    );
+  }
+
+  const coinSvg = `<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="32" cy="32" r="26" fill="none" stroke="#CBA35C" stroke-width="5"/>
+    <circle cx="32" cy="32" r="15" fill="none" stroke="#CBA35C" stroke-width="4"/>
+  </svg>`;
+  const healthSvg = `<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="26" y="10" width="12" height="44" rx="4" fill="#2952FF"/>
+    <rect x="10" y="26" width="44" height="12" rx="4" fill="#2952FF"/>
+  </svg>`;
+  const shieldSvg = `<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <path d="M32 6L54 14V30C54 44 44 54 32 58C20 54 10 44 10 30V14Z" fill="none" stroke="#00C2B8" stroke-width="5"/>
+  </svg>`;
+
+  const slide6 = slideRoot(
+    badge('DAS PRINZIP'),
+    headline('Bei Geld, Gesundheit & Sicherheit prüft Google strenger', 46),
+    subline('Google nennt das YMYL – Your Money or Your Life.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', gap: '16px' } },
+        ymylCard(coinSvg, 'Geld'),
+        ymylCard(healthSvg, 'Gesundheit'),
+        ymylCard(shieldSvg, 'Sicherheit'),
+      ),
+    ),
+    keyLearning('Als Unternehmer:in zählt deine Website fast immer dazu.'),
+    footer(),
+  );
+
+  // === SLIDE 7: TAKEAWAYS ===
+  function learningCard(num, text, pct) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
+      h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
+        h('span', { style: { display: 'flex', fontSize: '36px', fontFamily: 'Manrope', fontWeight: 800, color: pct === 100 ? C.green : C.text, minWidth: '58px' } }, num),
+        h('span', { style: { display: 'flex', fontSize: '27px', fontFamily: 'Inter', fontWeight: 600, color: C.text, lineHeight: '1.3' } }, text),
+      ),
+      h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
+        h('div', { style: { display: 'flex', width: `${pct}%`, height: '6px', backgroundColor: pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }),
+      ),
+    );
+  }
+
+  const slide7 = slideRoot(
+    badge('TAKEAWAYS'),
+    headline('3 Schritte für mehr Vertrauen', 56),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
+        learningCard('01', 'Echte Autor:innen sichtbar machen', 33),
+        learningCard('02', 'Quellen & Referenzen transparent verlinken', 66),
+        learningCard('03', 'Impressum, Datenschutz & Kontakt leicht auffindbar halten', 100),
+      ),
+    ),
+    keyLearning('Vertrauen ist ein Rankingfaktor – kein Nice-to-have.'),
     footer(),
   );
 
   // === SLIDE 8: CTA ===
   const slide8 = slideRoot(
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '32px' } },
-      bdLogoImg(C.text, 140),
-      h('span', {
-        style: {
-          display: 'flex', fontSize: '52px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
-          textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
-        }
-      }, 'Sieht deine Website nach Zufall aus – oder nach Führung?'),
-      h('span', {
-        style: {
-          display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
-          textAlign: 'center', lineHeight: '1.4', marginTop: '8px',
-        }
-      }, 'Folge @benarodigital für mehr Website-Wissen.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
+      bdLogoImg(C.text, 96),
+      h('span', { style: { display: 'flex', fontSize: '52px', fontFamily: 'Manrope', fontWeight: 800, color: C.text, textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px' } }, 'Vertraut deine Website schon sich selbst?'),
+      h('span', { style: { display: 'flex', fontSize: '30px', fontFamily: 'Inter', fontWeight: 500, color: C.textSoft, textAlign: 'center', lineHeight: '1.5' } }, 'Folge @benarodigital für mehr Website-Wissen, das wirkt.'),
     ),
     footer(),
   );
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 
-  const outDir = path.join(__dirname, `output/carousel_${process.env.TODAY}/slides`);
+  const outDir = path.join(__dirname, 'output', `carousel_${process.env.CAROUSEL_DATE}`, 'slides');
   fs.mkdirSync(outDir, { recursive: true });
 
   for (let i = 0; i < slides.length; i++) {
@@ -329,9 +347,9 @@ async function main() {
     const pngData = resvg.render();
     const pngPath = path.join(outDir, `slide-${String(i + 1).padStart(2, '0')}.png`);
     fs.writeFileSync(pngPath, pngData.asPng());
-    console.log(`Slide ${i + 1}/${slides.length} done -> ${pngPath}`);
+    console.log(`Slide ${i + 1}/${slides.length} done`);
   }
   console.log('All slides generated!');
 }
 
-main().catch(e => { console.error(e); process.exit(1); });
+main().catch((e) => { console.error(e); process.exit(1); });
