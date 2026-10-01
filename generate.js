@@ -121,101 +121,104 @@ async function main() {
     return h('img', { src, width, height, style: { display: 'flex' } });
   }
 
-  // === SLIDE 1: HOOK ===
-  const s1_bars = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="96" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="192" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="288" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-  </svg>`, 900, 360);
+  // === SLIDE 1: HOOK — orphan page visual ===
+  const s1_network = (() => {
+    const nodes = [
+      { x: 160, y: 90 }, { x: 420, y: 70 }, { x: 680, y: 110 },
+      { x: 200, y: 260 }, { x: 460, y: 250 },
+    ];
+    const edges = [[0, 1], [1, 2], [0, 3], [1, 4]];
+    const lines = edges.map(([a, b]) => `<line x1="${nodes[a].x}" y1="${nodes[a].y}" x2="${nodes[b].x}" y2="${nodes[b].y}" stroke="rgba(255,255,255,0.22)" stroke-width="4"/>`).join('');
+    const circles = nodes.map(n => `<circle cx="${n.x}" cy="${n.y}" r="26" fill="rgba(255,255,255,0.16)"/>`).join('');
+    const orphan = `<circle cx="820" cy="300" r="30" fill="#2952FF"/>`;
+    return svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">${lines}${circles}${orphan}</svg>`, 900, 360);
+  })();
 
   const slide1 = slideRoot(
-    badge('ACHTUNG'),
-    headline('Wohin schaut dein Besucher zuerst?'),
-    subline('Bei den meisten Websites entscheidet das der Zufall – nicht das Design.'),
-    visualBlock(s1_bars),
-    keyLearning('Ohne bewusste Führung landet der Blick, wo er zufällig hängen bleibt.', true),
+    badge('ÜBERSEHEN'),
+    headline('Deine wichtigste Seite bekommt null Links – von dir selbst.'),
+    subline('Die meisten Websites verschenken eines der stärksten SEO-Signale, ohne es zu merken.'),
+    visualBlock(s1_network),
+    keyLearning('Eine Seite ohne interne Links ist für Google fast unsichtbar.', true),
     footer(),
   );
 
-  // === SLIDE 2: DAS PRINZIP ===
-  function signalCard(label, sublabel, accent) {
-    return h('div', {
-      style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
-        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px',
-      }
-    },
-      h('div', { style: { display: 'flex', width: '48px', height: '48px', borderRadius: '12px', backgroundColor: accent } }),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, label),
-      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, sublabel),
-    );
-  }
+  // === SLIDE 2: WIE GOOGLE DIE SEITE LIEST ===
+  const s2_network = (() => {
+    const home = { x: 450, y: 70 };
+    const pages = [{ x: 200, y: 220 }, { x: 450, y: 250 }, { x: 700, y: 220 }];
+    const orphan = { x: 860, y: 310 };
+    const lines = pages.map(p => `<line x1="${home.x}" y1="${home.y}" x2="${p.x}" y2="${p.y}" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>`).join('');
+    const pageCircles = pages.map(p => `<circle cx="${p.x}" cy="${p.y}" r="30" fill="rgba(255,255,255,0.18)"/>`).join('');
+    return svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+      ${lines}
+      <circle cx="${home.x}" cy="${home.y}" r="40" fill="#00C2B8"/>
+      ${pageCircles}
+      <circle cx="${orphan.x}" cy="${orphan.y}" r="22" fill="rgba(255,255,255,0.08)"/>
+    </svg>`, 900, 360);
+  })();
 
   const slide2 = slideRoot(
-    badge('VISUELLE HIERARCHIE'),
-    headline('Der Blick folgt Signalen, nicht dem Zufall.'),
-    subline('Vier Stellschrauben bestimmen, was zuerst gesehen wird.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Größe', 'Größer wirkt wichtiger', C.accent),
-          signalCard('Kontrast', 'Was auffällt, wird gesehen', C.accent2),
-        ),
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Farbe', 'Ein Akzent lenkt den Blick', C.gold),
-          signalCard('Position', 'Oben links zuerst', C.green),
-        ),
-      ),
-    ),
-    keyLearning('Wer diese vier Signale gezielt einsetzt, steuert die Aufmerksamkeit.'),
+    badge('WIE GOOGLE DEINE SEITE LIEST'),
+    headline('Google folgt Links, um deine Website zu verstehen.'),
+    subline('Jeder interne Link ist ein Hinweis: Diese Seite gehört dazu – und ist wichtig.'),
+    visualBlock(s2_network),
+    keyLearning('Ohne Link dorthin fehlt der Pfad, über den Google die Seite findet.'),
     footer(),
   );
 
-  // === SLIDE 3: PROBLEM (ohne Führung) ===
+  // === SLIDE 3: PROBLEM — Orphan Pages ===
   const grid3 = (() => {
     const cells = [];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 11; i++) {
       const x = (i % 4) * 225;
       const y = Math.floor(i / 4) * 125;
       cells.push(`<rect x="${x}" y="${y}" width="205" height="105" rx="14" fill="rgba(255,255,255,0.09)"/>`);
     }
+    cells.push(`<rect x="675" y="250" width="205" height="105" rx="14" fill="none" stroke="#EF4444" stroke-width="4" stroke-dasharray="10,8"/>`);
     return svgImg(`<svg width="900" height="375" viewBox="0 0 900 375" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 375);
   })();
 
   const slide3 = slideRoot(
-    badge('OHNE FÜHRUNG'),
-    headline('Gleich groß, gleich laut, gleich wichtig.'),
-    subline('Wenn alles um Aufmerksamkeit konkurriert, gewinnt am Ende: nichts.'),
+    badge('DIE FOLGE'),
+    headline('Unverlinkte Seiten nennt man „Orphan Pages“.', 54),
+    subline('Ohne eingehende interne Links findet Google sie schwerer – und stuft sie als weniger relevant ein.'),
     visualBlock(grid3),
-    keyLearning('Kein Fokuspunkt heißt: Der Besucher findet nicht, was für dich zählt.', true),
+    keyLearning('Eine Seite kann hervorragend sein und trotzdem kaum gefunden werden.', true),
     footer(),
   );
 
   // === SLIDE 4: WENDEPUNKT (Kontrast-Karten) ===
   const slide4 = slideRoot(
-    badge('OHNE VS. MIT HIERARCHIE'),
-    headline('Ein Unterschied in Größe und Kontrast reicht oft.', 56),
+    badge('OHNE VS. MIT VERLINKUNG'),
+    headline('Ein einziger Link kann entscheiden, ob eine Seite gefunden wird.', 50),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'OHNE'),
-          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '70%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+          svgImg(`<svg width="260" height="120" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg"><circle cx="130" cy="60" r="28" fill="rgba(255,255,255,0.14)"/></svg>`, 260, 120),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, 'Keine Seite verweist darauf'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'MIT'),
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: '#FFFFFF', borderRadius: '6px' } }),
-          h('div', { style: { display: 'flex', width: '55%', height: '16px', backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: '4px' } }),
+          svgImg(`<svg width="260" height="120" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="20" x2="130" y2="60" stroke="rgba(255,255,255,0.6)" stroke-width="4"/>
+            <line x1="220" y1="20" x2="130" y2="60" stroke="rgba(255,255,255,0.6)" stroke-width="4"/>
+            <line x1="130" y1="110" x2="130" y2="60" stroke="rgba(255,255,255,0.6)" stroke-width="4"/>
+            <circle cx="40" cy="20" r="14" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="220" cy="20" r="14" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="130" cy="110" r="14" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="130" cy="60" r="30" fill="#FFFFFF"/>
+          </svg>`, 260, 120),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.85)', lineHeight: '1.4' } }, 'Mehrere Seiten verweisen darauf'),
         ),
       ),
     ),
-    keyLearning('Der Blick geht zuerst zum größten, kontrastreichsten Element.'),
+    keyLearning('Interne Links sind Empfehlungen – auch innerhalb der eigenen Website.'),
     footer(),
   );
 
-  // === SLIDE 5: DIE VIER SIGNALE KONKRET ===
+  // === SLIDE 5: VIER GEWOHNHEITEN KONKRET ===
   function exampleCard(title, desc) {
     return h('div', {
       style: {
@@ -230,55 +233,59 @@ async function main() {
   }
 
   const slide5 = slideRoot(
-    badge('DIE VIER SIGNALE'),
-    headline('So setzt du visuelle Hierarchie konkret um.', 52),
+    badge('SO GEHT’S KONKRET'),
+    headline('Vier Gewohnheiten für bessere interne Verlinkung.', 48),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Größe', 'Headline deutlich größer als Fließtext'),
-          exampleCard('Kontrast', 'Dunkler Button auf hellem Grund'),
+          exampleCard('Sprechender Ankertext', 'Nie „hier klicken“ – den Seiteninhalt im Linktext beschreiben'),
+          exampleCard('Wichtige Seiten verlinken', 'Von starken Seiten wie Startseite oder Blog auf zentrale Unterseiten verweisen'),
         ),
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Farbe', 'Ein Akzentton nur für den CTA'),
-          exampleCard('Position', 'Kernbotschaft above the fold'),
+          exampleCard('Kurze Klickpfade', 'Wichtige Seiten in wenigen Klicks von der Startseite erreichbar halten'),
+          exampleCard('Breadcrumbs nutzen', 'Zeigen Nutzern und Google die Position in der Seitenstruktur'),
         ),
       ),
     ),
-    keyLearning('Jedes Signal für sich wirkt leise. Zusammen wirken sie stark.'),
+    keyLearning('Jede dieser Gewohnheiten ist klein – zusammen verändern sie die Struktur.'),
     footer(),
   );
 
-  // === SLIDE 6: DAS PRINZIP DAHINTER ===
+  // === SLIDE 6: DAS PRINZIP DAHINTER (PageRank) ===
   const s6_visual = svgImg(`<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
-    <line x1="350" y1="30" x2="350" y2="350" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
-    <circle cx="350" cy="60" r="46" fill="#2952FF"/>
-    <circle cx="350" cy="180" r="34" fill="rgba(255,255,255,0.28)"/>
-    <circle cx="350" cy="280" r="24" fill="rgba(255,255,255,0.16)"/>
-    <circle cx="350" cy="350" r="16" fill="rgba(255,255,255,0.10)"/>
+    <line x1="150" y1="60" x2="350" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+    <line x1="550" y1="60" x2="350" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+    <line x1="150" y1="320" x2="350" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+    <line x1="550" y1="320" x2="350" y2="190" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+    <circle cx="150" cy="60" r="24" fill="rgba(255,255,255,0.22)"/>
+    <circle cx="550" cy="60" r="24" fill="rgba(255,255,255,0.22)"/>
+    <circle cx="150" cy="320" r="24" fill="rgba(255,255,255,0.22)"/>
+    <circle cx="550" cy="320" r="24" fill="rgba(255,255,255,0.22)"/>
+    <circle cx="350" cy="190" r="56" fill="#2952FF"/>
   </svg>`, 700, 380);
 
   const slide6 = slideRoot(
     badge('DAS PRINZIP DAHINTER'),
-    headline('Das Auge sucht sich automatisch einen Ankerpunkt.', 52),
-    subline('Gestaltpsychologie: Wir gewichten visuelle Elemente automatisch nach Größe, Kontrast und Nähe – ohne bewusst nachzudenken.'),
+    headline('Links sind Empfehlungen – auch innerhalb der eigenen Seite.', 46),
+    subline('PageRank-Prinzip (Larry Page & Sergey Brin, Stanford 1998): Eine Seite gewinnt an Gewicht durch Anzahl und Qualität der Links, die auf sie zeigen – auch durch interne Links.'),
     visualBlock(
       h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_visual),
     ),
-    keyLearning('Ordnest du bewusst, denkt der Besucher nicht nach – er folgt einfach.'),
+    keyLearning('Verlinkst du bewusst, gibst du deinen wichtigsten Seiten mehr Gewicht.'),
     footer(),
   );
 
   // === SLIDE 7: LEARNINGS ===
   const learnings = [
-    { num: '01', text: 'Größe: Das Wichtigste am größten darstellen', pct: 25 },
-    { num: '02', text: 'Kontrast: Klarer Unterschied zum Hintergrund', pct: 50 },
-    { num: '03', text: 'Position: Kernbotschaft above the fold', pct: 75 },
-    { num: '04', text: 'Zurückhaltung: Nicht alles gleichzeitig betonen', pct: 100 },
+    { num: '01', text: 'Sprechenden Ankertext statt „hier klicken“ verwenden', pct: 25 },
+    { num: '02', text: 'Wichtige Seiten von starken Seiten aus verlinken', pct: 50 },
+    { num: '03', text: 'Klickpfad zu wichtigen Seiten kurz halten', pct: 75 },
+    { num: '04', text: 'Breadcrumbs für klare Struktur einsetzen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Learnings für deine nächste Seite.', 54),
+    headline('4 Learnings für deine interne Verlinkung.', 52),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
@@ -294,7 +301,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Weniger Betonung an mehr Stellen bringt mehr Wirkung an der richtigen.'),
+    keyLearning('Kleine Linkentscheidungen summieren sich zu einer klaren Seitenstruktur.'),
     footer(),
   );
 
@@ -304,10 +311,10 @@ async function main() {
       bdLogoImg(C.text, 140),
       h('span', {
         style: {
-          display: 'flex', fontSize: '52px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          display: 'flex', fontSize: '50px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Sieht deine Website nach Zufall aus – oder nach Führung?'),
+      }, 'Weiß Google, welche Seiten bei dir wirklich zählen?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
