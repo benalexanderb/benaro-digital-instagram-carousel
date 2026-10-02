@@ -121,24 +121,6 @@ async function main() {
     return h('img', { src, width, height, style: { display: 'flex' } });
   }
 
-  // === SLIDE 1: HOOK ===
-  const s1_bars = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="96" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="192" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="288" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-  </svg>`, 900, 360);
-
-  const slide1 = slideRoot(
-    badge('ACHTUNG'),
-    headline('Wohin schaut dein Besucher zuerst?'),
-    subline('Bei den meisten Websites entscheidet das der Zufall – nicht das Design.'),
-    visualBlock(s1_bars),
-    keyLearning('Ohne bewusste Führung landet der Blick, wo er zufällig hängen bleibt.', true),
-    footer(),
-  );
-
-  // === SLIDE 2: DAS PRINZIP ===
   function signalCard(label, sublabel, accent) {
     return h('div', {
       style: {
@@ -152,27 +134,63 @@ async function main() {
     );
   }
 
-  const slide2 = slideRoot(
-    badge('VISUELLE HIERARCHIE'),
-    headline('Der Blick folgt Signalen, nicht dem Zufall.'),
-    subline('Vier Stellschrauben bestimmen, was zuerst gesehen wird.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Größe', 'Größer wirkt wichtiger', C.accent),
-          signalCard('Kontrast', 'Was auffällt, wird gesehen', C.accent2),
-        ),
-        h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Farbe', 'Ein Akzent lenkt den Blick', C.gold),
-          signalCard('Position', 'Oben links zuerst', C.green),
-        ),
-      ),
-    ),
-    keyLearning('Wer diese vier Signale gezielt einsetzt, steuert die Aufmerksamkeit.'),
+  function exampleCard(title, desc) {
+    return h('div', {
+      style: {
+        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
+        backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '26px',
+        border: '1px solid rgba(255,255,255,0.08)',
+      }
+    },
+      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
+      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
+    );
+  }
+
+  // === SLIDE 1: HOOK ===
+  const s1_visual = svgImg(`<svg width="900" height="380" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="900" height="380" rx="24" fill="rgba(255,255,255,0.06)"/>
+    <circle cx="120" cy="120" r="54" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-dasharray="10 10"/>
+    <rect x="210" y="92" width="300" height="24" rx="8" fill="rgba(255,255,255,0.25)"/>
+    <rect x="210" y="134" width="220" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
+    <rect x="80" y="230" width="740" height="18" rx="6" fill="rgba(255,255,255,0.12)"/>
+    <rect x="80" y="266" width="740" height="18" rx="6" fill="rgba(255,255,255,0.12)"/>
+    <rect x="80" y="302" width="500" height="18" rx="6" fill="rgba(255,255,255,0.12)"/>
+    <circle cx="790" cy="90" r="40" fill="none" stroke="#2952FF" stroke-width="8"/>
+    <line x1="818" y1="118" x2="852" y2="152" stroke="#2952FF" stroke-width="10" stroke-linecap="round"/>
+  </svg>`, 900, 380);
+
+  const slide1 = slideRoot(
+    badge('WUSSTEST DU?'),
+    headline('Google schaut nicht nur auf deinen Text.'),
+    subline('Sondern auch darauf, wer dahinter steckt – und ob man dem vertrauen kann.'),
+    visualBlock(s1_visual),
+    keyLearning('Ein Text ohne erkennbare Urheberschaft wirkt auf Google weniger vertrauenswürdig.', true),
     footer(),
   );
 
-  // === SLIDE 3: PROBLEM (ohne Führung) ===
+  // === SLIDE 2: DAS PRINZIP (E-E-A-T) ===
+  const slide2 = slideRoot(
+    badge('E-E-A-T'),
+    headline('Vier Fragen, die Google sich stellt.', 56),
+    subline('Erfahrung, Expertise, Autorität, Vertrauenswürdigkeit – offizielle Google-Bewertungskriterien.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          signalCard('Experience', 'Eigene Erfahrung mit dem Thema', C.accent),
+          signalCard('Expertise', 'Fachliches Können nachweisbar', C.accent2),
+        ),
+        h('div', { style: { display: 'flex', gap: '16px' } },
+          signalCard('Authority', 'Als Quelle anerkannt', C.gold),
+          signalCard('Trust', 'Vertrauenswürdig & sicher', C.green),
+        ),
+      ),
+    ),
+    keyLearning('Diese vier Kriterien stehen so in Googles Search Quality Rater Guidelines.'),
+    footer(),
+  );
+
+  // === SLIDE 3: PROBLEM (gesichtslose Websites) ===
   const grid3 = (() => {
     const cells = [];
     for (let i = 0; i < 12; i++) {
@@ -184,18 +202,18 @@ async function main() {
   })();
 
   const slide3 = slideRoot(
-    badge('OHNE FÜHRUNG'),
-    headline('Gleich groß, gleich laut, gleich wichtig.'),
-    subline('Wenn alles um Aufmerksamkeit konkurriert, gewinnt am Ende: nichts.'),
+    badge('DAS PROBLEM'),
+    headline('Die meisten Websites bleiben gesichtslos.', 54),
+    subline('Kein Autor, kein Impressum, keine Quellen – für Google ein Vertrauensproblem.'),
     visualBlock(grid3),
-    keyLearning('Kein Fokuspunkt heißt: Der Besucher findet nicht, was für dich zählt.', true),
+    keyLearning('Ohne erkennbare Urheberschaft wird Inhalt schwerer als vertrauenswürdig eingestuft.', true),
     footer(),
   );
 
   // === SLIDE 4: WENDEPUNKT (Kontrast-Karten) ===
   const slide4 = slideRoot(
-    badge('OHNE VS. MIT HIERARCHIE'),
-    headline('Ein Unterschied in Größe und Kontrast reicht oft.', 56),
+    badge('OHNE VS. MIT VERTRAUENSSIGNALEN'),
+    headline('Ein sichtbarer Autor macht oft den Unterschied.', 50),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
@@ -211,40 +229,27 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Der Blick geht zuerst zum größten, kontrastreichsten Element.'),
+    keyLearning('Sichtbare Urheberschaft und Quellenangaben zeigen: Hier steckt jemand Reales dahinter.'),
     footer(),
   );
 
-  // === SLIDE 5: DIE VIER SIGNALE KONKRET ===
-  function exampleCard(title, desc) {
-    return h('div', {
-      style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
-        backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '26px',
-        border: '1px solid rgba(255,255,255,0.08)',
-      }
-    },
-      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
-    );
-  }
-
+  // === SLIDE 5: KONKRET UMGESETZT ===
   const slide5 = slideRoot(
-    badge('DIE VIER SIGNALE'),
-    headline('So setzt du visuelle Hierarchie konkret um.', 52),
+    badge('KONKRET UMGESETZT'),
+    headline('So zeigst du, wer du bist.', 56),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Größe', 'Headline deutlich größer als Fließtext'),
-          exampleCard('Kontrast', 'Dunkler Button auf hellem Grund'),
+          exampleCard('Autoren-Bio', 'Echter Name, Foto, Qualifikation'),
+          exampleCard('Quellenangaben', 'Studien & Fakten klar belegt'),
         ),
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Farbe', 'Ein Akzentton nur für den CTA'),
-          exampleCard('Position', 'Kernbotschaft above the fold'),
+          exampleCard('Impressum', 'Leicht auffindbar, vollständig'),
+          exampleCard('Kontakt', 'Telefon, E-Mail oder Adresse sichtbar'),
         ),
       ),
     ),
-    keyLearning('Jedes Signal für sich wirkt leise. Zusammen wirken sie stark.'),
+    keyLearning('Jedes Signal für sich ist klein. Zusammen ergeben sie Glaubwürdigkeit.'),
     footer(),
   );
 
@@ -252,33 +257,33 @@ async function main() {
   const s6_visual = svgImg(`<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
     <line x1="350" y1="30" x2="350" y2="350" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
     <circle cx="350" cy="60" r="46" fill="#2952FF"/>
-    <circle cx="350" cy="180" r="34" fill="rgba(255,255,255,0.28)"/>
-    <circle cx="350" cy="280" r="24" fill="rgba(255,255,255,0.16)"/>
-    <circle cx="350" cy="350" r="16" fill="rgba(255,255,255,0.10)"/>
+    <circle cx="350" cy="166" r="38" fill="#00C2B8"/>
+    <circle cx="350" cy="262" r="30" fill="#CBA35C"/>
+    <circle cx="350" cy="340" r="22" fill="#10B981"/>
   </svg>`, 700, 380);
 
   const slide6 = slideRoot(
     badge('DAS PRINZIP DAHINTER'),
-    headline('Das Auge sucht sich automatisch einen Ankerpunkt.', 52),
-    subline('Gestaltpsychologie: Wir gewichten visuelle Elemente automatisch nach Größe, Kontrast und Nähe – ohne bewusst nachzudenken.'),
+    headline('Vertrauen ist kein Trick, sondern das Fundament.', 48),
+    subline('Googles Search Quality Rater Guidelines bewerten Qualität seit 2022 ausdrücklich auch an eigener Erfahrung – nicht nur an Fachwissen.'),
     visualBlock(
       h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_visual),
     ),
-    keyLearning('Ordnest du bewusst, denkt der Besucher nicht nach – er folgt einfach.'),
+    keyLearning('Wer diese Signale konsequent zeigt, baut nicht nur Rankings, sondern echtes Vertrauen auf.'),
     footer(),
   );
 
   // === SLIDE 7: LEARNINGS ===
   const learnings = [
-    { num: '01', text: 'Größe: Das Wichtigste am größten darstellen', pct: 25 },
-    { num: '02', text: 'Kontrast: Klarer Unterschied zum Hintergrund', pct: 50 },
-    { num: '03', text: 'Position: Kernbotschaft above the fold', pct: 75 },
-    { num: '04', text: 'Zurückhaltung: Nicht alles gleichzeitig betonen', pct: 100 },
+    { num: '01', text: 'Autoren-Bio mit echtem Namen und Foto ergänzen', pct: 25 },
+    { num: '02', text: 'Quellen für Fakten und Studien verlinken', pct: 50 },
+    { num: '03', text: 'Impressum & Kontakt leicht auffindbar machen', pct: 75 },
+    { num: '04', text: 'Echte Erfahrung und Referenzen zeigen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Learnings für deine nächste Seite.', 54),
+    headline('4 Learnings für mehr Vertrauen.', 56),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
@@ -294,7 +299,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Weniger Betonung an mehr Stellen bringt mehr Wirkung an der richtigen.'),
+    keyLearning('E-E-A-T lässt sich nicht erkaufen – nur durch echte Transparenz aufbauen.'),
     footer(),
   );
 
@@ -304,10 +309,10 @@ async function main() {
       bdLogoImg(C.text, 140),
       h('span', {
         style: {
-          display: 'flex', fontSize: '52px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          display: 'flex', fontSize: '50px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Sieht deine Website nach Zufall aus – oder nach Führung?'),
+      }, 'Weiß Google, wer hinter deiner Website steckt?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
