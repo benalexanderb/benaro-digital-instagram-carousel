@@ -117,6 +117,12 @@
       "topic": "Visuelle Hierarchie: Wie du das Auge deiner Besucher gezielt lenkst",
       "date_used": "2026-09-25",
       "summary": "Gestaltpsychologie (u.a. Max Wertheimer, Gesetze der Gruppierung, 1923), dokumentiert in UX-Standardwerken zur visuellen Hierarchie (u.a. Nielsen Norman Group): Menschen gewichten visuelle Elemente automatisch nach Groesse, Kontrast, Farbe und Position, ohne bewusst nachzudenken. Praktische Konsequenz fuer Websites: Das wichtigste Element (Headline, CTA) bewusst groesser, kontrastreicher und weiter oben platzieren als sekundaere Inhalte, statt alle Elemente gleich zu gewichten."
+    },
+    {
+      "category": "SEO",
+      "topic": "E-E-A-T: Warum Google wissen will, wer hinter deiner Website steckt",
+      "date_used": "2026-10-02",
+      "summary": "Googles Search Quality Rater Guidelines (offizielles Bewertungsdokument fuer Suchqualitaet, seit 2022 ergaenzt um das zusaetzliche 'Experience'-E) sowie Google Search Central Dokumentation zu E-E-A-T: Inhaltsqualitaet wird u.a. an Experience, Expertise, Authoritativeness und Trustworthiness gemessen. Praktische Konsequenz fuer Websites: sichtbare Autoren-Bios mit echtem Namen, belegte Quellenangaben, leicht auffindbares Impressum und klare Kontaktmoeglichkeiten staerken die wahrgenommene Vertrauenswuerdigkeit."
     }
   ]
 }
