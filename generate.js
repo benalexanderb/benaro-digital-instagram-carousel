@@ -122,100 +122,116 @@ async function main() {
   }
 
   // === SLIDE 1: HOOK ===
-  const s1_bars = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="96" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="192" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="0" y="288" width="900" height="70" rx="14" fill="rgba(255,255,255,0.10)"/>
+  const s1_rows = svgImg(`<svg width="900" height="360" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="36" fill="rgba(255,255,255,0.14)"/>
+    <rect x="124" y="38" width="420" height="20" rx="10" fill="rgba(255,255,255,0.10)"/>
+    <rect x="124" y="68" width="300" height="16" rx="8" fill="rgba(255,255,255,0.07)"/>
+    <circle cx="60" cy="180" r="36" fill="rgba(255,255,255,0.14)"/>
+    <rect x="124" y="158" width="420" height="20" rx="10" fill="rgba(255,255,255,0.10)"/>
+    <rect x="124" y="188" width="300" height="16" rx="8" fill="rgba(255,255,255,0.07)"/>
+    <circle cx="60" cy="300" r="36" fill="#2952FF"/>
+    <text x="60" y="310" font-family="Arial" font-size="34" font-weight="700" fill="#FFFFFF" text-anchor="middle">?</text>
+    <rect x="124" y="278" width="420" height="20" rx="10" fill="rgba(255,255,255,0.10)"/>
+    <rect x="124" y="308" width="300" height="16" rx="8" fill="rgba(255,255,255,0.07)"/>
   </svg>`, 900, 360);
 
   const slide1 = slideRoot(
-    badge('ACHTUNG'),
-    headline('Wohin schaut dein Besucher zuerst?'),
-    subline('Bei den meisten Websites entscheidet das der Zufall – nicht das Design.'),
-    visualBlock(s1_bars),
-    keyLearning('Ohne bewusste Führung landet der Blick, wo er zufällig hängen bleibt.', true),
+    badge('WUSSTEST DU?'),
+    headline('Google liest nicht nur, was auf deiner Seite steht.'),
+    subline('Sondern auch, wer dahintersteckt – und ob das glaubwürdig ist.'),
+    visualBlock(s1_rows),
+    keyLearning('Ohne erkennbare Urheberschaft bleibt jede Information unbestätigt.', true),
     footer(),
   );
 
-  // === SLIDE 2: DAS PRINZIP ===
+  // === SLIDE 2: PROBLEM ===
+  const grid2 = (() => {
+    const cells = [];
+    for (let i = 0; i < 9; i++) {
+      const x = (i % 3) * 300;
+      const y = Math.floor(i / 3) * 135;
+      cells.push(`<rect x="${x}" y="${y}" width="276" height="112" rx="14" fill="rgba(255,255,255,0.09)"/>`);
+      cells.push(`<circle cx="${x + 36}" cy="${y + 36}" r="16" fill="rgba(255,255,255,0.18)"/>`);
+      cells.push(`<rect x="${x + 64}" y="${y + 26}" width="180" height="12" rx="6" fill="rgba(255,255,255,0.14)"/>`);
+      cells.push(`<rect x="${x + 64}" y="${y + 46}" width="130" height="10" rx="5" fill="rgba(255,255,255,0.08)"/>`);
+    }
+    return svgImg(`<svg width="900" height="405" viewBox="0 0 900 405" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 405);
+  })();
+
+  const slide2 = slideRoot(
+    badge('DAS PROBLEM'),
+    headline('Viele Websites schreiben für Keywords – nicht für Vertrauen.', 54),
+    subline('Austauschbare Texte ohne erkennbare Autor:innen oder Kontaktangaben.'),
+    visualBlock(grid2),
+    keyLearning('Anonyme Inhalte wirken für Google wie für Menschen: unbestätigt.', true),
+    footer(),
+  );
+
+  // === SLIDE 3: DAS PRINZIP (E-E-A-T) ===
   function signalCard(label, sublabel, accent) {
     return h('div', {
       style: {
         display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
-        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px',
+        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px',
       }
     },
       h('div', { style: { display: 'flex', width: '48px', height: '48px', borderRadius: '12px', backgroundColor: accent } }),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, label),
-      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, sublabel),
+      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, label),
+      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.35' } }, sublabel),
     );
   }
 
-  const slide2 = slideRoot(
-    badge('VISUELLE HIERARCHIE'),
-    headline('Der Blick folgt Signalen, nicht dem Zufall.'),
-    subline('Vier Stellschrauben bestimmen, was zuerst gesehen wird.'),
+  const slide3 = slideRoot(
+    badge('E-E-A-T'),
+    headline('Vier Buchstaben, die Google seit 2022 nutzt.', 56),
+    subline('Aus Googles Search Quality Rater Guidelines – dem Leitfaden für menschliche Bewerter:innen.'),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Größe', 'Größer wirkt wichtiger', C.accent),
-          signalCard('Kontrast', 'Was auffällt, wird gesehen', C.accent2),
+          signalCard('Experience', 'Hat die Person das selbst erlebt?', C.accent),
+          signalCard('Expertise', 'Verfügt sie über echtes Fachwissen?', C.accent2),
         ),
         h('div', { style: { display: 'flex', gap: '16px' } },
-          signalCard('Farbe', 'Ein Akzent lenkt den Blick', C.gold),
-          signalCard('Position', 'Oben links zuerst', C.green),
+          signalCard('Authority', 'Ist die Quelle in ihrem Feld anerkannt?', C.gold),
+          signalCard('Trust', 'Sind Angaben genau & transparent?', C.green),
         ),
       ),
     ),
-    keyLearning('Wer diese vier Signale gezielt einsetzt, steuert die Aufmerksamkeit.'),
+    keyLearning('Vier Fragen, die Google an jeden Inhalt stellt – bewusst oder nicht.'),
     footer(),
   );
 
-  // === SLIDE 3: PROBLEM (ohne Führung) ===
-  const grid3 = (() => {
-    const cells = [];
-    for (let i = 0; i < 12; i++) {
-      const x = (i % 4) * 225;
-      const y = Math.floor(i / 4) * 125;
-      cells.push(`<rect x="${x}" y="${y}" width="205" height="105" rx="14" fill="rgba(255,255,255,0.09)"/>`);
-    }
-    return svgImg(`<svg width="900" height="375" viewBox="0 0 900 375" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 375);
-  })();
-
-  const slide3 = slideRoot(
-    badge('OHNE FÜHRUNG'),
-    headline('Gleich groß, gleich laut, gleich wichtig.'),
-    subline('Wenn alles um Aufmerksamkeit konkurriert, gewinnt am Ende: nichts.'),
-    visualBlock(grid3),
-    keyLearning('Kein Fokuspunkt heißt: Der Besucher findet nicht, was für dich zählt.', true),
-    footer(),
-  );
-
-  // === SLIDE 4: WENDEPUNKT (Kontrast-Karten) ===
+  // === SLIDE 4: KONTRAST OHNE/MIT ===
   const slide4 = slideRoot(
-    badge('OHNE VS. MIT HIERARCHIE'),
-    headline('Ein Unterschied in Größe und Kontrast reicht oft.', 56),
+    badge('OHNE VS. MIT E-E-A-T-SIGNALEN'),
+    headline('Der Unterschied liegt oft nur in ein paar Angaben.', 54),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'OHNE'),
           h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
           h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '70%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+          h('div', { style: { display: 'flex', width: '60%', height: '20px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
+          h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, marginTop: '6px' } }, 'Kein Autor, kein Kontakt'),
         ),
         h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '28px', gap: '14px' } },
           h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'MIT'),
-          h('div', { style: { display: 'flex', width: '100%', height: '44px', backgroundColor: '#FFFFFF', borderRadius: '6px' } }),
-          h('div', { style: { display: 'flex', width: '55%', height: '16px', backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: '4px' } }),
+          h('div', { style: { display: 'flex', alignItems: 'center', gap: '12px' } },
+            h('div', { style: { display: 'flex', width: '44px', height: '44px', borderRadius: '22px', backgroundColor: '#FFFFFF' } }),
+            h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+              h('div', { style: { display: 'flex', width: '140px', height: '14px', backgroundColor: '#FFFFFF', borderRadius: '4px' } }),
+              h('div', { style: { display: 'flex', width: '100px', height: '10px', backgroundColor: 'rgba(255,255,255,0.6)', borderRadius: '4px' } }),
+            ),
+          ),
+          h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.85)', marginTop: '6px' } }, 'Name, Qualifikation, Kontakt sichtbar'),
         ),
       ),
     ),
-    keyLearning('Der Blick geht zuerst zum größten, kontrastreichsten Element.'),
+    keyLearning('Dieselbe Information wirkt mit Urheberschaft sofort glaubwürdiger.'),
     footer(),
   );
 
-  // === SLIDE 5: DIE VIER SIGNALE KONKRET ===
+  // === SLIDE 5: KONKRETE UMSETZUNG ===
   function exampleCard(title, desc) {
     return h('div', {
       style: {
@@ -224,61 +240,60 @@ async function main() {
         border: '1px solid rgba(255,255,255,0.08)',
       }
     },
-      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
+      h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
+      h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.55)', lineHeight: '1.4' } }, desc),
     );
   }
 
   const slide5 = slideRoot(
-    badge('DIE VIER SIGNALE'),
-    headline('So setzt du visuelle Hierarchie konkret um.', 52),
+    badge('SO SETZT DU ES UM'),
+    headline('Vier konkrete Hebel für deine Website.', 52),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } },
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Größe', 'Headline deutlich größer als Fließtext'),
-          exampleCard('Kontrast', 'Dunkler Button auf hellem Grund'),
+          exampleCard('Autor-Box', 'Name, Foto & Qualifikation unter jedem Beitrag'),
+          exampleCard('Impressum & Kontakt', 'Vollständig und leicht auffindbar'),
         ),
         h('div', { style: { display: 'flex', gap: '16px' } },
-          exampleCard('Farbe', 'Ein Akzentton nur für den CTA'),
-          exampleCard('Position', 'Kernbotschaft above the fold'),
+          exampleCard('Echte Referenzen', 'Namen, Firmen, nachprüfbare Case Studies'),
+          exampleCard('Aktualität', 'Veröffentlichungs- & Update-Datum sichtbar'),
         ),
       ),
     ),
-    keyLearning('Jedes Signal für sich wirkt leise. Zusammen wirken sie stark.'),
+    keyLearning('Jeder Hebel für sich ist klein. Zusammen entsteht Glaubwürdigkeit.'),
     footer(),
   );
 
   // === SLIDE 6: DAS PRINZIP DAHINTER ===
   const s6_visual = svgImg(`<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
-    <line x1="350" y1="30" x2="350" y2="350" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
-    <circle cx="350" cy="60" r="46" fill="#2952FF"/>
-    <circle cx="350" cy="180" r="34" fill="rgba(255,255,255,0.28)"/>
-    <circle cx="350" cy="280" r="24" fill="rgba(255,255,255,0.16)"/>
-    <circle cx="350" cy="350" r="16" fill="rgba(255,255,255,0.10)"/>
+    <circle cx="350" cy="190" r="170" fill="rgba(255,255,255,0.06)"/>
+    <circle cx="350" cy="190" r="120" fill="rgba(255,255,255,0.10)"/>
+    <circle cx="350" cy="190" r="70" fill="#2952FF"/>
+    <text x="350" y="200" font-family="Arial" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Trust</text>
   </svg>`, 700, 380);
 
   const slide6 = slideRoot(
-    badge('DAS PRINZIP DAHINTER'),
-    headline('Das Auge sucht sich automatisch einen Ankerpunkt.', 52),
-    subline('Gestaltpsychologie: Wir gewichten visuelle Elemente automatisch nach Größe, Kontrast und Nähe – ohne bewusst nachzudenken.'),
+    badge('WARUM DAS WICHTIG IST'),
+    headline('Google simuliert, was Menschen sowieso einschätzen.', 50),
+    subline('Die Search Quality Rater Guidelines verlangen von menschlichen Testern genau das: Erfahrung, Fachwissen, Autorität und Vertrauenswürdigkeit einer Quelle zu bewerten.'),
     visualBlock(
       h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_visual),
     ),
-    keyLearning('Ordnest du bewusst, denkt der Besucher nicht nach – er folgt einfach.'),
+    keyLearning('Wer für Menschen glaubwürdig wirkt, erfüllt meist auch E-E-A-T.'),
     footer(),
   );
 
-  // === SLIDE 7: LEARNINGS ===
+  // === SLIDE 7: CHECKLISTE ===
   const learnings = [
-    { num: '01', text: 'Größe: Das Wichtigste am größten darstellen', pct: 25 },
-    { num: '02', text: 'Kontrast: Klarer Unterschied zum Hintergrund', pct: 50 },
-    { num: '03', text: 'Position: Kernbotschaft above the fold', pct: 75 },
-    { num: '04', text: 'Zurückhaltung: Nicht alles gleichzeitig betonen', pct: 100 },
+    { num: '01', text: 'Autor:innen-Box mit echtem Namen & Foto ergänzen', pct: 25 },
+    { num: '02', text: 'Impressum & Kontakt sichtbar verlinken', pct: 50 },
+    { num: '03', text: 'Referenzen mit echten Namen & Firmen zeigen', pct: 75 },
+    { num: '04', text: 'Veröffentlichungsdatum & Updates kennzeichnen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Learnings für deine nächste Seite.', 54),
+    headline('4 Schritte für mehr Trust-Signale.', 54),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
@@ -294,7 +309,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Weniger Betonung an mehr Stellen bringt mehr Wirkung an der richtigen.'),
+    keyLearning('Vier kleine Änderungen – ein deutlich glaubwürdigerer Auftritt.'),
     footer(),
   );
 
@@ -304,10 +319,10 @@ async function main() {
       bdLogoImg(C.text, 140),
       h('span', {
         style: {
-          display: 'flex', fontSize: '52px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          display: 'flex', fontSize: '50px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Sieht deine Website nach Zufall aus – oder nach Führung?'),
+      }, 'Weiß Google, wer hinter deiner Website steckt?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
