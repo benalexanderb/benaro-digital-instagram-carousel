@@ -123,6 +123,12 @@
       "topic": "E-E-A-T: Warum Google nicht nur deine Keywords, sondern dein Vertrauen bewertet",
       "date_used": "2026-10-04",
       "summary": "Googles Search Quality Rater Guidelines (offizielles Dokument) sowie Google Search Central Dokumentation zu 'helpful, reliable, people-first content': Inhalte werden anhand von vier Signalen bewertet - Experience, Expertise, Authoritativeness, Trustworthiness (E-E-A-T). Trust gilt laut Google als das wichtigste der vier Signale. Praktische Konsequenz fuer Websites: eigene Fotos/Beispiele statt Stockmaterial, Autoren-Bio mit echten Qualifikationen, Erwaehnungen von anerkannten Quellen sowie Impressum, Datenschutz und echte Kontaktdaten als Trust-Fundament."
+    },
+    {
+      "category": "Performance & Ladezeit",
+      "topic": "Ladezeit vs. Absprungrate: Warum jede Sekunde Wartezeit Kunden kostet",
+      "date_used": "2026-10-07",
+      "summary": "Google/DoubleClick-Studie \"The Need for Mobile Speed\" (2016, Analyse von ueber 900.000 mobilen Landingpages in 126 Laendern): Absprungwahrscheinlichkeit steigt von 1 auf 3 Sekunden Ladezeit um 32%, von 1 auf 10 Sekunden um 123%; 53% der mobilen Besuche werden bei >3s Ladezeit abgebrochen. Ergaenzt durch Core Web Vitals (web.dev/vitals), seit 2021 offizieller Google-Rankingfaktor: LCP <= 2,5s, INP <= 200ms, CLS <= 0,1."
     }
   ]
 }

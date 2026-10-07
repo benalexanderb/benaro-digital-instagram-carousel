@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-07",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Zwei Sekunden mehr Ladezeit, ein Drittel weniger Besucher. Google hat 900.000 mobile Landingpages analysiert: Ab 3 Sekunden springt über die Hälfte der Besucher ab – und seit 2021 zählt Tempo auch für dein Ranking. Speichern nicht vergessen 📌\n\n#Webdesign #Performance #SEO #CoreWebVitals #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-01.png",
+      "altText": "Große Zahl +32% als Stat-Hero: Von 1 auf 3 Sekunden Ladezeit steigt die Absprungrate um 32 Prozent."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-02.png",
+      "altText": "Balkendiagramm zeigt die steigende Absprungwahrscheinlichkeit bei Ladezeiten von 1 zu 3, 5, 6 und 10 Sekunden."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-03.png",
+      "altText": "Raster aus 100 Kacheln, 53 davon rot markiert, symbolisiert die abgebrochenen mobilen Website-Besuche."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-04.png",
+      "altText": "Zwei Kontrast-Karten: Erwartung, dass Ladezeit nur UX betrifft, versus Realität als offizieller Google-Rankingfaktor."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-05.png",
+      "altText": "Drei Karten erklären die Core-Web-Vitals-Metriken LCP, INP und CLS mit ihren jeweiligen Zielwerten."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-06.png",
+      "altText": "Drei Karten mit den größten Tempo-Hebeln: Bildoptimierung, Hosting & CDN, schlankes JavaScript."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-07.png",
+      "altText": "Checkliste mit vier nummerierten Schritten und Fortschrittsbalken zur Verbesserung der Ladezeit."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-07/slides/slide-08.png",
+      "altText": "Benaro-Digital-Logo mit der Frage, wie schnell die eigene Website wirklich lädt – Call-to-Action-Slide."
+    }
+  ]
+}

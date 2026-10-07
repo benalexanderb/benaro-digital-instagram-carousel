@@ -121,60 +121,110 @@ async function main() {
     return h('img', { src, width, height, style: { display: 'flex' } });
   }
 
-  // === SLIDE 1: HOOK — die 4 Buchstaben ===
-  function letterCard(letter, label, accent) {
-    return h('div', {
-      style: {
-        display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px',
-        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '24px', padding: '48px 10px',
-      }
-    },
-      h('span', { style: { display: 'flex', fontSize: '84px', fontWeight: 800, fontFamily: 'Manrope', color: accent, lineHeight: '1' } }, letter),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted, textAlign: 'center' } }, label),
-    );
-  }
-
+  // === SLIDE 1: HOOK — Stat Hero ===
   const slide1 = slideRoot(
     badge('WUSSTEST DU?'),
-    headline('Vier Buchstaben entscheiden, ob Google deiner Seite vertraut.'),
-    subline('Gute Keywords sind nur die halbe Miete – Google prüft explizit, wie glaubwürdig ein Inhalt wirkt.'),
+    headline('2 Sekunden länger laden lässt die Absprungrate um 32% steigen.'),
+    subline('Eine Google-Analyse von über 900.000 mobilen Landingpages zeigt: Schon kleine Verzögerungen kosten Besucher.'),
     visualBlock(
-      h('div', { style: { display: 'flex', gap: '14px', height: '420px' } },
-        letterCard('E', 'Experience', C.accent),
-        letterCard('E', 'Expertise', C.accent2),
-        letterCard('A', 'Authority', C.gold),
-        letterCard('T', 'Trust', C.green),
+      h('div', {
+        style: {
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '28px', padding: '56px 10px', gap: '8px',
+        }
+      },
+        h('span', { style: { display: 'flex', fontSize: '150px', fontWeight: 800, fontFamily: 'Manrope', color: C.accent2, lineHeight: '1' } }, '+32%'),
+        h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted, textAlign: 'center' } }, 'mehr Absprünge: von 1 auf 3 Sekunden Ladezeit'),
       ),
     ),
-    keyLearning('Ohne erkennbare Vertrauenssignale zählt gutes Fachwissen für Google kaum.', true),
+    keyLearning('Ladezeit ist kein technisches Detail – sie entscheidet, ob ein Besucher überhaupt bleibt.', true),
     footer(),
   );
 
-  // === SLIDE 2: DAS PROBLEM ===
-  const grid2 = (() => {
-    const cells = [];
-    for (let i = 0; i < 12; i++) {
-      const x = (i % 4) * 225;
-      const y = Math.floor(i / 4) * 125;
-      cells.push(`<rect x="${x}" y="${y}" width="205" height="105" rx="14" fill="rgba(255,255,255,0.09)"/>`);
-    }
-    return svgImg(`<svg width="900" height="375" viewBox="0 0 900 375" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, 900, 375);
-  })();
+  // === SLIDE 2: DIE STUDIE — Balkendiagramm ===
+  const bars2 = [
+    { label: '1→3s', pct: 32 },
+    { label: '1→5s', pct: 90 },
+    { label: '1→6s', pct: 106 },
+    { label: '1→10s', pct: 123 },
+  ];
+  const maxPct = 123;
+  const chartW = 860, chartH = 420, barGap = 40;
+  const barW = (chartW - barGap * (bars2.length - 1)) / bars2.length;
+  const barsSvg = bars2.map((b, i) => {
+    const bh = (b.pct / maxPct) * (chartH - 20);
+    const x = i * (barW + barGap);
+    const y = chartH - bh;
+    return `<rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="14" fill="${i === bars2.length - 1 ? '#00C2B8' : 'rgba(255,255,255,0.18)'}"/>`;
+  }).join('');
+  const chart2 = svgImg(`<svg width="${chartW}" height="${chartH}" viewBox="0 0 ${chartW} ${chartH}" xmlns="http://www.w3.org/2000/svg">${barsSvg}</svg>`, chartW, chartH);
 
   const slide2 = slideRoot(
-    badge('DAS PROBLEM'),
-    headline('Viele Websites zeigen Fachwissen – aber keine Beweise dafür.'),
-    subline('Google bewertet nicht nur, WAS auf einer Seite steht, sondern WER erkennbar dahintersteht.'),
-    visualBlock(grid2),
-    keyLearning('Fehlende Trust-Signale wirken sich bei Google und beim Besucher gleich aus: beide bleiben skeptisch.', true),
+    badge('DIE STUDIE'),
+    headline('So stark steigt die Absprungwahrscheinlichkeit mit der Ladezeit.', 52),
+    subline('Google/DoubleClick-Studie "The Need for Mobile Speed" (2016): Je länger eine Seite lädt, desto wahrscheinlicher springen Besucher ab.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
+        chart2,
+        h('div', { style: { display: 'flex', gap: `${barGap}px` } },
+          ...bars2.map(b => h('span', { style: { display: 'flex', flex: '1', justifyContent: 'center', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, b.label)),
+        ),
+      ),
+    ),
+    keyLearning('Von 1 auf 10 Sekunden Ladezeit steigt die Absprungwahrscheinlichkeit um 123%.', true),
     footer(),
   );
 
-  // === SLIDE 3: E-E-A-T ERKLÄRT ===
-  function signalCard(label, sublabel, accent) {
+  // === SLIDE 3: DIE FOLGE — Icon-Grid (53 von 100) ===
+  const grid3 = (() => {
+    const cells = [];
+    const cols = 10, rows = 10, cell = 60, gap = 10;
+    for (let i = 0; i < cols * rows; i++) {
+      const x = (i % cols) * (cell + gap);
+      const y = Math.floor(i / cols) * (cell + gap);
+      const filled = i < 53;
+      cells.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="10" fill="${filled ? '#EF4444' : 'rgba(255,255,255,0.08)'}"/>`);
+    }
+    const w = cols * (cell + gap) - gap, hgt = rows * (cell + gap) - gap;
+    return svgImg(`<svg width="${w}" height="${hgt}" viewBox="0 0 ${w} ${hgt}" xmlns="http://www.w3.org/2000/svg">${cells.join('')}</svg>`, w, hgt);
+  })();
+
+  const slide3 = slideRoot(
+    badge('DIE FOLGE'),
+    headline('53 von 100 mobilen Besuchen werden abgebrochen.', 56),
+    subline('Laut derselben Studie springen 53% der mobilen Besucher ab, wenn eine Seite länger als 3 Sekunden zum Laden braucht.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, grid3),
+    ),
+    keyLearning('Über die Hälfte der potenziellen Kunden ist weg, bevor die Seite überhaupt fertig geladen hat.', true),
+    footer(),
+  );
+
+  // === SLIDE 4: ERWARTUNG VS. REALITÄT ===
+  const slide4 = slideRoot(
+    badge('ABER'),
+    headline('Ladezeit ist längst mehr als ein UX-Detail.', 56),
+    visualBlock(
+      h('div', { style: { display: 'flex', gap: '16px' } },
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'ERWARTUNG'),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Ladezeit betrifft nur den Komfort der Besucher'),
+        ),
+        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '26px', gap: '14px' } },
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'REALITÄT'),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Ladezeit ist seit 2021 offizieller Google-Rankingfaktor (Core Web Vitals)'),
+        ),
+      ),
+    ),
+    keyLearning('Eine langsame Seite kostet also nicht nur Besucher, sondern auch Sichtbarkeit bei Google.'),
+    footer(),
+  );
+
+  // === SLIDE 5: CORE WEB VITALS — 3 Karten ===
+  function vitalCard(label, sublabel, accent) {
     return h('div', {
       style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
+        display: 'flex', flexDirection: 'column', gap: '10px',
         backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px',
       }
     },
@@ -184,55 +234,26 @@ async function main() {
     );
   }
 
-  const slide3 = slideRoot(
-    badge('E-E-A-T'),
-    headline('Das prüfen Googles Search Quality Rater Guidelines genau.', 50),
-    subline('Vier Signale, anhand derer Qualität und Vertrauenswürdigkeit von Inhalten bewertet werden.'),
+  const slide5 = slideRoot(
+    badge('CORE WEB VITALS'),
+    headline('Diese 3 Zahlen misst Google direkt auf deiner Website.', 48),
+    subline('Offizielle Google-Metriken (web.dev/vitals), seit 2021 Teil des Page Experience Update.'),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
-        h('div', { style: { display: 'flex', gap: '14px' } },
-          signalCard('Experience', 'Eigene, echte Erfahrung mit dem Thema', C.accent),
-          signalCard('Expertise', 'Nachweisbares Fachwissen', C.accent2),
-        ),
-        h('div', { style: { display: 'flex', gap: '14px' } },
-          signalCard('Authoritativeness', 'Anerkennung durch andere Quellen', C.gold),
-          signalCard('Trustworthiness', 'Verlässlichkeit, Sicherheit, Transparenz', C.green),
-        ),
+        vitalCard('LCP', 'Largest Contentful Paint – größtes Element sichtbar in max. 2,5 Sekunden', C.accent),
+        vitalCard('INP', 'Interaction to Next Paint – Reaktion auf Klicks in max. 200 Millisekunden', C.accent2),
+        vitalCard('CLS', 'Cumulative Layout Shift – visuelle Stabilität, Wert max. 0,1', C.gold),
       ),
     ),
-    keyLearning('Diese vier Signale zusammen entscheiden, ob Inhalte als hilfreich und verlässlich gelten.'),
+    keyLearning('Alle drei Werte lassen sich kostenlos mit Google PageSpeed Insights prüfen.'),
     footer(),
   );
 
-  // === SLIDE 4: OHNE VS. MIT VERTRAUEN ===
-  const slide4 = slideRoot(
-    badge('OHNE VS. MIT VERTRAUEN'),
-    headline('Der Unterschied liegt oft in sichtbaren Details.', 56),
-    visualBlock(
-      h('div', { style: { display: 'flex', gap: '16px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'OHNE'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Stockfoto, kein erkennbarer Autor, kein Impressum sichtbar'),
-          h('div', { style: { display: 'flex', width: '100%', height: '16px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '70%', height: '16px', backgroundColor: 'rgba(255,255,255,0.14)', borderRadius: '4px' } }),
-        ),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.accent, borderRadius: '20px', padding: '26px', gap: '14px' } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'MIT'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Echtes Foto, Autoren-Bio mit Qualifikation, Impressum & Kontakt sichtbar'),
-          h('div', { style: { display: 'flex', width: '100%', height: '16px', backgroundColor: '#FFFFFF', borderRadius: '4px' } }),
-          h('div', { style: { display: 'flex', width: '55%', height: '16px', backgroundColor: 'rgba(255,255,255,0.6)', borderRadius: '4px' } }),
-        ),
-      ),
-    ),
-    keyLearning('Dieselben Inhalte wirken völlig unterschiedlich glaubwürdig – je nachdem, was sichtbar ist.'),
-    footer(),
-  );
-
-  // === SLIDE 5: KONKRET UMSETZEN ===
-  function exampleCard(title, desc) {
+  // === SLIDE 6: DIE GRÖSSTEN HEBEL ===
+  function leverCard(title, desc) {
     return h('div', {
       style: {
-        display: 'flex', flex: '1', flexDirection: 'column', gap: '10px',
+        display: 'flex', flexDirection: 'column', gap: '10px',
         backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '26px',
         border: '1px solid rgba(255,255,255,0.08)',
       }
@@ -242,55 +263,31 @@ async function main() {
     );
   }
 
-  const slide5 = slideRoot(
-    badge('KONKRET UMSETZEN'),
-    headline('So machst du E-E-A-T auf deiner Website sichtbar.', 48),
+  const slide6 = slideRoot(
+    badge('DIE GRÖSSTEN HEBEL'),
+    headline('Drei Stellschrauben bringen den größten Tempo-Gewinn.', 48),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
-        h('div', { style: { display: 'flex', gap: '14px' } },
-          exampleCard('Erfahrung zeigen', 'Eigene Fotos & echte Beispiele statt Stockmaterial'),
-          exampleCard('Expertise belegen', 'Autoren-Bio mit echten Qualifikationen'),
-        ),
-        h('div', { style: { display: 'flex', gap: '14px' } },
-          exampleCard('Autorität aufbauen', 'Erwähnungen & Links von anerkannten Quellen'),
-          exampleCard('Vertrauen schaffen', 'Impressum, Datenschutz, echte Kontaktdaten'),
-        ),
+        leverCard('Bildoptimierung', 'Bilder in WebP/AVIF ausliefern statt unkomprimiertem JPEG/PNG'),
+        leverCard('Hosting & CDN', 'Kurze Serverantwortzeiten durch gutes Hosting und ein Content Delivery Network'),
+        leverCard('Schlankes JavaScript', 'Weniger blockierendes Skript, damit der Browser die Seite früher zeigen kann'),
       ),
     ),
-    keyLearning('Jedes Signal für sich ist klein. Zusammen prägen sie den Gesamteindruck.'),
-    footer(),
-  );
-
-  // === SLIDE 6: DAS FUNDAMENT ===
-  const s6_pyramid = svgImg(`<svg width="760" height="360" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
-    <rect x="300" y="0" width="160" height="70" rx="12" fill="rgba(255,255,255,0.20)"/>
-    <rect x="220" y="90" width="320" height="70" rx="12" fill="rgba(255,255,255,0.28)"/>
-    <rect x="140" y="180" width="480" height="70" rx="12" fill="rgba(255,255,255,0.4)"/>
-    <rect x="40" y="270" width="680" height="80" rx="14" fill="#10B981"/>
-  </svg>`, 760, 360);
-
-  const slide6 = slideRoot(
-    badge('DAS FUNDAMENT'),
-    headline('Trustworthiness trägt die anderen drei Signale.', 50),
-    subline('Laut Googles Search Quality Rater Guidelines gilt Trust als das wichtigste der vier Signale.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, s6_pyramid),
-    ),
-    keyLearning('Ohne Vertrauen verlieren Erfahrung, Expertise und Autorität ihre Wirkung.'),
+    keyLearning('Keine dieser Maßnahmen braucht ein Redesign – alle lassen sich an einer bestehenden Website umsetzen.'),
     footer(),
   );
 
   // === SLIDE 7: CHECKLISTE ===
   const learnings = [
-    { num: '01', text: 'Erfahrung zeigen: eigene Fotos & echte Beispiele', pct: 25 },
-    { num: '02', text: 'Expertise belegen: Autoren-Bio mit echten Qualifikationen', pct: 50 },
-    { num: '03', text: 'Autorität aufbauen: Erwähnungen von anerkannten Quellen', pct: 75 },
-    { num: '04', text: 'Vertrauen schaffen: Impressum, Datenschutz, echte Kontaktdaten', pct: 100 },
+    { num: '01', text: 'Bilder komprimieren und als WebP/AVIF ausliefern', pct: 25 },
+    { num: '02', text: 'Hosting & CDN für kurze Serverantwortzeiten wählen', pct: 50 },
+    { num: '03', text: 'Blockierendes JavaScript reduzieren', pct: 75 },
+    { num: '04', text: 'Core Web Vitals regelmäßig mit PageSpeed Insights prüfen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Schritte für mehr E-E-A-T auf deiner Website.', 50),
+    headline('4 Schritte zu einer schnelleren Website.', 54),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
@@ -306,7 +303,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Wer alle vier Signale sichtbar macht, baut Vertrauen auf – bei Google und bei echten Besuchern.'),
+    keyLearning('Jede Sekunde, die du einsparst, reduziert die Absprungrate messbar.'),
     footer(),
   );
 
@@ -319,7 +316,7 @@ async function main() {
           display: 'flex', fontSize: '50px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Wie vertrauenswürdig wirkt deine Website wirklich?'),
+      }, 'Wie schnell lädt deine Website wirklich?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
