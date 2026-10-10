@@ -129,6 +129,12 @@
       "topic": "Ladezeit vs. Absprungrate: Warum jede Sekunde Wartezeit Kunden kostet",
       "date_used": "2026-10-07",
       "summary": "Google/DoubleClick-Studie \"The Need for Mobile Speed\" (2016, Analyse von ueber 900.000 mobilen Landingpages in 126 Laendern): Absprungwahrscheinlichkeit steigt von 1 auf 3 Sekunden Ladezeit um 32%, von 1 auf 10 Sekunden um 123%; 53% der mobilen Besuche werden bei >3s Ladezeit abgebrochen. Ergaenzt durch Core Web Vitals (web.dev/vitals), seit 2021 offizieller Google-Rankingfaktor: LCP <= 2,5s, INP <= 200ms, CLS <= 0,1."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "A/B-Testing-Grundlagen: Wie Website-Entscheidungen auf Daten statt Bauchgefuehl beruhen",
+      "date_used": "2026-10-10",
+      "summary": "Design-of-Experiments-Prinzip (Ronald Fisher, 'The Design of Experiments', 1935): Nur wer eine Variable isoliert veraendert, kann ihr die Wirkung eindeutig zuordnen. Ergaenzt durch etablierte CRO-Testmethodik (u.a. dokumentiert von CXL Institute und gaengigen A/B-Testing-Tools wie Optimizely/VWO): paralleler statt sequenzieller Vergleich von Variante A und B, ueblicher Konfidenz-Standard von mindestens 95% vor einer Entscheidung, Vermeidung des 'Peeking'-Fehlers durch verfruehten Testabbruch."
     }
   ]
 }

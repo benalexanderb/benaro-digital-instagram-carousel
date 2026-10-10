@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-10",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Die meisten Website-Entscheidungen beruhen auf Bauchgefühl, nicht auf Daten. A/B-Testing zeigt zwei Varianten parallel und macht sichtbar, was wirklich mehr Kund:innen überzeugt. Folge @benarodigital für mehr Website-Wissen.\n\n#Webdesign #CRO #ABTesting #Conversion #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-01.png",
+      "altText": "Zwei Kontrast-Karten: Bauchgefühl ('Ich glaube, Grün passt besser zum Button') versus A/B-Test, der datenbasiert zeigt, welche Farbe mehr Klicks bringt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-02.png",
+      "altText": "Zwei Balken nebeneinander, Variante A und Variante B, symbolisieren den gleichzeitigen Traffic-Split beim A/B-Testing."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-03.png",
+      "altText": "Kontrast zwischen der Zahl 1 (eine Variable geändert, Ergebnis eindeutig) und der Zahl 5 (fünf Variablen gleichzeitig, Ergebnis unklar)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-04.png",
+      "altText": "Zwei Fortschrittsbalken: ein kurzer roter Balken für ein verfrühtes Zwischenergebnis an Tag 2, ein voller grüner Balken für ein belastbares Testergebnis nach ausreichender Stichprobe."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-05.png",
+      "altText": "Vier Karten mit Testelementen, die oft den größten Unterschied machen: CTA-Text & Farbe, Value Proposition, Formular-Länge, Preis-Darstellung."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-06.png",
+      "altText": "Zwei Kontrast-Karten: Erwartung, dass ein gewonnener Test für immer gilt, versus Realität, dass sich Nutzerverhalten ändert und Tests wiederholt werden müssen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-07.png",
+      "altText": "Checkliste mit vier nummerierten Schritten und Fortschrittsbalken für einen sauberen A/B-Testaufbau."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-10/slides/slide-08.png",
+      "altText": "Benaro-Digital-Logo mit der Frage, was man auf der eigenen Website zuerst testen würde – Call-to-Action-Slide."
+    }
+  ]
+}
