@@ -135,6 +135,12 @@
       "topic": "A/B-Testing-Grundlagen: Wie Website-Entscheidungen auf Daten statt Bauchgefuehl beruhen",
       "date_used": "2026-10-10",
       "summary": "Design-of-Experiments-Prinzip (Ronald Fisher, 'The Design of Experiments', 1935): Nur wer eine Variable isoliert veraendert, kann ihr die Wirkung eindeutig zuordnen. Ergaenzt durch etablierte CRO-Testmethodik (u.a. dokumentiert von CXL Institute und gaengigen A/B-Testing-Tools wie Optimizely/VWO): paralleler statt sequenzieller Vergleich von Variante A und B, ueblicher Konfidenz-Standard von mindestens 95% vor einer Entscheidung, Vermeidung des 'Peeking'-Fehlers durch verfruehten Testabbruch."
+    },
+    {
+      "category": "Trust & Social Proof",
+      "topic": "Trust-Badges am Zahlungspunkt: Warum sichtbare Sicherheits-Signale die wahrgenommene Unsicherheit senken",
+      "date_used": "2026-10-13",
+      "summary": "Checkout-Usability-Forschung des Baymard Institute (laufende, qualitative Studienreihe zu E-Commerce-Checkouts): Unbekannte oder generische Sicherheits-Siegel werden von Nutzer:innen kaum als echtes Vertrauenssignal wahrgenommen, nur erkannte/verifizierbare Siegel wirken. Ergaenzt durch Robert Cialdinis Autoritaetsprinzip ('Influence: The Psychology of Persuasion', 1984): ein wiedererkanntes, legitimes Symbol wirkt wie ein Stueck Autoritaet und senkt das gefuehlte Risiko. Praktische Konsequenz: echte statt selbst gebaute Siegel verwenden, SSL-Schloss und bekannte Zahlungsanbieter-Logos sichtbar zeigen und Signale direkt am Formular bzw. Zahlungs-Button platzieren statt nur im Footer."
     }
   ]
 }
