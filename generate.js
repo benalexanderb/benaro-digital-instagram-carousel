@@ -132,100 +132,105 @@ async function main() {
     }, ...children);
   }
 
-  // === SLIDE 1: HOOK — Vermutung vs. Test ===
+  // === SLIDE 1: HOOK — Impressum/Kontakt fehlt = Vertrauen fehlt ===
   const slide1 = slideRoot(
     badge('ACHTUNG'),
-    headline('Du rätst, welcher Button mehr Kunden bringt – dabei kannst du es einfach testen.', 52),
-    subline('Die meisten Änderungen an Websites basieren auf Bauchgefühl statt auf Daten.'),
+    headline('Ein verstecktes Impressum kostet dich mehr als nur eine Abmahnung.', 50),
+    subline('Bevor jemand ein Formular ausfüllt oder kauft, prüft das Gehirn unbewusst: Ist hier wirklich ein echtes Unternehmen?'),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'BAUCHGEFÜHL'),
-          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, '"Ich glaube, Grün passt besser zum Button."'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'KEIN KONTAKT SICHTBAR'),
+          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Nur ein Formular, kein Name, kein Impressum im Blick'),
         ]),
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'A/B-TEST'),
-          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, '"Die Daten zeigen, welche Farbe wirklich mehr Klicks bringt."'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'KONTAKT SICHTBAR'),
+          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Echter Name, Adresse, Impressum klar verlinkt'),
         ], true),
       ),
     ),
-    keyLearning('A/B-Testing macht aus Vermutungen überprüfbare Entscheidungen.', true),
+    keyLearning('Vertrauen entscheidet sich oft schon vor der ersten Zeile Verkaufstext.', true),
     footer(),
   );
 
-  // === SLIDE 2: DAS PRINZIP — Traffic-Split ===
-  const split2 = (() => {
-    const w = 860, hgt = 180, r = 24;
-    return svgImg(`<svg width="${w}" height="${hgt}" viewBox="0 0 ${w} ${hgt}" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="${w / 2 - 10}" height="${hgt}" rx="${r}" fill="rgba(255,255,255,0.10)"/>
-      <rect x="${w / 2 + 10}" y="0" width="${w / 2 - 10}" height="${hgt}" rx="${r}" fill="#00C2B8"/>
-    </svg>`, w, hgt);
-  })();
+  // === SLIDE 2: DIE FORSCHUNG — Stanford Web Credibility ===
+  function signalCard(label) {
+    return h('div', {
+      style: {
+        display: 'flex', alignItems: 'center', gap: '16px', padding: '20px 24px',
+        backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px',
+      }
+    },
+      h('div', { style: { display: 'flex', width: '14px', height: '14px', borderRadius: '7px', backgroundColor: C.accent2 } }),
+      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 600, fontFamily: 'Inter', color: C.text } }, label),
+    );
+  }
 
   const slide2 = slideRoot(
-    badge('DAS PRINZIP'),
-    headline('A/B-Testing zeigt zwei Varianten gleichzeitig – nicht nacheinander.', 50),
-    subline('Ein Teil der Besucher sieht Variante A (Kontrollgruppe), der andere Teil zeitgleich Variante B.'),
+    badge('DIE FORSCHUNG'),
+    headline('Was Besucher wirklich prüfen, bevor sie dir vertrauen.', 52),
+    subline('Die Stanford Web Credibility Research (B.J. Fogg et al., Stanford Persuasive Technology Lab, 2002) untersuchte, welche Signale Websites glaubwürdig wirken lassen.'),
     visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        split2,
-        h('div', { style: { display: 'flex', gap: '20px' } },
-          h('span', { style: { display: 'flex', flex: '1', justifyContent: 'center', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.textMuted } }, 'VARIANTE A'),
-          h('span', { style: { display: 'flex', flex: '1', justifyContent: 'center', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, 'VARIANTE B'),
-        ),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+        signalCard('Echte Adresse & Telefonnummer'),
+        signalCard('Erkennbare Ansprechpartner'),
+        signalCard('Transparente Kontaktmöglichkeiten'),
+        signalCard('Vollständiges, auffindbares Impressum'),
       ),
     ),
-    keyLearning('Nur der Gleichzeitig-Vergleich filtert externe Einflüsse wie Saison oder Traffic-Quelle heraus.'),
+    keyLearning('Je greifbarer eine Website wirkt, desto glaubwürdiger erscheint sie.'),
     footer(),
   );
 
-  // === SLIDE 3: REGEL 1 — Eine Variable ===
+  // === SLIDE 3: DAS PROBLEM — versteckte Signale ===
+  function hiddenCard(title, desc) {
+    return h('div', {
+      style: {
+        display: 'flex', flexDirection: 'column', gap: '8px',
+        backgroundColor: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)',
+        borderRadius: '18px', padding: '22px',
+      }
+    },
+      h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.red } }, title),
+      h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 500, fontFamily: 'Inter', color: 'rgba(255,255,255,0.65)', lineHeight: '1.4' } }, desc),
+    );
+  }
+
   const slide3 = slideRoot(
-    badge('REGEL 1'),
-    headline('Teste immer nur eine Variable auf einmal.', 56),
-    subline('Design-of-Experiments-Prinzip (Ronald Fisher, 1935): Nur wer eine Sache isoliert verändert, kann ihr die Wirkung eindeutig zuordnen.'),
+    badge('DAS PROBLEM'),
+    headline('Viele Websites verstecken genau diese Signale.', 54),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+        hiddenCard('Impressum drei Klicks tief', 'Versteckt im Footer-Kleingedruckten statt direkt sichtbar'),
+        hiddenCard('Nur ein Kontaktformular', 'Keine Telefonnummer, keine Adresse, kein echter Name'),
+        hiddenCard('Kein Gesicht hinter der Marke', 'Anonyme Teamseite ohne Namen oder Fotos'),
+      ),
+    ),
+    keyLearning('Jedes versteckte Signal ist eine kleine Vertrauens-Hürde mehr.', true),
+    footer(),
+  );
+
+  // === SLIDE 4: DER WENDEPUNKT — Erwartung vs. Realität ===
+  const slide4 = slideRoot(
+    badge('DER WENDEPUNKT'),
+    headline('Sichtbarkeit schlägt Design-Perfektion.', 54),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         card([
-          h('span', { style: { display: 'flex', fontSize: '60px', fontWeight: 800, fontFamily: 'Manrope', color: C.green } }, '1'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Variable geändert: Ergebnis eindeutig zuordenbar'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'ERWARTUNG'),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, '"Rechtstexte stören das cleane Design, also klein und versteckt halten."'),
         ]),
         card([
-          h('span', { style: { display: 'flex', fontSize: '60px', fontWeight: 800, fontFamily: 'Manrope', color: C.red } }, '5'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Variablen gleichzeitig: unklar, was den Unterschied gemacht hat'),
-        ]),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'REALITÄT'),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Sichtbare, echte Kontaktdaten wirken vertrauenswürdiger als jedes Design-Detail.'),
+        ], true),
       ),
     ),
-    keyLearning('Ohne Isolation weißt du am Ende nicht, welche Änderung wirklich gewirkt hat.', true),
+    keyLearning('Transparenz ist kein Stilbruch, sondern ein Vertrauenssignal.'),
     footer(),
   );
 
-  // === SLIDE 4: REGEL 2 — Nicht zu früh abbrechen ===
-  const slide4 = slideRoot(
-    badge('REGEL 2'),
-    headline('Brich den Test nicht ab, sobald ein Ergebnis gut aussieht.', 48),
-    subline('Ein frühes Zwischenergebnis ist oft Zufall. Üblicher Standard in der Statistik: erst ab mindestens 95% Konfidenz entscheiden.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Tag 2: "Variante B gewinnt!" — verfrüht'),
-          h('div', { style: { display: 'flex', height: '20px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '10px' } },
-            h('div', { style: { display: 'flex', width: '28%', height: '20px', backgroundColor: C.red, borderRadius: '10px' } }),
-          ),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.text } }, 'Nach ausreichender Stichprobe: belastbares Ergebnis'),
-          h('div', { style: { display: 'flex', height: '20px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '10px' } },
-            h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: C.green, borderRadius: '10px' } }),
-          ),
-        ),
-      ),
-    ),
-    keyLearning('Geduld statt Bauchgefühl: Erst bei ausreichender Stichprobengröße ein Ergebnis werten.', true),
-    footer(),
-  );
-
-  // === SLIDE 5: WAS SICH LOHNT ===
+  // === SLIDE 5: KONKRET UMGESETZT ===
   function leverCard(title, desc) {
     return h('div', {
       style: {
@@ -240,51 +245,59 @@ async function main() {
   }
 
   const slide5 = slideRoot(
-    badge('WAS SICH LOHNT'),
-    headline('Diese Elemente bringen oft den größten Unterschied.', 48),
+    badge('KONKRET UMGESETZT'),
+    headline('So wird dein Impressum zum Vertrauenssignal.', 48),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
-        leverCard('CTA-Text & Farbe', 'Welche Formulierung und Farbe zum Klick bewegt'),
-        leverCard('Value Proposition', 'Wie klar das Angebot in der Headline erklärt wird'),
-        leverCard('Formular-Länge', 'Wie viele Felder Besucher wirklich ausfüllen müssen'),
-        leverCard('Preis-Darstellung', 'Wie Preise und Pakete gegenübergestellt werden'),
+        leverCard('Footer-Link gut sichtbar', 'Impressum & Datenschutz auf jeder Seite leicht auffindbar verlinken'),
+        leverCard('Echter Name statt nur Formular', 'Telefonnummer oder Adresse zusätzlich zum Kontaktformular zeigen'),
+        leverCard('Gesicht zur Marke', 'Ansprechpartner mit Namen und wenn möglich Foto sichtbar machen'),
+        leverCard('Regelmäßig aktuell halten', 'Kontaktdaten und Rechtstexte bei Änderungen zeitnah anpassen'),
       ),
     ),
-    keyLearning('Kleine Elemente nah am Entscheidungsmoment wirken oft stärker als ein komplettes Redesign.'),
+    keyLearning('Kleine, sichtbare Details schaffen oft mehr Vertrauen als ein komplettes Redesign.'),
     footer(),
   );
 
-  // === SLIDE 6: ERWARTUNG VS. REALITÄT ===
+  // === SLIDE 6: DAS PRINZIP ===
+  function checkIcon(color) {
+    return svgImg(`<svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="28" cy="28" r="26" fill="none" stroke="${color}" stroke-width="4"/>
+      <path d="M17 29L24 36L39 20" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`, 56, 56);
+  }
+
   const slide6 = slideRoot(
-    badge('HÄUFIGER FEHLER'),
-    headline('Ein Test ist kein Ergebnis für immer.', 56),
+    badge('DAS PRINZIP'),
+    headline('Transparenz senkt das gefühlte Risiko.', 56),
+    subline('Die Stanford-Forschung zeigt: Je mehr eine Website wie ein echtes, greifbares Unternehmen wirkt, desto glaubwürdiger erscheint sie.'),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'ERWARTUNG'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Ein gewonnener Test gilt für immer'),
+          h('span', { style: { display: 'flex', fontSize: '60px', fontWeight: 800, fontFamily: 'Manrope', color: C.red } }, '?'),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Anonyme Website: Wer steckt eigentlich dahinter?'),
         ]),
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'REALITÄT'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Nutzerverhalten, Angebot und Design ändern sich – Tests regelmäßig wiederholen'),
-        ], true),
+          checkIcon(C.green),
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Transparente Website: Hier steht ein echtes Unternehmen dahinter'),
+        ]),
       ),
     ),
-    keyLearning('A/B-Testing ist ein fortlaufender Prozess, kein einmaliges Projekt.'),
+    keyLearning('Jeder Klick fühlt sich für Besucher wie ein kleines Risiko an — Transparenz macht es kleiner.'),
     footer(),
   );
 
   // === SLIDE 7: CHECKLISTE ===
   const learnings = [
-    { num: '01', text: 'Klare Hypothese und eine Zielmetrik festlegen', pct: 25 },
-    { num: '02', text: 'Nur eine Variable pro Test verändern', pct: 50 },
-    { num: '03', text: 'Traffic gleichzeitig und zufällig auf beide Varianten verteilen', pct: 75 },
-    { num: '04', text: 'Erst bei ausreichender Stichprobe entscheiden', pct: 100 },
+    { num: '01', text: 'Impressum & Datenschutz im Footer gut sichtbar verlinken', pct: 25 },
+    { num: '02', text: 'Echte Telefonnummer oder Adresse zusätzlich zum Formular zeigen', pct: 50 },
+    { num: '03', text: 'Ansprechpartner mit Namen und wenn möglich Foto sichtbar machen', pct: 75 },
+    { num: '04', text: 'Kontaktdaten regelmäßig auf Aktualität prüfen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Schritte zu einem sauberen A/B-Test.', 54),
+    headline('4 Schritte zu mehr Vertrauen durch Transparenz.', 46),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
@@ -300,7 +313,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Ein sauberer Testaufbau entscheidet darüber, ob du dem Ergebnis trauen kannst.'),
+    keyLearning('Sichtbare Transparenz entscheidet mit, ob Besucher dir ihre Daten geben.'),
     footer(),
   );
 
@@ -310,10 +323,10 @@ async function main() {
       bdLogoImg(C.text, 140),
       h('span', {
         style: {
-          display: 'flex', fontSize: '48px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          display: 'flex', fontSize: '46px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Was würdest du auf deiner Website zuerst testen?'),
+      }, 'Wie leicht findet ein Fremder dein Impressum auf deiner Website?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
