@@ -135,6 +135,12 @@
       "topic": "A/B-Testing-Grundlagen: Wie Website-Entscheidungen auf Daten statt Bauchgefuehl beruhen",
       "date_used": "2026-10-10",
       "summary": "Design-of-Experiments-Prinzip (Ronald Fisher, 'The Design of Experiments', 1935): Nur wer eine Variable isoliert veraendert, kann ihr die Wirkung eindeutig zuordnen. Ergaenzt durch etablierte CRO-Testmethodik (u.a. dokumentiert von CXL Institute und gaengigen A/B-Testing-Tools wie Optimizely/VWO): paralleler statt sequenzieller Vergleich von Variante A und B, ueblicher Konfidenz-Standard von mindestens 95% vor einer Entscheidung, Vermeidung des 'Peeking'-Fehlers durch verfruehten Testabbruch."
+    },
+    {
+      "category": "Trust & Social Proof",
+      "topic": "Impressum & echte Kontaktdaten als Vertrauenssignal",
+      "date_used": "2026-10-14",
+      "summary": "Stanford Web Credibility Research (B.J. Fogg et al., Stanford Persuasive Technology Lab, 'How Do Users Evaluate the Credibility of Web Sites?', 2002): Sichtbare, echte Kontaktinformationen (Adresse, Telefonnummer, erkennbare Ansprechpartner) zaehlen zu den staerksten Hebeln, um die wahrgenommene Glaubwuerdigkeit einer Website zu erhoehen. Praktische Konsequenz: Impressum und Kontakt nicht im Footer-Kleingedruckten verstecken, sondern leicht auffindbar machen, echte Ansprechpartner mit Namen (und wenn moeglich Foto) statt nur ein anonymes Kontaktformular zeigen."
     }
   ]
 }
