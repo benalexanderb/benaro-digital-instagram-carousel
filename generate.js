@@ -132,100 +132,109 @@ async function main() {
     }, ...children);
   }
 
-  // === SLIDE 1: HOOK — Vermutung vs. Test ===
+  // === SLIDE 1: HOOK — Vertrauenssignal am falschen Ort ===
   const slide1 = slideRoot(
     badge('ACHTUNG'),
-    headline('Du rätst, welcher Button mehr Kunden bringt – dabei kannst du es einfach testen.', 52),
-    subline('Die meisten Änderungen an Websites basieren auf Bauchgefühl statt auf Daten.'),
+    headline('Dein Sicherheitssiegel bringt nichts, wenn es keiner sieht, wenn er bezahlen will.', 50),
+    subline('Die meisten Vertrauenssignale landen im Footer – weit weg vom Moment, in dem Besucher ihre Daten eingeben.'),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'BAUCHGEFÜHL'),
-          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, '"Ich glaube, Grün passt besser zum Button."'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'IM FOOTER'),
+          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Siegel & Logos, die kaum jemand beim Kauf noch sieht'),
         ]),
         card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'A/B-TEST'),
-          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, '"Die Daten zeigen, welche Farbe wirklich mehr Klicks bringt."'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'AM KAUFBUTTON'),
+          h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Dieselben Signale genau dort, wo die Entscheidung fällt'),
         ], true),
       ),
     ),
-    keyLearning('A/B-Testing macht aus Vermutungen überprüfbare Entscheidungen.', true),
+    keyLearning('Nicht das Signal fehlt – der Ort, an dem es steht, ist falsch.', true),
     footer(),
   );
 
-  // === SLIDE 2: DAS PRINZIP — Traffic-Split ===
-  const split2 = (() => {
-    const w = 860, hgt = 180, r = 24;
-    return svgImg(`<svg width="${w}" height="${hgt}" viewBox="0 0 ${w} ${hgt}" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="${w / 2 - 10}" height="${hgt}" rx="${r}" fill="rgba(255,255,255,0.10)"/>
-      <rect x="${w / 2 + 10}" y="0" width="${w / 2 - 10}" height="${hgt}" rx="${r}" fill="#00C2B8"/>
-    </svg>`, w, hgt);
-  })();
+  // === SLIDE 2: DAS PRINZIP — Risiko steigt mit jedem Schritt ===
+  function riskBar(pct, color) {
+    return h('div', { style: { display: 'flex', height: '20px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '10px' } },
+      h('div', { style: { display: 'flex', width: `${pct}%`, height: '20px', backgroundColor: color, borderRadius: '10px' } }),
+    );
+  }
 
   const slide2 = slideRoot(
     badge('DAS PRINZIP'),
-    headline('A/B-Testing zeigt zwei Varianten gleichzeitig – nicht nacheinander.', 50),
-    subline('Ein Teil der Besucher sieht Variante A (Kontrollgruppe), der andere Teil zeitgleich Variante B.'),
+    headline('Je näher die Dateneingabe, desto größer die Kaufangst.', 52),
+    subline('Mit jedem Schritt Richtung Zahlung wächst das wahrgenommene Risiko – und damit die Zahl der Abbrüche.'),
     visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        split2,
-        h('div', { style: { display: 'flex', gap: '20px' } },
-          h('span', { style: { display: 'flex', flex: '1', justifyContent: 'center', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.textMuted } }, 'VARIANTE A'),
-          h('span', { style: { display: 'flex', flex: '1', justifyContent: 'center', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, 'VARIANTE B'),
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '22px' } },
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Produktseite – geringes Risiko'),
+          riskBar(30, C.accent2),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Warenkorb – mittleres Risiko'),
+          riskBar(65, C.gold),
+        ),
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.text } }, 'Zahlungsdaten – höchstes Risiko'),
+          riskBar(100, C.red),
         ),
       ),
     ),
-    keyLearning('Nur der Gleichzeitig-Vergleich filtert externe Einflüsse wie Saison oder Traffic-Quelle heraus.'),
+    keyLearning('Genau am Punkt des höchsten Risikos fehlt meist jedes Vertrauenssignal.', true),
     footer(),
   );
 
-  // === SLIDE 3: REGEL 1 — Eine Variable ===
+  // === SLIDE 3: DER FEHLER — Signale verstreut statt platziert ===
+  function stackCard(title, desc, accent) {
+    return h('div', {
+      style: {
+        display: 'flex', flexShrink: 0, flexDirection: 'column', gap: '10px',
+        backgroundColor: accent ? C.accent : C.cardBg,
+        border: accent ? 'none' : `1px solid ${C.cardBorder}`,
+        borderRadius: '20px', padding: '24px 26px',
+      }
+    },
+      h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: '#FFFFFF' } }, title),
+      h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 500, fontFamily: 'Inter', color: accent ? 'rgba(255,255,255,0.75)' : C.textMuted, lineHeight: '1.4' } }, desc),
+    );
+  }
+
   const slide3 = slideRoot(
-    badge('REGEL 1'),
-    headline('Teste immer nur eine Variable auf einmal.', 56),
-    subline('Design-of-Experiments-Prinzip (Ronald Fisher, 1935): Nur wer eine Sache isoliert verändert, kann ihr die Wirkung eindeutig zuordnen.'),
+    badge('DER FEHLER'),
+    headline('Trust-Signale werden verteilt statt platziert.', 54),
+    subline('Ein Gütesiegel auf der Startseite, eine Kundenstimme auf der "Über uns"-Seite – aber nichts davon direkt neben dem Formular.'),
+    visualBlock(
+      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
+        stackCard('Startseite', 'Gütesiegel im Header – sieht kaum noch jemand beim Checkout'),
+        stackCard('"Über uns"-Seite', 'Kundenstimmen – weit weg vom Kaufmoment'),
+        stackCard('Checkout-Formular', 'Genau hier: meistens kein einziges Vertrauenssignal', true),
+      ),
+    ),
+    keyLearning('Verstreute Signale bauen kein Vertrauen auf – sie werden schlicht übersehen.', true),
+    footer(),
+  );
+
+  // === SLIDE 4: WENDEPUNKT — Erwartung vs. Realität ===
+  const slide4 = slideRoot(
+    badge('WENDEPUNKT'),
+    headline('Mehr Werbeversprechen überzeugt nicht – Nähe zum Klick schon.', 48),
     visualBlock(
       h('div', { style: { display: 'flex', gap: '16px' } },
         card([
-          h('span', { style: { display: 'flex', fontSize: '60px', fontWeight: 800, fontFamily: 'Manrope', color: C.green } }, '1'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Variable geändert: Ergebnis eindeutig zuordenbar'),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'ERWARTUNG'),
+          h('span', { style: { display: 'flex', fontSize: '23px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Mehr Text über Sicherheit und Qualität überzeugt Zweifler'),
         ]),
         card([
-          h('span', { style: { display: 'flex', fontSize: '60px', fontWeight: 800, fontFamily: 'Manrope', color: C.red } }, '5'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Variablen gleichzeitig: unklar, was den Unterschied gemacht hat'),
-        ]),
+          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'REALITÄT'),
+          h('span', { style: { display: 'flex', fontSize: '23px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Ein sichtbares Signal direkt am Button wirkt stärker als jeder zusätzliche Absatz'),
+        ], true),
       ),
     ),
-    keyLearning('Ohne Isolation weißt du am Ende nicht, welche Änderung wirklich gewirkt hat.', true),
+    keyLearning('Vertrauen entsteht im Moment der Entscheidung, nicht davor oder danach.'),
     footer(),
   );
 
-  // === SLIDE 4: REGEL 2 — Nicht zu früh abbrechen ===
-  const slide4 = slideRoot(
-    badge('REGEL 2'),
-    headline('Brich den Test nicht ab, sobald ein Ergebnis gut aussieht.', 48),
-    subline('Ein frühes Zwischenergebnis ist oft Zufall. Üblicher Standard in der Statistik: erst ab mindestens 95% Konfidenz entscheiden.'),
-    visualBlock(
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px' } },
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Tag 2: "Variante B gewinnt!" — verfrüht'),
-          h('div', { style: { display: 'flex', height: '20px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '10px' } },
-            h('div', { style: { display: 'flex', width: '28%', height: '20px', backgroundColor: C.red, borderRadius: '10px' } }),
-          ),
-        ),
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.text } }, 'Nach ausreichender Stichprobe: belastbares Ergebnis'),
-          h('div', { style: { display: 'flex', height: '20px', backgroundColor: 'rgba(255,255,255,0.10)', borderRadius: '10px' } },
-            h('div', { style: { display: 'flex', width: '100%', height: '20px', backgroundColor: C.green, borderRadius: '10px' } }),
-          ),
-        ),
-      ),
-    ),
-    keyLearning('Geduld statt Bauchgefühl: Erst bei ausreichender Stichprobengröße ein Ergebnis werten.', true),
-    footer(),
-  );
-
-  // === SLIDE 5: WAS SICH LOHNT ===
+  // === SLIDE 5: WAS WIRKT ===
   function leverCard(title, desc) {
     return h('div', {
       style: {
@@ -240,58 +249,59 @@ async function main() {
   }
 
   const slide5 = slideRoot(
-    badge('WAS SICH LOHNT'),
-    headline('Diese Elemente bringen oft den größten Unterschied.', 48),
+    badge('WAS WIRKT'),
+    headline('Diese Signale gehören direkt an den Entscheidungspunkt.', 46),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
-        leverCard('CTA-Text & Farbe', 'Welche Formulierung und Farbe zum Klick bewegt'),
-        leverCard('Value Proposition', 'Wie klar das Angebot in der Headline erklärt wird'),
-        leverCard('Formular-Länge', 'Wie viele Felder Besucher wirklich ausfüllen müssen'),
-        leverCard('Preis-Darstellung', 'Wie Preise und Pakete gegenübergestellt werden'),
+        leverCard('Sicherheits-Siegel am Formular', 'SSL/TLS-Hinweis direkt neben den Eingabefeldern, nicht nur im Footer'),
+        leverCard('Zahlungsanbieter-Logos', 'Bekannte Logos nah am Kaufbutton statt irgendwo auf der Seite'),
+        leverCard('Echte Kundenstimmen', 'Mit Namen und Foto statt anonymer Sternebewertung'),
+        leverCard('Rückgabe-Garantie sichtbar', 'Direkt am Button, nicht erst in den AGB verlinkt'),
       ),
     ),
-    keyLearning('Kleine Elemente nah am Entscheidungsmoment wirken oft stärker als ein komplettes Redesign.'),
+    keyLearning('Jedes Signal zählt nur dort, wo gerade eine Entscheidung getroffen wird.'),
     footer(),
   );
 
-  // === SLIDE 6: ERWARTUNG VS. REALITÄT ===
+  // === SLIDE 6: DAS PRINZIP DAHINTER — Social Proof ===
   const slide6 = slideRoot(
-    badge('HÄUFIGER FEHLER'),
-    headline('Ein Test ist kein Ergebnis für immer.', 56),
+    badge('DAS PRINZIP DAHINTER'),
+    headline('Menschen vertrauen Entscheidungen, die andere schon getroffen haben.', 44),
     visualBlock(
-      h('div', { style: { display: 'flex', gap: '16px' } },
-        card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: C.textMuted } }, 'ERWARTUNG'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, 'Ein gewonnener Test gilt für immer'),
-        ]),
-        card([
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, letterSpacing: '2px', fontFamily: 'Manrope', color: 'rgba(255,255,255,0.75)' } }, 'REALITÄT'),
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: '#FFFFFF', lineHeight: '1.4' } }, 'Nutzerverhalten, Angebot und Design ändern sich – Tests regelmäßig wiederholen'),
-        ], true),
+      h('div', {
+        style: {
+          display: 'flex', flexDirection: 'column', gap: '18px',
+          backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px',
+        }
+      },
+        h('div', { style: { display: 'flex', width: '48px', height: '6px', backgroundColor: C.accent2, borderRadius: '3px' } }),
+        h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.5' } },
+          'Robert Cialdinis Prinzip der "Social Proof" (sozialer Bewährtheit): Unsicherheit sinkt, wenn sichtbar wird, dass andere eine Handlung bereits sicher vollzogen haben.'),
+        h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted } }, '— "Influence", Robert Cialdini'),
       ),
     ),
-    keyLearning('A/B-Testing ist ein fortlaufender Prozess, kein einmaliges Projekt.'),
+    keyLearning('Ein Trust-Signal am Kaufbutton macht genau das sichtbar: Andere haben hier schon sicher gekauft.'),
     footer(),
   );
 
   // === SLIDE 7: CHECKLISTE ===
   const learnings = [
-    { num: '01', text: 'Klare Hypothese und eine Zielmetrik festlegen', pct: 25 },
-    { num: '02', text: 'Nur eine Variable pro Test verändern', pct: 50 },
-    { num: '03', text: 'Traffic gleichzeitig und zufällig auf beide Varianten verteilen', pct: 75 },
-    { num: '04', text: 'Erst bei ausreichender Stichprobe entscheiden', pct: 100 },
+    { num: '01', text: 'Sicherheits-Siegel direkt neben Zahlungsfeldern platzieren', pct: 25 },
+    { num: '02', text: 'Bekannte Zahlungsanbieter-Logos nah am Kaufbutton zeigen', pct: 50 },
+    { num: '03', text: 'Echte Kundenstimmen mit Namen statt generischer Sterne', pct: 75 },
+    { num: '04', text: 'Rückgabe- oder Geld-zurück-Garantie am Entscheidungspunkt sichtbar machen', pct: 100 },
   ];
 
   const slide7 = slideRoot(
     badge('DEINE CHECKLISTE'),
-    headline('4 Schritte zu einem sauberen A/B-Test.', 54),
+    headline('4 Vertrauenssignale für den Kaufmoment.', 54),
     visualBlock(
       h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         ...learnings.map(l =>
           h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px 24px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
             h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
               h('span', { style: { display: 'flex', fontSize: '34px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '58px' } }, l.num),
-              h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text),
+              h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text),
             ),
             h('div', { style: { display: 'flex', height: '6px', backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: '3px' } },
               h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }),
@@ -300,7 +310,7 @@ async function main() {
         ),
       ),
     ),
-    keyLearning('Ein sauberer Testaufbau entscheidet darüber, ob du dem Ergebnis trauen kannst.'),
+    keyLearning('Nicht mehr Signale zählen, sondern die richtige Stelle dafür.'),
     footer(),
   );
 
@@ -310,10 +320,10 @@ async function main() {
       bdLogoImg(C.text, 140),
       h('span', {
         style: {
-          display: 'flex', fontSize: '48px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
+          display: 'flex', fontSize: '46px', fontWeight: 800, fontFamily: 'Manrope', color: C.text,
           textAlign: 'center', lineHeight: '1.2', letterSpacing: '-1px',
         }
-      }, 'Was würdest du auf deiner Website zuerst testen?'),
+      }, 'Wo auf deiner Website fehlt noch ein Trust-Signal direkt am Klickpunkt?'),
       h('span', {
         style: {
           display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
