@@ -135,6 +135,12 @@
       "topic": "A/B-Testing-Grundlagen: Wie Website-Entscheidungen auf Daten statt Bauchgefuehl beruhen",
       "date_used": "2026-10-10",
       "summary": "Design-of-Experiments-Prinzip (Ronald Fisher, 'The Design of Experiments', 1935): Nur wer eine Variable isoliert veraendert, kann ihr die Wirkung eindeutig zuordnen. Ergaenzt durch etablierte CRO-Testmethodik (u.a. dokumentiert von CXL Institute und gaengigen A/B-Testing-Tools wie Optimizely/VWO): paralleler statt sequenzieller Vergleich von Variante A und B, ueblicher Konfidenz-Standard von mindestens 95% vor einer Entscheidung, Vermeidung des 'Peeking'-Fehlers durch verfruehten Testabbruch."
+    },
+    {
+      "category": "Trust & Social Proof",
+      "topic": "Trust-Badges im Checkout: Warum ein Sicherheitssiegel kein Deko-Element ist",
+      "date_used": "2026-10-16",
+      "summary": "Baymard Institute, langjaehrige Checkout-Usability-Forschung (dokumentiert u.a. unter baymard.com/research): Unsicherheit beim Bezahlen zaehlt zu den wiederkehrend beobachteten Abbruchgruenden im Checkout. Ergaenzt durch Verlustaversion (Daniel Kahneman & Amos Tversky, 1979): jeder Klick auf einen Bezahlbutton fuehlt sich wie ein potenzielles Risiko an. Praktische Konsequenz: Trust-Badges wirken nur, wenn sie erkennbar (bekannte, tatsaechlich genutzte Marken/Zahlungsanbieter statt generischer Schloss-Icons), echt (keine Fake-Zertifikate) und nah am Entscheidungspunkt platziert sind - kombiniert mit echten Kontaktdaten/Impressum."
     }
   ]
 }
