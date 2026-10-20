@@ -141,6 +141,12 @@
       "topic": "Trust-Badges im Checkout: Warum ein Sicherheitssiegel kein Deko-Element ist",
       "date_used": "2026-10-16",
       "summary": "Baymard Institute, langjaehrige Checkout-Usability-Forschung (dokumentiert u.a. unter baymard.com/research): Unsicherheit beim Bezahlen zaehlt zu den wiederkehrend beobachteten Abbruchgruenden im Checkout. Ergaenzt durch Verlustaversion (Daniel Kahneman & Amos Tversky, 1979): jeder Klick auf einen Bezahlbutton fuehlt sich wie ein potenzielles Risiko an. Praktische Konsequenz: Trust-Badges wirken nur, wenn sie erkennbar (bekannte, tatsaechlich genutzte Marken/Zahlungsanbieter statt generischer Schloss-Icons), echt (keine Fake-Zertifikate) und nah am Entscheidungspunkt platziert sind - kombiniert mit echten Kontaktdaten/Impressum."
+    },
+    {
+      "category": "Content & Storytelling",
+      "topic": "Klartext statt Fachjargon: Warum einfache Sprache mehr Kunden gewinnt",
+      "date_used": "2026-10-20",
+      "summary": "Jakob Nielsen / Nielsen Norman Group, 'How Users Read on the Web' (1997) sowie 'Concise, Scannable, and Objective: How to Write for the Web' (1997): Nutzer lesen Webseiten nicht wortgetreu, sondern ueberfliegen sie scannend. Praegnante, scannable und sachliche Sprache wurde in Nielsens Vergleichstest gegenueber werblicher, jargonlastiger Sprache deutlich besser verstanden. Praktische Konsequenz: Fachbegriffe durch Alltagssprache ersetzen, Kernaussage an den Anfang stellen, kurze Saetze statt verschachtelter Konstruktionen."
     }
   ]
 }
