@@ -141,6 +141,12 @@
       "topic": "Trust-Badges im Checkout: Warum ein Sicherheitssiegel kein Deko-Element ist",
       "date_used": "2026-10-16",
       "summary": "Baymard Institute, langjaehrige Checkout-Usability-Forschung (dokumentiert u.a. unter baymard.com/research): Unsicherheit beim Bezahlen zaehlt zu den wiederkehrend beobachteten Abbruchgruenden im Checkout. Ergaenzt durch Verlustaversion (Daniel Kahneman & Amos Tversky, 1979): jeder Klick auf einen Bezahlbutton fuehlt sich wie ein potenzielles Risiko an. Praktische Konsequenz: Trust-Badges wirken nur, wenn sie erkennbar (bekannte, tatsaechlich genutzte Marken/Zahlungsanbieter statt generischer Schloss-Icons), echt (keine Fake-Zertifikate) und nah am Entscheidungspunkt platziert sind - kombiniert mit echten Kontaktdaten/Impressum."
+    },
+    {
+      "category": "Content & Storytelling",
+      "topic": "Marketing-Sprech vs. objektive Sprache: Warum Superlative beim Scannen uebersprungen werden",
+      "date_used": "2026-10-22",
+      "summary": "Jakob Nielsen, 'How Users Read on the Web' (1997, Nielsen Norman Group / useit.com): In einem kontrollierten Test derselben Webseite in mehreren Textvarianten schnitt die werbliche ('marketese') Version am schlechtesten ab, waehrend eine Kombination aus praegnantem, scannbarem und objektivem Text die gemessene Usability um 124% verbesserte. Praktische Konsequenz fuer Websites: Superlative wie 'Marktfuehrer' oder 'einzigartig' durch konkrete, ueberpruefbare Fakten und Beispiele ersetzen, Inhalte scannbar strukturieren (Zwischenueberschriften, Aufzaehlungen) und aus Kundenperspektive statt Eigenlob formulieren."
     }
   ]
 }
