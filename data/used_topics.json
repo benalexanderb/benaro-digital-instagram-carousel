@@ -147,6 +147,12 @@
       "topic": "Marketing-Sprech vs. objektive Sprache: Warum Superlative beim Scannen uebersprungen werden",
       "date_used": "2026-10-22",
       "summary": "Jakob Nielsen, 'How Users Read on the Web' (1997, Nielsen Norman Group / useit.com): In einem kontrollierten Test derselben Webseite in mehreren Textvarianten schnitt die werbliche ('marketese') Version am schlechtesten ab, waehrend eine Kombination aus praegnantem, scannbarem und objektivem Text die gemessene Usability um 124% verbesserte. Praktische Konsequenz fuer Websites: Superlative wie 'Marktfuehrer' oder 'einzigartig' durch konkrete, ueberpruefbare Fakten und Beispiele ersetzen, Inhalte scannbar strukturieren (Zwischenueberschriften, Aufzaehlungen) und aus Kundenperspektive statt Eigenlob formulieren."
+    },
+    {
+      "category": "Mobile & Accessibility",
+      "topic": "Responsive Typografie: Warum feste Pixel-Schriftgroessen mobile Nutzer ausbremsen",
+      "date_used": "2026-10-27",
+      "summary": "W3C Web Content Accessibility Guidelines (WCAG) 2.1, Success Criterion 1.4.4 'Resize Text' (Konformitätsstufe AA): Text muss sich ohne Verlust von Inhalt oder Funktion auf bis zu 200% vergroessern lassen - mit festen px-Schriftgroessen ist das nicht gewaehrleistet. Ergaenzt durch das dokumentierte Verhalten von Mobile Safari (iOS): Formularfelder mit font-size unter 16px loesen beim Fokussieren einen automatischen Zoom aus. Praktische Konsequenz fuer Websites: relative Einheiten (rem/em) statt fester px-Werte fuer Schriftgroessen nutzen, Body-Text mindestens 16px, Viewport-Zoom niemals per user-scalable=no deaktivieren."
     }
   ]
 }
