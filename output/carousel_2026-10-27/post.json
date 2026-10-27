@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-27",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Am Laptop sieht deine Website perfekt aus, am Handy ist sie kaum lesbar. Grund: feste Pixel-Schriftgrößen statt relativer Einheiten. WCAG verlangt, Text verlustfrei auf 200% vergrößerbar zu halten – mit px geht das nicht. Speichern nicht vergessen 📌\n\n#Webdesign #Barrierefreiheit #UXDesign #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-01.png",
+      "altText": "Kontrast-Karten: links 'Am Desktop' mit scharfem, geplant wirkendem Text, rechts 'Am Handy' mit zu kleinen Buchstaben, die Zoomen nötig machen – der Widerspruch als Einstieg ins Thema responsive Typografie."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-02.png",
+      "altText": "Große Zahl 200% als Stat-Hero mit Verweis auf WCAG Success Criterion 1.4.4 'Resize Text', das verlangt, dass sich Text verlustfrei auf diesen Wert vergrößern lässt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-03.png",
+      "altText": "Durchgestrichene Code-Zeilen 'font-size: 12px', 'Formularfelder mit font-size: 14px' und 'user-scalable=no im Viewport-Tag' – typische Fehler, die mobile Lesbarkeit und Zoom blockieren."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-04.png",
+      "altText": "Kontrast-Karten: Erwartung 'Pixel-genaues Design wirkt auf jedem Gerät gleich professionell' versus Realität 'Feste px-Werte skalieren nicht mit – Nutzer zoomen oder brechen ab'."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-05.png",
+      "altText": "Kontrast-Karten: links 'Unter 16px' mit ungewolltem Auto-Zoom von Safari auf dem iPhone beim Antippen eines Formularfelds, rechts 'Ab 16px' mit stabilem Feld ohne Zoom."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-06.png",
+      "altText": "Vier Karten mit Lösungsregeln für responsive Typografie: rem für Basis-Schrift, em für Abstände, Body-Text ab 16px, Zoom nie per user-scalable=no blockieren."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-07.png",
+      "altText": "Checkliste mit vier nummerierten Schritten und Fortschrittsbalken: Body-Schrift auf 16px setzen, px auf rem/em umstellen, Viewport-Zoom nie deaktivieren, auf 200% Zoom testen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-27/slides/slide-08.png",
+      "altText": "Benaro-Digital-Logo zentriert mit der Frage, ob sich die eigene Website auf 200% vergrößern lässt oder das Layout schon bei 125% bricht – Call-to-Action-Slide."
+    }
+  ]
+}
