@@ -125,131 +125,122 @@ async function main() {
     } }, ...children);
   }
 
-  // === SLIDE 1: HOOK ===
+  // === SLIDE 1: HOOK (SCHNELLTEST) ===
   const slide1 = slideBase([
-    badge('ACHTUNG'),
-    headline('Deine Startseite klingt wie eine Werbebroschüre – und das kostet Vertrauen.', 54),
-    subline('Werbesprache wird beim Scannen einfach übersprungen.'),
+    badge('SCHNELLTEST'),
+    headline('Funktioniert deine Website auch ohne Maus?', 54),
+    subline('Ein einfacher Tastatur-Test zeigt sofort, wie zugänglich eine Website wirklich ist.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('DEINE SPRACHE', '„Marktführer“, „einzigartig“, „die beste Lösung“', 'WAS ANKOMMT', 'Nichts Konkretes bleibt im Kopf')),
-    keyLearning('Große Worte überzeugen nicht automatisch – oft bewirken sie das Gegenteil.'),
+      contrastCards('MIT MAUS', 'Navigation wirkt intuitiv und alles ist erreichbar', 'NUR TASTATUR', 'Viele Menüs, Buttons und Formulare bleiben unerreichbar')),
+    keyLearning('Der Tastatur-Test ist einer der schnellsten Wege, Barrierefreiheit zu prüfen.'),
     footer(),
   ]);
 
-  // === SLIDE 2: DIE STUDIE (Stat Hero) ===
-  const slide2 = slideBase([
-    badge('DIE STUDIE'),
-    headline('1997 verglich eine Studie drei Schreibstile im direkten Test.', 52),
-    subline('Jakob Nielsen (Nielsen Norman Group): dieselbe Webseite, dreimal anders formuliert.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '18px' } },
-      h('span', { style: { display: 'flex', fontSize: '150px', fontWeight: 800, fontFamily: 'Manrope', color: C.accent2, letterSpacing: '-3px' } }, '124%'),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 600, fontFamily: 'Inter', color: C.text, textAlign: 'center', lineHeight: '1.4' } },
-        'bessere Usability-Bewertung durch prägnante, scannbare, objektive statt werbliche Sprache')),
-    keyLearning('Nicht die Botschaft wurde getestet, sondern nur die Art, wie sie geschrieben war.'),
-    footer(),
-  ]);
-
-  // === SLIDE 3: DER FEHLER ===
-  function strikePill(text) {
+  // === SLIDE 2: DAS CHAOS ===
+  function rulePill(text) {
     return h('span', { style: {
-      display: 'flex', fontSize: '28px', fontWeight: 500, fontFamily: 'Inter',
-      color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through',
+      display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft,
+      backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '14px', padding: '14px 20px',
     } }, text);
   }
-  const slide3 = slideBase([
-    badge('DER FEHLER'),
-    headline('Viele Websites texten wie eine Hochglanz-Broschüre.'),
-    subline('Superlative ersetzen Informationen – und Nutzer merken das sofort.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '36px' } },
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Marktführer“')),
-        h('div', { style: { display: 'flex', width: '100%', height: '1px', backgroundColor: C.cardBorder } }),
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Einzigartig“')),
-        h('div', { style: { display: 'flex', width: '100%', height: '1px', backgroundColor: C.cardBorder } }),
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Die beste Lösung“')))),
-    keyLearning('Wer nichts Konkretes sagt, wird beim Scannen einfach ignoriert.', true),
+  const slide2 = slideBase([
+    badge('DAS CHAOS'),
+    headline('Barrierefreiheit wirkt wie unzählige Einzelregeln.', 50),
+    subline('Kontrast, Formulare, Bilder, Navigation, Schriftgröße – jede Regel für sich wirkt beliebig.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '14px' } },
+        rulePill('Kontrast'),
+        rulePill('Alt-Text'),
+        rulePill('Formulare'),
+        rulePill('Navigation')),
+      h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '14px' } },
+        rulePill('Schriftgröße'),
+        rulePill('Fokus-Rahmen'),
+        rulePill('Untertitel'),
+        rulePill('Sprache'))),
+    keyLearning('Ohne System wirkt jede neue Regel wie eine zusätzliche Hürde.', true),
     footer(),
   ]);
 
-  // === SLIDE 4: ERWARTUNG VS REALITÄT ===
-  const slide4 = slideBase([
-    badge('ERWARTUNG VS. REALITÄT'),
-    headline('Was die meisten glauben – und was die Forschung zeigt.', 52),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('ERWARTUNG', 'Große Worte wirken professionell und überzeugend', 'REALITÄT', 'Unbelegte Superlative wirken unglaubwürdig und werden beim Scannen übersprungen')),
-    keyLearning('Vertrauen entsteht durch Fakten – nicht durch Selbstlob.'),
-    footer(),
-  ]);
-
-  // === SLIDE 5: DIE REGELN (2x2) ===
-  function ruleCard(title, text) {
+  // === SLIDE 3: DAS PRINZIP (POUR) ===
+  function principleCard(title, text) {
     return h('div', { style: {
       display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(255,255,255,0.06)',
       borderRadius: '20px', padding: '26px', gap: '10px', border: `1px solid ${C.cardBorder}`,
     } },
-      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, title),
+      h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, title),
       h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, text));
   }
-  const slide5 = slideBase([
-    badge('DIE REGELN'),
-    headline('Wie Nielsen objektives Webtexten definiert.', 52),
+  const slide3 = slideBase([
+    badge('DAS PRINZIP: POUR'),
+    headline('Das W3C ordnet jede Regel einem von 4 Prinzipien zu.', 48),
+    subline('WCAG 2.1 (World Wide Web Consortium): Wahrnehmbar, Bedienbar, Verständlich, Robust.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       h('div', { style: { display: 'flex', gap: '14px' } },
-        ruleCard('Konkret statt werblich', 'Fakten und Beispiele statt Superlative wie „einzigartig“ oder „beste Lösung“'),
-        ruleCard('Scannbar strukturieren', 'Zwischenüberschriften und Aufzählungen statt Fließtext-Blöcke')),
+        principleCard('Wahrnehmbar', 'Inhalte müssen für alle Sinne erfassbar sein'),
+        principleCard('Bedienbar', 'Funktionen müssen auch ohne Maus nutzbar sein')),
       h('div', { style: { display: 'flex', gap: '14px' } },
-        ruleCard('Prägnant schreiben', 'Deutlich weniger Wörter als ein vergleichbarer Printtext'),
-        ruleCard('Nutzerperspektive', 'Was hat die Kundschaft davon – nicht wie toll ist das Unternehmen'))),
-    keyLearning('Jede Regel zahlt auf dasselbe Ziel ein: schneller verstanden, schneller vertraut.'),
+        principleCard('Verständlich', 'Sprache und Navigation sind klar und vorhersehbar'),
+        principleCard('Robust', 'Inhalte funktionieren mit jeder Hilfstechnologie'))),
+    keyLearning('Jede neue Regel lässt sich jetzt einem der vier Prinzipien zuordnen.'),
     footer(),
   ]);
 
-  // === SLIDE 6: DAS PRINZIP ===
-  const slide6 = slideBase([
-    badge('DAS PRINZIP'),
-    headline('Nutzer lesen eine Website nicht – sie scannen sie.', 50),
-    subline('Jakob Nielsen (Nielsen Norman Group): Unbelegte Werbeaussagen wirken beim schnellen Scannen unglaubwürdig, weil sie sich nicht überprüfen lassen.'),
+  // === SLIDE 4: WAHRNEHMBAR & BEDIENBAR ===
+  const slide4 = slideBase([
+    badge('WAHRNEHMBAR & BEDIENBAR'),
+    headline('Zwei der vier Prinzipien ganz konkret.', 52),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('BEHAUPTUNG', '„Wir sind die beste Lösung“ – nicht überprüfbar', 'FAKT', 'Eine konkrete Zahl oder ein Beispiel – überprüfbar')),
-    keyLearning('Überprüfbare Aussagen schlagen jede Superlative.'),
+      contrastCards('WAHRNEHMBAR', 'Bilder brauchen Alt-Text, Videos Untertitel – sonst bleiben Inhalte für manche unsichtbar', 'BEDIENBAR', 'Jede Funktion muss auch per Tastatur erreichbar sein, mit sichtbarem Fokus-Rahmen')),
+    keyLearning('Wahrnehmbar heißt: ankommen. Bedienbar heißt: nutzbar sein.'),
     footer(),
   ]);
 
-  // === SLIDE 7: CHECKLISTE ===
+  // === SLIDE 5: VERSTÄNDLICH & ROBUST ===
+  const slide5 = slideBase([
+    badge('VERSTÄNDLICH & ROBUST'),
+    headline('Und die anderen beiden Prinzipien.', 54),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards('VERSTÄNDLICH', 'Navigation bleibt gleich, Sprache ist klar, Fehler werden verständlich erklärt', 'ROBUST', 'Code funktioniert zuverlässig mit Screenreadern und anderer Hilfstechnologie')),
+    keyLearning('Verständlich heißt: nachvollziehbar. Robust heißt: zukunftssicher.'),
+    footer(),
+  ]);
+
+  // === SLIDE 6: ANGEWENDET (Checkliste) ===
   const learnings = [
-    { num: '01', text: 'Superlative durch konkrete Fakten und Beispiele ersetzen', pct: 25 },
-    { num: '02', text: 'Kernaussage in den ersten Satz packen', pct: 50 },
-    { num: '03', text: 'Mit Zwischenüberschriften und Aufzählungen scannbar schreiben', pct: 75 },
-    { num: '04', text: 'Jeden Satz aus Kundensicht prüfen: Was habe ich davon?', pct: 100 },
+    { num: '01', text: 'Jedes Formularfeld hat ein sichtbares Label, nicht nur einen Platzhalter', pct: 25 },
+    { num: '02', text: 'Das Formular lässt sich komplett per Tab-Taste ausfüllen und absenden', pct: 50 },
+    { num: '03', text: 'Fehlermeldungen nennen Ursache und Lösung in klarer Sprache', pct: 75 },
+    { num: '04', text: 'Ein Screenreader liest alle Felder und Fehlermeldungen korrekt vor', pct: 100 },
   ];
-  const slide7 = slideBase([
-    badge('DEINE CHECKLISTE'),
-    headline('4 Schritte zu klarerer Website-Sprache.', 52),
+  const slide6 = slideBase([
+    badge('ANGEWENDET'),
+    headline('Ein Kontaktformular nach allen vier Prinzipien geprüft.', 44),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
       ...learnings.map((l) =>
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
           h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
             h('span', { style: { display: 'flex', fontSize: '36px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '64px' } }, l.num),
-            h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text)),
+            h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text)),
           h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
             h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }))))),
-    keyLearning('Klare Sprache wird nicht nur gelesen – sie wird auch geglaubt.'),
+    keyLearning('Ein einziges Formular zeigt: alle vier Prinzipien greifen zusammen.'),
     footer(),
   ]);
 
-  // === SLIDE 8: CTA ===
-  const slide8 = slideBase([
+  // === SLIDE 7: CTA ===
+  const slide7 = slideBase([
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
       h('span', { style: { display: 'flex', fontSize: '42px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Liest sich deine Startseite wie eine Broschüre – oder wie eine Antwort auf die Frage deiner Kunden?'),
+        'Würde deine Website den Tastatur-Test bestehen?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen.')),
     footer(),
   ]);
 
-  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-10-22', 'slides');
+  const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7];
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-10-28', 'slides');
 
   for (let i = 0; i < slides.length; i++) {
     const svg = await satori(slides[i], { width: W, height: H, fonts });

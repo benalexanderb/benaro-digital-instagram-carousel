@@ -147,6 +147,12 @@
       "topic": "Marketing-Sprech vs. objektive Sprache: Warum Superlative beim Scannen uebersprungen werden",
       "date_used": "2026-10-22",
       "summary": "Jakob Nielsen, 'How Users Read on the Web' (1997, Nielsen Norman Group / useit.com): In einem kontrollierten Test derselben Webseite in mehreren Textvarianten schnitt die werbliche ('marketese') Version am schlechtesten ab, waehrend eine Kombination aus praegnantem, scannbarem und objektivem Text die gemessene Usability um 124% verbesserte. Praktische Konsequenz fuer Websites: Superlative wie 'Marktfuehrer' oder 'einzigartig' durch konkrete, ueberpruefbare Fakten und Beispiele ersetzen, Inhalte scannbar strukturieren (Zwischenueberschriften, Aufzaehlungen) und aus Kundenperspektive statt Eigenlob formulieren."
+    },
+    {
+      "category": "Mobile & Accessibility",
+      "topic": "WCAG 2.1: Die 4 Prinzipien hinter einer barrierefreien Website (POUR)",
+      "date_used": "2026-10-28",
+      "summary": "W3C Web Content Accessibility Guidelines (WCAG) 2.1, offizielles vierteiliges Grundprinzip POUR: Perceivable (Wahrnehmbar), Operable (Bedienbar), Understandable (Verstaendlich), Robust (Robust). Jede konkrete Barrierefreiheits-Regel (Alt-Text, Tastaturbedienbarkeit per WCAG 2.1.1 Keyboard, verstaendliche Fehlermeldungen, Screenreader-Kompatibilitaet) laesst sich einem dieser vier Prinzipien zuordnen. Praktische Konsequenz fuer Websites: Barrierefreiheit nicht als endlose Einzelregel-Liste begreifen, sondern anhand der vier Prinzipien systematisch pruefen, z.B. am Beispiel eines Kontaktformulars."
     }
   ]
 }

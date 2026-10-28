@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-28",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Kannst du deine Website ohne Maus bedienen? Viele scheitern genau daran. WCAG 2.1 (W3C) ordnet jede Barrierefreiheits-Regel einem von vier Prinzipien zu: wahrnehmbar, bedienbar, verständlich, robust. Folge @benarodigital für mehr Website-Wissen.\n\n#Webdesign #Barrierefreiheit #Accessibility #UXDesign #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-01.png",
+      "altText": "Kontrast-Karten: links 'Mit Maus' – Navigation wirkt intuitiv, rechts 'Nur Tastatur' – viele Menüs, Buttons und Formulare bleiben unerreichbar. Hook-Frage: Funktioniert deine Website auch ohne Maus?"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-02.png",
+      "altText": "Acht lose Tags (Kontrast, Alt-Text, Formulare, Navigation, Schriftgröße, Fokus-Rahmen, Untertitel, Sprache) ohne erkennbare Ordnung – Barrierefreiheit wirkt wie unzählige Einzelregeln."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-03.png",
+      "altText": "2x2-Karten-Raster mit den vier WCAG-2.1-Prinzipien (POUR) des W3C: Wahrnehmbar, Bedienbar, Verständlich, Robust, jeweils mit kurzer Definition."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-04.png",
+      "altText": "Kontrast-Karten: Wahrnehmbar – Bilder brauchen Alt-Text, Videos Untertitel; Bedienbar – jede Funktion muss auch per Tastatur mit sichtbarem Fokus-Rahmen erreichbar sein."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-05.png",
+      "altText": "Kontrast-Karten: Verständlich – gleichbleibende Navigation und klare Fehlermeldungen; Robust – Code funktioniert zuverlässig mit Screenreadern und anderer Hilfstechnologie."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-06.png",
+      "altText": "Checkliste mit vier nummerierten Punkten und Fortschrittsbalken: sichtbare Formular-Labels, komplette Tastaturbedienbarkeit, verständliche Fehlermeldungen, korrekte Screenreader-Vorlesung – ein Kontaktformular nach allen vier WCAG-Prinzipien geprüft."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-28/slides/slide-07.png",
+      "altText": "Benaro-Digital-Logo zentriert mit der Frage, ob die eigene Website den Tastatur-Test bestehen würde – Call-to-Action-Slide mit Hinweis, @benarodigital zu folgen."
+    }
+  ]
+}
