@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-29",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Dein Nutzer vergrößert die Schrift – deine Website reagiert nicht. WCAG 2.1 verlangt: Text muss sich auf 200% vergrößern lassen, ohne Inhalt zu verlieren. Feste px-Werte schaffen das nicht, rem schon. Speichern nicht vergessen 📌\n\n#Webdesign #Barrierefreiheit #UXDesign #Webagentur #WCAG",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-01.png",
+      "altText": "Kontrast-Karten: links 'Nutzer stellt ein' mit Browser-Textgröße auf 200%, rechts 'Website zeigt' mit weiterhin derselben festen Größe – der Widerspruch als Einstieg ins Thema skalierbare Typografie."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-02.png",
+      "altText": "Zwei Regel-Karten zu den WCAG-2.1-Kriterien Level AA: 1.4.4 Resize Text (Vergrößerung auf 200% ohne Funktionsverlust) und 1.4.10 Reflow (lesbar bei 320px Breite ohne horizontales Scrollen)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-03.png",
+      "altText": "Dreistufiges Funnel-Diagramm: feste px-Schriftgröße führt über die Textvergrößerung durch den Nutzer zu rot markiertem 'Inhalt bricht', wenn Text überlappt oder abgeschnitten wird."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-04.png",
+      "altText": "Kontrast-Karten: links 'px (fest)' mit 16px bleibt immer 16px, rechts 'rem (relativ)' mit 1rem skaliert automatisch mit der Basis-Schriftgröße des Browsers."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-05.png",
+      "altText": "Drei Karten mit technischen Umsetzungsschritten: Einheiten auf rem/em umstellen, Layout relativ statt in festen px-Containern anlegen, bei 200% Browser-Zoom testen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-06.png",
+      "altText": "Ablauf-Diagramm mit drei Schritten: Nutzer stellt Textgröße im Browser ein, rem berechnet die Schriftgröße relativ dazu neu, Inhalt bleibt lesbar und nutzbar."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-07.png",
+      "altText": "Checkliste mit drei nummerierten Schritten und Fortschrittsbalken: Schriftgrößen in rem/em statt px definieren, Browser-Zoom auf 200% testen, Layout bei 320px Breite ohne horizontales Scrollen prüfen (WCAG 1.4.10)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-10-29/slides/slide-08.png",
+      "altText": "Benaro-Digital-Logo zentriert mit der Frage, ob die eigene Website wirklich bis 200% vergrößerbar ist – Call-to-Action-Slide mit Hinweis auf @benarodigital."
+    }
+  ]
+}

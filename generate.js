@@ -127,113 +127,127 @@ async function main() {
 
   // === SLIDE 1: HOOK ===
   const slide1 = slideBase([
-    badge('ACHTUNG'),
-    headline('Deine Startseite klingt wie eine Werbebroschüre – und das kostet Vertrauen.', 54),
-    subline('Werbesprache wird beim Scannen einfach übersprungen.'),
+    badge('WUSSTEST DU?'),
+    headline('Dein Nutzer vergrößert die Schrift – deine Website reagiert nicht.', 52),
+    subline('Browser-Textgröße hochstellen – und optisch ändert sich: nichts.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('DEINE SPRACHE', '„Marktführer“, „einzigartig“, „die beste Lösung“', 'WAS ANKOMMT', 'Nichts Konkretes bleibt im Kopf')),
-    keyLearning('Große Worte überzeugen nicht automatisch – oft bewirken sie das Gegenteil.'),
+      contrastCards('NUTZER STELLT EIN', 'Textgröße im Browser auf 200%', 'WEBSITE ZEIGT', 'Weiterhin dieselbe feste Größe')),
+    keyLearning('Feste Pixel-Schriftgrößen ignorieren diese Nutzer-Einstellung.', true),
     footer(),
   ]);
 
-  // === SLIDE 2: DIE STUDIE (Stat Hero) ===
-  const slide2 = slideBase([
-    badge('DIE STUDIE'),
-    headline('1997 verglich eine Studie drei Schreibstile im direkten Test.', 52),
-    subline('Jakob Nielsen (Nielsen Norman Group): dieselbe Webseite, dreimal anders formuliert.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '18px' } },
-      h('span', { style: { display: 'flex', fontSize: '150px', fontWeight: 800, fontFamily: 'Manrope', color: C.accent2, letterSpacing: '-3px' } }, '124%'),
-      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 600, fontFamily: 'Inter', color: C.text, textAlign: 'center', lineHeight: '1.4' } },
-        'bessere Usability-Bewertung durch prägnante, scannbare, objektive statt werbliche Sprache')),
-    keyLearning('Nicht die Botschaft wurde getestet, sondern nur die Art, wie sie geschrieben war.'),
-    footer(),
-  ]);
-
-  // === SLIDE 3: DER FEHLER ===
-  function strikePill(text) {
-    return h('span', { style: {
-      display: 'flex', fontSize: '28px', fontWeight: 500, fontFamily: 'Inter',
-      color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through',
-    } }, text);
-  }
-  const slide3 = slideBase([
-    badge('DER FEHLER'),
-    headline('Viele Websites texten wie eine Hochglanz-Broschüre.'),
-    subline('Superlative ersetzen Informationen – und Nutzer merken das sofort.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '36px' } },
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Marktführer“')),
-        h('div', { style: { display: 'flex', width: '100%', height: '1px', backgroundColor: C.cardBorder } }),
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Einzigartig“')),
-        h('div', { style: { display: 'flex', width: '100%', height: '1px', backgroundColor: C.cardBorder } }),
-        h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } }, strikePill('„Die beste Lösung“')))),
-    keyLearning('Wer nichts Konkretes sagt, wird beim Scannen einfach ignoriert.', true),
-    footer(),
-  ]);
-
-  // === SLIDE 4: ERWARTUNG VS REALITÄT ===
-  const slide4 = slideBase([
-    badge('ERWARTUNG VS. REALITÄT'),
-    headline('Was die meisten glauben – und was die Forschung zeigt.', 52),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('ERWARTUNG', 'Große Worte wirken professionell und überzeugend', 'REALITÄT', 'Unbelegte Superlative wirken unglaubwürdig und werden beim Scannen übersprungen')),
-    keyLearning('Vertrauen entsteht durch Fakten – nicht durch Selbstlob.'),
-    footer(),
-  ]);
-
-  // === SLIDE 5: DIE REGELN (2x2) ===
+  // === SLIDE 2: DER STANDARD ===
   function ruleCard(title, text) {
     return h('div', { style: {
       display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(255,255,255,0.06)',
       borderRadius: '20px', padding: '26px', gap: '10px', border: `1px solid ${C.cardBorder}`,
     } },
-      h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.text } }, title),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.4' } }, text));
+      h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, title),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, text));
   }
-  const slide5 = slideBase([
-    badge('DIE REGELN'),
-    headline('Wie Nielsen objektives Webtexten definiert.', 52),
+  const slide2 = slideBase([
+    badge('DER STANDARD'),
+    headline('WCAG 2.1 schreibt zwei Pflicht-Kriterien vor.', 52),
+    subline('Level AA – Mindeststandard für barrierefreie Websites.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        ruleCard('Konkret statt werblich', 'Fakten und Beispiele statt Superlative wie „einzigartig“ oder „beste Lösung“'),
-        ruleCard('Scannbar strukturieren', 'Zwischenüberschriften und Aufzählungen statt Fließtext-Blöcke')),
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        ruleCard('Prägnant schreiben', 'Deutlich weniger Wörter als ein vergleichbarer Printtext'),
-        ruleCard('Nutzerperspektive', 'Was hat die Kundschaft davon – nicht wie toll ist das Unternehmen'))),
-    keyLearning('Jede Regel zahlt auf dasselbe Ziel ein: schneller verstanden, schneller vertraut.'),
+      ruleCard('1.4.4 Resize Text (AA)', 'Text muss sich ohne Hilfsmittel auf 200% vergrößern lassen – ohne Inhalt oder Funktion zu verlieren.'),
+      ruleCard('1.4.10 Reflow (AA)', 'Inhalte müssen bei 320px Breite lesbar bleiben – ohne horizontal zu scrollen.')),
+    keyLearning('Beide Kriterien stammen vom W3C – den Web Content Accessibility Guidelines.'),
     footer(),
   ]);
 
-  // === SLIDE 6: DAS PRINZIP ===
+  // === SLIDE 3: DIE FOLGE (Funnel) ===
+  function funnelStep(label, text, widthPct, danger) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', width: '100%' } },
+      h('div', { style: {
+        display: 'flex', flexDirection: 'column', width: `${widthPct}%`, backgroundColor: danger ? 'rgba(239,68,68,0.12)' : C.cardBg,
+        border: `1px solid ${danger ? C.red : C.cardBorder}`, borderRadius: '16px', padding: '22px 26px', alignItems: 'center', gap: '6px',
+      } },
+        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '1px', color: danger ? C.red : C.text } }, label),
+        h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.3' } }, text)));
+  }
+  function funnelArrow() {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+      h('div', { style: { display: 'flex', width: '4px', height: '22px', backgroundColor: C.cardBorder } }),
+      h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '9px solid transparent', borderRight: '9px solid transparent', borderTop: `11px solid ${C.cardBorder}` } }));
+  }
+  const slide3 = slideBase([
+    badge('DIE FOLGE'),
+    headline('Text wird abgeschnitten, Layout bricht.', 56),
+    subline('Wenn Schriftgrößen in festen px-Werten definiert sind.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0px' } },
+      funnelStep('FESTE PX-GRÖSSE', 'Schrift ist auf z.B. 16px fixiert', 100, false),
+      funnelArrow(),
+      funnelStep('NUTZER VERGRÖSSERT', 'Browser-Textgröße wird erhöht', 82, false),
+      funnelArrow(),
+      funnelStep('INHALT BRICHT', 'Text überlappt oder wird abgeschnitten', 64, true)),
+    keyLearning('Das verfehlt WCAG 1.4.4 – und schließt Menschen mit Sehbehinderung aus.', true),
+    footer(),
+  ]);
+
+  // === SLIDE 4: DER HEBEL (Erwartung vs Realität / px vs rem) ===
+  const slide4 = slideBase([
+    badge('DER HEBEL'),
+    headline('px bleibt starr. rem passt sich an.', 56),
+    subline('Ein Einheiten-Wechsel macht den Unterschied.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards('PX (FEST)', '16px bleibt immer 16px – unabhängig von der Nutzer-Einstellung', 'REM (RELATIV)', '1rem skaliert automatisch mit der Basis-Schriftgröße des Browsers')),
+    keyLearning('rem rechnet relativ zur Grundeinstellung des Nutzers – px nicht.'),
+    footer(),
+  ]);
+
+  // === SLIDE 5: KONKRET (3 Karten) ===
+  const slide5 = slideBase([
+    badge('KONKRET'),
+    headline('So setzt du es technisch um.', 54),
+    subline('Drei Stellschrauben für skalierbare Typografie.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      ruleCard('Einheiten umstellen', 'Schriftgrößen in rem oder em statt in festen px-Werten definieren.'),
+      ruleCard('Layout prüfen', 'Breiten relativ statt in festen px-Containern anlegen, damit Inhalt mitwächst.'),
+      ruleCard('Bei 200% testen', 'Browser-Zoom auf 200% stellen: Bricht etwas, oder bleibt alles lesbar?')),
+    keyLearning('Kleine Umstellung in der Codebasis, große Wirkung für Nutzer mit Sehbehinderung.'),
+    footer(),
+  ]);
+
+  // === SLIDE 6: DAS PRINZIP (Arrow Flow) ===
+  function flowStep(text) {
+    return h('div', { style: {
+      display: 'flex', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px',
+      padding: '22px 28px', justifyContent: 'center',
+    } },
+      h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, textAlign: 'center', lineHeight: '1.3' } }, text));
+  }
   const slide6 = slideBase([
     badge('DAS PRINZIP'),
-    headline('Nutzer lesen eine Website nicht – sie scannen sie.', 50),
-    subline('Jakob Nielsen (Nielsen Norman Group): Unbelegte Werbeaussagen wirken beim schnellen Scannen unglaubwürdig, weil sie sich nicht überprüfen lassen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('BEHAUPTUNG', '„Wir sind die beste Lösung“ – nicht überprüfbar', 'FAKT', 'Eine konkrete Zahl oder ein Beispiel – überprüfbar')),
-    keyLearning('Überprüfbare Aussagen schlagen jede Superlative.'),
+    headline('Relative Einheiten respektieren die Entscheidung des Nutzers.', 46),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '0px' } },
+      flowStep('Nutzer stellt Textgröße im Browser ein'),
+      funnelArrow(),
+      flowStep('rem berechnet die Schriftgröße relativ dazu neu'),
+      funnelArrow(),
+      flowStep('Inhalt bleibt lesbar und nutzbar')),
+    keyLearning('WCAG verschiebt die Kontrolle zur Person, die liest.'),
     footer(),
   ]);
 
-  // === SLIDE 7: CHECKLISTE ===
+  // === SLIDE 7: TAKEAWAYS (Checkliste mit Progress Bars) ===
   const learnings = [
-    { num: '01', text: 'Superlative durch konkrete Fakten und Beispiele ersetzen', pct: 25 },
-    { num: '02', text: 'Kernaussage in den ersten Satz packen', pct: 50 },
-    { num: '03', text: 'Mit Zwischenüberschriften und Aufzählungen scannbar schreiben', pct: 75 },
-    { num: '04', text: 'Jeden Satz aus Kundensicht prüfen: Was habe ich davon?', pct: 100 },
+    { num: '01', text: 'Schriftgrößen in rem/em statt px definieren', pct: 33 },
+    { num: '02', text: 'Browser-Zoom auf 200% testen', pct: 66 },
+    { num: '03', text: 'Layout bei 320px Breite ohne horizontales Scrollen prüfen (WCAG 1.4.10)', pct: 100 },
   ];
   const slide7 = slideBase([
-    badge('DEINE CHECKLISTE'),
-    headline('4 Schritte zu klarerer Website-Sprache.', 52),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+    badge('DEINE TAKEAWAYS'),
+    headline('3 Schritte zu barrierefreier Typografie.', 50),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
       ...learnings.map((l) =>
-        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
+        h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '24px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
           h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
-            h('span', { style: { display: 'flex', fontSize: '36px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '64px' } }, l.num),
+            h('span', { style: { display: 'flex', fontSize: '38px', fontWeight: 800, fontFamily: 'Manrope', color: l.pct === 100 ? C.green : C.accent2, minWidth: '66px' } }, l.num),
             h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text)),
           h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
             h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }))))),
-    keyLearning('Klare Sprache wird nicht nur gelesen – sie wird auch geglaubt.'),
+    keyLearning('Barrierefreiheit beginnt bei der Maßeinheit, nicht erst beim Kontrast.'),
     footer(),
   ]);
 
@@ -242,14 +256,14 @@ async function main() {
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
       h('span', { style: { display: 'flex', fontSize: '42px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Liest sich deine Startseite wie eine Broschüre – oder wie eine Antwort auf die Frage deiner Kunden?'),
+        'Ist deine Website wirklich bis 200% vergrößerbar?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-10-22', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-10-29', 'slides');
 
   for (let i = 0; i < slides.length; i++) {
     const svg = await satori(slides[i], { width: W, height: H, fonts });
