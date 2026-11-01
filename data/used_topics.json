@@ -153,6 +153,12 @@
       "topic": "Skalierbare Schrift: Warum feste Pixel-Groessen Nutzer aussperren",
       "date_used": "2026-10-29",
       "summary": "W3C Web Content Accessibility Guidelines (WCAG) 2.1: Success Criterion 1.4.4 'Resize Text', Level AA, verlangt, dass sich Text ohne Hilfsmittel auf 200% vergroessern laesst, ohne Inhalt oder Funktion zu verlieren; Success Criterion 1.4.10 'Reflow', Level AA, verlangt, dass Inhalte bei 320px Breite ohne horizontales Scrollen lesbar bleiben. Feste px-Schriftgroessen reagieren nicht auf die Text-Skalierung des Nutzers, waehrend relative Einheiten (rem/em) sich automatisch an dessen Basis-Schriftgroesse anpassen. Praktische Konsequenz fuer Websites: Schriftgroessen in rem/em statt px definieren, Layouts relativ statt in festen px-Containern anlegen und bei 200% Browser-Zoom testen."
+    },
+    {
+      "category": "Psychologie",
+      "topic": "Cognitive Load: Warum weniger Reize mehr mentale Kapazitaet fuer die Entscheidung lassen",
+      "date_used": "2026-11-01",
+      "summary": "John Sweller, Cognitive Load Theory (1988, Cognitive Science): Das Arbeitsgedaechtnis hat nur eine begrenzte Kapazitaet, um neue Informationen zu verarbeiten; ergaenzt durch George A. Miller, 'The Magical Number Seven, Plus or Minus Two' (1956, Psychological Review), wonach Menschen im Schnitt nur etwa 7 (plusminus 2) Informationseinheiten gleichzeitig im Kopf behalten. Cognitive Load Theory unterscheidet intrinsische Last (gehoert zur Aufgabe selbst, kaum vermeidbar) von extraneous load (entsteht durch schlechtes Design, vollstaendig vermeidbar). Praktische Konsequenz fuer Websites: Inhalte chunk-en (kleine, klar abgegrenzte Gruppen statt langer Bloecke), Details per Progressive Disclosure nachliefern statt alles gleichzeitig zu zeigen, und pro Screen nur einen primaeren CTA statt mehrerer gleichwertiger Optionen anbieten."
     }
   ]
 }

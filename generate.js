@@ -100,7 +100,7 @@ async function main() {
       } }, '@benarodigital'));
   }
 
-  function contrastCards(leftLabel, leftText, rightLabel, rightText) {
+  function contrastCards(leftLabel, leftText, rightLabel, rightText, danger = false) {
     return h('div', { style: { display: 'flex', gap: '14px' } },
       h('div', { style: {
         display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg,
@@ -110,33 +110,14 @@ async function main() {
         h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.cardBorder, borderRadius: '2px' } }),
         h('span', { style: { display: 'flex', fontSize: '27px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, leftText)),
       h('div', { style: {
-        display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(41,82,255,0.14)',
-        border: `1px solid ${C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px',
+        display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: danger ? 'rgba(239,68,68,0.14)' : 'rgba(41,82,255,0.14)',
+        border: `1px solid ${danger ? C.red : C.accent}`, borderRadius: '20px', padding: '28px', gap: '14px',
       } },
-        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.accent2 } }, rightLabel),
-        h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: C.accent, borderRadius: '2px' } }),
+        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: danger ? C.red : C.accent2 } }, rightLabel),
+        h('div', { style: { display: 'flex', width: '100%', height: '4px', backgroundColor: danger ? C.red : C.accent, borderRadius: '2px' } }),
         h('span', { style: { display: 'flex', fontSize: '27px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.4' } }, rightText)));
   }
 
-  function slideBase(children) {
-    return h('div', { style: {
-      display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
-      backgroundColor: C.bg, fontFamily: 'Inter',
-    } }, ...children);
-  }
-
-  // === SLIDE 1: HOOK ===
-  const slide1 = slideBase([
-    badge('WUSSTEST DU?'),
-    headline('Dein Nutzer vergrößert die Schrift – deine Website reagiert nicht.', 52),
-    subline('Browser-Textgröße hochstellen – und optisch ändert sich: nichts.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('NUTZER STELLT EIN', 'Textgröße im Browser auf 200%', 'WEBSITE ZEIGT', 'Weiterhin dieselbe feste Größe')),
-    keyLearning('Feste Pixel-Schriftgrößen ignorieren diese Nutzer-Einstellung.', true),
-    footer(),
-  ]);
-
-  // === SLIDE 2: DER STANDARD ===
   function ruleCard(title, text) {
     return h('div', { style: {
       display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(255,255,255,0.06)',
@@ -145,18 +126,7 @@ async function main() {
       h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, title),
       h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 500, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.4' } }, text));
   }
-  const slide2 = slideBase([
-    badge('DER STANDARD'),
-    headline('WCAG 2.1 schreibt zwei Pflicht-Kriterien vor.', 52),
-    subline('Level AA – Mindeststandard für barrierefreie Websites.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      ruleCard('1.4.4 Resize Text (AA)', 'Text muss sich ohne Hilfsmittel auf 200% vergrößern lassen – ohne Inhalt oder Funktion zu verlieren.'),
-      ruleCard('1.4.10 Reflow (AA)', 'Inhalte müssen bei 320px Breite lesbar bleiben – ohne horizontal zu scrollen.')),
-    keyLearning('Beide Kriterien stammen vom W3C – den Web Content Accessibility Guidelines.'),
-    footer(),
-  ]);
 
-  // === SLIDE 3: DIE FOLGE (Funnel) ===
   function funnelStep(label, text, widthPct, danger) {
     return h('div', { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', width: '100%' } },
       h('div', { style: {
@@ -171,45 +141,6 @@ async function main() {
       h('div', { style: { display: 'flex', width: '4px', height: '22px', backgroundColor: C.cardBorder } }),
       h('div', { style: { display: 'flex', width: '0px', height: '0px', borderLeft: '9px solid transparent', borderRight: '9px solid transparent', borderTop: `11px solid ${C.cardBorder}` } }));
   }
-  const slide3 = slideBase([
-    badge('DIE FOLGE'),
-    headline('Text wird abgeschnitten, Layout bricht.', 56),
-    subline('Wenn Schriftgrößen in festen px-Werten definiert sind.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0px' } },
-      funnelStep('FESTE PX-GRÖSSE', 'Schrift ist auf z.B. 16px fixiert', 100, false),
-      funnelArrow(),
-      funnelStep('NUTZER VERGRÖSSERT', 'Browser-Textgröße wird erhöht', 82, false),
-      funnelArrow(),
-      funnelStep('INHALT BRICHT', 'Text überlappt oder wird abgeschnitten', 64, true)),
-    keyLearning('Das verfehlt WCAG 1.4.4 – und schließt Menschen mit Sehbehinderung aus.', true),
-    footer(),
-  ]);
-
-  // === SLIDE 4: DER HEBEL (Erwartung vs Realität / px vs rem) ===
-  const slide4 = slideBase([
-    badge('DER HEBEL'),
-    headline('px bleibt starr. rem passt sich an.', 56),
-    subline('Ein Einheiten-Wechsel macht den Unterschied.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('PX (FEST)', '16px bleibt immer 16px – unabhängig von der Nutzer-Einstellung', 'REM (RELATIV)', '1rem skaliert automatisch mit der Basis-Schriftgröße des Browsers')),
-    keyLearning('rem rechnet relativ zur Grundeinstellung des Nutzers – px nicht.'),
-    footer(),
-  ]);
-
-  // === SLIDE 5: KONKRET (3 Karten) ===
-  const slide5 = slideBase([
-    badge('KONKRET'),
-    headline('So setzt du es technisch um.', 54),
-    subline('Drei Stellschrauben für skalierbare Typografie.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      ruleCard('Einheiten umstellen', 'Schriftgrößen in rem oder em statt in festen px-Werten definieren.'),
-      ruleCard('Layout prüfen', 'Breiten relativ statt in festen px-Containern anlegen, damit Inhalt mitwächst.'),
-      ruleCard('Bei 200% testen', 'Browser-Zoom auf 200% stellen: Bricht etwas, oder bleibt alles lesbar?')),
-    keyLearning('Kleine Umstellung in der Codebasis, große Wirkung für Nutzer mit Sehbehinderung.'),
-    footer(),
-  ]);
-
-  // === SLIDE 6: DAS PRINZIP (Arrow Flow) ===
   function flowStep(text) {
     return h('div', { style: {
       display: 'flex', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '16px',
@@ -217,28 +148,99 @@ async function main() {
     } },
       h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, textAlign: 'center', lineHeight: '1.3' } }, text));
   }
-  const slide6 = slideBase([
-    badge('DAS PRINZIP'),
-    headline('Relative Einheiten respektieren die Entscheidung des Nutzers.', 46),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '0px' } },
-      flowStep('Nutzer stellt Textgröße im Browser ein'),
-      funnelArrow(),
-      flowStep('rem berechnet die Schriftgröße relativ dazu neu'),
-      funnelArrow(),
-      flowStep('Inhalt bleibt lesbar und nutzbar')),
-    keyLearning('WCAG verschiebt die Kontrolle zur Person, die liest.'),
+
+  function slideBase(children) {
+    return h('div', { style: {
+      display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
+      backgroundColor: C.bg, fontFamily: 'Inter',
+    } }, ...children);
+  }
+
+  // === SLIDE 1: HOOK ===
+  const slide1 = slideBase([
+    badge('WUSSTEST DU?'),
+    headline('Dein Gehirn kann nur wenige Dinge gleichzeitig verarbeiten.', 48),
+    subline('Und jede Website testet genau diese Grenze.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards('ARBEITSGEDÄCHTNIS', 'Verarbeitet nur eine Handvoll Informationen gleichzeitig', 'VIELE WEBSITES', 'Zeigen Nav, Slider, Popup, Chat & mehrere CTAs gleichzeitig', true)),
+    keyLearning('Jedes zusätzliche Element konkurriert um dieselbe begrenzte mentale Kapazität.', true),
     footer(),
   ]);
 
-  // === SLIDE 7: TAKEAWAYS (Checkliste mit Progress Bars) ===
+  // === SLIDE 2: DER STANDARD (Kontext mit 2 Quellen) ===
+  const slide2 = slideBase([
+    badge('DER STANDARD'),
+    headline('Zwei Grundgesetze der Kognitionspsychologie erklären das.', 48),
+    subline('Seit Jahrzehnten etabliert und vielfach repliziert.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      ruleCard('Cognitive Load Theory', 'John Sweller, 1988: Das Arbeitsgedächtnis hat eine begrenzte Kapazität für neue Informationen.'),
+      ruleCard('The Magical Number Seven', 'George A. Miller, 1956: Menschen behalten im Schnitt nur etwa 7 (±2) Informationseinheiten gleichzeitig im Kopf.')),
+    keyLearning('Beide Arbeiten gehören zu den meistzitierten der Kognitionsforschung.'),
+    footer(),
+  ]);
+
+  // === SLIDE 3: DIE FOLGE (Funnel) ===
+  const slide3 = slideBase([
+    badge('DIE FOLGE'),
+    headline('Zu viele Reize – zu wenig Kapazität für die Entscheidung.', 46),
+    subline('Was passiert, wenn eine Seite diese Grenze überschreitet.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0px' } },
+      funnelStep('VIELE REIZE GLEICHZEITIG', 'Navigation, Popups, Slider, mehrere CTAs auf einmal', 100, false),
+      funnelArrow(),
+      funnelStep('MENTALE KAPAZITÄT ÜBERLASTET', 'Arbeitsgedächtnis kann nicht mehr alles verarbeiten', 82, false),
+      funnelArrow(),
+      funnelStep('ENTSCHEIDUNG WIRD VERMIEDEN', 'Die einfachste Option gewinnt: die Seite verlassen', 64, true)),
+    keyLearning('Überforderte Besucher entscheiden sich oft gegen jede Entscheidung.', true),
+    footer(),
+  ]);
+
+  // === SLIDE 4: DER HEBEL (Intrinsic vs Extraneous) ===
+  const slide4 = slideBase([
+    badge('DER HEBEL'),
+    headline('Nicht jede Last ist gleich – nur eine Art lässt sich gestalten.', 44),
+    subline('Cognitive Load Theory unterscheidet zwei Arten von Last.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards('INTRINSIC LOAD', 'Komplexität, die zur Aufgabe selbst gehört – kaum vermeidbar', 'EXTRANEOUS LOAD', 'Komplexität durch das Design selbst – vollständig vermeidbar')),
+    keyLearning('Genau diese vermeidbare Last lässt sich im Website-Design gezielt senken.'),
+    footer(),
+  ]);
+
+  // === SLIDE 5: KONKRET (3 Prinzipien) ===
+  const slide5 = slideBase([
+    badge('KONKRET'),
+    headline('So senkst du die vermeidbare Last.', 52),
+    subline('Drei Prinzipien aus der UX-Forschung.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      ruleCard('Chunking', 'Inhalte in kleine, klar abgegrenzte Gruppen gliedern statt in einem langen Block.'),
+      ruleCard('Progressive Disclosure', 'Nur das Nötigste sofort zeigen, Details erst bei Bedarf nachliefern.'),
+      ruleCard('Eine Aktion pro Screen', 'Ein klarer primärer CTA pro Abschnitt statt mehrerer gleichwertiger Optionen.')),
+    keyLearning('Jedes weggelassene Element schafft mentalen Freiraum für die Kernbotschaft.'),
+    footer(),
+  ]);
+
+  // === SLIDE 6: DAS PRINZIP (Arrow Flow) ===
+  const slide6 = slideBase([
+    badge('DAS PRINZIP'),
+    headline('Weniger Reize lassen mehr Kapazität für die Entscheidung.', 44),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '0px' } },
+      flowStep('Website reduziert vermeidbare Last'),
+      funnelArrow(),
+      flowStep('Arbeitsgedächtnis wird entlastet'),
+      funnelArrow(),
+      flowStep('Kapazität bleibt für Kernbotschaft & CTA')),
+    keyLearning('Klarheit schlägt Kreativität – weil sie dem Gehirn weniger Arbeit macht.'),
+    footer(),
+  ]);
+
+  // === SLIDE 7: TAKEAWAYS ===
   const learnings = [
-    { num: '01', text: 'Schriftgrößen in rem/em statt px definieren', pct: 33 },
-    { num: '02', text: 'Browser-Zoom auf 200% testen', pct: 66 },
-    { num: '03', text: 'Layout bei 320px Breite ohne horizontales Scrollen prüfen (WCAG 1.4.10)', pct: 100 },
+    { num: '01', text: 'Inhalte in kleine, klare Gruppen chunk-en', pct: 33 },
+    { num: '02', text: 'Details per Progressive Disclosure nachliefern statt alles zu zeigen', pct: 66 },
+    { num: '03', text: 'Einen primären CTA pro Screen statt mehrerer gleichwertiger Optionen', pct: 100 },
   ];
   const slide7 = slideBase([
     badge('DEINE TAKEAWAYS'),
-    headline('3 Schritte zu barrierefreier Typografie.', 50),
+    headline('3 Schritte gegen kognitive Überlastung.', 50),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
       ...learnings.map((l) =>
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '24px 28px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
@@ -247,7 +249,7 @@ async function main() {
             h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.3' } }, l.text)),
           h('div', { style: { display: 'flex', height: '6px', backgroundColor: C.cardBorder, borderRadius: '3px' } },
             h('div', { style: { display: 'flex', width: `${l.pct}%`, height: '6px', backgroundColor: l.pct === 100 ? C.green : C.accent2, borderRadius: '3px' } }))))),
-    keyLearning('Barrierefreiheit beginnt bei der Maßeinheit, nicht erst beim Kontrast.'),
+    keyLearning('Weniger gleichzeitige Reize heißt mehr mentale Kapazität für den Kauf.'),
     footer(),
   ]);
 
@@ -256,14 +258,14 @@ async function main() {
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
       h('span', { style: { display: 'flex', fontSize: '42px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Ist deine Website wirklich bis 200% vergrößerbar?'),
+        'Wie viele Dinge verlangt deine Startseite gleichzeitig von deinen Besuchern?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-10-29', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-11-01', 'slides');
 
   for (let i = 0; i < slides.length; i++) {
     const svg = await satori(slides[i], { width: W, height: H, fonts });

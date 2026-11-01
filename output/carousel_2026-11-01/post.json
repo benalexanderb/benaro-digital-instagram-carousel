@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-01",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Dein Gehirn verarbeitet nur eine Handvoll Dinge gleichzeitig – viele Websites verlangen mehr. Cognitive Load Theory erklärt, warum zu viele Reize eher zum Abbruch als zum Kauf führen. Drei Prinzipien senken diese Last. Speichern nicht vergessen 📌\n\n#Webdesign #UXDesign #Psychologie #Conversion #Webagentur",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-01.png",
+      "altText": "Kontrast-Karten: links 'Arbeitsgedächtnis' mit dem Hinweis, dass es nur eine Handvoll Informationen gleichzeitig verarbeitet, rechts rot markiert 'Viele Websites', die gleichzeitig Navigation, Slider, Popup, Chat und mehrere CTAs zeigen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-02.png",
+      "altText": "Zwei Quellen-Karten: 'Cognitive Load Theory' (John Sweller, 1988) zur begrenzten Kapazität des Arbeitsgedächtnisses, und 'The Magical Number Seven' (George A. Miller, 1956) zur Faustregel von etwa 7 (±2) gleichzeitig merkbaren Informationseinheiten."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-03.png",
+      "altText": "Dreistufiges Funnel-Diagramm: viele gleichzeitige Reize führen zu überlasteter mentaler Kapazität und enden rot markiert in 'Entscheidung wird vermieden', wenn Besucher die Seite verlassen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-04.png",
+      "altText": "Kontrast-Karten: links 'Intrinsic Load' als kaum vermeidbare Komplexität der Aufgabe selbst, rechts blau hervorgehoben 'Extraneous Load' als vollständig vermeidbare Komplexität durch das Design."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-05.png",
+      "altText": "Drei Prinzip-Karten zur Reduktion vermeidbarer kognitiver Last: Chunking, Progressive Disclosure und eine klare primäre Aktion pro Screen statt mehrerer gleichwertiger Optionen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-06.png",
+      "altText": "Ablauf-Diagramm mit drei Schritten: Website reduziert vermeidbare Last, Arbeitsgedächtnis wird entlastet, Kapazität bleibt für Kernbotschaft und CTA."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-07.png",
+      "altText": "Checkliste mit drei nummerierten Schritten und Fortschrittsbalken: Inhalte chunk-en, Details per Progressive Disclosure nachliefern, nur einen primären CTA pro Screen anbieten."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-01/slides/slide-08.png",
+      "altText": "Benaro-Digital-Logo zentriert mit der Frage, wie viele Dinge die eigene Startseite gleichzeitig von Besuchern verlangt – Call-to-Action-Slide mit Hinweis auf @benarodigital."
+    }
+  ]
+}
