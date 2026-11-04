@@ -159,6 +159,12 @@
       "topic": "Cognitive Load: Warum weniger Reize mehr mentale Kapazitaet fuer die Entscheidung lassen",
       "date_used": "2026-11-01",
       "summary": "John Sweller, Cognitive Load Theory (1988, Cognitive Science): Das Arbeitsgedaechtnis hat nur eine begrenzte Kapazitaet, um neue Informationen zu verarbeiten; ergaenzt durch George A. Miller, 'The Magical Number Seven, Plus or Minus Two' (1956, Psychological Review), wonach Menschen im Schnitt nur etwa 7 (plusminus 2) Informationseinheiten gleichzeitig im Kopf behalten. Cognitive Load Theory unterscheidet intrinsische Last (gehoert zur Aufgabe selbst, kaum vermeidbar) von extraneous load (entsteht durch schlechtes Design, vollstaendig vermeidbar). Praktische Konsequenz fuer Websites: Inhalte chunk-en (kleine, klar abgegrenzte Gruppen statt langer Bloecke), Details per Progressive Disclosure nachliefern statt alles gleichzeitig zu zeigen, und pro Screen nur einen primaeren CTA statt mehrerer gleichwertiger Optionen anbieten."
+    },
+    {
+      "category": "Design & UX",
+      "topic": "Above the Fold: Warum der erste Blick ueber alles entscheidet",
+      "date_used": "2026-11-04",
+      "summary": "Jakob Nielsen / Nielsen Norman Group, 'Scrolling and Attention' (2010, Eyetracking-Studie), ergaenzt durch Nielsen Norman Group, 'The Fold Manifesto: Why the Page Fold Matters' (2018): Nutzer:innen richten einen deutlich groesseren Anteil ihrer Aufmerksamkeit auf den Bereich einer Seite, der ohne Scrollen sichtbar ist, auch wenn sie durchaus weiterscrollen. Praktische Konsequenz fuer Websites: Wertversprechen, ein primaerer CTA und ein Vertrauenssignal muessen im ersten sichtbaren Bereich stehen; die exakte Pixelposition des Falzes variiert je nach Geraet, das Prinzip bleibt aber gleich."
     }
   ]
 }
