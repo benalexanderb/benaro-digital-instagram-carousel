@@ -141,50 +141,6 @@ async function main() {
     } }, ...children);
   }
 
-  // === SVG VISUALS ===
-  function deviceFoldSvg(foldY) {
-    return `<svg width="820" height="640" viewBox="0 0 820 640" xmlns="http://www.w3.org/2000/svg">
-      <rect x="40" y="20" width="740" height="600" rx="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <rect x="40" y="20" width="740" height="60" rx="28" fill="rgba(255,255,255,0.08)"/>
-      <circle cx="76" cy="50" r="7" fill="#EF4444"/>
-      <circle cx="100" cy="50" r="7" fill="#CBA35C"/>
-      <circle cx="124" cy="50" r="7" fill="#10B981"/>
-      <rect x="76" y="110" width="520" height="34" rx="8" fill="rgba(255,255,255,0.14)"/>
-      <rect x="76" y="166" width="668" height="18" rx="6" fill="rgba(255,255,255,0.09)"/>
-      <rect x="76" y="198" width="560" height="18" rx="6" fill="rgba(255,255,255,0.09)"/>
-      <rect x="76" y="250" width="220" height="56" rx="14" fill="#2952FF"/>
-      <line x1="40" y1="${foldY}" x2="780" y2="${foldY}" stroke="#00C2B8" stroke-width="4" stroke-dasharray="14 12"/>
-      <rect x="76" y="${foldY + 50}" width="668" height="18" rx="6" fill="rgba(255,255,255,0.06)"/>
-      <rect x="76" y="${foldY + 82}" width="668" height="18" rx="6" fill="rgba(255,255,255,0.06)"/>
-      <rect x="76" y="${foldY + 114}" width="420" height="18" rx="6" fill="rgba(255,255,255,0.06)"/>
-    </svg>`;
-  }
-
-  function attentionBarsSvg() {
-    return `<svg width="820" height="420" viewBox="0 0 820 420" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradTop" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#00C2B8"/>
-          <stop offset="100%" stop-color="#2952FF"/>
-        </linearGradient>
-      </defs>
-      <line x1="60" y1="380" x2="760" y2="380" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <rect x="140" y="40" width="200" height="340" rx="16" fill="url(#gradTop)"/>
-      <rect x="480" y="230" width="200" height="150" rx="16" fill="rgba(255,255,255,0.12)"/>
-    </svg>`;
-  }
-
-  function foldStackSvg() {
-    return `<svg width="840" height="480" viewBox="0 0 840 480" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="40" width="200" height="400" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <line x1="20" y1="160" x2="220" y2="160" stroke="#00C2B8" stroke-width="4" stroke-dasharray="10 8"/>
-      <rect x="300" y="20" width="260" height="440" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <line x1="300" y1="190" x2="560" y2="190" stroke="#00C2B8" stroke-width="4" stroke-dasharray="10 8"/>
-      <rect x="620" y="60" width="200" height="340" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <line x1="620" y1="150" x2="820" y2="150" stroke="#00C2B8" stroke-width="4" stroke-dasharray="10 8"/>
-    </svg>`;
-  }
-
   function learningCard(num, text, pct) {
     return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '22px 26px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '18px' } },
       h('div', { style: { display: 'flex', alignItems: 'center', gap: '18px' } },
@@ -194,88 +150,139 @@ async function main() {
         h('div', { style: { display: 'flex', width: `${pct}%`, height: '6px', backgroundColor: pct === 100 ? C.green : C.accent2, borderRadius: '3px' } })));
   }
 
+  // === SVG VISUALS ===
+
+  // Google-SERP-Snippet-Mockup: Breadcrumb/URL-Pille, Titelzeile, zwei Description-Zeilen,
+  // Cursor-Icon am Titel als Klick-Entscheidungspunkt.
+  function serpSnippetSvg() {
+    return `<svg width="820" height="420" viewBox="0 0 820 420" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="20" width="780" height="380" rx="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)" stroke-width="3"/>
+      <circle cx="80" cy="90" r="18" fill="rgba(255,255,255,0.14)"/>
+      <rect x="112" y="78" width="220" height="24" rx="8" fill="rgba(255,255,255,0.12)"/>
+      <rect x="80" y="150" width="520" height="34" rx="8" fill="#2952FF"/>
+      <rect x="80" y="210" width="640" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
+      <rect x="80" y="242" width="600" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
+      <rect x="80" y="274" width="360" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
+      <circle cx="700" cy="167" r="34" fill="#00C2B8"/>
+      <path d="M690 167 L710 167 M700 157 L700 177" stroke="#14161A" stroke-width="5" stroke-linecap="round"/>
+    </svg>`;
+  }
+
+  // Pixel-Truncation-Visual: Titelzeile die in Richtung Rand ausblasst und an einer
+  // gestrichelten Grenze abgeschnitten wird (drei Punkte als Ellipse markieren den Cut).
+  function truncationSvg() {
+    return `<svg width="820" height="300" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="fadeTitle" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2952FF"/>
+          <stop offset="78%" stop-color="#2952FF"/>
+          <stop offset="100%" stop-color="rgba(41,82,255,0)"/>
+        </linearGradient>
+        <linearGradient id="fadeDesc" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.16)"/>
+          <stop offset="78%" stop-color="rgba(255,255,255,0.16)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+      <rect x="40" y="60" width="700" height="40" rx="10" fill="url(#fadeTitle)"/>
+      <rect x="40" y="140" width="700" height="20" rx="7" fill="url(#fadeDesc)"/>
+      <rect x="40" y="176" width="700" height="20" rx="7" fill="url(#fadeDesc)"/>
+      <line x1="620" y1="30" x2="620" y2="240" stroke="#EF4444" stroke-width="3" stroke-dasharray="10 8"/>
+      <circle cx="650" cy="80" r="6" fill="#EF4444"/>
+      <circle cx="672" cy="80" r="6" fill="#EF4444"/>
+      <circle cx="694" cy="80" r="6" fill="#EF4444"/>
+    </svg>`;
+  }
+
   // === SLIDE 1: HOOK ===
   const slide1 = slideBase([
-    badge('WUSSTEST DU?'),
-    headline('Deine Website hat nur einen Blick.', 52),
-    subline('Bevor jemand scrollt, entscheidet sich schon viel.'),
+    badge('ACHTUNG'),
+    headline('Gutes Ranking, aber keiner klickt?', 50),
+    subline('Das Problem liegt oft nicht in der Position.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(deviceFoldSvg(430), 700, 547)),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(serpSnippetSvg(), 700, 358)),
       h('div', { style: { display: 'flex', justifyContent: 'center' } },
-        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.accent2 } }, 'SICHTBAR OHNE SCROLLEN'))),
-    keyLearning('"Above the Fold": der Bereich, den man ohne Scrollen sieht.'),
+        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.accent2 } }, 'DEIN SNIPPET IN DER GOOGLE-SUCHE'))),
+    keyLearning('Title-Tag und Meta-Description entscheiden, was Besucher vor dem Klick sehen.'),
     footer(),
   ]);
 
-  // === SLIDE 2: DIE FORSCHUNG ===
+  // === SLIDE 2: DIE FAKTEN ===
   const slide2 = slideBase([
-    badge('DIE FORSCHUNG'),
-    headline('Eyetracking zeigt ein klares Muster.', 50),
-    subline('Nielsen Norman Group, "Scrolling and Attention" (2010)'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(attentionBarsSvg(), 700, 358)),
-      h('div', { style: { display: 'flex', justifyContent: 'center', gap: '130px' } },
-        h('span', { style: { display: 'flex', fontSize: '23px', fontWeight: 600, fontFamily: 'Inter', color: C.text } }, 'Oberhalb des Falzes'),
-        h('span', { style: { display: 'flex', fontSize: '23px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Unterhalb des Falzes'))),
-    keyLearning('Nutzer:innen scrollen zwar, aber ihre Aufmerksamkeit sinkt danach spürbar.'),
+    badge('DIE FAKTEN'),
+    headline('Kein Ranking-Faktor. Trotzdem entscheidend.', 44),
+    subline('Google Search Central Documentation zu Title Links & Snippets'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards(
+        'LAUT GOOGLE',
+        'Title-Tag und Meta-Description beeinflussen das Ranking nicht direkt.',
+        'IN DER PRAXIS',
+        'Sie entscheiden, ob aus einer guten Position in der Suche auch ein Klick wird.',
+      )),
+    keyLearning('Sichtbarkeit und Klick sind zwei unterschiedliche Baustellen.'),
     footer(),
   ]);
 
   // === SLIDE 3: DAS PROBLEM ===
   const slide3 = slideBase([
     badge('DAS PROBLEM'),
-    headline('Viele verstecken das Wichtigste.', 52),
-    subline('Wertversprechen, CTA und Vertrauen rutschen nach unten.'),
+    headline('Viele überlassen das Snippet dem Zufall.', 46),
+    subline('Drei typische Fehler, die Google selbst korrigieren muss.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      tagCard('Slider ohne Aussage', 'Großes Bild, aber keine erkennbare Botschaft', true),
-      tagCard('Generische Stock-Fotos', 'Wirken wie Werbung und werden ausgeblendet', true),
-      tagCard('CTA erst nach mehrfachem Scrollen', 'Der nächste Schritt bleibt lange unsichtbar', true)),
-    keyLearning('Das Ergebnis: Viele Besucher:innen sind weg, bevor die Kernbotschaft ankommt.', true),
+      tagCard('Title-Tag generisch oder leer', 'CMS-Standardtitel wie "Startseite" statt echter Botschaft', true),
+      tagCard('Meta-Description fehlt', 'Google wählt den angezeigten Text dann selbst aus der Seite', true),
+      tagCard('Keyword-Stapelung', 'Unleserliche Title-Tags wirken wie Spam und schrecken ab', true)),
+    keyLearning('Das Ergebnis: Google entscheidet mit, wie der erste Eindruck aussieht.', true),
     footer(),
   ]);
 
   // === SLIDE 4: ERWARTUNG VS. REALITÄT ===
   const slide4 = slideBase([
     badge('ERWARTUNG VS. REALITÄT'),
-    headline('"Die scrollen schon, wenn’s passt."', 48),
+    headline('„Irgendeinen Text zeigt Google schon an."', 44),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('ERWARTUNG', 'Wer Interesse hat, scrollt automatisch weiter nach unten.', 'REALITÄT', 'Ohne erkennbaren Grund zum Weiterscrollen bleibt der erste Blick der einzige Blick.')),
-    keyLearning('Interesse entsteht oben — oder gar nicht.'),
+      contrastCards(
+        'ERWARTUNG',
+        'Ohne eigene Angaben zeigt Google trotzdem einen passenden Beschreibungstext.',
+        'REALITÄT',
+        'Google generiert den Text dann automatisch aus der Seite — oft unpassend zur Suchanfrage.',
+      )),
+    keyLearning('Wer nichts vorgibt, gibt die Kontrolle über das Snippet ab.'),
     footer(),
   ]);
 
-  // === SLIDE 5: WAS GEHÖRT NACH OBEN ===
+  // === SLIDE 5: WAS DU STEUERN KANNST ===
   const slide5 = slideBase([
-    badge('WAS GEHÖRT NACH OBEN'),
-    headline('3 Dinge, die sofort sichtbar sein müssen.', 48),
+    badge('WAS DU STEUERN KANNST'),
+    headline('3 Stellschrauben für dein Snippet.', 48),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      tagCard('Klares Wertversprechen', 'In Sekunden verständlich: Was wird angeboten, für wen?'),
-      tagCard('Ein primärer CTA', 'Genau ein nächster Schritt, nicht mehrere gleichwertige'),
-      tagCard('Ein Vertrauenssignal', 'Z.B. eine echte Referenz oder ein konkretes Ergebnis')),
-    keyLearning('Alles Weitere darf folgen — diese drei nicht.'),
+      tagCard('Title-Tag kurz und eindeutig', 'Kernbegriff an den Anfang, pro Seite ein eigener Titel'),
+      tagCard('Meta-Description mit Mehrwert', 'Beschreibt konkret, was Besucher auf der Seite erwartet'),
+      tagCard('Jede Seite einzigartig', 'Keine doppelten Title-Tags oder Descriptions im Projekt')),
+    keyLearning('Kleine Textbausteine, großer Hebel auf die Klickentscheidung.'),
     footer(),
   ]);
 
   // === SLIDE 6: DAS PRINZIP ===
   const slide6 = slideBase([
     badge('DAS PRINZIP'),
-    headline('Above the Fold ist kein fester Pixelwert.', 46),
-    subline('Die Position variiert je Gerät — das Prinzip bleibt gleich.'),
+    headline('Zu lang? Google schneidet einfach ab.', 44),
+    subline('Die Länge wird nach Pixelbreite begrenzt, nicht nach fester Zeichenzahl.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(foldStackSvg(), 700, 400))),
-    keyLearning('Teste auf echten Geräten, nicht nur am großen Desktop-Monitor.'),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(truncationSvg(), 700, 256))),
+    keyLearning('Deshalb: lieber knapp und eindeutig als bis zum letzten Zeichen ausreizen.'),
     footer(),
   ]);
 
   // === SLIDE 7: TAKEAWAYS ===
   const slide7 = slideBase([
     badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings für den ersten Blick.', 48),
+    headline('4 Learnings für dein Google-Snippet.', 46),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      learningCard('01', 'Wertversprechen in Sekunden verständlich machen', 25),
-      learningCard('02', 'Primären CTA ohne Scrollen zeigen', 50),
-      learningCard('03', 'Ein Vertrauenssignal direkt sichtbar platzieren', 75),
-      learningCard('04', 'Auf echten Geräten testen, nicht nur am Monitor', 100)),
+      learningCard('01', 'Jede Seite bekommt einen eigenen, eindeutigen Title-Tag', 25),
+      learningCard('02', 'Meta-Description schreibt den Mehrwert, nicht nur Keywords', 50),
+      learningCard('03', 'Kernbegriff an den Anfang des Title-Tags setzen', 75),
+      learningCard('04', 'Snippet in der Google-Vorschau testen statt nur zu schätzen', 100)),
     footer(),
   ]);
 
@@ -283,15 +290,15 @@ async function main() {
   const slide8 = slideBase([
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontSize: '42px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Was sieht deine Website im ersten Blick?'),
+      h('span', { style: { display: 'flex', fontSize: '40px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
+        'Wie liest sich deine Website gerade in der Google-Suche?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-11-04', 'slides');
+  const outDir = path.join(__dirname, 'output', 'carousel_2026-11-07', 'slides');
 
   for (let i = 0; i < slides.length; i++) {
     const svg = await satori(slides[i], { width: W, height: H, fonts });

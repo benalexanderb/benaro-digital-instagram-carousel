@@ -165,6 +165,12 @@
       "topic": "Above the Fold: Warum der erste Blick ueber alles entscheidet",
       "date_used": "2026-11-04",
       "summary": "Jakob Nielsen / Nielsen Norman Group, 'Scrolling and Attention' (2010, Eyetracking-Studie), ergaenzt durch Nielsen Norman Group, 'The Fold Manifesto: Why the Page Fold Matters' (2018): Nutzer:innen richten einen deutlich groesseren Anteil ihrer Aufmerksamkeit auf den Bereich einer Seite, der ohne Scrollen sichtbar ist, auch wenn sie durchaus weiterscrollen. Praktische Konsequenz fuer Websites: Wertversprechen, ein primaerer CTA und ein Vertrauenssignal muessen im ersten sichtbaren Bereich stehen; die exakte Pixelposition des Falzes variiert je nach Geraet, das Prinzip bleibt aber gleich."
+    },
+    {
+      "category": "SEO",
+      "topic": "Title-Tag & Meta-Description: Warum dein Google-Snippet über den Klick entscheidet",
+      "date_used": "2026-11-07",
+      "summary": "Google Search Central Documentation zu Title Links/Snippets und Meta Description Tags: Title-Tag und Meta-Description sind kein direkter Ranking-Faktor, bestimmen aber als Snippet in der Google-Suche, ob aus einer Position auch ein Klick wird. Ohne eigene Meta-Description generiert Google den angezeigten Text automatisch aus der Seite. Die Snippet-Länge wird von Google nach Pixelbreite begrenzt, nicht nach fester Zeichenzahl."
     }
   ]
 }
