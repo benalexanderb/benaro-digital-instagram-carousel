@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-10",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Zwei Websites, gleicher Code – trotzdem lädt eine schneller. Der Unterschied liegt oft an der Entfernung zum Server. Ein CDN verteilt deine Inhalte auf Server weltweit, damit jeder Besucher den kürzesten Weg bekommt. Speichern nicht vergessen 📌\n\n#Webdesign #Performance #Webagentur #Ladezeit #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-01.png",
+      "altText": "Zwei Punkte, Besucher und Server, verbunden durch eine gestrichelte Signallinie mit wandernden Pulskreisen und einem Uhren-Icon, Headline: Dein Serverstandort bremst deine Website."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-02.png",
+      "altText": "Ansteigende Linienkurve von 'nah' zu 'fern', die zeigt wie die Latenz mit der Entfernung zunimmt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-03.png",
+      "altText": "Kontrastkarten: Nutzer in der Nähe laden schnell, Nutzer weit weg warten länger auf jedes Bild."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-04.png",
+      "altText": "Netzwerk-Diagramm mit einem zentralen Ursprungsserver und mehreren verbundenen Edge-Server-Knoten weltweit."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-05.png",
+      "altText": "Drei nummerierte Schritte mit Fortschrittsbalken: Anfrage kommt an, nächstgelegener Edge-Server antwortet, Inhalt wird ausgeliefert."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-06.png",
+      "altText": "Vier Karten zu den Vorteilen schneller Ladezeit: schnellere Ladezeit, weniger Absprünge, bessere Nutzererfahrung, Entlastung des Hauptservers."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-07.png",
+      "altText": "Drei nummerierte Takeaway-Karten mit Fortschrittsbalken zu Latenz, CDN-Funktionsweise und dem Zusammenspiel mit gutem Hosting."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-10/slides/slide-08.png",
+      "altText": "Benaro Digital Logo zentriert mit der Frage 'Nutzt deine Website schon ein CDN?' und Call-to-Action, dem Account @benarodigital zu folgen."
+    }
+  ]
+}

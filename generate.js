@@ -134,11 +134,14 @@ async function main() {
         h('span', { style: { display: 'flex', fontSize: '23px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.35' } }, text)));
   }
 
-  function slideBase(children) {
+  function gridCard(title, sub, color) {
     return h('div', { style: {
-      display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
-      backgroundColor: C.bg, fontFamily: 'Inter',
-    } }, ...children);
+      display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg,
+      border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px', gap: '12px',
+    } },
+      h('div', { style: { display: 'flex', width: '42px', height: '42px', borderRadius: '12px', backgroundColor: color } }),
+      h('span', { style: { display: 'flex', fontSize: '24px', fontWeight: 700, fontFamily: 'Manrope', color: C.text, lineHeight: '1.25' } }, title),
+      h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.35' } }, sub));
   }
 
   function learningCard(num, text, pct) {
@@ -150,139 +153,153 @@ async function main() {
         h('div', { style: { display: 'flex', width: `${pct}%`, height: '6px', backgroundColor: pct === 100 ? C.green : C.accent2, borderRadius: '3px' } })));
   }
 
+  function labelRow(leftText, rightText, width, leftColor = C.accent, rightColor = C.accent2) {
+    return h('div', { style: { display: 'flex', width: `${width}px`, justifyContent: 'space-between' } },
+      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: leftColor } }, leftText),
+      h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: rightColor } }, rightText));
+  }
+
+  function slideBase(children) {
+    return h('div', { style: {
+      display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
+      backgroundColor: C.bg, fontFamily: 'Inter',
+    } }, ...children);
+  }
+
   // === SVG VISUALS ===
 
-  // Google-SERP-Snippet-Mockup: Breadcrumb/URL-Pille, Titelzeile, zwei Description-Zeilen,
-  // Cursor-Icon am Titel als Klick-Entscheidungspunkt.
-  function serpSnippetSvg() {
-    return `<svg width="820" height="420" viewBox="0 0 820 420" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="20" width="780" height="380" rx="24" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)" stroke-width="3"/>
-      <circle cx="80" cy="90" r="18" fill="rgba(255,255,255,0.14)"/>
-      <rect x="112" y="78" width="220" height="24" rx="8" fill="rgba(255,255,255,0.12)"/>
-      <rect x="80" y="150" width="520" height="34" rx="8" fill="#2952FF"/>
-      <rect x="80" y="210" width="640" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
-      <rect x="80" y="242" width="600" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
-      <rect x="80" y="274" width="360" height="18" rx="6" fill="rgba(255,255,255,0.14)"/>
-      <circle cx="700" cy="167" r="34" fill="#00C2B8"/>
-      <path d="M690 167 L710 167 M700 157 L700 177" stroke="#14161A" stroke-width="5" stroke-linecap="round"/>
+  // Besucher- und Server-Punkt, verbunden durch eine gestrichelte Signallinie mit
+  // wandernden Pulskreisen und einem Uhren-Icon als Sinnbild fuer die Signallaufzeit.
+  function distanceSignalSvg() {
+    return `<svg width="820" height="340" viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 240 Q 410 160 760 240" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="4" stroke-dasharray="2 16"/>
+      <circle cx="260" cy="206" r="8" fill="rgba(255,255,255,0.45)"/>
+      <circle cx="410" cy="186" r="8" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="560" cy="206" r="8" fill="rgba(255,255,255,0.45)"/>
+      <circle cx="60" cy="240" r="32" fill="#2952FF"/>
+      <circle cx="760" cy="240" r="32" fill="#00C2B8"/>
+      <circle cx="410" cy="92" r="48" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="3"/>
+      <line x1="410" y1="92" x2="410" y2="62" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+      <line x1="410" y1="92" x2="432" y2="92" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
     </svg>`;
   }
 
-  // Pixel-Truncation-Visual: Titelzeile die in Richtung Rand ausblasst und an einer
-  // gestrichelten Grenze abgeschnitten wird (drei Punkte als Ellipse markieren den Cut).
-  function truncationSvg() {
-    return `<svg width="820" height="300" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="fadeTitle" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#2952FF"/>
-          <stop offset="78%" stop-color="#2952FF"/>
-          <stop offset="100%" stop-color="rgba(41,82,255,0)"/>
-        </linearGradient>
-        <linearGradient id="fadeDesc" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.16)"/>
-          <stop offset="78%" stop-color="rgba(255,255,255,0.16)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-        </linearGradient>
-      </defs>
-      <rect x="40" y="60" width="700" height="40" rx="10" fill="url(#fadeTitle)"/>
-      <rect x="40" y="140" width="700" height="20" rx="7" fill="url(#fadeDesc)"/>
-      <rect x="40" y="176" width="700" height="20" rx="7" fill="url(#fadeDesc)"/>
-      <line x1="620" y1="30" x2="620" y2="240" stroke="#EF4444" stroke-width="3" stroke-dasharray="10 8"/>
-      <circle cx="650" cy="80" r="6" fill="#EF4444"/>
-      <circle cx="672" cy="80" r="6" fill="#EF4444"/>
-      <circle cx="694" cy="80" r="6" fill="#EF4444"/>
+  // Ansteigende Kurve: Latenz waechst mit der Entfernung zwischen Besucher und Server.
+  function latencyCurveSvg() {
+    return `<svg width="820" height="360" viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="300" x2="760" y2="300" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+      <line x1="60" y1="300" x2="60" y2="40" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+      <path d="M60 282 C 300 272, 520 180, 740 60" fill="none" stroke="#2952FF" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="60" cy="282" r="13" fill="#00C2B8"/>
+      <circle cx="740" cy="60" r="13" fill="#EF4444"/>
+    </svg>`;
+  }
+
+  // Netzwerk-Diagramm: ein zentraler Ursprungs-Server verbunden mit mehreren
+  // verteilten Edge-Server-Knoten eines CDN.
+  function cdnNetworkSvg() {
+    return `<svg width="820" height="440" viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg">
+      <line x1="410" y1="220" x2="140" y2="90" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+      <line x1="410" y1="220" x2="680" y2="90" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+      <line x1="410" y1="220" x2="110" y2="340" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+      <line x1="410" y1="220" x2="710" y2="340" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+      <line x1="410" y1="220" x2="410" y2="400" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+      <circle cx="410" cy="220" r="36" fill="#2952FF"/>
+      <circle cx="140" cy="90" r="22" fill="#00C2B8"/>
+      <circle cx="680" cy="90" r="22" fill="#00C2B8"/>
+      <circle cx="110" cy="340" r="22" fill="#00C2B8"/>
+      <circle cx="710" cy="340" r="22" fill="#00C2B8"/>
+      <circle cx="410" cy="400" r="22" fill="#00C2B8"/>
     </svg>`;
   }
 
   // === SLIDE 1: HOOK ===
   const slide1 = slideBase([
-    badge('ACHTUNG'),
-    headline('Gutes Ranking, aber keiner klickt?', 50),
-    subline('Das Problem liegt oft nicht in der Position.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(serpSnippetSvg(), 700, 358)),
-      h('div', { style: { display: 'flex', justifyContent: 'center' } },
-        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.accent2 } }, 'DEIN SNIPPET IN DER GOOGLE-SUCHE'))),
-    keyLearning('Title-Tag und Meta-Description entscheiden, was Besucher vor dem Klick sehen.'),
+    badge('WUSSTEST DU?'),
+    headline('Dein Serverstandort bremst deine Website', 50),
+    subline('Ein physikalisches Prinzip, das viele beim Website-Aufbau übersehen.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '20px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(distanceSignalSvg(), 700, 290)),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, labelRow('BESUCHER', 'SERVER', 700))),
+    keyLearning('Jede Anfrage legt eine reale Strecke zurück – messbar als Latenz.'),
     footer(),
   ]);
 
-  // === SLIDE 2: DIE FAKTEN ===
+  // === SLIDE 2: DAS PRINZIP ===
   const slide2 = slideBase([
-    badge('DIE FAKTEN'),
-    headline('Kein Ranking-Faktor. Trotzdem entscheidend.', 44),
-    subline('Google Search Central Documentation zu Title Links & Snippets'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards(
-        'LAUT GOOGLE',
-        'Title-Tag und Meta-Description beeinflussen das Ranking nicht direkt.',
-        'IN DER PRAXIS',
-        'Sie entscheiden, ob aus einer guten Position in der Suche auch ein Klick wird.',
-      )),
-    keyLearning('Sichtbarkeit und Klick sind zwei unterschiedliche Baustellen.'),
-    footer(),
-  ]);
-
-  // === SLIDE 3: DAS PROBLEM ===
-  const slide3 = slideBase([
-    badge('DAS PROBLEM'),
-    headline('Viele überlassen das Snippet dem Zufall.', 46),
-    subline('Drei typische Fehler, die Google selbst korrigieren muss.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      tagCard('Title-Tag generisch oder leer', 'CMS-Standardtitel wie "Startseite" statt echter Botschaft', true),
-      tagCard('Meta-Description fehlt', 'Google wählt den angezeigten Text dann selbst aus der Seite', true),
-      tagCard('Keyword-Stapelung', 'Unleserliche Title-Tags wirken wie Spam und schrecken ab', true)),
-    keyLearning('Das Ergebnis: Google entscheidet mit, wie der erste Eindruck aussieht.', true),
-    footer(),
-  ]);
-
-  // === SLIDE 4: ERWARTUNG VS. REALITÄT ===
-  const slide4 = slideBase([
-    badge('ERWARTUNG VS. REALITÄT'),
-    headline('„Irgendeinen Text zeigt Google schon an."', 44),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards(
-        'ERWARTUNG',
-        'Ohne eigene Angaben zeigt Google trotzdem einen passenden Beschreibungstext.',
-        'REALITÄT',
-        'Google generiert den Text dann automatisch aus der Seite — oft unpassend zur Suchanfrage.',
-      )),
-    keyLearning('Wer nichts vorgibt, gibt die Kontrolle über das Snippet ab.'),
-    footer(),
-  ]);
-
-  // === SLIDE 5: WAS DU STEUERN KANNST ===
-  const slide5 = slideBase([
-    badge('WAS DU STEUERN KANNST'),
-    headline('3 Stellschrauben für dein Snippet.', 48),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      tagCard('Title-Tag kurz und eindeutig', 'Kernbegriff an den Anfang, pro Seite ein eigener Titel'),
-      tagCard('Meta-Description mit Mehrwert', 'Beschreibt konkret, was Besucher auf der Seite erwartet'),
-      tagCard('Jede Seite einzigartig', 'Keine doppelten Title-Tags oder Descriptions im Projekt')),
-    keyLearning('Kleine Textbausteine, großer Hebel auf die Klickentscheidung.'),
-    footer(),
-  ]);
-
-  // === SLIDE 6: DAS PRINZIP ===
-  const slide6 = slideBase([
     badge('DAS PRINZIP'),
-    headline('Zu lang? Google schneidet einfach ab.', 44),
-    subline('Die Länge wird nach Pixelbreite begrenzt, nicht nach fester Zeichenzahl.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(truncationSvg(), 700, 256))),
-    keyLearning('Deshalb: lieber knapp und eindeutig als bis zum letzten Zeichen ausreizen.'),
+    headline('Daten brauchen physische Zeit', 50),
+    subline('Jedes Signal reist über Kabel und Funk – mit messbarer Laufzeit.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(latencyCurveSvg(), 700, 308)),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, labelRow('NAH', 'FERN', 700, C.accent2, C.red))),
+    keyLearning('Latenz entsteht durch Entfernung – nicht durch schlechten Code.'),
     footer(),
   ]);
 
-  // === SLIDE 7: TAKEAWAYS ===
+  // === SLIDE 3: DIE FOLGE ===
+  const slide3 = slideBase([
+    badge('DIE FOLGE'),
+    headline('Ein Server ist nie überall nah', 48),
+    subline('Ein einzelner Serverstandort kann nicht für jede Region gleich nah sein.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards(
+        'NUTZER IN DER NÄHE',
+        'Kurzer Weg zum Server – Bilder und Skripte laden schnell.',
+        'NUTZER WEIT WEG',
+        'Längerer Weg zum Server – jede Anfrage braucht mehr Zeit.',
+        true,
+      )),
+    keyLearning('Ohne Gegenmaßnahme warten entfernte Besucher länger auf jedes Bild.', true),
+    footer(),
+  ]);
+
+  // === SLIDE 4: DIE LÖSUNG ===
+  const slide4 = slideBase([
+    badge('DIE LÖSUNG'),
+    headline('Ein CDN bringt die Inhalte näher', 46),
+    subline('Content Delivery Network: viele Server weltweit statt nur einem.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(cdnNetworkSvg(), 700, 376))),
+    keyLearning('Statt eines Servers verteilt ein CDN Kopien auf viele Standorte.'),
+    footer(),
+  ]);
+
+  // === SLIDE 5: SO FUNKTIONIERT'S ===
+  const slide5 = slideBase([
+    badge('SO FUNKTIONIERT\'S'),
+    headline('In drei Schritten zum Besucher', 46),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      learningCard('1', 'Anfrage kommt beim nächstgelegenen Edge-Server an', 33),
+      learningCard('2', 'Statische Inhalte liegen dort bereits zwischengespeichert', 66),
+      learningCard('3', 'Auslieferung ohne Umweg über den Hauptserver', 100)),
+    keyLearning('Je näher die Kopie, desto kürzer der Weg – und die Ladezeit.'),
+    footer(),
+  ]);
+
+  // === SLIDE 6: WARUM DAS WICHTIG IST ===
+  const slide6 = slideBase([
+    badge('WARUM DAS WICHTIG IST'),
+    headline('Ladezeit wirkt auf mehr als Geduld', 44),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        gridCard('Schnellere Ladezeit', 'Weniger Wartezeit für Besucher weltweit', C.accent2),
+        gridCard('Weniger Absprünge', 'Nutzer bleiben eher auf schnellen Seiten', C.accent)),
+      h('div', { style: { display: 'flex', gap: '14px' } },
+        gridCard('Bessere Nutzererfahrung', 'Core Web Vitals bewerten die Ladegeschwindigkeit', C.gold),
+        gridCard('Entlastung des Hauptservers', 'Viele Anfragen laufen über Edge-Server', C.green))),
+    keyLearning('Ladezeit ist kein Detail – sie wirkt direkt auf UX und Sichtbarkeit.'),
+    footer(),
+  ]);
+
+  // === SLIDE 7: DEINE TAKEAWAYS ===
   const slide7 = slideBase([
     badge('DEINE TAKEAWAYS'),
-    headline('4 Learnings für dein Google-Snippet.', 46),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      learningCard('01', 'Jede Seite bekommt einen eigenen, eindeutigen Title-Tag', 25),
-      learningCard('02', 'Meta-Description schreibt den Mehrwert, nicht nur Keywords', 50),
-      learningCard('03', 'Kernbegriff an den Anfang des Title-Tags setzen', 75),
-      learningCard('04', 'Snippet in der Google-Vorschau testen statt nur zu schätzen', 100)),
+    headline('3 Dinge, die du mitnehmen solltest', 44),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      learningCard('01', 'Entfernung zum Server erzeugt messbare Latenz – ein physikalisches Prinzip', 33),
+      learningCard('02', 'Ein CDN verteilt deine Inhalte auf Server rund um die Welt', 66),
+      learningCard('03', 'CDN und gutes Hosting ergänzen sich, sie ersetzen sich nicht', 100)),
     footer(),
   ]);
 
@@ -290,15 +307,16 @@ async function main() {
   const slide8 = slideBase([
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontSize: '40px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Wie liest sich deine Website gerade in der Google-Suche?'),
+      h('span', { style: { display: 'flex', fontSize: '42px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
+        'Nutzt deine Website schon ein CDN?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const outDir = path.join(__dirname, 'output', 'carousel_2026-11-07', 'slides');
+  const todayDir = process.argv[2] || new Date().toISOString().slice(0, 10);
+  const outDir = path.join(__dirname, 'output', `carousel_${todayDir}`, 'slides');
 
   for (let i = 0; i < slides.length; i++) {
     const svg = await satori(slides[i], { width: W, height: H, fonts });

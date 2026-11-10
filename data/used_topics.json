@@ -171,6 +171,12 @@
       "topic": "Title-Tag & Meta-Description: Warum dein Google-Snippet über den Klick entscheidet",
       "date_used": "2026-11-07",
       "summary": "Google Search Central Documentation zu Title Links/Snippets und Meta Description Tags: Title-Tag und Meta-Description sind kein direkter Ranking-Faktor, bestimmen aber als Snippet in der Google-Suche, ob aus einer Position auch ein Klick wird. Ohne eigene Meta-Description generiert Google den angezeigten Text automatisch aus der Seite. Die Snippet-Länge wird von Google nach Pixelbreite begrenzt, nicht nach fester Zeichenzahl."
+    },
+    {
+      "category": "Performance & Ladezeit",
+      "topic": "CDN & Serverstandort: Warum die Entfernung zum Server deine Ladezeit mitbestimmt",
+      "date_used": "2026-11-10",
+      "summary": "Netzwerk-Grundprinzip (Latenz durch physische Signallaufzeit) und CDN-Funktionsweise (Edge-Caching auf verteilten Servern), wie u.a. von Anbietern wie Cloudflare/AWS CloudFront sowie MDN Web Docs dokumentiert. Ergaenzt um Googles Core Web Vitals als Bewertungsrahmen fuer Ladegeschwindigkeit."
     }
   ]
 }
