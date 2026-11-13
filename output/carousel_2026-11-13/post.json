@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-13",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Ein Countdown, der nach Ablauf einfach neu startet – deine Kund:innen merken das. Laut FTC gilt erfundene Dringlichkeit als irreführende Werbung und kostet mehr Vertrauen, als sie bringt. Folge @benarodigital für mehr Website-Wissen, das wirkt.\n\n#Webdesign #UXDesign #Conversion #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-01.png",
+      "altText": "Dunkle Slide mit der Headline „Dein Countdown-Timer lügt“ und einem Mockup eines Angebots-Countdowns bei 00:04:59 mit Reset-Symbol."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-02.png",
+      "altText": "Drei Karten zeigen die Dark Patterns Countdown-Reset, Phantom-Bestand und einen erfundenen Live-Besucherzähler."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-03.png",
+      "altText": "Tacho-Grafik, die von Grün auf Rot fällt, mit der Überschrift „Einmal entdeckt, ist das Vertrauen weg“ und der Beschriftung „Vertrauen sinkt“."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-04.png",
+      "altText": "Zitat-Karte mit Verweis auf den FTC Staff Report „Bringing Dark Patterns to Light“ (2022) zu irreführender Werbung durch Fake-Dringlichkeit."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-05.png",
+      "altText": "Zwei Kontrast-Karten: links „Entdeckt – 1 Dark Pattern“, rechts in Rot „Wirkung – alle Trust-Signale unglaubwürdig“, mit Verweis auf Nielsen Norman Group."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-06.png",
+      "altText": "Nummerierte Liste mit vier Regeln für echte Dringlichkeit: nur zeigen was wirklich endet, Fristen einhalten, echte Zahlen nutzen, Transparenz vor Druck."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-07.png",
+      "altText": "Kontrast-Karten: grünes Häkchen bei „Echt“, rotes Kreuz bei „Erfunden“, Headline „Echte Dringlichkeit baut Vertrauen auf“."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-13/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit zentriertem Benaro-Digital-Logo, der Frage „Nutzt deine Website echte oder künstliche Dringlichkeit?“ und Call-to-Action, @benarodigital zu folgen."
+    }
+  ]
+}

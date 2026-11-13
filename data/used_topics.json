@@ -177,6 +177,12 @@
       "topic": "CDN & Serverstandort: Warum die Entfernung zum Server deine Ladezeit mitbestimmt",
       "date_used": "2026-11-10",
       "summary": "Netzwerk-Grundprinzip (Latenz durch physische Signallaufzeit) und CDN-Funktionsweise (Edge-Caching auf verteilten Servern), wie u.a. von Anbietern wie Cloudflare/AWS CloudFront sowie MDN Web Docs dokumentiert. Ergaenzt um Googles Core Web Vitals als Bewertungsrahmen fuer Ladegeschwindigkeit."
+    },
+    {
+      "category": "Conversion & CRO",
+      "topic": "Fake-Countdown beim CTA: Warum kuenstliche Verknappung Vertrauen kostet",
+      "date_used": "2026-11-13",
+      "summary": "FTC Staff Report 'Bringing Dark Patterns to Light' (September 2022): Kuenstliche Dringlichkeits- und Verknappungssignale wie Countdown-Timer, die nach Ablauf einfach neu starten, oder 'Nur noch X verfuegbar'-Anzeigen, die sich nie leeren, gelten als irrefuehrende Werbepraxis. Ergaenzt durch Nielsen Norman Group Forschung zu 'Deceptive Patterns': Wird ein manipulatives Muster von Nutzer:innen einmal erkannt, faerbt das Misstrauen auf alle anderen, auch echten, Trust-Signale der Seite ab. Praktische Konsequenz fuer Websites: Dringlichkeit nur zeigen, wenn sie real ist (echte Fristen einhalten, echte Verfuegbarkeit, echte Zahlen), statt sie kuenstlich zu erzeugen."
     }
   ]
 }
