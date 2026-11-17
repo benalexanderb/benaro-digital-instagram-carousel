@@ -183,6 +183,12 @@
       "topic": "Fake-Countdown beim CTA: Warum kuenstliche Verknappung Vertrauen kostet",
       "date_used": "2026-11-13",
       "summary": "FTC Staff Report 'Bringing Dark Patterns to Light' (September 2022): Kuenstliche Dringlichkeits- und Verknappungssignale wie Countdown-Timer, die nach Ablauf einfach neu starten, oder 'Nur noch X verfuegbar'-Anzeigen, die sich nie leeren, gelten als irrefuehrende Werbepraxis. Ergaenzt durch Nielsen Norman Group Forschung zu 'Deceptive Patterns': Wird ein manipulatives Muster von Nutzer:innen einmal erkannt, faerbt das Misstrauen auf alle anderen, auch echten, Trust-Signale der Seite ab. Praktische Konsequenz fuer Websites: Dringlichkeit nur zeigen, wenn sie real ist (echte Fristen einhalten, echte Verfuegbarkeit, echte Zahlen), statt sie kuenstlich zu erzeugen."
+    },
+    {
+      "category": "Trust & Social Proof",
+      "topic": "Vollstaendige Kontaktseite statt Trust-Siegel: Warum 'Real-World Feel' mehr Vertrauen schafft",
+      "date_used": "2026-11-17",
+      "summary": "Stanford Persuasive Technology Lab (B.J. Fogg et al., 'How Do People Evaluate a Web Site's Credibility?', 2002, in Zusammenarbeit mit Consumer Reports WebWatch): In der Web-Glaubwuerdigkeitsforschung zaehlt der sogenannte 'Real-World Feel' einer Seite - also wie sehr sie den Eindruck eines echten, greifbaren Unternehmens vermittelt (echte Adresse, echte Ansprechpartner, erreichbarer Kontakt) - zu den zentralen Glaubwuerdigkeitsfaktoren, staerker als reine Siegel/Badges. Ergaenzt durch die gesetzliche Impressumspflicht in Deutschland (Digitale-Dienste-Gesetz/TMG), die vollstaendige Anbieterkennzeichnung ohnehin vorschreibt. Praktische Konsequenz fuer Websites: Impressum vollstaendig und leicht auffindbar verlinken, echte Adresse und Ansprechpartner zeigen, Telefon oder Chat anbieten, echte statt gestockte Fotos nutzen."
     }
   ]
 }
