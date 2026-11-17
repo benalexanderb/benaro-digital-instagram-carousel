@@ -152,42 +152,18 @@ async function main() {
 
   // === SVG VISUALS ===
 
-  // Countdown-Widget-Mockup: Karte mit Ablauf-Label, Timer-Zahlen und einem
-  // Reset-Pfeil-Icon, das andeutet, dass der Timer nach 00:00 neu startet.
-  function countdownWidgetSvg() {
-    return `<svg width="760" height="300" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
-      <rect x="20" y="20" width="720" height="260" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
-      <rect x="60" y="150" width="140" height="92" rx="14" fill="rgba(239,68,68,0.16)" stroke="#EF4444" stroke-width="2"/>
-      <rect x="220" y="150" width="140" height="92" rx="14" fill="rgba(239,68,68,0.16)" stroke="#EF4444" stroke-width="2"/>
-      <rect x="380" y="150" width="140" height="92" rx="14" fill="rgba(239,68,68,0.16)" stroke="#EF4444" stroke-width="2"/>
-      <circle cx="630" cy="196" r="60" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
-      <path d="M650 170 A 36 36 0 1 1 610 172" fill="none" stroke="#9AA0AB" stroke-width="7" stroke-linecap="round"/>
-      <path d="M650 170 L 660 158 L 666 174 Z" fill="#9AA0AB"/>
+  // Goldenes Siegel, umgeben von einem gestrichelten Ring: ein Trust-Badge,
+  // das zwar vorhanden, aber visuell "übersehen" wird.
+  function ignoredSealSvg() {
+    return `<svg width="620" height="380" viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="310" cy="170" r="150" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="3" stroke-dasharray="5 11"/>
+      <circle cx="310" cy="170" r="108" fill="rgba(203,163,92,0.14)" stroke="#CBA35C" stroke-width="4"/>
+      <circle cx="310" cy="170" r="70" fill="none" stroke="#CBA35C" stroke-width="3" stroke-dasharray="8 8"/>
+      <path d="M252 258 L270 332 L310 300 L350 332 L368 258" fill="rgba(203,163,92,0.18)" stroke="#CBA35C" stroke-width="3" stroke-linejoin="round"/>
     </svg>`;
   }
 
-  // Drei Zeilen, jede mit einem Warn-Punkt: die drei Dark-Pattern-Tricks.
-  function darkPatternsListSvg() {
-    return `<svg width="820" height="230" viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="820" height="60" rx="16" fill="rgba(255,255,255,0.04)"/>
-      <rect x="0" y="85" width="820" height="60" rx="16" fill="rgba(255,255,255,0.04)"/>
-      <rect x="0" y="170" width="820" height="60" rx="16" fill="rgba(255,255,255,0.04)"/>
-    </svg>`;
-  }
-
-  // Vertrauens-Messgerät: Zeiger faellt von hoch (gruen) auf niedrig (rot).
-  function trustGaugeSvg() {
-    return `<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
-      <path d="M90 300 A 260 260 0 0 1 610 300" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="28" stroke-linecap="round"/>
-      <path d="M90 300 A 260 260 0 0 1 350 44" fill="none" stroke="#10B981" stroke-width="28" stroke-linecap="round"/>
-      <path d="M350 44 A 260 260 0 0 1 480 90" fill="none" stroke="#EF4444" stroke-width="28" stroke-linecap="round"/>
-      <circle cx="350" cy="300" r="16" fill="#FFFFFF"/>
-      <line x1="350" y1="300" x2="470" y2="150" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
-      <path d="M470 150 L 450 170 L 490 190 Z" fill="#EF4444"/>
-    </svg>`;
-  }
-
-  // Dokument-/Zitat-Karte mit Quellenangabe.
+  // Dokument-/Zitat-Karte mit Quellenangabe (Forschung).
   function quoteDocSvg() {
     return `<svg width="800" height="280" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
       <rect x="10" y="10" width="780" height="260" rx="22" fill="rgba(255,255,255,0.05)" stroke="rgba(203,163,92,0.5)" stroke-width="2"/>
@@ -199,132 +175,115 @@ async function main() {
     </svg>`;
   }
 
-  // Zwei Karten mit Pfeil dazwischen: ein Trick entdeckt -> alle Signale wirken unglaubwuerdig.
-  function spreadArrowSvg() {
-    return `<svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-      <line x1="10" y1="40" x2="90" y2="40" stroke="rgba(255,255,255,0.3)" stroke-width="5" stroke-linecap="round"/>
-      <path d="M90 40 L 70 24 M90 40 L 70 56" stroke="rgba(255,255,255,0.3)" stroke-width="5" stroke-linecap="round" fill="none"/>
+  // Vertrauens-Messgeraet: Zeiger faellt von hoch (gruen) auf niedrig (rot).
+  function trustGaugeSvg() {
+    return `<svg width="700" height="380" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+      <path d="M90 300 A 260 260 0 0 1 610 300" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="28" stroke-linecap="round"/>
+      <path d="M90 300 A 260 260 0 0 1 350 44" fill="none" stroke="#10B981" stroke-width="28" stroke-linecap="round"/>
+      <path d="M350 44 A 260 260 0 0 1 480 90" fill="none" stroke="#EF4444" stroke-width="28" stroke-linecap="round"/>
+      <circle cx="350" cy="300" r="16" fill="#FFFFFF"/>
+      <line x1="350" y1="300" x2="470" y2="150" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+      <path d="M470 150 L 450 170 L 490 190 Z" fill="#EF4444"/>
     </svg>`;
   }
 
-  // Echt vs. erfunden: Haken-Kreis gruen, X-Kreis rot.
-  function checkCircleSvg(color) {
-    return `<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="32" cy="32" r="30" fill="${color === C.green ? 'rgba(16,185,129,0.16)' : 'rgba(239,68,68,0.16)'}" stroke="${color}" stroke-width="3"/>
-      ${color === C.green
-        ? `<path d="M20 33 L 28 41 L 44 23" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>`
-        : `<path d="M22 22 L 42 42 M42 22 L 22 42" stroke="${color}" stroke-width="6" stroke-linecap="round"/>`}
+  // Dokument mit gruenem Haken: gesetzliche Pflicht + Prinzip.
+  function lawDocSvg() {
+    return `<svg width="620" height="380" viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg">
+      <rect x="110" y="20" width="400" height="340" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <rect x="150" y="70" width="320" height="14" rx="7" fill="rgba(255,255,255,0.22)"/>
+      <rect x="150" y="104" width="260" height="14" rx="7" fill="rgba(255,255,255,0.22)"/>
+      <rect x="150" y="138" width="300" height="14" rx="7" fill="rgba(255,255,255,0.22)"/>
+      <rect x="150" y="190" width="320" height="2" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="310" cy="280" r="46" fill="rgba(16,185,129,0.16)" stroke="#10B981" stroke-width="3"/>
+      <path d="M288 282 L302 296 L336 258" fill="none" stroke="#10B981" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`;
   }
 
   // === SLIDE 1: HOOK ===
   const slide1 = slideBase([
-    badge('ACHTUNG'),
-    headline('Dein Countdown-Timer lügt.', 54),
-    subline('Und deine Kund:innen merken das.'),
+    badge('WUSSTEST DU?'),
+    headline('Ein Trust-Siegel allein überzeugt niemanden.', 46),
+    subline('Besucher:innen suchen zuerst etwas ganz anderes.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(countdownWidgetSvg(), 680, 268)),
-      h('div', { style: { display: 'flex', justifyContent: 'center' } },
-        h('span', { style: { display: 'flex', fontSize: '32px', fontWeight: 800, fontFamily: 'Manrope', color: C.red, letterSpacing: '1px' } }, 'Angebot endet in 00:04:59'))),
-    keyLearning('Läuft der Timer ab, startet er bei vielen Shops einfach neu.', true),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(ignoredSealSvg(), 620, 380))),
+    keyLearning('Ein Siegel wird oft einfach überblättert — wie Werbung.', true),
     footer(),
   ]);
 
-  // === SLIDE 2: DARK PATTERNS ===
+  // === SLIDE 2: DIE FORSCHUNG ===
   const slide2 = slideBase([
-    badge('DARK PATTERNS'),
-    headline('Drei Tricks, die Websites oft nutzen', 46),
-    subline('Sie sollen Druck erzeugen, der nicht echt ist.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
-      tagCard('COUNTDOWN-RESET', 'Countdown, der nach Ablauf einfach neu startet', true),
-      tagCard('PHANTOM-BESTAND', '„Nur noch 2 Stück!“ — Anzeige, die sich nie leert', true),
-      tagCard('FAKE-BESUCHERZÄHLER', 'Erfundener Live-Zähler: „17 schauen sich das gerade an“', true)),
+    badge('DIE FORSCHUNG'),
+    headline('Stanford hat gemessen, was wirklich zählt', 42),
+    subline('Die Studie zur Glaubwürdigkeit von Websites.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(quoteDocSvg(), 700, 245)),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } },
+        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.gold, textAlign: 'center', lineHeight: '1.4' } },
+          'Stanford Persuasive Technology Lab (Fogg et al., 2002)'))),
     footer(),
   ]);
 
   // === SLIDE 3: DIE FOLGE ===
   const slide3 = slideBase([
     badge('DIE FOLGE'),
-    headline('Einmal entdeckt, ist das Vertrauen weg', 44),
-    subline('Nicht nur in den Timer — in die ganze Seite.'),
+    headline('Ohne echten Bezug sinkt das Vertrauen in alles', 38),
+    subline('Auch wenn Angebot und Inhalt eigentlich stimmen.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
       h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(trustGaugeSvg(), 600, 326)),
       h('div', { style: { display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' } },
         h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.textMuted } }, 'VERTRAUEN'),
         h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 800, fontFamily: 'Manrope', color: C.red } }, '↓'))),
-    keyLearning('Ein erkannter Trick färbt auf alle echten Signale der Seite ab.', true),
+    keyLearning('Fehlt der reale Bezug, wirkt selbst echter Inhalt unglaubwürdig.', true),
     footer(),
   ]);
 
-  // === SLIDE 4: NICHT NUR MEINUNG ===
+  // === SLIDE 4: DER WENDEPUNKT ===
   const slide4 = slideBase([
-    badge('NICHT NUR MEINUNG'),
-    headline('Die FTC sieht das genauso', 48),
-    subline('Fake-Dringlichkeit gilt als irreführende Werbung.'),
+    badge('DER WENDEPUNKT'),
+    headline('Erwartung vs. Realität', 52),
+    subline('Was Websitebetreiber:innen glauben — und was zählt.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(quoteDocSvg(), 700, 245)),
-      h('div', { style: { display: 'flex', justifyContent: 'center' } },
-        h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 600, fontFamily: 'Inter', color: C.gold, textAlign: 'center', lineHeight: '1.4' } },
-          'FTC Staff Report: „Bringing Dark Patterns to Light“ (2022)'))),
+      contrastCards(
+        'ERWARTUNG',
+        'Ein Siegel reicht als Vertrauensbeweis',
+        'REALITÄT',
+        'Echte Kontaktangaben wiegen schwerer',
+      )),
     footer(),
   ]);
 
-  // === SLIDE 5: DAS PRINZIP ===
+  // === SLIDE 5: REAL-WORLD FEEL ===
   const slide5 = slideBase([
-    badge('DAS PRINZIP'),
-    headline('Ein erkannter Trick färbt ab', 50),
-    subline('Auf alle echten Signale deiner Seite.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
-      h('div', { style: { display: 'flex', alignItems: 'center', gap: '16px' } },
-        h('div', { style: {
-          display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: C.cardBg,
-          border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '26px', gap: '10px',
-        } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.textMuted } }, 'ENTDECKT'),
-          h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, lineHeight: '1.35' } }, '1 Dark Pattern')),
-        svgImg(spreadArrowSvg(), 70, 46),
-        h('div', { style: {
-          display: 'flex', flex: '1', flexDirection: 'column', backgroundColor: 'rgba(239,68,68,0.14)',
-          border: `1px solid ${C.red}`, borderRadius: '20px', padding: '26px', gap: '10px',
-        } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.red } }, 'WIRKUNG'),
-          h('span', { style: { display: 'flex', fontSize: '25px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.35' } }, 'Alle Trust-Signale unglaubwürdig'))),
-      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, marginTop: '4px' } },
-        'Nielsen Norman Group — Deceptive Patterns')),
+    badge('REAL-WORLD FEEL'),
+    headline('Was konkret den Unterschied macht', 44),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      tagCard('ECHTE ADRESSE', 'Physischer Standort sichtbar statt nur ein Formular'),
+      tagCard('ECHTER ANSPRECHPARTNER', 'Name und Gesicht statt anonymes „Team“'),
+      tagCard('TELEFON ODER CHAT', 'Direkt erreichbar, nicht nur eine E-Mail-Adresse')),
     footer(),
   ]);
 
-  // === SLIDE 6: WAS STATTDESSEN FUNKTIONIERT ===
+  // === SLIDE 6: DAS PRINZIP ===
   const slide6 = slideBase([
-    badge('WAS STATTDESSEN FUNKTIONIERT'),
-    headline('4 Regeln für echte Dringlichkeit', 42),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      learningCard('1', 'Nur zeigen, was wirklich endet', 25),
-      learningCard('2', 'Angekündigte Fristen einhalten', 50),
-      learningCard('3', 'Social Proof nur mit echten Zahlen', 75),
-      learningCard('4', 'Transparenz vor Druck', 100)),
+    badge('DAS PRINZIP'),
+    headline('Das ist nicht nur Nice-to-have', 48),
+    subline('In Deutschland ist ein vollständiges Impressum Pflicht.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(lawDocSvg(), 560, 345))),
+    keyLearning('Transparenz ist gesetzliche Basis und Vertrauenssignal zugleich.'),
     footer(),
   ]);
 
-  // === SLIDE 7: KURZ GESAGT ===
+  // === SLIDE 7: KONKRET HEISST DAS ===
   const slide7 = slideBase([
-    badge('KURZ GESAGT'),
-    headline('Echte Dringlichkeit baut Vertrauen auf.', 42),
-    subline('Erfundene baut es ab — und bleibt in Erinnerung.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: {
-          display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(16,185,129,0.12)',
-          border: `1px solid ${C.green}`, borderRadius: '20px', padding: '30px', gap: '16px',
-        } },
-          svgImg(checkCircleSvg(C.green), 64, 64),
-          h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.green } }, 'ECHT')),
-        h('div', { style: {
-          display: 'flex', flex: '1', flexDirection: 'column', alignItems: 'center', backgroundColor: 'rgba(239,68,68,0.12)',
-          border: `1px solid ${C.red}`, borderRadius: '20px', padding: '30px', gap: '16px',
-        } },
-          svgImg(checkCircleSvg(C.red), 64, 64),
-          h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.red } }, 'ERFUNDEN')))),
+    badge('KONKRET HEISST DAS'),
+    headline('4 Schritte zu echtem Vertrauen', 42),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      learningCard('1', 'Vollständiges Impressum klar verlinken', 25),
+      learningCard('2', 'Echte Adresse und Ansprechpartner zeigen', 50),
+      learningCard('3', 'Telefon oder Chat direkt anbieten', 75),
+      learningCard('4', 'Echte Fotos statt Stockmaterial nutzen', 100)),
     footer(),
   ]);
 
@@ -332,15 +291,15 @@ async function main() {
   const slide8 = slideBase([
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontSize: '40px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Nutzt deine Website echte oder künstliche Dringlichkeit?'),
+      h('span', { style: { display: 'flex', fontSize: '38px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
+        'Wie leicht ist es, dich auf deiner Website wirklich zu erreichen?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen, das wirkt.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const todayDir = process.argv[2] || '2026-11-13';
+  const todayDir = process.argv[2] || '2026-11-17';
   const outDir = path.join(__dirname, 'output', `carousel_${todayDir}`, 'slides');
 
   for (let i = 0; i < slides.length; i++) {
