@@ -143,6 +143,13 @@ async function main() {
         h('div', { style: { display: 'flex', width: `${pct}%`, height: '6px', backgroundColor: pct === 100 ? C.green : C.accent2, borderRadius: '3px' } })));
   }
 
+  function quoteBox(text, source) {
+    return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '18px', backgroundColor: C.cardBg, border: `1px solid ${C.cardBorder}`, borderRadius: '20px', padding: '32px' } },
+      h('div', { style: { display: 'flex', width: '48px', height: '6px', backgroundColor: C.accent2, borderRadius: '3px' } }),
+      h('span', { style: { display: 'flex', fontSize: '28px', fontWeight: 600, fontFamily: 'Inter', color: C.text, lineHeight: '1.45' } }, text),
+      h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, fontFamily: 'Manrope', color: C.textMuted, letterSpacing: '1px' } }, source));
+  }
+
   function slideBase(children) {
     return h('div', { style: {
       display: 'flex', flexDirection: 'column', width: W, height: H, padding: '70px',
@@ -152,169 +159,123 @@ async function main() {
 
   // === SVG VISUALS ===
 
-  // Footer-Mockup: dunkle Seite, unten rechts ein winziger, kaum lesbarer
-  // grauer "Impressum"-Link-Platzhalter.
-  function hiddenFooterSvg() {
-    return `<svg width="820" height="300" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="820" height="300" rx="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
-      <rect x="40" y="40" width="300" height="16" rx="8" fill="rgba(255,255,255,0.14)"/>
-      <rect x="40" y="76" width="220" height="16" rx="8" fill="rgba(255,255,255,0.14)"/>
-      <line x1="40" y1="230" x2="780" y2="230" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
-      <rect x="690" y="252" width="90" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
-      <circle cx="760" cy="259" r="26" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 5"/>
+  // Abnehmende Balkenbreite: weniger Leser erreichen weiter unten liegende Abschnitte.
+  function attentionFunnelSvg() {
+    return `<svg width="780" height="300" viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg">
+      <rect x="40" y="20" width="700" height="62" rx="14" fill="rgba(0,194,184,0.18)" stroke="#00C2B8" stroke-width="2.5"/>
+      <rect x="130" y="119" width="520" height="62" rx="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="2.5"/>
+      <rect x="230" y="218" width="320" height="62" rx="14" fill="rgba(239,68,68,0.14)" stroke="#EF4444" stroke-width="2.5"/>
     </svg>`;
   }
 
-  // Lupe ueber einem Fragezeichen-Kreis: "schwer auffindbar".
-  function magnifierSvg() {
-    return `<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="68" cy="68" r="44" fill="rgba(255,255,255,0.05)" stroke="#9AA0AB" stroke-width="5"/>
-      <line x1="100" y1="100" x2="140" y2="140" stroke="#9AA0AB" stroke-width="8" stroke-linecap="round"/>
-      <circle cx="68" cy="68" r="4" fill="#9AA0AB"/>
+  // Lange Seite: oben grauer Textblock (Vorgeplaenkel), unten unter dem Fold
+  // erst die eigentliche Botschaft, farblich hervorgehoben.
+  function buriedMessageSvg() {
+    return `<svg width="320" height="420" viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="320" height="420" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+      <rect x="28" y="30" width="264" height="14" rx="7" fill="rgba(255,255,255,0.16)"/>
+      <rect x="28" y="56" width="220" height="14" rx="7" fill="rgba(255,255,255,0.16)"/>
+      <rect x="28" y="82" width="240" height="14" rx="7" fill="rgba(255,255,255,0.16)"/>
+      <rect x="28" y="120" width="264" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
+      <rect x="28" y="146" width="200" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
+      <rect x="28" y="172" width="230" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
+      <line x1="0" y1="212" x2="320" y2="212" stroke="#EF4444" stroke-width="2" stroke-dasharray="6 6"/>
+      <rect x="28" y="252" width="264" height="60" rx="12" fill="rgba(0,194,184,0.18)" stroke="#00C2B8" stroke-width="2.5"/>
+      <circle cx="292" cy="238" r="10" fill="#EF4444"/>
     </svg>`;
   }
 
-  // Zwei Gesetzes-Karten: TMG/DDG Paragraf und DSGVO-Artikel.
-  function lawDocSvg() {
-    return `<svg width="800" height="260" viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="10" width="380" height="240" rx="20" fill="rgba(255,255,255,0.05)" stroke="#2952FF" stroke-width="2"/>
-      <rect x="40" y="46" width="70" height="38" rx="10" fill="rgba(41,82,255,0.18)"/>
-      <rect x="40" y="110" width="320" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
-      <rect x="40" y="134" width="260" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
-      <rect x="410" y="10" width="380" height="240" rx="20" fill="rgba(255,255,255,0.05)" stroke="#00C2B8" stroke-width="2"/>
-      <rect x="440" y="46" width="70" height="38" rx="10" fill="rgba(0,194,184,0.18)"/>
-      <rect x="440" y="110" width="320" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
-      <rect x="440" y="134" width="260" height="12" rx="6" fill="rgba(255,255,255,0.2)"/>
-    </svg>`;
-  }
-
-  // 4 Badge-Kreise fuer E-E-A-T, der vierte (Trust) hervorgehoben.
-  function eeatBadgesSvg() {
-    return `<svg width="820" height="200" viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="110" cy="100" r="80" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <circle cx="310" cy="100" r="80" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <circle cx="510" cy="100" r="80" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
-      <circle cx="710" cy="100" r="80" fill="rgba(41,82,255,0.18)" stroke="#2952FF" stroke-width="5"/>
-    </svg>`;
-  }
-
-  // Nummerierte Liste: Haken-Icons fuer die Impressums-Checkliste.
-  function checkDotSvg(color) {
-    return `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="18" fill="rgba(0,194,184,0.14)" stroke="${color}" stroke-width="2.5"/>
-      <path d="M12 21 L18 27 L28 14" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
-  }
-
-  // Zwei Browser-Footer-Mockups: klein/grau vs. groß/lesbar verlinkt.
-  function footerCompareSvg(good) {
-    const linkColor = good ? '#00C2B8' : '#5A5F68';
-    const linkW = good ? 160 : 70;
-    const linkH = good ? 20 : 10;
-    return `<svg width="380" height="220" viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="380" height="220" rx="18" fill="rgba(255,255,255,0.04)" stroke="${good ? '#00C2B8' : 'rgba(255,255,255,0.1)'}" stroke-width="2"/>
-      <rect x="28" y="30" width="200" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
-      <rect x="28" y="56" width="140" height="14" rx="7" fill="rgba(255,255,255,0.12)"/>
-      <line x1="28" y1="150" x2="352" y2="150" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
-      <rect x="28" y="178" width="${linkW}" height="${linkH}" rx="${linkH / 2}" fill="${linkColor}"/>
-    </svg>`;
+  // Pyramiden-Dreieck: klassisch (Spitze oben, Basis unten) vs. umgekehrt
+  // (Basis oben, Spitze unten) -- das Thema wortwoertlich als Form.
+  function pyramidSvg(inverted, color) {
+    const shape = inverted
+      ? `<path d="M20,20 L220,20 L120,220 Z" fill="${color}" fill-opacity="0.18" stroke="${color}" stroke-width="4"/>`
+      : `<path d="M120,20 L220,220 L20,220 Z" fill="${color}" fill-opacity="0.18" stroke="${color}" stroke-width="4"/>`;
+    return `<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">${shape}</svg>`;
   }
 
   // === SLIDE 1: HOOK ===
   const slide1 = slideBase([
-    badge('VERTRAUENS-CHECK'),
-    headline('Dein Impressum ist mehr als eine Pflicht.', 50),
-    subline('Die meisten Websites verstecken es — und das kostet Vertrauen.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '22px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(hiddenFooterSvg(), 680, 249)),
-      h('div', { style: { display: 'flex', justifyContent: 'center' } },
-        h('span', { style: { display: 'flex', fontSize: '26px', fontWeight: 700, fontFamily: 'Manrope', color: C.textMuted, letterSpacing: '1px' } }, 'kaum lesbar, ganz unten rechts'))),
-    keyLearning('Winzig und grau versteckt wirkt wie "hat was zu verstecken".', true),
+    badge('ACHTUNG'),
+    headline('Kaum einer liest deine Seite bis zum Ende', 46),
+    subline('Besucher scrollen und scannen – aber lesen nur selten linear bis zum Schluss.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(attentionFunnelSvg(), 700, 270)),
+      h('div', { style: { display: 'flex', justifyContent: 'space-between', paddingLeft: '20px', paddingRight: '60px' } },
+        h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Anfang'),
+        h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted } }, 'Mitte'),
+        h('span', { style: { display: 'flex', fontSize: '20px', fontWeight: 600, fontFamily: 'Inter', color: C.red } }, 'Ende'))),
+    keyLearning('Steht deine Kernbotschaft erst ganz unten, sehen viele sie nie.', true),
     footer(),
   ]);
 
   // === SLIDE 2: DAS PROBLEM ===
   const slide2 = slideBase([
     badge('DAS PROBLEM'),
-    headline('Klein, grau, versteckt — und das wirkt verdächtig', 42),
-    subline('Viele Websites behandeln Impressum & Datenschutz als lästige Pflicht.'),
+    headline('Die wichtigste Botschaft landet oft ganz unten', 42),
+    subline('Viele Websites bauen sich auf wie eine Geschichte: erst Kontext, dann die Pointe.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(magnifierSvg(), 160, 160)),
-      h('div', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
-        tagCard('SCHWER FINDBAR', 'Link nur ganz unten, oft erst nach langem Scrollen', true),
-        tagCard('KAUM LESBAR', 'Winzige Schriftgröße, blasses Grau auf dunklem Grund', true))),
+      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(buriedMessageSvg(), 300, 394)),
+      tagCard('UNTER DEM FOLD', 'Die eigentliche Aussage steht erst nach viel Vorgeplänkel', true)),
     footer(),
   ]);
 
-  // === SLIDE 3: RECHTLICHE PFLICHT ===
+  // === SLIDE 3: DIE LÖSUNG (UMGEKEHRTE PYRAMIDE) ===
   const slide3 = slideBase([
-    badge('KEINE KÜR, SONDERN PFLICHT'),
-    headline('Zwei Gesetze verlangen das', 46),
-    subline('Für geschäftsmäßige Websites in Deutschland.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(lawDocSvg(), 720, 234)),
-      h('div', { style: { display: 'flex', gap: '14px' } },
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', gap: '4px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent } }, 'DDG § 5 (vormals TMG)'),
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.35' } }, 'Anbieterkennzeichnung: Name, Anschrift, Kontakt')),
-        h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', gap: '4px' } },
-          h('span', { style: { display: 'flex', fontSize: '22px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent2 } }, 'DSGVO Art. 13'),
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 500, fontFamily: 'Inter', color: C.textMuted, lineHeight: '1.35' } }, 'Informationspflicht bei Datenerhebung')))),
-    footer(),
-  ]);
-
-  // === SLIDE 4: GOOGLE-SIGNAL ===
-  const slide4 = slideBase([
-    badge('AUCH GOOGLE SCHAUT GENAU HIN'),
-    headline('Trust ist das wichtigste E-E-A-T-Signal', 42),
-    subline('Google nennt Kontaktangaben & Impressum als Beispiel dafür.'),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
-      h('div', { style: { display: 'flex', justifyContent: 'center' } }, svgImg(eeatBadgesSvg(), 820, 200)),
-      h('div', { style: { display: 'flex', justifyContent: 'space-between' } },
-        h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted, width: '160px', textAlign: 'center', justifyContent: 'center' } }, 'Experience'),
-        h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted, width: '160px', textAlign: 'center', justifyContent: 'center' } }, 'Expertise'),
-        h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 600, fontFamily: 'Inter', color: C.textMuted, width: '160px', textAlign: 'center', justifyContent: 'center' } }, 'Authority'),
-        h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 700, fontFamily: 'Manrope', color: C.accent, width: '160px', textAlign: 'center', justifyContent: 'center' } }, 'Trust'))),
-    keyLearning('Googles Search Quality Rater Guidelines führen Trust als wichtigstes der vier Signale.'),
-    footer(),
-  ]);
-
-  // === SLIDE 5: CHECKLISTE ===
-  const slide5 = slideBase([
-    badge('DIE CHECKLISTE'),
-    headline('Was wirklich ins Impressum gehört', 44),
-    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
-      tagCard('NAME & ANSCHRIFT', 'Vollständige Adresse des Unternehmens'),
-      tagCard('DIREKTE KONTAKTMÖGLICHKEIT', 'E-Mail oder Telefon, nicht nur ein Formular'),
-      tagCard('VERTRETUNGSBERECHTIGTE', 'Bei Kapitalgesellschaften namentlich genannt'),
-      tagCard('HANDELSREGISTER / UST-ID', 'Falls vorhanden, mit Registernummer')),
-    footer(),
-  ]);
-
-  // === SLIDE 6: PRAXIS-REGEL ===
-  const slide6 = slideBase([
-    badge('DIE PRAXIS-REGEL'),
-    headline('Sichtbar statt versteckt', 48),
-    subline('Auf jeder Seite verlinkt, in maximal 2 Klicks erreichbar.'),
+    badge('DIE LÖSUNG AUS DEM JOURNALISMUS'),
+    headline('Die umgekehrte Pyramide dreht die Reihenfolge um', 40),
+    subline('Journalist:innen kennen das Problem seit Jahrzehnten – und lösen es strukturell.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '18px' } },
       h('div', { style: { display: 'flex', gap: '20px', justifyContent: 'center' } },
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.textMuted } }, 'SO NICHT'),
-          svgImg(footerCompareSvg(false), 340, 196)),
+          svgImg(pyramidSvg(false, C.textMuted), 220, 220),
+          h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '1.5px', color: C.textMuted, textAlign: 'center' } }, 'KLASSISCHER AUFBAU')),
         h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' } },
-          h('span', { style: { display: 'flex', fontSize: '21px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '2px', color: C.accent2 } }, 'SO BESSER'),
-          svgImg(footerCompareSvg(true), 340, 196)))),
-    keyLearning('Fester Footer-Link auf jeder Seite, gut lesbare Schriftgröße und Kontrast.'),
+          svgImg(pyramidSvg(true, C.accent2), 220, 220),
+          h('span', { style: { display: 'flex', fontSize: '19px', fontWeight: 700, fontFamily: 'Manrope', letterSpacing: '1.5px', color: C.accent2, textAlign: 'center' } }, 'UMGEKEHRTE PYRAMIDE')))),
+    keyLearning('Wichtigstes zuerst, Details und Hintergrund erst danach.'),
     footer(),
   ]);
 
-  // === SLIDE 7: ERGEBNIS ===
-  const slide7 = slideBase([
-    badge('DAS ERGEBNIS'),
-    headline('Sichtbarkeit schafft Vertrauen', 46),
-    subline('Nicht nur bei Besuchern — auch bei Google.'),
+  // === SLIDE 4: DIE METHODE ===
+  const slide4 = slideBase([
+    badge('DIE METHODE'),
+    headline('Drei Ebenen, eine klare Reihenfolge', 44),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '16px' } },
+      tagCard('01 · FAZIT', 'Das Ergebnis oder Kernversprechen direkt im ersten Satz'),
+      tagCard('02 · BEGRÜNDUNG', 'Der wichtigste Beleg oder Nutzen dafür'),
+      tagCard('03 · HINTERGRUND', 'Details, Kontext und Nebeninfos ganz am Ende')),
+    footer(),
+  ]);
+
+  // === SLIDE 5: DIE QUELLE ===
+  const slide5 = slideBase([
+    badge('BELEGT SEIT 1996'),
+    headline('Keine neue Idee, sondern UX-Standard', 42),
+    subline('Beschrieben in "Inverted Pyramids in Cyberspace", seitdem vielfach bestätigt.'),
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
-      contrastCards('VERSTECKT', 'Wirkt unsicher, wie "hat was zu verstecken"', 'SICHTBAR', 'Wirkt neutral, professionell, vertrauenswürdig')),
+      quoteBox('"Nutzer:innen lesen Webseiten nicht linear – sie scannen und steigen oft vorzeitig aus."', 'JAKOB NIELSEN · NIELSEN NORMAN GROUP, 1996')),
+    footer(),
+  ]);
+
+  // === SLIDE 6: IN DER PRAXIS ===
+  const slide6 = slideBase([
+    badge('IN DER PRAXIS'),
+    headline('So wirkt es auf deiner Startseite', 42),
+    subline('Der Unterschied zeigt sich schon im ersten Satz deiner Hero-Section.'),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center' } },
+      contrastCards('LANGER ANLAUF', 'Erst Firmengeschichte, dann irgendwann das Angebot', 'SOFORT KLAR', 'Angebot und Nutzen stehen direkt im ersten Satz')),
+    footer(),
+  ]);
+
+  // === SLIDE 7: TAKEAWAYS ===
+  const slide7 = slideBase([
+    badge('DEINE TAKEAWAYS'),
+    headline('Die 3 wichtigsten Learnings', 46),
+    h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', gap: '14px' } },
+      learningCard('01', 'Fazit zuerst formulieren, nicht erst aufbauen', 34),
+      learningCard('02', 'Details und Hintergrund kommen erst danach', 67),
+      learningCard('03', 'So bleibt die Kernaussage auch bei Absprung erhalten', 100)),
     footer(),
   ]);
 
@@ -322,15 +283,15 @@ async function main() {
   const slide8 = slideBase([
     h('div', { style: { display: 'flex', flex: '1', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '36px' } },
       bdLogoImg(C.text, 96),
-      h('span', { style: { display: 'flex', fontSize: '40px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
-        'Ist dein Impressum leicht zu finden — oder versteckt?'),
+      h('span', { style: { display: 'flex', fontSize: '38px', fontWeight: 800, fontFamily: 'Manrope', color: C.text, textAlign: 'center', lineHeight: '1.3' } },
+        'Steht das Wichtigste bei dir ganz oben – oder ganz unten?'),
       h('span', { style: { display: 'flex', fontSize: '30px', fontWeight: 600, fontFamily: 'Inter', color: C.textSoft, textAlign: 'center', lineHeight: '1.4' } },
         'Folge @benarodigital für mehr Website-Wissen, das wirkt.')),
     footer(),
   ]);
 
   const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
-  const todayDir = process.argv[2] || '2026-11-13';
+  const todayDir = process.argv[2] || '2026-11-21';
   const outDir = path.join(__dirname, 'output', `carousel_${todayDir}`, 'slides');
 
   for (let i = 0; i < slides.length; i++) {

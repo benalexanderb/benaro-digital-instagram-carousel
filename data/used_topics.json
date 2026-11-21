@@ -189,6 +189,12 @@
       "topic": "Impressum & Datenschutz: Pflichttext oder Vertrauenssignal?",
       "date_used": "2026-11-18",
       "summary": "Telemediengesetz (TMG) bzw. seit 2024 Digitale-Dienste-Gesetz (DDG) § 5: Impressumspflicht fuer geschaeftsmaessige Websites in Deutschland (Name, Anschrift, Kontaktmoeglichkeit, bei Kapitalgesellschaften Vertretungsberechtigte, ggf. Handelsregister). Ergaenzt durch DSGVO Art. 13 (Informationspflicht bei Erhebung personenbezogener Daten) sowie Googles Search Quality Rater Guidelines / E-E-A-T-Konzept: Trust gilt als wichtigstes der vier Signale (Experience, Expertise, Authoritativeness, Trustworthiness), Google nennt Kontaktinformationen/Impressum explizit als Trust-Beispiel. Praktische Konsequenz fuer Websites: Impressum und Datenschutzerklaerung auf jeder Seite verlinkt, in maximal 2 Klicks erreichbar und gut lesbar statt winzig und grau im Footer versteckt."
+    },
+    {
+      "category": "Content & Storytelling",
+      "topic": "Die umgekehrte Pyramide: Warum die wichtigste Information immer zuerst kommt",
+      "date_used": "2026-11-21",
+      "summary": "Jakob Nielsen, 'Inverted Pyramids in Cyberspace' (Nielsen Norman Group / useit.com, 1996), uebertraegt die aus dem Journalismus stammende 'umgekehrte Pyramide' auf Webtexte: Besucher lesen Webseiten nicht linear, sondern scannen sie und steigen oft vorzeitig aus. Praktische Konsequenz fuer Websites: die wichtigste Botschaft (Fazit/Kernversprechen) gehoert an den Anfang, Begruendung und Details folgen erst danach, statt sich wie eine Geschichte langsam zur Pointe aufzubauen - so geht die Kernaussage auch bei vorzeitigem Absprung nicht verloren."
     }
   ]
 }
