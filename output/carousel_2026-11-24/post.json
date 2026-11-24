@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-24",
+  "channelId": "6a65265be2638b94d7d55993",
+  "caption": "Eine einzige Zeile Code kann Menschen von deiner Website aussperren. Viele Seiten blockieren das Zoomen am Handy – für Menschen mit Sehbehinderung oft die einzige Art, Text zu lesen. WCAG verlangt Zoom bis 200%. Speichern nicht vergessen 📌\n\n#Webdesign #UXDesign #Barrierefreiheit #Webagentur #WebsiteTipps",
+  "slides": [
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-01.png",
+      "altText": "Dunkle Slide mit Badge ACHTUNG und Headline Dein Zoom-Verbot sperrt Menschen aus, darunter ein Smartphone-Mockup mit durchgestrichenem Lupen-Symbol als Zeichen fuer blockiertes Zoomen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-02.png",
+      "altText": "Slide DAS PROBLEM mit einem Code-Fenster, das einen viewport-Meta-Tag mit user-scalable=no zeigt, die kritische Zeile rot hervorgehoben als fehlerhafte Einstellung."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-03.png",
+      "altText": "Slide WEN ES TRIFFT mit stilisiertem Augen-Symbol und Lupen-Kreis, Hinweis dass Zoom fuer viele Menschen die einzige Moeglichkeit ist, Text auf dem Handy zu lesen."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-04.png",
+      "altText": "Slide DIE OFFIZIELLE REGEL mit Zitat-Box: Text kann ohne assistierende Technologie bis zu 200% skaliert werden, ohne Inhalt oder Funktion zu verlieren - Quelle WCAG 2.1 Erfolgskriterium 1.4.4, W3C."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-05.png",
+      "altText": "Slide FALSCH VS. RICHTIG mit zwei Code-Fenstern untereinander: oben rot markiert user-scalable=no, unten tuerkis markiert initial-scale=1 ohne Zoom-Sperre."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-06.png",
+      "altText": "Slide IN DER PRAXIS mit Smartphone-Mockup und tuerkisfarbenem Pfeil-Symbol nach aussen, das erlaubtes Pinch-to-Zoom darstellt."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-07.png",
+      "altText": "Slide DEINE TAKEAWAYS mit drei nummerierten Lernkarten und Fortschrittsbalken: Viewport-Tag pruefen, user-scalable=no entfernen, WCAG-Anforderung Zoom bis 200%."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benalexanderb/benaro-digital-instagram-carousel/main/output/carousel_2026-11-24/slides/slide-08.png",
+      "altText": "Abschluss-Slide mit grossem Benaro-Digital-Monogramm und der Frage Kann man auf deiner Seite noch zoomen, darunter Aufruf @benarodigital zu folgen."
+    }
+  ]
+}

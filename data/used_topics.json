@@ -195,6 +195,12 @@
       "topic": "Die umgekehrte Pyramide: Warum die wichtigste Information immer zuerst kommt",
       "date_used": "2026-11-21",
       "summary": "Jakob Nielsen, 'Inverted Pyramids in Cyberspace' (Nielsen Norman Group / useit.com, 1996), uebertraegt die aus dem Journalismus stammende 'umgekehrte Pyramide' auf Webtexte: Besucher lesen Webseiten nicht linear, sondern scannen sie und steigen oft vorzeitig aus. Praktische Konsequenz fuer Websites: die wichtigste Botschaft (Fazit/Kernversprechen) gehoert an den Anfang, Begruendung und Details folgen erst danach, statt sich wie eine Geschichte langsam zur Pointe aufzubauen - so geht die Kernaussage auch bei vorzeitigem Absprung nicht verloren."
+    },
+    {
+      "category": "Mobile & Accessibility",
+      "topic": "Pinch-to-Zoom blockieren: Warum 'user-scalable=no' Menschen mit Sehbehinderung aussperrt",
+      "date_used": "2026-11-24",
+      "summary": "WCAG 2.1, Erfolgskriterium 1.4.4 'Resize Text' (W3C): Text muss ohne assistierende Technologie bis zu 200% skaliert werden koennen, ohne Inhalt oder Funktion zu verlieren. Viele Websites setzen im viewport-Meta-Tag jedoch 'user-scalable=no' oder 'maximum-scale=1', was Pinch-to-Zoom auf Mobilgeraeten technisch unterbindet - fuer Menschen mit Sehbehinderung, aeltere Nutzer:innen oder einfach kleine Displays oft die einzige Moeglichkeit, Text ueberhaupt zu lesen. Praktische Konsequenz fuer Websites: 'user-scalable=no' und einschraenkende 'maximum-scale'-Werte aus dem viewport-Tag entfernen, sodass nur 'width=device-width, initial-scale=1' gesetzt ist."
     }
   ]
 }
