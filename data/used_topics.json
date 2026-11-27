@@ -201,6 +201,12 @@
       "topic": "Pinch-to-Zoom blockieren: Warum 'user-scalable=no' Menschen mit Sehbehinderung aussperrt",
       "date_used": "2026-11-24",
       "summary": "WCAG 2.1, Erfolgskriterium 1.4.4 'Resize Text' (W3C): Text muss ohne assistierende Technologie bis zu 200% skaliert werden koennen, ohne Inhalt oder Funktion zu verlieren. Viele Websites setzen im viewport-Meta-Tag jedoch 'user-scalable=no' oder 'maximum-scale=1', was Pinch-to-Zoom auf Mobilgeraeten technisch unterbindet - fuer Menschen mit Sehbehinderung, aeltere Nutzer:innen oder einfach kleine Displays oft die einzige Moeglichkeit, Text ueberhaupt zu lesen. Praktische Konsequenz fuer Websites: 'user-scalable=no' und einschraenkende 'maximum-scale'-Werte aus dem viewport-Tag entfernen, sodass nur 'width=device-width, initial-scale=1' gesetzt ist."
+    },
+    {
+      "category": "Psychologie",
+      "topic": "Der Aesthetic-Usability-Effect: Warum ein schönes Design automatisch vertrauenswürdiger wirkt",
+      "date_used": "2026-11-27",
+      "summary": "Kurosu, M. & Kashimura, K. (1995), \"Apparent usability vs. inherent usability\", CHI 1995 Conference Companion (Hitachi-ATM-Studie): Nutzer:innen bewerteten aesthetisch ansprechendere Interfaces als leichter bedienbar, obwohl die tatsaechliche Bedienbarkeit identisch war. Vielfach repliziert und u.a. von der Nielsen Norman Group als \"Aesthetic-Usability Effect\" dokumentiert. Praktische Konsequenz fuer Websites: visuelle Qualitaet (Weissraum, Farbkonsistenz, Typografie-Hierarchie, echte statt generische Bilder) schafft Vertrauen, bevor die Bedienung ueberhaupt getestet wird - ersetzt aber keine echten Usability-Tests, da der Effekt echte Bedienprobleme eher verschleiert als loest."
     }
   ]
 }
